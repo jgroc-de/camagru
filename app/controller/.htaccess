@@ -1,0 +1,4 @@
+AuthName "Zone 51"
+AuthType Basic
+AuthUserFile "/Users/jgroc-de/mampstack-7.1.15-0/apache2/htdocs/camagru/config/.htpasswd"
+Require valid-user

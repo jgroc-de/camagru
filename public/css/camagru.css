@@ -1,0 +1,105 @@
+.montage, .minimoi	{
+	position: relative;
+	flex-direction: column;
+	width: auto;
+	background-color: powderblue;
+	border-radius: 25px;
+	margin-bottom: 16px;
+	padding: 8px;
+}
+
+.montage button {
+	width: 25%;
+	height: 60px;
+}
+
+.deco {
+	display:flex;
+	justify-content: space-between;
+	margin:auto;
+}
+
+.deco button	{
+	background-color: black;
+	border-radius: 5px;
+	border: 2px solid #f1f1f1;
+	width: 50%;
+	margin:8px;
+	height: 100px;
+}
+
+.deco button:hover    {
+    box-shadow: 0px 0px 5px 5px;
+}
+
+.video	{
+    display: flex;
+	flex-direction: column;
+	position: relative;
+    width: 650px;
+    margin:auto;
+}
+
+video	{
+	border: 2px solid #f1f1f1;
+	border-radius: 5px;
+    width: 640px;
+    height: 480px;
+    margin: auto;
+}
+
+.deco img	{
+	height:75px;
+	margin: 8px;
+}
+
+.preview, .visible, .hidden	{
+	visibility: hidden;
+	position: absolute;
+	max-height: 480px;
+	max-width: 640px;
+	margin: 10px;
+	left: 5px;
+	bottom: 0px;
+	z-index: 2;
+}
+
+#flamme	{
+	margin: 0;
+	left: 2px;
+	top: 185px;
+}
+#bambou	{
+	left: 0px;
+	top: -8px;
+}
+
+#mouton	{
+	left: -8px;
+	top: 150px;
+}
+
+#troll {
+    bottom:105px;
+    left:40px;
+}
+
+.minimoi img	{
+	width: 200px;
+	margin: 8px;
+	border: 2px solid #f1f1f1;
+	border-radius: 5px;
+}
+
+.video button{
+    margin: auto;
+    z-index: 3;
+}
+
+#upload {
+    max-width: 640px;
+    max-height: 480px;
+}
+#new img:hover    {
+    box-shadow: 0px 0px 5px 5px;
+}
