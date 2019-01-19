@@ -15,6 +15,10 @@ function picture($c, $options)
 		$options['script'] = "public/js/picView.js";
 		$view = 'Picture';
 		$main = '/picView.html';
+		$components = [
+			'/common/about.php',
+			'/common/contact.php'
+		];
 		require __DIR__.'/../view/template.php';
 	}
 }

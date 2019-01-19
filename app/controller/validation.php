@@ -6,7 +6,4 @@ function validation($c)
     {
         $c->user->checkValidationMail($_GET['log'], $_GET['key']);
     }
-	$view = 'Sign UP';
-	$main = '/signupView.html';
-	require __DIR__.'/../view/template.php';
 }

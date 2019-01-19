@@ -27,14 +27,10 @@ function reinit($c, $options)
         if ($userManager->pseudoInDb($pseudo) && $userManager->checkValidationMail($pseudo, $key))
         {
             logUser($userManager->getUser($pseudo));
-            header('Location: /index.php?action=settings');
         }
         else
         {
             $_SESSION['flash'] = ['fail' => "Bimp! N'y aurait-il pas une petite erreur de typo dans votre pseudo?"];	
         }
 	}
-	$view = 'Reinit';
-	$main = '/reinitView.html';
-	require __DIR__.'/../view/template.php';
 }

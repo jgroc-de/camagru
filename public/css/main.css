@@ -1,118 +1,28 @@
-body	{
-	margin: 0;
-	padding: 0;
-	background-color: #f1f1f1;
-	font-family: " Raleway", sans-serif;
-	font-size: 15px;
-	line-height: 1.5;
-	padding: 0.01em 16px;
-    word-break: break-all;
-}
-
-section {
-	background-color: #f1f1f1;
-}
-header	{
-}
-
-h1	{
-	font-size: 36px;
-	margin: 0;
-	font-weight: 400;
-}
-
-.navbar	{
-	display: block;
-	background-color: #f1f1f1;
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-	padding: 0 0 10px 0;
-	margin: 10px 0;
-	border-bottom: 6px solid powderblue;
-}
-
-nav span	{
-	margin-right: 16px;
-}
-
-nav a, .flash	{
-	display: inline-block;
-	padding: 8px 16px;
-	vertical-align: middle;
-	overflow: hidden;
-	text-align: center;
-	background: powderblue;
-    margin-top: 0;
-}
-
-section, aside {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-a	{
-	text-decoration:none;
-	color: black;
-}
-
-a:hover	{
-	background-color: darkgrey;
-}
-footer {
-	background-color: #f1f1f1;
-    width: 95vw;
-    z-index: -1;
-}
-footer div {
-    word-break: normal;
-    min-width:150px;
-    max-width:600px;
-}
-
-footer em	{
-	display: block;
-	text-align: right;
-	font-family: Verdana, monospace;
-	margin-right: 10px;
-}
-
-form	{
-	box-sizing: inherit;
-}
-
-form div	{
-	margin: 16px 0;
-}
-
-input	{
+.gg-header {
 	width: 100%;
-	border: 1px solid #ccc;
-	padding: 8px;
+  	background-image: url("../img/2_1709494041.png");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 }
 
-input[type="checkbox"]	{
-	width: auto;
+@media only screen and (max-width: 480px) {
+	.gg-header {
+		height: 250px;
+		margin-top: 40px;
+	}
 }
 
-form button	{
-	background-color: black;
-	color: white;
-	padding:8px 16px;
+@media only screen and (min-width: 480px) and (max-width: 800px) {
+	.gg-header {
+		height: 600px;
+		margin-top: 55px;
+	}
 }
 
-button.form	{
-	background-color: black;
-	color: white;
-	padding:8px 16px;
-}
-
-i	{
-	font: normal normal normal 14px/1 FontAwesome;
-	margin-right: 16px;
-}
-
-.form	{
-	width: 90%;
-	max-width: 600px;
+@media only screen and (min-width: 800px) {
+	.gg-header {
+		height: 800px;
+		margin-top: 55px;
+	}
 }

@@ -9,12 +9,16 @@ function listpics($c, $options)
     if(!is_numeric($start) || $start > $count)
 		$start = 0;
     $pics = $picManager->getPics($start * 6);
-	$components = $options['components'];
+	$components = [
+		'/common/about.php',
+		'/common/contact.php'
+	];
 	$header = [
 		'/common/header.php',
 	];
 	if (!isset($_SESSION['pseudo']))
 	{
+		$header[] = '/form/signupView.html';
 		$header[] = '/form/loginView.html';
 		$header[] = '/form/reinitView.html';
 	}
