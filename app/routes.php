@@ -5,12 +5,14 @@ $api->GET = [
 	'/listPics',
     '/listPicsByLike',
     '/picture',
-    '/logout',
     '/camagru' => '/b',
+    '/camagru',
+ 	//'/logout',
     '/setup',
     '/st_camagru'
 ];
 $api->POST = [
+    '/logout',
     '/signup',
     '/login',
     '/reinit',

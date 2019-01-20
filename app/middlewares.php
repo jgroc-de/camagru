@@ -1,7 +1,7 @@
 <?php
 
 $api->add(function() {
-	if (isset($_SESSION['user']))
+	if (isset($_SESSION['pseudo']))
 	{
 		return (401);
 	}
@@ -13,7 +13,7 @@ $api->add(function() {
 ]);
 
 $api->add(function() {
-	if (!isset($_SESSION['user']))
+	if (!isset($_SESSION['pseudo']))
 	{
 		return (403);
 	}

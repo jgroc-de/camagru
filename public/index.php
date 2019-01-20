@@ -6,9 +6,15 @@ session_start();
  */
 $args = array(
     'camagru' => '',
-    'login' => '',
+    'login' => isset($_SESSION['pseudo']),
     'title2' => '',
     'script' => '',
+	'header' => [
+		'/common/header.php',
+		'/form/loginView.html',
+		'/form/reinitView.html',
+		'/form/settingsView.html',
+	],
 	'components' => [
 		'/common/about.php',
 		'/common/contact.php'

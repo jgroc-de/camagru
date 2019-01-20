@@ -33,4 +33,5 @@ function reinit($c, $options)
             $_SESSION['flash'] = ['fail' => "Bimp! N'y aurait-il pas une petite erreur de typo dans votre pseudo?"];	
         }
 	}
+	echo $_SESSION['flash'];
 }

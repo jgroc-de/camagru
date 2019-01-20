@@ -11,13 +11,13 @@ $description = "Bienvenue sur ce petit site type image-board/instagram. Vous pou
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="css/main.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	</head>
 
 <body>	
-	<?php //require __DIR__.'/common/navbar.php' ?>
+	<?php require __DIR__.'/common/navbar.php' ?>
 	<?php 
-		foreach ($header as $value)
+		foreach ($options['header'] as $value)
 		{
 			require __DIR__.$value;
 		}?>
@@ -25,13 +25,13 @@ $description = "Bienvenue sur ce petit site type image-board/instagram. Vous pou
 	<!-- notif -->
 	<div id="notif" style="position:fixed;bottom:10px;right:10px;z-index:20"></div>
 
-	<div class="w3-content w3-padding" style="max-width:1564px">
+	<div id="main" class="w3-content w3-padding" style="max-width:1564px">
 
 	<!-- Project Section -->
 	<?php
 		if (isset($main))
 			require __DIR__.$main;
-		foreach ($components as $value)
+		foreach ($options['components'] as $value)
 		{
 			require __DIR__.$value;
 		}

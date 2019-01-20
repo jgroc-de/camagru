@@ -59,7 +59,6 @@ comments.id_author	app/config/camagru.sql	/^  img_id int NOT NULL,$/;"	F
 comments.img_id	app/config/camagru.sql	/^  id SERIAL PRIMARY KEY,$/;"	F
 components	app/controller/camagru.php	/^	$components = $options['components'];$/;"	v
 components	app/controller/error.php	/^	$components = [$/;"	v
-components	app/controller/listPics.php	/^	$components = $options['components'];$/;"	v
 components	app/controller/picture.php	/^		$components = [$/;"	v
 container	app/lib/Twittee.php	/^    protected $container = array();$/;"	v
 container	app/model/SqlManager.php	/^        $this->container = $container;$/;"	v
@@ -129,10 +128,9 @@ getPicsByLogin	app/model/PicManager.php	/^	public function getPicsByLogin($pseud
 getUser	app/model/UserManager.php	/^	public function getUser($pseudo)$/;"	f
 getUserById	app/model/UserManager.php	/^    public function getUserById($id)$/;"	f
 getUserByImgId	app/model/UserManager.php	/^    public function getUserByImgId($id)$/;"	f
-ggAjax	public/js/common.js	/^function ggAjax(data, url)$/;"	f
-ggForm	public/js/common.js	/^function ggForm(button, url)$/;"	f
+ggAjax	public/js/common.js	/^function ggAjax(data, url, callback)$/;"	f
+ggForm	public/js/common.js	/^function ggForm(button, url, callback = null)$/;"	f
 header	app/controller/error.php	/^	$header = [$/;"	v
-header	app/controller/listPics.php	/^	$header = [$/;"	v
 headers	app/model/MailManager.php	/^        $headers = 'From: jgroc2s@free.fr' . "\\r\\n" . 'Reply-To: jgroc2s@free.fr' . "\\r\\n" . 'X-Mailer: PHP\/' . phpversion();$/;"	v
 height	app/controller/createPic.php	/^        $height = 480;$/;"	v
 height	app/controller/createPic.php	/^        $height = 640 * $size[1] \/ $size[0];$/;"	v
@@ -164,7 +162,9 @@ listpicsByLike	app/controller/listPicsByLike.php	/^function listpicsByLike($c, $
 logUser	app/lib/user.php	/^function logUser($user)$/;"	f
 login	app/controller/login.php	/^function login($c, $options)$/;"	f
 login	app/model/MailManager.php	/^        $login = $user['pseudo'];$/;"	v
+login	public/js/common.js	/^function login(status)$/;"	f
 logout	app/controller/logout.php	/^function logout()$/;"	f
+logout	public/js/common.js	/^function logout(status)$/;"	f
 mail	app/model/MailManager.php	/^        $mail = new PHPMailer\\PHPMailer\\PHPMailer();$/;"	v
 main	app/controller/camagru.php	/^	$main = '\/camagruView.html';$/;"	v
 main	app/controller/listPics.php	/^	$main = '\/listPicView.html';$/;"	v

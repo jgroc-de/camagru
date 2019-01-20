@@ -9,17 +9,6 @@ function listpics(Dumbee $container, array $options)
     if(!is_numeric($start) || $start > $count)
 		$start = 0;
     $pics = $picManager->getPics($start * 6);
-	$components = $options['components'];
-	$header = [
-		'/common/header.php',
-	];
-	if (!isset($_SESSION['pseudo']))
-	{
-		$header[] = '/form/loginView.html';
-		$header[] = '/form/reinitView.html';
-	}
-	else
-		$header[] = '/form/settingsView.html';
 	$main = '/listPicView.html';
 	$view = 'Last Pictures';
 	require __DIR__.'/../view/template.php';

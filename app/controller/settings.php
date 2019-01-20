@@ -27,4 +27,5 @@ function settings($c, $options)
 		}
     }
 	$user = $userManager->getUser($_SESSION['pseudo']);
+	echo $_SESSION['flash'];
 }
