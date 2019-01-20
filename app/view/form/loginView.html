@@ -14,13 +14,12 @@
 	onclick="document.getElementById('login').style.display='none';document.getElementById('signup').style.display='block'"
  >Sign up</button>
 		<section class="w3-container w3-padding-32" id="login">
-			<form method="post" action="<?= $target ?>">
+			<form method="post" action="#">
 				<div>
 					<label>pseudo</label>
 					<input type="text"
 			class="w3-input w3-border"
    name="pseudo"
-   value="<?= $pseudo ?>"
    maxlength="30"
    required
    >
@@ -55,13 +54,12 @@
 			</div>
 		</section>
 		<section class="w3-container w3-padding-32" id="signup">
-			<form method="post" action="index.php?action=signup">
+			<form method="post" action="#">
 				<div>
 					<label>pseudo</label>
 					<input type="text"
 			name="pseudo"
    class="w3-input w3-border"
-   value=""
    maxlength="30"
    required>
 					<br>

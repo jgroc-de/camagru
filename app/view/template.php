@@ -5,9 +5,7 @@ $description = "Bienvenue sur ce petit site type image-board/instagram. Vous pou
 ?>
 	<head>
 		<meta charset="utf-8"/>
-<?php if ($options['last']):?>
 		<meta name="description" content="<?= $description ?>">
-<?php endif; ?>
 		<meta name="keywords" lang="fr" content="image-board photo-montage">
 		<title>Camagru</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
