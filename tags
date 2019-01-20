@@ -11,23 +11,20 @@ ConfigManager	app/model/ConfigManager.php	/^class ConfigManager extends SqlManag
 DB	app/config/env.php	/^$DB = array($/;"	v
 DB	app/container.php	/^		$DB = $c->env;$/;"	v
 DB_DSN	app/container.php	/^		$DB_DSN = $DB['driver'] . ':host='. $DB['host'] . ';dbname=' . $DB['name'] .';';$/;"	v
-Dumbee	dumb/nanee.php	/^class Dumbee$/;"	c
+Dumbee	dumb/Dumbee.php	/^class Dumbee$/;"	c
 MailManager	app/model/MailManager.php	/^class MailManager$/;"	c
 PicManager	app/model/PicManager.php	/^class PicManager extends SqlManager$/;"	c
 SqlManager	app/model/SqlManager.php	/^class SqlManager$/;"	c
 Twittee	app/lib/Twittee.php	/^class Twittee$/;"	c
-Twittee	dumb/twittee.php	/^class Twittee$/;"	c
 UserManager	app/model/UserManager.php	/^class UserManager extends SqlManager$/;"	c
-__construct	app/model/SqlManager.php	/^    public function __construct($container)$/;"	f
+__construct	app/model/SqlManager.php	/^    public function __construct(&$container)$/;"	f
+__construct	dumb/Dumbee.php	/^    public function __construct(array $functions)$/;"	f
 __construct	dumb/dumb.php	/^	public function __construct()$/;"	f
-__construct	dumb/nanee.php	/^    public function __construct(array $functions)$/;"	f
 __get	app/lib/Twittee.php	/^    public function __get($key)$/;"	f
 __get	app/model/SqlManager.php	/^	public function  __get($name)$/;"	f
-__get	dumb/nanee.php	/^    public function __get($key)$/;"	f
-__get	dumb/twittee.php	/^    public function __get($key)$/;"	f
+__get	dumb/Dumbee.php	/^    public function __get($key)$/;"	f
 __set	app/lib/Twittee.php	/^    public function __set($key, $value)$/;"	f
 __set	dumb/Bunkee.php	/^	public function __set(string $method, array $routes)$/;"	f
-__set	dumb/twittee.php	/^    public function __set($key, $value)$/;"	f
 actif	app/model/UserManager.php	/^			$actif = $row['actif'];$/;"	v
 actif	app/model/UserManager.php	/^		$actif = false;$/;"	v
 action	dumb/Bunkee.php	/^			$action = $this->middlewares[$middleware];$/;"	v
@@ -67,11 +64,10 @@ components	app/controller/picture.php	/^		$components = [$/;"	v
 container	app/lib/Twittee.php	/^    protected $container = array();$/;"	v
 container	app/model/SqlManager.php	/^        $this->container = $container;$/;"	v
 container	app/model/SqlManager.php	/^    protected $container;$/;"	v
+container	dumb/Dumbee.php	/^        $this->container = $functions;$/;"	v
+container	dumb/Dumbee.php	/^    protected $container = array();$/;"	v
 container	dumb/dumb.php	/^		$this->container = new Dumbee($functions);$/;"	v
 container	dumb/dumb.php	/^	public $container;$/;"	v
-container	dumb/nanee.php	/^        $this->container = $functions;$/;"	v
-container	dumb/nanee.php	/^    protected $container = array();$/;"	v
-container	dumb/twittee.php	/^    protected $container = array();$/;"	v
 count	app/controller/listPics.php	/^	$count = $count[0] \/ 6;$/;"	v
 count	app/controller/listPics.php	/^	$count = $picManager->countPics();$/;"	v
 count	app/controller/listPicsByLike.php	/^	$count = $count[0] \/ 6;$/;"	v

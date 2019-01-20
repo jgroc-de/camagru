@@ -11,10 +11,6 @@ class Bunkee
 
 	private $found = false;
 
-	/**
-	 *  option 3: must be logout
-	 *  option 4: must be login
-	 */
 	private $route = array();
 
 	protected $uri;
@@ -27,9 +23,6 @@ class Bunkee
 
 	public function __set(string $method, array $routes)
 	{
-		print_r($routes);
-		echo '<br>';
-		print_r($this->uri);
 		if ($this->found)
 			return ;
 		if (($key = array_search($this->uri, $routes)) !== false)
@@ -42,7 +35,6 @@ class Bunkee
 				$this->error(405);
 			}
 		}
-		echo '<br>key ='.$key.'<br>';
 	}
 
 	public function add($function, array $routes)

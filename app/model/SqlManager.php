@@ -4,7 +4,7 @@ class SqlManager
 {
     protected $container;
 
-    public function __construct($container)
+    public function __construct(&$container)
     {
         $this->container = $container;
     }

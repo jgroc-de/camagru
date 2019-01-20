@@ -3,12 +3,12 @@
 require '../app/config/env.php';
 
 $api->setContainer([
-	'env' => function($c)
+	'env' => function(&$c)
 	{
 		global $DB;
 		return $DB;
 	},
-	'db' => function($c)
+	'db' => function(&$c)
 	{
 		$DB = $c->env;
 
@@ -17,27 +17,27 @@ $api->setContainer([
 			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 		));  
 	},
-	'camagru' => function ($c)
+	'camagru' => function (&$c)
 	{
 		return new CamagruManager($c); 
 	},
-	'comment' => function ($c)
+	'comment' => function (&$c)
 	{
 		return new CommentManager($c); 
 	},
-	'config' => function ($c)
+	'config' => function (&$c)
 	{
 		return new ConfigManager($c); 
 	},
-	'picture' => function ($c)
+	'picture' => function (&$c)
 	{
 		return new PicManager($c); 
 	},
-	'mail' => function ($c)
+	'mail' => function (&$c)
 	{
 		return new MailManager($c); 
 	},
-	'user' => function ($c)
+	'user' => function (&$c)
 	{
 		return new UserManager($c); 
 	},
