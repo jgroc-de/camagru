@@ -1,21 +1,10 @@
 <?php
 
-require '../dumb/twittee.php';
+require '../dumb/Dumbee.php';
+require '../dumb/Bunkee.php';
 
-class dumb
-{
-	/**
-	 *  option 3: must be logout
-	 *  option 4: must be login
-	 */
-	private $route = array();
-
-	private $middlewares = array();
-
-	private $uri;
-	
-	private $found = false;
-
+class dumb extends Bunkee
+{	
 	public $container;
 
 	public function __construct()
@@ -24,56 +13,24 @@ class dumb
 			require '../app/model/' . $class . '.php';
 		});
 		$this->uri = $_SERVER['REQUEST_URI'];
-		if ($this->uri == '/')
-			$this->uri = '/listPics';
-		 $this->container = new Twittee();
 	}
 
-    public function __set(string $method, array $routes)
+	public function setContainer(array $functions)
 	{
-		if ($this->found)
-			return ;
-		foreach ($routes as $route)
-		{
-			if ($route === $this->uri)
-			{
-				$this->found = true;
-				if ($_SERVER['REQUEST_METHOD'] !== $method)
-				{
-					$this->uri = '/error';
-					$this->args['error']['code'] = 405;
-					$this->args['error']['message'] = 'Method Not Allowed';
-				}
-				return ;
-			}
-		}
+		$this->container = new Dumbee($functions);
 	}
 
-	private function middleware()
+	public function dumb($args = null)
 	{
-		foreach ($this->route as $middleware)
+		if ($this->middleware())
 		{
-			$action = $this->middlewares[$middleware];
-			if (!$this->$action())
-			{
-				$this->uri = '/error';
-				$this->args['error']['code'] = 401;
-				$this->args['error']['message'] = 'Bad Request';
-				break ;
-			}
+			require '../app/controller' . $this->uri . '.php';
+			(ltrim($this->uri, '/'))($this->container, $args);
 		}
-	}
-
-	public function dumb($args = array())
-	{
-		if (!$this->found)
+		else
 		{
-			$this->uri = '/error';
-			$this->args['error']['code'] = 404;
-			$this->args['error']['message'] = 'Not Found';
+			require '../app/controller/error.php';
+			error($this->container, $this->args, $args);
 		}
-		$this->middleware();
-		require '../app/controller' . $this->uri . '.php';
-		(ltrim($this->uri, '/'))($this->container, $args);
 	}
 }

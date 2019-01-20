@@ -1,17 +1,16 @@
 <?php
 
 /**
- * @class Twittee
+ * @class Dumbee
  *
- * @author: fabien Potencier
  */
-class Twittee
+class Dumbee
 {
     protected $container = array();
 
-    public function __set($key, $value)
+    public function __construct(array $functions)
     {
-        $this->container[$key] = $value;
+        $this->container = $functions;
     }
 
     public function __get($key)

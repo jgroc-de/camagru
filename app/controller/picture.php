@@ -4,9 +4,9 @@ function picture($c, $options)
 {
     $picManager = $c->picture;
 
-    $id = isset($_GET['id'])? $_GET['id']: 0;
+    $id = isset($_GET['id']) ? $_GET['id'] : 0;
     if (!($picManager->picInDb($id))) 
-		header('Location: index.php');
+		header('Location: /');
     else
     {
 		$elem = $picManager->getPic($id);

@@ -1,8 +1,8 @@
 <?php
 
-function error($c, $options)
+function error($c, $error, $options)
 {
-	header("HTTP/1.1 ".$options['error']['code']." ".$options['error']['message']);
+	header("HTTP/1.1 ".$error['error']['code']." ".$error['error']['message']);
 	$components = [
 		'/common/about.php',
 		'/common/contact.php'

@@ -1,12 +1,12 @@
 <?php
 
 $api->GET = [
-	'/',
-    '/listPics',
+	'/listPics' => '/',
+	'/listPics',
     '/listPicsByLike',
     '/picture',
     '/logout',
-    '/camagru',
+    '/camagru' => '/b',
     '/setup',
     '/st_camagru'
 ];

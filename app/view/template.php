@@ -15,7 +15,7 @@ $description = "Bienvenue sur ce petit site type image-board/instagram. Vous pou
 	</head>
 
 <body>	
-	<?php require __DIR__.'/common/navbar.php' ?>
+	<?php //require __DIR__.'/common/navbar.php' ?>
 	<?php 
 		foreach ($header as $value)
 		{

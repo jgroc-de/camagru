@@ -1,8 +1,8 @@
 <?php
 
-function listpics($c, $options)
+function listpics(Dumbee $container, array $options)
 {
-    $picManager = $c->picture;
+    $picManager = $container->picture;
 	$count = $picManager->countPics();
     $start = isset($_GET['start']) ? $_GET['start'] : 0;
 	$count = $count[0] / 6;
