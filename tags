@@ -15,15 +15,12 @@ Dumbee	dumb/Dumbee.php	/^class Dumbee$/;"	c
 MailManager	app/model/MailManager.php	/^class MailManager$/;"	c
 PicManager	app/model/PicManager.php	/^class PicManager extends SqlManager$/;"	c
 SqlManager	app/model/SqlManager.php	/^class SqlManager$/;"	c
-Twittee	app/lib/Twittee.php	/^class Twittee$/;"	c
 UserManager	app/model/UserManager.php	/^class UserManager extends SqlManager$/;"	c
 __construct	app/model/SqlManager.php	/^    public function __construct(&$container)$/;"	f
 __construct	dumb/Dumbee.php	/^    public function __construct(array $functions)$/;"	f
 __construct	dumb/dumb.php	/^	public function __construct()$/;"	f
-__get	app/lib/Twittee.php	/^    public function __get($key)$/;"	f
 __get	app/model/SqlManager.php	/^	public function  __get($name)$/;"	f
 __get	dumb/Dumbee.php	/^    public function __get($key)$/;"	f
-__set	app/lib/Twittee.php	/^    public function __set($key, $value)$/;"	f
 __set	dumb/Bunkee.php	/^	public function __set(string $method, array $routes)$/;"	f
 actif	app/model/UserManager.php	/^			$actif = $row['actif'];$/;"	v
 actif	app/model/UserManager.php	/^		$actif = false;$/;"	v
@@ -60,7 +57,6 @@ comments.img_id	app/config/camagru.sql	/^  id SERIAL PRIMARY KEY,$/;"	F
 components	app/controller/camagru.php	/^	$components = $options['components'];$/;"	v
 components	app/controller/error.php	/^	$components = [$/;"	v
 components	app/controller/picture.php	/^		$components = [$/;"	v
-container	app/lib/Twittee.php	/^    protected $container = array();$/;"	v
 container	app/model/SqlManager.php	/^        $this->container = $container;$/;"	v
 container	app/model/SqlManager.php	/^    protected $container;$/;"	v
 container	dumb/Dumbee.php	/^        $this->container = $functions;$/;"	v
@@ -109,6 +105,7 @@ env	app/controller/setup.php	/^		$env = $c->env;$/;"	v
 error	app/controller/error.php	/^function error($c, $error, $options)$/;"	f
 error	dumb/Bunkee.php	/^	protected function error(int $httpCode)$/;"	f
 fileInput	public/js/camagruView.js	/^    var fileInput = document.getElementById('file');$/;"	v
+fillSettings	public/js/common.js	/^function fillSettings(response)$/;"	f
 filter	app/config/camagru.sql	/^CREATE TABLE filter ($/;"	t
 filter	app/controller/createPic.php	/^        $filter = $c->camagru->getFilters();$/;"	v
 filter.id	app/config/camagru.sql	/^CREATE TABLE filter ($/;"	F
@@ -125,11 +122,13 @@ getPicByUrl	app/model/PicManager.php	/^    public function getPicByUrl($url)$/;"
 getPics	app/model/PicManager.php	/^	public function getPics($start)$/;"	f
 getPicsByLike	app/model/PicManager.php	/^	public function getPicsByLike($start)$/;"	f
 getPicsByLogin	app/model/PicManager.php	/^	public function getPicsByLogin($pseudo)$/;"	f
+getSettings	app/controller/getSettings.php	/^function getSettings($c, $options)$/;"	f
 getUser	app/model/UserManager.php	/^	public function getUser($pseudo)$/;"	f
 getUserById	app/model/UserManager.php	/^    public function getUserById($id)$/;"	f
 getUserByImgId	app/model/UserManager.php	/^    public function getUserByImgId($id)$/;"	f
-ggAjax	public/js/common.js	/^function ggAjax(data, url, callback)$/;"	f
-ggForm	public/js/common.js	/^function ggForm(button, url, callback = null)$/;"	f
+getUserSettings	app/model/UserManager.php	/^	public function getUserSettings($pseudo)$/;"	f
+ggAjax	public/js/common.js	/^function ggAjax(data, url, notif, callback)$/;"	f
+ggForm	public/js/common.js	/^function ggForm(button, url, callback = null, notif = true)$/;"	f
 header	app/controller/error.php	/^	$header = [$/;"	v
 headers	app/model/MailManager.php	/^        $headers = 'From: jgroc2s@free.fr' . "\\r\\n" . 'Reply-To: jgroc2s@free.fr' . "\\r\\n" . 'X-Mailer: PHP\/' . phpversion();$/;"	v
 height	app/controller/createPic.php	/^        $height = 480;$/;"	v
@@ -165,7 +164,6 @@ login	app/model/MailManager.php	/^        $login = $user['pseudo'];$/;"	v
 login	public/js/common.js	/^function login(status)$/;"	f
 logout	app/controller/logout.php	/^function logout()$/;"	f
 logout	public/js/common.js	/^function logout(status)$/;"	f
-mail	app/model/MailManager.php	/^        $mail = new PHPMailer\\PHPMailer\\PHPMailer();$/;"	v
 main	app/controller/camagru.php	/^	$main = '\/camagruView.html';$/;"	v
 main	app/controller/listPics.php	/^	$main = '\/listPicView.html';$/;"	v
 main	app/controller/listPicsByLike.php	/^	$main = '\/listPicView.html';$/;"	v
@@ -227,6 +225,7 @@ resetValidkey	app/model/UserManager.php	/^	public function resetValidkey($login)
 route	dumb/Bunkee.php	/^	private $route = array();$/;"	v
 s_size	app/controller/createPic.php	/^            $s_size = getimagesize($src);$/;"	v
 sendCommentMail	app/model/MailManager.php	/^    public function sendCommentMail($user)$/;"	f
+sendMail	app/model/MailManager.php	/^    public function sendMail($dest, $subject, $message, $headers)$/;"	f
 sendReinitMail	app/model/MailManager.php	/^    public function sendReinitMail($user)$/;"	f
 sendValidationMail	app/model/MailManager.php	/^    public function sendValidationMail($user)$/;"	f
 setContainer	dumb/dumb.php	/^	public function setContainer(array $functions)$/;"	f
@@ -262,7 +261,6 @@ uri	dumb/dumb.php	/^		$this->uri = $_SERVER['REQUEST_URI'];$/;"	v
 url	app/controller/createPic.php	/^        $url = parsePost($_POST, $filter);$/;"	v
 url	app/controller/createPic.php	/^    $url = array();$/;"	v
 user	app/controller/addComment.php	/^	$user = $userManager->getUserByImgId($_POST['id']);$/;"	v
-user	app/controller/settings.php	/^	$user = $userManager->getUser($_SESSION['pseudo']);$/;"	v
 userManager	app/controller/addComment.php	/^	$userManager = $c->user;$/;"	v
 userManager	app/controller/login.php	/^		$userManager = $c->user;$/;"	v
 userManager	app/controller/reinit.php	/^    $userManager = $c->user;$/;"	v

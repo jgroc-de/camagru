@@ -18,14 +18,16 @@ function settings($c, $options)
             if ($userManager->updateUser($pseudo, $password, $email, $alert))
             {
                 logUser($userManager->getUserById($_SESSION['id']));
+                $_SESSION['flash'] = 'Profil Succesfully updated';
             }
         }
-		elseif (!$_SESSION['flash'])
+		else
 		{
 			header("HTTP/1.1 401 Bad Request");
-			$_SESSION['flash'] = 'soucis…';
+            $_SESSION['flash'] = 'Pseudo unavailable!';
 		}
     }
-	$user = $userManager->getUser($_SESSION['pseudo']);
+	else
+		header("HTTP/1.1 401 Bad Request");
 	echo $_SESSION['flash'];
 }

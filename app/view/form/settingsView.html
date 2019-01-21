@@ -16,41 +16,22 @@
 				<div>
 					<br>
 					<label>pseudo</label>
-					<input type="text"
-			class="w3-input w3-border"
-   name="pseudo"
-   placeholder="pseudo"
-   value="<?= $user['pseudo'] ?>"
-   maxlength="30"
-   required>
+					<input type="text" class="w3-input w3-border" name="pseudo" placeholder="pseudo" maxlength="30" required>
 				</div>
 				<div>
 					<br>
 					<label>password</label>
-					<input type="password"
-			class="w3-input w3-border"
-   name="passwd"
-   placeholder="password"
-   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-   title="6 characteres minimum dont au moins un chiffre, une majuscule et une minuscule"
-   required>
+					<input type="password" class="w3-input w3-border" name="password" value="******" placeholder="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="6 characteres minimum dont au moins un chiffre, une majuscule et une minuscule" required>
 				</div>
 				<div>
 					<br>
 					<label>email</label>
-					<input type="email"
-			class="w3-input w3-border"
-   name="email"
-   placeholder="email"
-   value="<?= $user['email'] ?>"
-   required>
+					<input type="email" class="w3-input w3-border" name="email" placeholder="email" required>
    <br>
 				</div>
 				<div>
-					<label>notification mail</label>
-					<input type="checkbox"
-			class="w3-input w3-border"
-   name="alert" <?php if ($user['alert']) echo "checked"?>>
+					<label>notification mail </label>
+					<input type="checkbox" name="alert">
 				</div>
 				<div class="submit">
 					<button type="button" class="w3-button w3-black w3-section" onclick="ggForm(this, '/settings')">

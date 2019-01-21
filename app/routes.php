@@ -9,9 +9,10 @@ $api->GET = [
     '/camagru',
  	//'/logout',
     '/setup',
-    '/st_camagru'
+    '/st_camagru',
 ];
 $api->POST = [
+	'/getSettings',
     '/logout',
     '/signup',
     '/login',

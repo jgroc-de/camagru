@@ -4,26 +4,27 @@ class MailManager
 {
     CONST URL = 'http://jgroc2s.free.fr';
     
-    /*public function sendMail($dest, $subject, $message)
+    public function sendMail($dest, $subject, $message, $headers)
     {
-        $mail = new PHPMailer\PHPMailer\PHPMailer();
+        //$mail = new PHPMailer\PHPMailer\PHPMailer();
 
-        $mail->IsSMTP();
+        /*$mail->IsSMTP();
         $mail->CharSet = 'UTF-8';
         $mail->Host = "smtp.free.fr";
         $mail->SMTPDebug = 0;
         $mail->Port = 25;
-        /*$mail->SMTPAuth = true;
+        $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'ssl';
-        $mail->Port = 465;
-        //$mail->Password = 'secret';/
+		$mail->Port = 465;
+        $mail->Password = 'secret';/
         $mail->Username = 'jgroc2s@free.fr';
         $mail->setFrom('jgroc2s@free.fr', 'jgroc-de');
         $mail->addAddress($dest);
         $mail->Subject = $subject;
-        $mail->Body = $message;
-        return $mail->send();
-    }*/
+		$mail->Body = $message;*/
+        return mail($user['email'], $subject, $message, $headers);
+        //return $mail->send();
+    }
 	
     public function sendReinitMail($user)
     {
@@ -42,8 +43,7 @@ class MailManager
             ---------------
             Por favor, ne me spammez pas...';
         $headers = 'From: jgroc2s@free.fr' . "\r\n" . 'Reply-To: jgroc2s@free.fr' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-        mail($dest, $subject, $message, $headers);
-        //$this->sendMail($dest, $subject, $message);
+        $this->sendMail($dest, $subject, $message, $headers);
         $_SESSION['flash'] = ['success' => 'Opération éffectuée! Scrutez votre boite mail avec attention'];
     } 
     
@@ -61,9 +61,8 @@ ou copier/coller dans votre navigateur internet.
 ---------------
 Ceci est un mail automatique, Merci de ne pas y répondre.';
 
-        //if ($this->sendMail($user['email'], $subject, $message))
         $headers = 'From: jgroc2s@free.fr' . "\r\n" . 'Reply-To: jgroc2s@free.fr' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-        if(mail($user['email'], $subject, $message, $headers))
+        if ($this->sendMail($user['email'], $subject, $message, $headers))
         {
 			$_SESSION['flash'] = ['success' => 'Bienvenu! Un mail vous a été envoyé'];
         }
@@ -79,7 +78,6 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
         $subject = 'nouveau commentaire';
         $message = 'Hi ' . $user['pseudo'] . ', You have a new comment for one of your picture! Check-it out';
         $headers = 'From: jgroc2s@free.fr' . "\r\n" . 'Reply-To: jgroc2s@free.fr' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-        mail($user['email'], $subject, $message, $headers);
-        //$this->sendMail($user['email'], $subject, $message);
+        $this->sendMail($user['email'], $subject, $message, $headers);
     }
 }

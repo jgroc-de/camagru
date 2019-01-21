@@ -15,7 +15,7 @@
 <?php endif ?>
 			<i class="fas fa-power-off"></i>
 	  </a>
-	  <a id="btnSettings" href="#settings" class="w3-bar-item w3-button" <?php if (!$options['login']): ?>style="display:none"<?php endif ?> onclick="document.getElementById('settingsForm').style.display='block'">settings</a>
+	  <a id="btnSettings" href="#settings" class="w3-bar-item w3-button" <?php if (!$options['login']): ?>style="display:none"<?php endif ?> onclick="document.getElementById('settingsForm').style.display='block';ggForm(null, '/getSettings', fillSettings, false)">settings</a>
 	</div>
 </div>
 </nav>

@@ -20,6 +20,7 @@ $api->add(function() {
 	return (0);
 },
 [
+	'/getSettings',
 	'/logout',
     '/camagru',
     '/addComment',

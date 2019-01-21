@@ -6,8 +6,8 @@
       <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
       <input class="w3-input w3-section w3-border" type="text" placeholder="Email" required name="Email">
       <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="Subject">
-      <input class="w3-input w3-section w3-border" type="text" placeholder="Comment" required name="Comment">
-      <button class="w3-button w3-black w3-section" type="submit">
+      <textarea class="w3-input w3-section w3-border" placeholder="Message" rows="6" required name="Message"></textarea>
+      <button class="w3-button w3-black w3-section" type="button" onclick="ggForm(this, '/contact')">
         <i class="fa fa-paper-plane"></i> SEND MESSAGE
       </button>
     </form>

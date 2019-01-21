@@ -1,26 +1,29 @@
 "use strict";
 
-function ggForm(button, url, callback = null)
+function ggForm(button, url, callback = null, notif = true)
 {
-	var input = button.parentNode.parentNode;
 	var data = '';
-
-	for (var i = 0; i < input.length - 1; i++)
+	if (button)
 	{
-		if (input[i] != '')
-			data += '&';
+		var input = button.parentNode.parentNode;
 
-		if (!input[i].validity.valid)
+		for (var i = 0; i < input.length - 1; i++)
 		{
-			printNotif(input[i].name + ': ' +input[i].validationMessage, 400);
-			return ;
+			if (input[i] != '')
+				data += '&';
+
+			if (!input[i].validity.valid)
+			{
+				printNotif(input[i].name + ': ' +input[i].validationMessage, 400);
+				return ;
+			}
+			data += input[i].name + "=" + input[i].value;
 		}
-		data += input[i].name + "=" + input[i].value;
 	}
-	ggAjax(data, url, callback);
+	ggAjax(data, url, notif, callback);
 }
 
-function ggAjax(data, url, callback)
+function ggAjax(data, url, notif, callback)
 {
     var xmlhttp = new XMLHttpRequest();
 
@@ -29,9 +32,14 @@ function ggAjax(data, url, callback)
     {
         if (this.readyState == 4)
 		{
-            printNotif(this.responseText, this.status);
-			if (callback)
-				callback(this.status);
+			if (notif)
+			{
+				printNotif(this.responseText, this.status);
+				if (callback)
+					callback(this.status);
+			}
+			else
+				callback(this.responseText);
 		}
     };
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -89,4 +97,14 @@ function logout(status)
 		logout.setAttribute('onclick', "document.getElementById('form').style.display='block'");
 		camagru.setAttribute('onclick', "document.getElementById('form').style.display='block'");
 	}
+}
+
+function fillSettings(response)
+{
+	var form = document.getElementById('settings').getElementsByTagName("form");
+	var settings = JSON.parse(response);
+
+	form[0][0].value = settings['pseudo'];
+	form[0][2].value = settings['email'];
+	form[0][3].setAttribute('checked', settings['alert']);
 }

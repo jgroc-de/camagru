@@ -107,6 +107,16 @@ class UserManager extends SqlManager
 		return $this->sqlRequestFetch($request, array($pseudo));
 	}
     
+	public function getUserSettings($pseudo)
+	{
+		$request = '
+			SELECT pseudo, email, alert
+			FROM users
+			WHERE pseudo = ?
+		';
+		return $this->sqlRequestFetch($request, array($pseudo));
+	}
+    
     public function getUserById($id)
 	{
 		$request = '
@@ -132,9 +142,8 @@ class UserManager extends SqlManager
     public function updateUser($pseudo, $passwd, $email, $alert)
     {
         $oldPseudo = $_SESSION['pseudo'];
-        if (strcmp($oldPseudo, $pseudo) && $this->pseudoInDb($pseudo))
+        if ($this->pseudoInDb($pseudo))
         {
-            $_SESSION['flash'] = ['fail' => 'Pseudo non disponible!'];
             return false;
         }
         else
@@ -150,7 +159,6 @@ class UserManager extends SqlManager
                 $request->bindParam(':pass', $passwd, PDO::PARAM_STR);
                 $request->bindParam(':login', $oldPseudo, PDO::PARAM_STR);
                 $request->execute();
-                $_SESSION['flash'] = ['success' => 'Profil mis-à-jour'];
                 return true;
          }
     }
