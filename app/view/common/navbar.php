@@ -5,7 +5,7 @@
 	<!-- Float links to the right. Hide them on small screens -->
 	<div class="w3-right">
 	  <a href="#pictures" class="w3-hide-small w3-bar-item w3-button">Pictures</a>
-	  <a id="btnCamagru" class="w3-bar-item w3-button" href="#camagru" <?php if (!$options['login']): ?>onclick="document.getElementById('form').style.display='block';"<?php endif ?>>/b</a>
+	  <a id="btnCamagru" class="w3-bar-item w3-button" <?php if (!$options['login']): ?>href="#camagru" onclick="document.getElementById('form').style.display='block';printNotif('You must be loged to access this resource', 200)"<?php else: ?>href="/camagru"<?php endif ?>>/b</a>
 	  <a class="w3-hide-small w3-bar-item w3-button" href="#about">about</a>
 	  <a class="w3-hide-small w3-bar-item w3-button" href="#contact">contact</a>
 <?php if (!$options['login']): ?>

@@ -79,6 +79,7 @@ function login(status)
 		logout.className = "w3-bar-item w3-black w3-button";
 		logout.removeAttribute('onclick');
 		camagru.removeAttribute('onclick');
+		camagru.href = "/camagru";
 		logout.setAttribute('onclick', "ggForm(this, '/logout', logout)");
 	}
 }
@@ -95,6 +96,7 @@ function logout(status)
 		logout.className = "w3-bar-item w3-green w3-button";
 		logout.removeAttribute('onclick');
 		logout.setAttribute('onclick', "document.getElementById('form').style.display='block'");
+		camagru.href = "#camagru";
 		camagru.setAttribute('onclick', "document.getElementById('form').style.display='block'");
 	}
 }
@@ -105,6 +107,6 @@ function fillSettings(response)
 	var settings = JSON.parse(response);
 
 	form[0][0].value = settings['pseudo'];
-	form[0][2].value = settings['email'];
-	form[0][3].setAttribute('checked', settings['alert']);
+	form[0][1].value = settings['email'];
+	form[0][2].setAttribute('checked', settings['alert']);
 }

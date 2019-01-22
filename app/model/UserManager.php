@@ -139,10 +139,10 @@ class UserManager extends SqlManager
 		return $this->sqlRequestFetch($request, array($id));
 	}
 
-    public function updateUser($pseudo, $passwd, $email, $alert)
+    public function updateUser($pseudo, $email, $alert)
     {
         $oldPseudo = $_SESSION['pseudo'];
-        if ($this->pseudoInDb($pseudo))
+        if ($pseudo != $oldPseudo && $this->pseudoInDb($pseudo))
         {
             return false;
         }
@@ -150,16 +150,24 @@ class UserManager extends SqlManager
         {
             $request = $this->container->db->prepare('
                     UPDATE users
-                    SET passwd = :pass, pseudo = :pseudo, email = :email, alert = :alert
+                    SET pseudo = :pseudo, email = :email, alert = :alert
                     WHERE pseudo = :login');
-                $passwd = password_hash($passwd, PASSWORD_DEFAULT);
-                $request->bindParam(':alert', $alert, PDO::PARAM_BOOL);
-                $request->bindParam(':email', $email, PDO::PARAM_STR);
-                $request->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-                $request->bindParam(':pass', $passwd, PDO::PARAM_STR);
-                $request->bindParam(':login', $oldPseudo, PDO::PARAM_STR);
-                $request->execute();
-                return true;
+           	$passwd = password_hash($passwd, PASSWORD_DEFAULT);
+            $request->bindParam(':alert', $alert, PDO::PARAM_BOOL);
+            $request->bindParam(':email', $email, PDO::PARAM_STR);
+            $request->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+            $request->bindParam(':login', $oldPseudo, PDO::PARAM_STR);
+            $request->execute();
+            return true;
          }
     }
+
+	public function updatePassword($passwd)
+	{
+		$request = $this->container->db->prepare('UPDATE users SET passwd = :pass  WHERE pseudo = :login');
+		$passwd = password_hash($passwd, PASSWORD_DEFAULT);
+		$request->bindParam(':pass', $passwd, PDO::PARAM_STR);
+            $request->bindParam(':login', $_SESSION['pseudo'], PDO::PARAM_STR);
+		$request->execute();
+	}
 }

@@ -21,6 +21,7 @@ $api->add(function() {
 },
 [
 	'/getSettings',
+    '/password',
 	'/logout',
     '/camagru',
     '/addComment',

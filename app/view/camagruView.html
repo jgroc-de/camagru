@@ -1,9 +1,12 @@
 <div id="camagru">
+	<div class="w3-container w3-padding-32" id="pictures">
+		<h3 class="w3-border-bottom w3-border-light-grey w3-padding-16"><?= $view ?></h3>
+	</div>
 	<section class="montage">
 		<div class="deco">
 			<?php foreach ($listFilter as $filter): ?>
 
-			<button onclick="display('<?= $filter['title'] ?>')" id="btn_<?= $filter['title']?>">
+			<button onclick="display('<?= $filter['title'] ?>')" id="btn_<?= $filter['title']?>" class="w3-button w3-black">
 				<img src="<?= $filter['url'] ?>" alt="<?= $filter['title']?>">
 			</button>
 			<?php endforeach; ?>
@@ -16,25 +19,26 @@
 				<img class="preview" id="<?= $filter['title'] ?>" src="<?= $filter['url'] ?>">
 				<?php endforeach; ?>
 			</div>
-			<button id="snap" onclick="alert('il faut soit charger une image format png, soit activer la webcam, <.)')">Snap Photo</button>
+			<button id="snap" onclick="printNotif('il faut soit charger une image format png, soit activer la webcam, <.)', 200)" class="w3-button w3-red">Snap Photo</button>
 			<form method="post" action="">
-				<input type="file" id="file" accept=".png"/>
+				<input type="file" class="w3-input" id="file" accept=".png"/>
 			</form>
 			<div id="prev">
 			</div>
 		</div>
 	</section>
-
-	<section class="minimoi">
-		<canvas style="display:none" id="canvas" width="640" height="480"></canvas>
-		<div id="new">
-			<?php foreach ($pics as $pic): ?>
-			<img src="<?= $pic['url'] ?>"
-		id="<?= $pic['url']?>"
-  alt="<?= $pic['title']?>"
-  title="<?= $pic['title']?>"
-  onclick='deletePic("<?= $pic['url'] ?>")'>
-  <?php endforeach; ?>
+	<div class="w3-container w3-padding-32" id="pictures">
+		<h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Your Pictures</h3>
+	</div>
+	<section class="w3-row-padding">
+			<canvas style="display:none" id="canvas" width="640" height="480"></canvas>
+				<?php foreach ($pics as $pic): ?>
+		<div class="w3-col l3 m6 w3-margin-bottom">
+			<div class="w3-display-container" id="new">
+				<div class="w3-display-topleft w3-black w3-padding"><?= htmlspecialchars($pic['title'])?></div>
+				<img style="width:100%" src="<?= $pic['url'] ?>" id="<?= $pic['url']?>" alt="<?= $pic['title']?>" title="<?= $pic['title']?>" onclick='deletePic("<?= $pic['url'] ?>")'>
+			</div>
 		</div>
+				<?php endforeach; ?>
 	</section>
 </div>

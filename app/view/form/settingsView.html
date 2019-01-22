@@ -20,11 +20,6 @@
 				</div>
 				<div>
 					<br>
-					<label>password</label>
-					<input type="password" class="w3-input w3-border" name="password" value="******" placeholder="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="6 characteres minimum dont au moins un chiffre, une majuscule et une minuscule" required>
-				</div>
-				<div>
-					<br>
 					<label>email</label>
 					<input type="email" class="w3-input w3-border" name="email" placeholder="email" required>
    <br>
@@ -35,6 +30,19 @@
 				</div>
 				<div class="submit">
 					<button type="button" class="w3-button w3-black w3-section" onclick="ggForm(this, '/settings')">
+						<i class="fa fa-paper-plane"></i>
+						Send
+					</button>
+				</div>
+			</form>
+			<form method="post" action="#password">
+				<div>
+					<br>
+					<label>password</label>
+					<input type="password" class="w3-input w3-border" name="password" placeholder="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="6 characteres minimum dont au moins un chiffre, une majuscule et une minuscule" required>
+				</div>
+				<div class="submit">
+					<button type="button" class="w3-button w3-black w3-section" onclick="ggForm(this, '/password')">
 						<i class="fa fa-paper-plane"></i>
 						Send
 					</button>

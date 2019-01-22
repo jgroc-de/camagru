@@ -2,11 +2,11 @@
 
 function camagru($c, $options)
 {
-	$options['camagru'] = true;
+	array_shift($options['header']);
 
 	$pics = $c->picture->getPicsByLogin($_SESSION['id']);
 	$listFilter = $c->camagru->getFilters();	
-	$options['script'] = 'public/js/camagruView.js';
+	$options['script'] = 'js/camagruView.js';
 	$view = 'Camagru Factory';
 	$main = '/camagruView.html';
 	$components = $options['components'];

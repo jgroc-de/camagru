@@ -126,7 +126,7 @@ function createPic (data, filter)
 		str += '&title' + i + '=' + filter[i];
 		i++;
 	}
-	xhttp.open('POST', 'index.php?action=createPic', true);
+	xhttp.open('POST', '/createPic', true);
 	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	xhttp.onreadystatechange = function()
     {
@@ -153,7 +153,7 @@ function deletePic (img_url)
 
     if (confirm("Voulez Vous vraiment supprimer cette image?"))
     {
-        xhttp.open('GET', 'index.php?action=deletePic&url=' + img_url, true);
+        xhttp.open('GET', '/deletePic&url=' + img_url, true);
         xhttp.onreadystatechange = function()
         {
             if (this.readyState == 4 && this.status == 200)

@@ -1,8 +1,8 @@
 <?php
 
 $api->GET = [
-	'/listPics' => '/',
-	'/listPics',
+	'/home' => '/',
+	'/home',
     '/listPicsByLike',
     '/picture',
     '/camagru' => '/b',
@@ -18,6 +18,7 @@ $api->POST = [
     '/login',
     '/reinit',
     '/settings',
+    '/password',
     '/addComment',
     '/addLike',
     '/changeTitle',
