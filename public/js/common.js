@@ -1,6 +1,6 @@
 "use strict";
 
-function ggForm(button, url, callback = null, notif = true)
+function ggForm(button, url, callback = null)
 {
 	var data = '';
 	if (button)
@@ -20,26 +20,27 @@ function ggForm(button, url, callback = null, notif = true)
 			data += input[i].name + "=" + input[i].value;
 		}
 	}
-	ggAjax(data, url, notif, callback);
+	ggAjax(data, url, callback);
 }
 
-function ggAjax(data, url, notif, callback)
+function ggAjax(data, url, callback)
 {
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.open("POST", url, true);
-    xmlhttp.onreadystatechange = function()
-    {
+    xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4)
 		{
-			if (notif)
+			var json = JSON.parse(this.responseText);
+
+			if (json['flash'])
 			{
-				printNotif(this.responseText, this.status);
-				if (callback)
-					callback(this.status);
+				printNotif(json['flash'], this.status);
 			}
-			else
-				callback(this.responseText);
+			if (callback)
+			{
+				callback(this.status, json);
+			}
 		}
     };
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -65,7 +66,7 @@ function printNotif(str, status)
     setTimeout(function() {notif.removeChild(div);}, 4500, notif, div);
 }
 
-function login(status)
+function login(status, json)
 {
 	if (status == 200)
 	{
@@ -84,7 +85,7 @@ function login(status)
 	}
 }
 
-function logout(status)
+function logout(status, json)
 {
 	if (status == 200)
 	{
@@ -101,12 +102,19 @@ function logout(status)
 	}
 }
 
-function fillSettings(response)
+function fillSettings(status, json)
 {
 	var form = document.getElementById('settings').getElementsByTagName("form");
-	var settings = JSON.parse(response);
+	var settings = json['settings'];
 
 	form[0][0].value = settings['pseudo'];
 	form[0][1].value = settings['email'];
 	form[0][2].setAttribute('checked', settings['alert']);
+}
+
+function ft_scroll(element)
+{
+	if (element.scrollTop > 350) {
+		alert('lol');
+	}
 }

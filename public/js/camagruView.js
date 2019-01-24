@@ -1,4 +1,5 @@
 'use strict';
+
 play();
 (function()
  {   
@@ -94,7 +95,7 @@ function snap()
                 title.push(tabFilter[i++].id);
             }
             createPic(dataUrl, title);
-            alert('On fait chauffer les hamsters, votre photo arrive!');
+            printNotif('On fait chauffer les hamsters, votre photo arrive!', 200);
         });
     }
 }
@@ -115,9 +116,8 @@ function play()
 	}
 }
 
-function createPic (data, filter)
+function createPic(data, filter)
 {
-	var xhttp = new XMLHttpRequest();
 	var str = 'data=' + data;
 	var i = 0;
 
@@ -126,39 +126,41 @@ function createPic (data, filter)
 		str += '&title' + i + '=' + filter[i];
 		i++;
 	}
-	xhttp.open('POST', '/createPic', true);
-	xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	xhttp.onreadystatechange = function()
-    {
-		if (this.readyState == 4 && this.status == 200)
-        {
-            var path = this.responseText;
-            var img = document.createElement('img');
-
-            img.src = path;
-            img.alt = 'mes images';
-            img.id = path;
-            img.setAttribute('onclick','deletePic("' + path + '")');
-            document.getElementById('new').appendChild(img);
-        }
-    };
-	xhttp.send(str);
+	ggAjax(str, '/createPic', addPic);
 }
 
-function deletePic (img_url)
+function addPic(status, json)
 {
-    var xhttp = new XMLHttpRequest();
-    var childNode = document.getElementById(img_url);
-    var parentNode = document.getElementById('new');
+	var first = document.createElement('div');
+	var second = document.createElement('div');
+	var title = document.createElement('div');
+   	var img = document.createElement('img');
+	var main = document.getElementById('new');
+	var path = json['path']
 
-    if (confirm("Voulez Vous vraiment supprimer cette image?"))
-    {
-        xhttp.open('GET', '/deletePic&url=' + img_url, true);
-        xhttp.onreadystatechange = function()
-        {
-            if (this.readyState == 4 && this.status == 200)
-                parentNode.removeChild(childNode);
-        };
-        xhttp.send();
-    }
+	first.setAttribute('class', "w3-col l3 m6 w3-margin-bottom");
+	second.setAttribute('class', "w3-display-container");
+	title.setAttribute('class', "w3-display-topleft w3-black w3-padding");
+	title.innerHTML = path;
+	img.style = "width:100%";
+	img.src = path;
+	img.alt = path;
+	img.title = path;
+	first.id = path;
+	first.setAttribute('onclick', "if (confirm('Voulez Vous vraiment supprimer cette image?')){ggAjax('" + path + "', '/deletePic', deletePic)}");
+	second.appendChild(title);
+	second.appendChild(img);
+	first.appendChild(second);
+	main.insertBefore(first, main.firstChild);
+}
+
+function deletePic(status, json)
+{
+	if (status == 200)
+	{
+		var childNode = document.getElementById(json['url']);
+		var parentNode = document.getElementById('new');
+
+		parentNode.removeChild(childNode);
+	}
 }

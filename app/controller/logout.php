@@ -2,7 +2,9 @@
 
 function logout()
 {
-	echo 'Cya '.$_SESSION['pseudo'].'!';
+	$response['code'] = 200;
+	$response['flash'] = 'Cya '.$_SESSION['pseudo'].'!';
 	session_unset();
 	session_destroy();
+	return $response;
 }

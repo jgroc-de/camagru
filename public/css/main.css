@@ -26,3 +26,8 @@
 		margin-top: 55px;
 	}
 }
+
+.gg-wall {
+	height: 550px;
+	overflow: scroll;
+}

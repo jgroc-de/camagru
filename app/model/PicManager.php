@@ -22,7 +22,7 @@ class PicManager extends SqlManager
             INNER JOIN users
             ON img.id_author = users.id
 			ORDER BY img.id DESC
-			LIMIT 6 OFFSET :start
+			LIMIT 12 OFFSET :start
 		');
 		$request->bindParam(':start', $start, PDO::PARAM_INT);
 		$request->execute();
@@ -37,7 +37,7 @@ class PicManager extends SqlManager
             INNER JOIN users
             ON img.id_author = users.id
 			ORDER BY img.nb_like DESC
-			LIMIT 6 OFFSET :start
+			LIMIT 8 OFFSET :start
 		');
 		$request->bindParam(':start', $start, PDO::PARAM_INT);
 		$request->execute();	
@@ -52,7 +52,7 @@ class PicManager extends SqlManager
 			SELECT url, title
             FROM img
             WHERE id_author = ?
-			ORDER BY id
+			ORDER BY id DESC
 		';
 		$value = $this->sqlRequest($request, array($pseudo));
 		while ($elemt = $value->fetch()) {

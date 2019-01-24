@@ -7,6 +7,9 @@ function signup($c, $options)
 	$pseudo = testInput($_POST['pseudo']);
 	$password = testInput($_POST['password']);
 	$email = testInput($_POST['email']);
+
+	$response['code'] = 401;
+	$response['flash'] = "Bad password or login";
 	if ($pseudo && $password && $email)
 	{
 		$userManager = $c->user;
@@ -15,17 +18,16 @@ function signup($c, $options)
 			$c->mail->sendValidationMail($userManager->getUser($pseudo));
 			if (isset($_SESSION['flash']['success']))
 			{
-				echo $_SESSION['flash']['success'];
+				$response['code'] = 200;
+				$response['flash'] = $_SESSION['flash']['success'];
 			}
 			else if (isset($_SESSION['flash']['fail']))
 			{
-				header("HTTP/1.1 500 Server Error");
-				echo $_SESSION['flash']['fail'];
+				$response['code'] = 500;
+				$response['flash'] = $_SESSION['flash']['fail'];
 			}
 			unset($_SESSION['flash']);
 		}
-		return ;
 	} 
-	header("HTTP/1.1 401 Bad Request");
-	echo "Bad password or login";
+	return $response;
 }

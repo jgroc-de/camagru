@@ -7,7 +7,6 @@ $api->GET = [
     '/picture',
     '/camagru' => '/b',
     '/camagru',
- 	//'/logout',
     '/setup',
     '/st_camagru',
 ];

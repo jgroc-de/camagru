@@ -34,10 +34,17 @@ function createPic($c)
         imagepng($dest, $name);
         imagedestroy($dest);
         $c->picture->addPic($name);
-        echo $name;
+		$response['code'] = 200;
+		$response['path'] = $name;
     }
     else
-        $_SESSION['flash'] = ['fail', 'plus de place'];
+	{
+		$response['code'] = 500;
+        $_SESSION['flash'] = 'plus de place';
+	}
+	$response['flash'] = $_SESSION['flash'];
+	unset($_SESSION['flash']);
+	return $response;
 } 
 
 function resampled($src, $size)

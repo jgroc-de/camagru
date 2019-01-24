@@ -9,6 +9,7 @@ function reinit($c, $options)
     $reinit = 0;
     $valid = 0;
 
+	$response['code'] = 200;
     if (isset($_POST['pseudo']))
     {
         $pseudo = $_POST['pseudo'];
@@ -18,7 +19,10 @@ function reinit($c, $options)
             $c->mail->sendReinitMail($userManager->getUser($pseudo));
         }
         else
-            $_SESSION['flash'] = ["fail" => "Soldat inconnu"];
+		{
+			$response['code'] = 404;
+			$response['flash'] = "Soldat inconnu";
+		}
     }
     elseif (isset($_GET['log'], $_GET['key']))
     {
@@ -30,8 +34,11 @@ function reinit($c, $options)
         }
         else
         {
-            $_SESSION['flash'] = ['fail' => "Bimp! N'y aurait-il pas une petite erreur de typo dans votre pseudo?"];	
+			$response['code'] = 400;
+			$response['flash'] = "Bimp! N'y aurait-il pas une petite erreur de typo dans votre pseudo?";
         }
 	}
-	echo $_SESSION['flash'];
+	if (isset($_SESSION['flash']))
+		$response['flash'] = $_SESSION['flash';]
+	return $response;
 }

@@ -30,13 +30,13 @@
 	<div class="w3-container w3-padding-32" id="pictures">
 		<h3 class="w3-border-bottom w3-border-light-grey w3-padding-16">Your Pictures</h3>
 	</div>
-	<section class="w3-row-padding">
+	<section class="w3-row-padding" id="new">
 			<canvas style="display:none" id="canvas" width="640" height="480"></canvas>
 				<?php foreach ($pics as $pic): ?>
-		<div class="w3-col l3 m6 w3-margin-bottom">
-			<div class="w3-display-container" id="new">
+		<div class="w3-col l3 m6 w3-margin-bottom" onclick="if (confirm('Voulez Vous vraiment supprimer cette image?')){ggAjax('url=<?= $pic['url'] ?>', '/deletePic', deletePic)}" id="<?= $pic['url']?>">
+			<div class="w3-display-container">
 				<div class="w3-display-topleft w3-black w3-padding"><?= htmlspecialchars($pic['title'])?></div>
-				<img style="width:100%" src="<?= $pic['url'] ?>" id="<?= $pic['url']?>" alt="<?= $pic['title']?>" title="<?= $pic['title']?>" onclick='deletePic("<?= $pic['url'] ?>")'>
+				<img style="width:100%" src="<?= $pic['url'] ?>" alt="<?= $pic['title']?>" title="<?= $pic['title']?>">
 			</div>
 		</div>
 				<?php endforeach; ?>

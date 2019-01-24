@@ -12,10 +12,12 @@ function login($c, $options)
 		if ($userManager->checkLogin($pseudo, $password))
 		{
 			logUser($userManager->getUser($pseudo));
-			echo "Welcome back ".$pseudo;
-			return ;
+			$response['code'] = 200;
+			$response['flash'] = "Welcome back ".$pseudo;
+			return $response;
 		}
 	}
-	header("HTTP/1.1 401 Bad Request");
-	echo "Bad password or login";
+	$response['code'] = 401;
+	$response['flash'] = "Bad password or login";
+	return $response;
 }

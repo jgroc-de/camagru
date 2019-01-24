@@ -2,14 +2,20 @@
 
 function deletePic($c)
 {
-    if (isset($_GET['url']))
+	$response['url'] = $_POST['url'];
+	$response['code'] = 404;
+	$response['flash'] = "Something went wrong. Plz contact us!";
+    if (isset($_POST['url']))
     {
         $picManager = $c->picture;
-        $pic = $picManager->getPicByUrl($_GET['url']);
+        $pic = $picManager->getPicByUrl($_POST['url']);
         if ($pic && $_SESSION['id'] === $pic['id_author'])
         {
             $picManager->deletePic($pic['id'], $pic['id_author']);
-            unlink($_GET['url']); 
+            unlink($_POST['url']); 
+			$response['code'] = 200;
+			$response['flash'] = "Picture successfully deleted!";
         }
-    }
+	}
+	return $response;
 } 

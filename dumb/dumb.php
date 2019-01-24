@@ -25,7 +25,13 @@ class dumb extends Bunkee
 		if ($this->middleware())
 		{
 			require '../app/controller' . $this->uri . '.php';
-			(ltrim($this->uri, '/'))($this->container, $args);
+			$response = (ltrim($this->uri, '/'))($this->container, $args);
+			if ($response)
+			{
+				header(self::ERROR_CODE[$response['code']]);
+				unset($response['code']);
+				echo json_encode($response);
+			}
 		}
 		else
 		{

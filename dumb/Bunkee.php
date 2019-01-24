@@ -3,10 +3,12 @@
 class Bunkee
 {
 	const ERROR_CODE = [
+		200 => 'OK',
 		401 => 'Bad Request',
 		403 => 'Forbidden',
 		404 => 'Not Found',
 		405 => 'Method Not Allowed',
+		500 => 'Server Internal Error',
 	];
 
 	private $found = false;
