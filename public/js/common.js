@@ -37,7 +37,7 @@ function ggAjax(data, url, callback)
 			{
 				printNotif(json['flash'], this.status);
 			}
-			if (callback)
+			if (callback && status == 200)
 			{
 				callback(this.status, json);
 			}
@@ -64,52 +64,6 @@ function printNotif(str, status)
     notif.appendChild(div);
 
     setTimeout(function() {notif.removeChild(div);}, 4500, notif, div);
-}
-
-function login(status, json)
-{
-	if (status == 200)
-	{
-		var form = document.getElementById("form");
-		var camagru = document.getElementById("btnCamagru");
-		var logout = document.getElementById("btnLog");
-		var settings = document.getElementById("btnSettings");
-
-		form.style.display = 'none';
-		settings.style.display = 'block';
-		logout.className = "w3-bar-item w3-black w3-button";
-		logout.removeAttribute('onclick');
-		camagru.removeAttribute('onclick');
-		camagru.href = "/camagru";
-		logout.setAttribute('onclick', "ggForm(this, '/logout', logout)");
-	}
-}
-
-function logout(status, json)
-{
-	if (status == 200)
-	{
-		var logout = document.getElementById("btnLog");
-		var camagru = document.getElementById("btnCamagru");
-		var settings = document.getElementById("btnSettings");
-
-		settings.style.display = 'none';
-		logout.className = "w3-bar-item w3-green w3-button";
-		logout.removeAttribute('onclick');
-		logout.setAttribute('onclick', "document.getElementById('form').style.display='block'");
-		camagru.href = "#camagru";
-		camagru.setAttribute('onclick', "document.getElementById('form').style.display='block'");
-	}
-}
-
-function fillSettings(status, json)
-{
-	var form = document.getElementById('settings').getElementsByTagName("form");
-	var settings = json['settings'];
-
-	form[0][0].value = settings['pseudo'];
-	form[0][1].value = settings['email'];
-	form[0][2].setAttribute('checked', settings['alert']);
 }
 
 function ft_scroll(element)

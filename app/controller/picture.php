@@ -3,22 +3,20 @@
 function picture($c, $options)
 {
     $picManager = $c->picture;
+	$id = intval($_GET['id']);
 
-    $id = isset($_GET['id']) ? $_GET['id'] : 0;
     if (!($picManager->picInDb($id))) 
-		header('Location: /');
-    else
-    {
-		$elem = $picManager->getPic($id);
-		$comment = $c->comment->getComments($id);
-        $options['title2'] = htmlspecialchars($elem['title']);
-		$options['script'] = "public/js/picView.js";
-		$view = 'Picture';
-		$main = '/picView.html';
-		$components = [
-			'/common/about.php',
-			'/common/contact.php'
-		];
-		require __DIR__.'/../view/template.php';
+	{
+		require '../app/controller/error.php';
+		error($this->container, null, $options);
 	}
+	array_shift($options['header']);
+	$elem = $picManager->getPic($id);
+	$comment = $c->comment->getComments($id);
+	$options['title2'] = htmlspecialchars($elem['title']);
+	$options['script'] = "/js/picView.js";
+	$view = 'Picture';
+	$main = '/picView.html';
+	$options['components'] = [];
+	require __DIR__.'/../view/template.php';
 }

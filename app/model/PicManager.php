@@ -145,6 +145,10 @@ class PicManager extends SqlManager
                 ';
             $this->sqlRequest($request, array($id_img, $id_author), True);
         }
+		else
+		{
+			return (-1);
+		}
 		$request = '
 			SELECT nb_like 
 			FROM img 

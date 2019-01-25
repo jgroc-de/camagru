@@ -1,9 +1,7 @@
 <div id="form" class="w3-modal">
 	<div class="w3-modal-content">
 		<div class="w3-border-bottom">
-		<button class="w3-margin-right w3-right w3-button w3-red w3-section" 
-		  onclick="document.getElementById('form').style.display='none'"
-	type="button">
+		<button class="w3-margin-right w3-right w3-button w3-red w3-section" onclick="document.getElementById('form').style.display='none'" type="button">
 			<i class="fas fa-times"></i>
 		</button>
 		<a href="#login"
@@ -27,29 +25,18 @@
 			<form method="post" action="#">
 				<div>
 					<label>pseudo</label>
-					<input type="text"
-			class="w3-input w3-border"
-   name="pseudo"
-   maxlength="30"
-   required
-   >
+					<input type="text" class="w3-input w3-border" name="pseudo" maxlength="30" required>
    <br>
 				</div>
 				<div>
 					<label>password</label>
-					<input type="password"
-			class="w3-input w3-border"
-   name="password"
+					<input type="password" class="w3-input w3-border" name="password"
    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-   title="6 characteres minimum dont au moins un chiffre, une majuscule et une minuscule"
-   required
-   >
+   title="6 characteres minimum dont au moins un chiffre, une majuscule et une minuscule" required>
    <br>
 				</div>
 					<div class="submit">
-						<button type="button" class="w3-button w3-black w3-section"
-							onclick="ggForm(this, '/login', login)"
-							>
+						<button type="button" class="w3-button w3-black w3-section" onclick="ggForm(this, '/login', login)">
 							<i class="fa fa-paper-plane"></i>
 							Send
 						</button>
@@ -67,35 +54,22 @@
 			<form method="post" action="#">
 				<div>
 					<label>pseudo</label>
-					<input type="text"
-			name="pseudo"
-   class="w3-input w3-border"
-   maxlength="30"
-   required>
+					<input type="text" name="pseudo" class="w3-input w3-border" maxlength="30" required>
 					<br>
 				</div>
 				<div>
 					<label>password</label>
-					<input type="password"
-			name="password"
-   class="w3-input w3-border"
+					<input type="password" name="password" class="w3-input w3-border"
    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}"
-   title="6 characteres minimum dont au moins un chiffre, une majuscule et une minuscule"
-   required><br>
+   title="6 characteres minimum dont au moins un chiffre, une majuscule et une minuscule" required><br>
 				</div>
 				<div>
 					<label>email</label>
-					<input type="email"
-			name="email"
-   class="w3-input w3-border"
-   required>
+					<input type="email" name="email" class="w3-input w3-border" required>
 					<br>
 				</div>
 				<div class="submit">
-					<button type="button"
-			 				class="w3-button w3-black w3-section"
-							onclick="ggForm(this, '/signup')"
-						>
+					<button type="button" class="w3-button w3-black w3-section" onclick="ggForm(this, '/signup')">
 						<i class="fa fa-paper-plane"></i>
 						Send
 					</button>

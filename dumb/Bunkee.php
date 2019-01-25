@@ -2,7 +2,7 @@
 
 class Bunkee
 {
-	const ERROR_CODE = [
+	const HTTP_CODE = [
 		200 => 'OK',
 		401 => 'Bad Request',
 		403 => 'Forbidden',
@@ -57,7 +57,7 @@ class Bunkee
 	{
 		$this->uri = '/error';
 		$this->args['error']['code'] = $httpCode;
-		$this->args['error']['message'] = self::ERROR_CODE[$httpCode];
+		$this->args['error']['message'] = self::HTTP_CODE[$httpCode];
 	}
 
 	protected function middleware()

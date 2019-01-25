@@ -3,7 +3,7 @@
 require '../dumb/Dumbee.php';
 require '../dumb/Bunkee.php';
 
-class dumb extends Bunkee
+class Dumb extends Bunkee
 {	
 	public $container;
 
@@ -12,7 +12,10 @@ class dumb extends Bunkee
 		spl_autoload_register(function ($class) {
 			require '../app/model/' . $class . '.php';
 		});
-		$this->uri = $_SERVER['REQUEST_URI'];
+		$request = explode('/', $_SERVER['REQUEST_URI']);
+		$this->uri = '/'.$request[1];
+		if (isset($request[2]))
+			$_GET['id'] = $request[2];
 	}
 
 	public function setContainer(array $functions)
@@ -28,7 +31,7 @@ class dumb extends Bunkee
 			$response = (ltrim($this->uri, '/'))($this->container, $args);
 			if ($response)
 			{
-				header(self::ERROR_CODE[$response['code']]);
+				header(self::HTTP_CODE[$response['code']]);
 				unset($response['code']);
 				echo json_encode($response);
 			}

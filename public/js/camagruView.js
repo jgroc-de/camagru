@@ -105,7 +105,7 @@ function play()
 	var video = document.getElementById('video');
     var button = document.getElementById('snap');
 
-	if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
+	if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
     {
 		navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream)
         {
@@ -129,38 +129,3 @@ function createPic(data, filter)
 	ggAjax(str, '/createPic', addPic);
 }
 
-function addPic(status, json)
-{
-	var first = document.createElement('div');
-	var second = document.createElement('div');
-	var title = document.createElement('div');
-   	var img = document.createElement('img');
-	var main = document.getElementById('new');
-	var path = json['path']
-
-	first.setAttribute('class', "w3-col l3 m6 w3-margin-bottom");
-	second.setAttribute('class', "w3-display-container");
-	title.setAttribute('class', "w3-display-topleft w3-black w3-padding");
-	title.innerHTML = path;
-	img.style = "width:100%";
-	img.src = path;
-	img.alt = path;
-	img.title = path;
-	first.id = path;
-	first.setAttribute('onclick', "if (confirm('Voulez Vous vraiment supprimer cette image?')){ggAjax('" + path + "', '/deletePic', deletePic)}");
-	second.appendChild(title);
-	second.appendChild(img);
-	first.appendChild(second);
-	main.insertBefore(first, main.firstChild);
-}
-
-function deletePic(status, json)
-{
-	if (status == 200)
-	{
-		var childNode = document.getElementById(json['url']);
-		var parentNode = document.getElementById('new');
-
-		parentNode.removeChild(childNode);
-	}
-}
