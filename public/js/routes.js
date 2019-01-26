@@ -51,6 +51,7 @@ function logout(status, json)
 {
 	var camagru = document.getElementById("btnCamagru");
 	var settings = document.getElementById("btnSettings");
+	var logout = document.getElementById("btnLog");
 
 	settings.style.display = 'none';
 	logout.className = "w3-bar-item w3-green w3-button";

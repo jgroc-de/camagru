@@ -24,12 +24,16 @@ class Bunkee
 	public function __set(string $method, array $routes)
 	{
 		if ($this->found)
+		{
 			return ;
+		}
 		if (($key = array_search($this->uri, $routes)) !== false)
 		{
 			$this->found = true;
 			if (is_string($key))
+			{
 				$this->uri = $key;
+			}
 			if ($_SERVER['REQUEST_METHOD'] !== $method)
 			{
 				$this->error(405);
@@ -79,7 +83,8 @@ class Bunkee
 		foreach ($this->forms as $form)
 		{
 			$action = array_shift($form);
-			foreach ($form as $key => $type)
+			$param = $form[0];
+			foreach ($param as $key => $type)
 			{
 				if (($error = $action($key, $type)) >= 400)
 				{

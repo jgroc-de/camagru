@@ -18,5 +18,5 @@ function picture($c, $options)
 	$main = '/picView.html';
 	$options['components'] = [];
 	$comments = $comment->fetchAll();
-	require __DIR__.'/../view/template.php';
+	require __DIR__.'/../../view/template.php';
 }

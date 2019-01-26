@@ -11,11 +11,11 @@ $api->GET = [
     '/st_camagru',
 ];
 $api->POST = [
-	'/getSettings',
-    '/logout',
     '/signup',
     '/login',
     '/reinit',
+    '/logout',
+	'/getSettings',
     '/settings',
     '/password',
     '/addComment',

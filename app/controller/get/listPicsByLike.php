@@ -13,5 +13,5 @@ function listpicsByLike($c, $options)
 	$pics = $picManager->getPicsByLike($start * 6);
 	$view = 'Trending Pictures';
 	$main = '/listPicView.html';
-	require __DIR__.'/../view/template.php';
+	require __DIR__.'/../../view/template.php';
 }

@@ -27,7 +27,7 @@ class Dumb extends Bunkee
 	{
 		if ($this->middleware() && $this->form())
 		{
-			require '../app/controller' . $this->uri . '.php';
+			require '../app/controller/'.strtolower($_SERVER['REQUEST_METHOD']).$this->uri.'.php';
 			$response = (ltrim($this->uri, '/'))($this->container, $args);
 			if ($response)
 			{

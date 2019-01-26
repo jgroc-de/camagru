@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__.'/../lib/user.php';
-
 function reinit($c, $options)
 {
     $userManager = $c->user;

@@ -1,6 +1,6 @@
 <?php
 
-function listpics(Dumbee $container, array $options)
+function home(Dumbee $container, array $options)
 {
     $picManager = $container->picture;
 	$count = $picManager->countPics();
@@ -9,7 +9,7 @@ function listpics(Dumbee $container, array $options)
     if(!is_numeric($start) || $start > $count)
 		$start = 0;
     $pics = $picManager->getPics($start * 6);
-	$main = '/listPicView.html';
+	$main = '/homeView.html';
 	$view = 'Last Pictures';
-	require __DIR__.'/../view/template.php';
+	require __DIR__.'/../../view/template.php';
 }

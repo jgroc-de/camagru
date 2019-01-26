@@ -36,21 +36,24 @@ addLike	public/js/routes.js	/^function addLike(status, json)$/;"	f
 addPic	app/model/PicManager.php	/^	public function addPic($path)$/;"	f
 addPic	public/js/routes.js	/^function addPic(status, json)$/;"	f
 addUser	app/model/UserManager.php	/^	public function addUser($pseudo, $pass, $mail)$/;"	f
-alert	app/controller/settings.php	/^            $alert = $_POST['alert'] ? true : false;$/;"	v
+alert	app/controller/settings.php	/^	$alert = $_POST['alert'] ? true : false;$/;"	v
 api	public/index.php	/^$api = new Dumb();$/;"	v
 args	dumb/Bunkee.php	/^	protected $args = array();$/;"	v
 args	public/index.php	/^$args = array($/;"	v
 boundary	mail.php	/^$boundary = "-----=".md5(rand());$/;"	v
 buton	public/js/camagruView.js	/^    var buton = document.getElementById("snap");$/;"	v
 camagru	app/controller/camagru.php	/^function camagru($c, $options)$/;"	f
+camagru	app/controller/get/camagru.php	/^function camagru($c, $options)$/;"	f
 changeTitle	app/controller/changeTitle.php	/^function changeTitle($c)$/;"	f
 changeTitle	app/model/PicManager.php	/^    public function changeTitle($id, $title)$/;"	f
 checkValidationMail	app/model/UserManager.php	/^	public function checkValidationMail($login, $key)$/;"	f
 checklogin	app/model/UserManager.php	/^	public function checklogin($pseudo, $pass)$/;"	f
+comment	app/controller/get/picture.php	/^	$comment = $c->comment->getComments($id);$/;"	v
 comment	app/controller/picture.php	/^	$comment = $c->comment->getComments($id);$/;"	v
 commentDivFactory	public/js/common.js	/^function commentDivFactory(json)$/;"	f
 commentManager	app/controller/addComment.php	/^	$commentManager = $c->comment;$/;"	v
 comments	app/config/camagru.sql	/^CREATE TABLE comments ($/;"	t
+comments	app/controller/get/picture.php	/^	$comments = $comment->fetchAll();$/;"	v
 comments	app/controller/picture.php	/^	$comments = $comment->fetchAll();$/;"	v
 comments.content	app/config/camagru.sql	/^  date datetime NOT NULL,$/;"	F
 comments.date	app/config/camagru.sql	/^  id_author int NOT NULL,$/;"	F
@@ -59,12 +62,19 @@ comments.id_author	app/config/camagru.sql	/^  img_id int NOT NULL,$/;"	F
 comments.img_id	app/config/camagru.sql	/^  id SERIAL PRIMARY KEY,$/;"	F
 components	app/controller/camagru.php	/^	$components = $options['components'];$/;"	v
 components	app/controller/error.php	/^	$components = [$/;"	v
+components	app/controller/get/camagru.php	/^	$components = $options['components'];$/;"	v
 container	app/model/SqlManager.php	/^        $this->container = $container;$/;"	v
 container	app/model/SqlManager.php	/^    protected $container;$/;"	v
 container	dumb/Dumbee.php	/^        $this->container = $functions;$/;"	v
 container	dumb/Dumbee.php	/^    protected $container = array();$/;"	v
 container	dumb/dumb.php	/^		$this->container = new Dumbee($functions);$/;"	v
 container	dumb/dumb.php	/^	public $container;$/;"	v
+count	app/controller/get/home.php	/^	$count = $count[0] \/ 6;$/;"	v
+count	app/controller/get/home.php	/^	$count = $picManager->countPics();$/;"	v
+count	app/controller/get/listPics.php	/^	$count = $count[0] \/ 6;$/;"	v
+count	app/controller/get/listPics.php	/^	$count = $picManager->countPics();$/;"	v
+count	app/controller/get/listPicsByLike.php	/^	$count = $count[0] \/ 6;$/;"	v
+count	app/controller/get/listPicsByLike.php	/^	$count = $picManager->countPics();	$/;"	v
 count	app/controller/home.php	/^	$count = $count[0] \/ 6;$/;"	v
 count	app/controller/home.php	/^	$count = $picManager->countPics();$/;"	v
 count	app/controller/listPics.php	/^	$count = $count[0] \/ 6;$/;"	v
@@ -79,9 +89,6 @@ createPic	app/controller/createPic.php	/^function createPic($c)$/;"	f
 createPic	public/js/camagruView.js	/^function createPic(data, filter)$/;"	f
 createThumbnail	public/js/camagruView.js	/^function createThumbnail(file)$/;"	f
 d_size	app/controller/createPic.php	/^        $d_size = getimagesizefromstring(base64_decode($dest));$/;"	v
-data	app/lib/user.php	/^	$data = htmlspecialchars($data);$/;"	v
-data	app/lib/user.php	/^	$data = stripslashes($data);$/;"	v
-data	app/lib/user.php	/^	$data = trim($data);$/;"	v
 day	public/js/common.js	/^	var options = {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"};$/;"	p	class:commentDivFactory.options
 db	app/model/ConfigManager.php	/^		$db = $this->dbconnect();$/;"	v
 db	app/model/ConfigManager.php	/^		$db = $this->env;$/;"	v
@@ -101,10 +108,11 @@ dest	app/model/MailManager.php	/^        $dest = $user['email'];$/;"	v
 display	app/view/st_camagru.html	/^function display()$/;"	f
 display	public/js/camagruView.js	/^function display(filter)$/;"	f
 dumb	dumb/dumb.php	/^	public function dumb($args = null)$/;"	f
+elem	app/controller/get/picture.php	/^	$elem = $picManager->getPic($id);$/;"	v
 elem	app/controller/picture.php	/^	$elem = $picManager->getPic($id);$/;"	v
 elmt	app/model/UserManager.php	/^            $elmt = $this->sqlRequestFetch($request,array($pseudo));$/;"	v
-email	app/controller/settings.php	/^        $email = testInput($_POST['email']);$/;"	v
-email	app/controller/signup.php	/^	$email = testInput($_POST['email']);$/;"	v
+email	app/controller/settings.php	/^	$email = $_POST['email'];$/;"	v
+email	app/controller/signup.php	/^	$email = $_POST['email'];$/;"	v
 env	app/controller/setup.php	/^		$env = $c->env;$/;"	v
 error	app/controller/error.php	/^		$error = [];$/;"	v
 error	app/controller/error.php	/^function error($c, $error, $options)$/;"	f
@@ -142,11 +150,13 @@ header	mail.php	/^$header = "From: \\"WeaponsB\\"<weaponsb@mail.fr>".$passage_li
 headers	app/model/MailManager.php	/^        $headers = 'From: jgroc2s@free.fr' . "\\r\\n" . 'Reply-To: jgroc2s@free.fr' . "\\r\\n" . 'X-Mailer: PHP\/' . phpversion();$/;"	v
 height	app/controller/createPic.php	/^        $height = 480;$/;"	v
 height	app/controller/createPic.php	/^        $height = 640 * $size[1] \/ $size[0];$/;"	v
+home	app/controller/get/home.php	/^function home(Dumbee $container, array $options)$/;"	f
 home	app/controller/home.php	/^function home(Dumbee $container, array $options)$/;"	f
 hour	public/js/common.js	/^	var options = {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"};$/;"	p	class:commentDivFactory.options
 hour12	public/js/common.js	/^	var options = {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"};$/;"	p	class:commentDivFactory.options
 i	app/controller/createPic.php	/^    $i = 0;$/;"	v
-id	app/controller/changeTitle.php	/^	$id = intval($_POST['id']);$/;"	v
+id	app/controller/changeTitle.php	/^	$id = $_POST['id'];$/;"	v
+id	app/controller/get/picture.php	/^	$id = intval($_GET['id']);$/;"	v
 id	app/controller/picture.php	/^	$id = intval($_GET['id']);$/;"	v
 id	app/model/PicManager.php	/^        $id = $this->sqlRequestFetch($request, array($id_img, $id_author));$/;"	v
 id_author	app/model/PicManager.php	/^        $id_author = $_SESSION['id'];$/;"	v
@@ -167,9 +177,11 @@ likes.id	app/config/camagru.sql	/^CREATE TABLE likes ($/;"	F
 likes.id_author	app/config/camagru.sql	/^  id_img int NOT NULL,$/;"	F
 likes.id_img	app/config/camagru.sql	/^  id SERIAL PRIMARY KEY,$/;"	F
 listFilter	app/controller/camagru.php	/^	$listFilter = $c->camagru->getFilters();	$/;"	v
+listFilter	app/controller/get/camagru.php	/^	$listFilter = $c->camagru->getFilters();	$/;"	v
+listpics	app/controller/get/listPics.php	/^function listpics(Dumbee $container, array $options)$/;"	f
 listpics	app/controller/listPics.php	/^function listpics(Dumbee $container, array $options)$/;"	f
+listpicsByLike	app/controller/get/listPicsByLike.php	/^function listpicsByLike($c, $options)$/;"	f
 listpicsByLike	app/controller/listPicsByLike.php	/^function listpicsByLike($c, $options)$/;"	f
-logUser	app/lib/user.php	/^function logUser($user)$/;"	f
 login	app/controller/login.php	/^function login($c, $options)$/;"	f
 login	app/model/MailManager.php	/^        $login = $user['pseudo'];$/;"	v
 login	public/js/routes.js	/^function login(status, json)$/;"	f
@@ -177,6 +189,11 @@ logout	app/controller/logout.php	/^function logout()$/;"	f
 logout	public/js/routes.js	/^function logout(status, json)$/;"	f
 mail	mail.php	/^$mail = 'jerome.gds@gmail.com'; \/\/ Déclaration de l'adresse de destination.$/;"	v
 main	app/controller/camagru.php	/^	$main = '\/camagruView.html';$/;"	v
+main	app/controller/get/camagru.php	/^	$main = '\/camagruView.html';$/;"	v
+main	app/controller/get/home.php	/^	$main = '\/homeView.html';$/;"	v
+main	app/controller/get/listPics.php	/^	$main = '\/listPicView.html';$/;"	v
+main	app/controller/get/listPicsByLike.php	/^	$main = '\/listPicView.html';$/;"	v
+main	app/controller/get/picture.php	/^	$main = '\/picView.html';$/;"	v
 main	app/controller/home.php	/^	$main = '\/homeView.html';$/;"	v
 main	app/controller/listPics.php	/^	$main = '\/listPicView.html';$/;"	v
 main	app/controller/listPicsByLike.php	/^	$main = '\/listPicView.html';$/;"	v
@@ -194,39 +211,49 @@ month	public/js/common.js	/^	var options = {hour12: true, year: "numeric", month
 name	app/controller/createPic.php	/^        $name = createName($_SESSION['id']);$/;"	v
 obj	app/model/SqlManager.php	/^        $obj = $db->prepare($request);$/;"	v
 oldPseudo	app/model/UserManager.php	/^        $oldPseudo = $_SESSION['pseudo'];$/;"	v
+param	dumb/Bunkee.php	/^			$param = $form[0];$/;"	v
 parsePost	app/controller/createPic.php	/^function parsePost ($post, $filter)$/;"	f
 passage_ligne	mail.php	/^    $passage_ligne = "\\n";$/;"	v
 passage_ligne	mail.php	/^    $passage_ligne = "\\r\\n";$/;"	v
 passwd	app/model/UserManager.php	/^		$passwd = password_hash($passwd, PASSWORD_DEFAULT);$/;"	v
 passwd	app/model/UserManager.php	/^           	$passwd = password_hash($passwd, PASSWORD_DEFAULT);$/;"	v
-password	app/controller/login.php	/^	$password = testInput($_POST['password']);$/;"	v
-password	app/controller/password.php	/^        $password = testInput($_POST['password']);$/;"	v
+password	app/controller/login.php	/^	$password = $_POST['password'];$/;"	v
+password	app/controller/password.php	/^	$password = $_POST['password'];$/;"	v
 password	app/controller/password.php	/^function password($c, $options)$/;"	f
-password	app/controller/signup.php	/^	$password = testInput($_POST['password']);$/;"	v
+password	app/controller/signup.php	/^	$password = $_POST['password'];$/;"	v
 pic	app/controller/deletePic.php	/^        $pic = $picManager->getPicByUrl($_POST['url']);$/;"	v
 picDivFactory	public/js/common.js	/^function picDivFactory(json)$/;"	f
 picInDb	app/model/PicManager.php	/^	public function picInDb($id)$/;"	f
 picManager	app/controller/addLike.php	/^    $picManager = $c->picture;$/;"	v
 picManager	app/controller/changeTitle.php	/^	$picManager = $c->picture;$/;"	v
 picManager	app/controller/deletePic.php	/^        $picManager = $c->picture;$/;"	v
+picManager	app/controller/get/home.php	/^    $picManager = $container->picture;$/;"	v
+picManager	app/controller/get/listPics.php	/^    $picManager = $container->picture;$/;"	v
+picManager	app/controller/get/listPicsByLike.php	/^    $picManager = $c->picture;$/;"	v
+picManager	app/controller/get/picture.php	/^    $picManager = $c->picture;$/;"	v
 picManager	app/controller/home.php	/^    $picManager = $container->picture;$/;"	v
 picManager	app/controller/listPics.php	/^    $picManager = $container->picture;$/;"	v
 picManager	app/controller/listPicsByLike.php	/^    $picManager = $c->picture;$/;"	v
 picManager	app/controller/picture.php	/^    $picManager = $c->picture;$/;"	v
 pics	app/controller/camagru.php	/^	$pics = $c->picture->getPicsByLogin($_SESSION['id']);$/;"	v
+pics	app/controller/get/camagru.php	/^	$pics = $c->picture->getPicsByLogin($_SESSION['id']);$/;"	v
+pics	app/controller/get/home.php	/^    $pics = $picManager->getPics($start * 6);$/;"	v
+pics	app/controller/get/listPics.php	/^    $pics = $picManager->getPics($start * 6);$/;"	v
+pics	app/controller/get/listPicsByLike.php	/^	$pics = $picManager->getPicsByLike($start * 6);$/;"	v
 pics	app/controller/home.php	/^    $pics = $picManager->getPics($start * 6);$/;"	v
 pics	app/controller/listPics.php	/^    $pics = $picManager->getPics($start * 6);$/;"	v
 pics	app/controller/listPicsByLike.php	/^	$pics = $picManager->getPicsByLike($start * 6);$/;"	v
+picture	app/controller/get/picture.php	/^function picture($c, $options)$/;"	f
 picture	app/controller/picture.php	/^function picture($c, $options)$/;"	f
 play	public/js/camagruView.js	/^function play()$/;"	f
 preview	public/js/camagruView.js	/^    var preview = document.getElementById('miseEnPage');$/;"	v
 printNotif	public/js/common.js	/^function printNotif(str, status)$/;"	f
-pseudo	app/controller/login.php	/^	$pseudo = testInput($_POST['pseudo']);$/;"	v
+pseudo	app/controller/login.php	/^	$pseudo = $_POST['pseudo'];$/;"	v
 pseudo	app/controller/reinit.php	/^        $pseudo = $_GET['log'];$/;"	v
 pseudo	app/controller/reinit.php	/^        $pseudo = $_POST['pseudo'];$/;"	v
 pseudo	app/controller/reinit.php	/^    $pseudo = "";$/;"	v
-pseudo	app/controller/settings.php	/^        $pseudo = testInput($_POST['pseudo']);$/;"	v
-pseudo	app/controller/signup.php	/^	$pseudo = testInput($_POST['pseudo']);$/;"	v
+pseudo	app/controller/settings.php	/^	$pseudo = $_POST['pseudo'];$/;"	v
+pseudo	app/controller/signup.php	/^	$pseudo = $_POST['pseudo'];$/;"	v
 pseudoInDb	app/model/UserManager.php	/^	public function	pseudoInDb($pseudo)$/;"	f
 reinit	app/controller/reinit.php	/^        $reinit = 1;$/;"	v
 reinit	app/controller/reinit.php	/^    $reinit = 0;$/;"	v
@@ -265,7 +292,14 @@ sqlRequest	app/model/SqlManager.php	/^	protected function sqlRequest($request, $
 sqlRequestFetch	app/model/SqlManager.php	/^    protected function sqlRequestFetch($request, $array = array())$/;"	f
 src	app/controller/createPic.php	/^            $src = $value['url'];$/;"	v
 src	app/controller/createPic.php	/^            $src = imagecreatefrompng($src);$/;"	v
+st_Camagru	app/controller/get/st_camagru.php	/^function st_Camagru($c, $options)$/;"	f
 st_Camagru	app/controller/st_camagru.php	/^function st_Camagru($c, $options)$/;"	f
+start	app/controller/get/home.php	/^		$start = 0;$/;"	v
+start	app/controller/get/home.php	/^    $start = isset($_GET['start']) ? $_GET['start'] : 0;$/;"	v
+start	app/controller/get/listPics.php	/^		$start = 0;$/;"	v
+start	app/controller/get/listPics.php	/^    $start = isset($_GET['start']) ? $_GET['start'] : 0;$/;"	v
+start	app/controller/get/listPicsByLike.php	/^		$start = 0;$/;"	v
+start	app/controller/get/listPicsByLike.php	/^    $start = isset($_GET['start'])? $_GET['start']: 0;$/;"	v
 start	app/controller/home.php	/^		$start = 0;$/;"	v
 start	app/controller/home.php	/^    $start = isset($_GET['start']) ? $_GET['start'] : 0;$/;"	v
 start	app/controller/listPics.php	/^		$start = 0;$/;"	v
@@ -279,8 +313,6 @@ success	app/model/SqlManager.php	/^		$success = $obj->execute($array);$/;"	v
 sujet	mail.php	/^$sujet = "Hey mon ami !";$/;"	v
 tab	app/model/CamagruManager.php	/^        $tab = array();$/;"	v
 tab	app/model/PicManager.php	/^		$tab = array();$/;"	v
-testInput	app/lib/user.php	/^function testInput($data)$/;"	f
-testPassword	app/lib/user.php	/^function testPassword($pass)$/;"	f
 title	app/controller/changeTitle.php	/^	$title = $_POST['title'];$/;"	v
 title	app/controller/createPic.php	/^    $title = array();$/;"	v
 title	app/model/PicManager.php	/^		$title = $this->sqlRequestFetch($request, array($id));$/;"	v
@@ -293,12 +325,14 @@ uri	dumb/dumb.php	/^		$this->uri = '\/'.$request[1];$/;"	v
 url	app/controller/createPic.php	/^        $url = parsePost($_POST, $filter);$/;"	v
 url	app/controller/createPic.php	/^    $url = array();$/;"	v
 user	app/controller/addComment.php	/^	$user = $userManager->getUserByImgId($_POST['id']);$/;"	v
+user	app/controller/login.php	/^		$user = $userManager->getUser($pseudo);$/;"	v
+user	app/controller/settings.php	/^		$user = $userManager->getUserById($response['id']);$/;"	v
 userManager	app/controller/addComment.php	/^	$userManager = $c->user;$/;"	v
-userManager	app/controller/login.php	/^		$userManager = $c->user;$/;"	v
-userManager	app/controller/password.php	/^    $userManager = $c->user;$/;"	v
+userManager	app/controller/login.php	/^	$userManager = $c->user;$/;"	v
+userManager	app/controller/password.php	/^	$userManager = $c->user;$/;"	v
 userManager	app/controller/reinit.php	/^    $userManager = $c->user;$/;"	v
-userManager	app/controller/settings.php	/^    $userManager = $c->user;$/;"	v
-userManager	app/controller/signup.php	/^		$userManager = $c->user;$/;"	v
+userManager	app/controller/settings.php	/^	$userManager = $c->user;$/;"	v
+userManager	app/controller/signup.php	/^	$userManager = $c->user;$/;"	v
 users	app/config/camagru.sql	/^CREATE TABLE users ($/;"	t
 users.actif	app/config/camagru.sql	/^  validkey varchar(32) NOT NULL,$/;"	F
 users.alert	app/config/camagru.sql	/^  email varchar(255) NOT NULL,$/;"	F
@@ -315,6 +349,11 @@ validation	app/controller/validation.php	/^function validation($c)$/;"	f
 value	app/model/PicManager.php	/^		$value = $this->sqlRequest($request, array($id));$/;"	v
 value	app/model/PicManager.php	/^		$value = $this->sqlRequest($request, array($pseudo));$/;"	v
 view	app/controller/camagru.php	/^	$view = 'Camagru Factory';$/;"	v
+view	app/controller/get/camagru.php	/^	$view = 'Camagru Factory';$/;"	v
+view	app/controller/get/home.php	/^	$view = 'Last Pictures';$/;"	v
+view	app/controller/get/listPics.php	/^	$view = 'Last Pictures';$/;"	v
+view	app/controller/get/listPicsByLike.php	/^	$view = 'Trending Pictures';$/;"	v
+view	app/controller/get/picture.php	/^	$view = 'Picture';$/;"	v
 view	app/controller/home.php	/^	$view = 'Last Pictures';$/;"	v
 view	app/controller/listPics.php	/^	$view = 'Last Pictures';$/;"	v
 view	app/controller/listPicsByLike.php	/^	$view = 'Trending Pictures';$/;"	v

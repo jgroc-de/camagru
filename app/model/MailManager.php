@@ -22,7 +22,7 @@ class MailManager
         $mail->addAddress($dest);
         $mail->Subject = $subject;
 		$mail->Body = $message;*/
-        return mail($user['email'], $subject, $message, $headers);
+        return mail($dest, $subject, $message, $headers);
         //return $mail->send();
     }
 	

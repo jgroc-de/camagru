@@ -10,5 +10,5 @@ function camagru($c, $options)
 	$view = 'Camagru Factory';
 	$main = '/camagruView.html';
 	$components = $options['components'];
-	require __DIR__.'/../view/template.php';
+	require __DIR__.'/../../view/template.php';
 }
