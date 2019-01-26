@@ -8,12 +8,13 @@ $api->GET = [
     '/camagru' => '/b',
     '/camagru',
     '/setup',
+    '/reinit' => '/reinitGet',
     '/st_camagru',
 ];
 $api->POST = [
     '/signup',
     '/login',
-    '/reinit',
+    '/reinitPost',
     '/logout',
 	'/getSettings',
     '/settings',

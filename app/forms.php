@@ -37,6 +37,8 @@ $api->add(function($key, $type) {
 		'/addLike' => ['id' => 'numeric',],
 		'/addComment' => ['id' => 'numeric', 'comment' => ''],
 		'/changeTitle' => ['id' => 'numeric', 'title' => 'pseudo'],
+		'/deletePic' => ['url' => '']
+		'/reinitPost' => ['pseudo' => 'pseudo']
 ]);
 
 /*$api->add(function($key, $type) {

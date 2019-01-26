@@ -10,7 +10,8 @@ $api->add(function() {
 [
 	'/login',
 	'/signup',
-	'/reinit',
+	'/reinitPost',
+	'/reinitGet',
 ]);
 
 $api->add(function() {

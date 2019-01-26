@@ -97,6 +97,7 @@ db_dsn	app/model/ConfigManager.php	/^		$db_dsn = $db['driver'] . ':host='. $db['
 dbconnect	app/model/ConfigManager.php	/^	protected function dbconnect()$/;"	f
 decodeUrl	app/controller/createPic.php	/^function decodeUrl($imgEncode)$/;"	f
 deletePic	app/controller/deletePic.php	/^function deletePic($c)$/;"	f
+deletePic	app/controller/post/deletePic.php	/^function deletePic($c)$/;"	f
 deletePic	app/model/PicManager.php	/^    public function deletePic($img_id, $author_id)$/;"	f
 deletePic	public/js/routes.js	/^function deletePic(status, json)$/;"	f
 description	app/view/template.php	/^$description = "Bienvenue sur ce petit site type image-board\/instagram. Vous pouvez vous prendre en photo dans l'onglet \/b et faire un petit montage avec les filtres proposés.";$/;"	v
@@ -167,6 +168,7 @@ img.id_author	app/config/camagru.sql	/^  title varchar(255) NOT NULL,$/;"	F
 img.nb_like	app/config/camagru.sql	/^  id_author int NOT NULL,$/;"	F
 img.title	app/config/camagru.sql	/^  id SERIAL PRIMARY KEY,$/;"	F
 isPng	app/controller/createPic.php	/^function isPng($data)$/;"	f
+key	app/controller/get/reinitGet.php	/^        $key = $_GET['key'];$/;"	v
 key	app/controller/reinit.php	/^        $key = $_GET['key'];$/;"	v
 key	app/model/MailManager.php	/^        $key = $user['validkey'];$/;"	v
 key	app/model/UserManager.php	/^		$key = md5(microtime(TRUE) * 100000);$/;"	v
@@ -222,6 +224,7 @@ password	app/controller/password.php	/^	$password = $_POST['password'];$/;"	v
 password	app/controller/password.php	/^function password($c, $options)$/;"	f
 password	app/controller/signup.php	/^	$password = $_POST['password'];$/;"	v
 pic	app/controller/deletePic.php	/^        $pic = $picManager->getPicByUrl($_POST['url']);$/;"	v
+pic	app/controller/post/deletePic.php	/^	$pic = $picManager->getPicByUrl($_POST['url']);$/;"	v
 picDivFactory	public/js/common.js	/^function picDivFactory(json)$/;"	f
 picInDb	app/model/PicManager.php	/^	public function picInDb($id)$/;"	f
 picManager	app/controller/addLike.php	/^    $picManager = $c->picture;$/;"	v
@@ -235,6 +238,7 @@ picManager	app/controller/home.php	/^    $picManager = $container->picture;$/;"	
 picManager	app/controller/listPics.php	/^    $picManager = $container->picture;$/;"	v
 picManager	app/controller/listPicsByLike.php	/^    $picManager = $c->picture;$/;"	v
 picManager	app/controller/picture.php	/^    $picManager = $c->picture;$/;"	v
+picManager	app/controller/post/deletePic.php	/^	$picManager = $c->picture;$/;"	v
 pics	app/controller/camagru.php	/^	$pics = $c->picture->getPicsByLogin($_SESSION['id']);$/;"	v
 pics	app/controller/get/camagru.php	/^	$pics = $c->picture->getPicsByLogin($_SESSION['id']);$/;"	v
 pics	app/controller/get/home.php	/^    $pics = $picManager->getPics($start * 6);$/;"	v
@@ -248,16 +252,27 @@ picture	app/controller/picture.php	/^function picture($c, $options)$/;"	f
 play	public/js/camagruView.js	/^function play()$/;"	f
 preview	public/js/camagruView.js	/^    var preview = document.getElementById('miseEnPage');$/;"	v
 printNotif	public/js/common.js	/^function printNotif(str, status)$/;"	f
+pseudo	app/controller/get/reinitGet.php	/^        $pseudo = $_GET['log'];$/;"	v
+pseudo	app/controller/get/reinitGet.php	/^    $pseudo = "";$/;"	v
 pseudo	app/controller/login.php	/^	$pseudo = $_POST['pseudo'];$/;"	v
+pseudo	app/controller/post/reinit.php	/^        $pseudo = $_POST['pseudo'];$/;"	v
+pseudo	app/controller/post/reinit.php	/^    $pseudo = "";$/;"	v
+pseudo	app/controller/post/reinitPost.php	/^	$pseudo = $_POST['pseudo'];$/;"	v
 pseudo	app/controller/reinit.php	/^        $pseudo = $_GET['log'];$/;"	v
 pseudo	app/controller/reinit.php	/^        $pseudo = $_POST['pseudo'];$/;"	v
 pseudo	app/controller/reinit.php	/^    $pseudo = "";$/;"	v
 pseudo	app/controller/settings.php	/^	$pseudo = $_POST['pseudo'];$/;"	v
 pseudo	app/controller/signup.php	/^	$pseudo = $_POST['pseudo'];$/;"	v
 pseudoInDb	app/model/UserManager.php	/^	public function	pseudoInDb($pseudo)$/;"	f
+reinit	app/controller/get/reinitGet.php	/^    $reinit = 0;$/;"	v
+reinit	app/controller/post/reinit.php	/^        $reinit = 1;$/;"	v
+reinit	app/controller/post/reinit.php	/^    $reinit = 0;$/;"	v
 reinit	app/controller/reinit.php	/^        $reinit = 1;$/;"	v
 reinit	app/controller/reinit.php	/^    $reinit = 0;$/;"	v
 reinit	app/controller/reinit.php	/^function reinit($c, $options)$/;"	f
+reinitGet	app/controller/get/reinitGet.php	/^function reinitGet($c, $options)$/;"	f
+reinitPost	app/controller/post/reinit.php	/^function reinitPost($c, $options)$/;"	f
+reinitPost	app/controller/post/reinitPost.php	/^function reinitPost($c, $options)$/;"	f
 remove	app/controller/createPic.php	/^    $remove = array( ' ', 'data:image\/png;base64,' );$/;"	v
 replace	app/controller/createPic.php	/^    $replace = array( '+', '' );$/;"	v
 request	app/model/CamagruManager.php	/^        $request = $this->db->query('SELECT * FROM filter');$/;"	v
@@ -328,8 +343,11 @@ user	app/controller/addComment.php	/^	$user = $userManager->getUserByImgId($_POS
 user	app/controller/login.php	/^		$user = $userManager->getUser($pseudo);$/;"	v
 user	app/controller/settings.php	/^		$user = $userManager->getUserById($response['id']);$/;"	v
 userManager	app/controller/addComment.php	/^	$userManager = $c->user;$/;"	v
+userManager	app/controller/get/reinitGet.php	/^    $userManager = $c->user;$/;"	v
 userManager	app/controller/login.php	/^	$userManager = $c->user;$/;"	v
 userManager	app/controller/password.php	/^	$userManager = $c->user;$/;"	v
+userManager	app/controller/post/reinit.php	/^    $userManager = $c->user;$/;"	v
+userManager	app/controller/post/reinitPost.php	/^    $userManager = $c->user;$/;"	v
 userManager	app/controller/reinit.php	/^    $userManager = $c->user;$/;"	v
 userManager	app/controller/settings.php	/^	$userManager = $c->user;$/;"	v
 userManager	app/controller/signup.php	/^	$userManager = $c->user;$/;"	v
@@ -341,6 +359,8 @@ users.id	app/config/camagru.sql	/^CREATE TABLE users ($/;"	F
 users.passwd	app/config/camagru.sql	/^  pseudo varchar(30) NOT NULL,$/;"	F
 users.pseudo	app/config/camagru.sql	/^  id SERIAL PRIMARY KEY,$/;"	F
 users.validkey	app/config/camagru.sql	/^  alert bool NOT NULL DEFAULT false,$/;"	F
+valid	app/controller/get/reinitGet.php	/^    $valid = 0;$/;"	v
+valid	app/controller/post/reinit.php	/^    $valid = 0;$/;"	v
 valid	app/controller/reinit.php	/^    $valid = 0;$/;"	v
 valid	app/model/UserManager.php	/^            $valid = $this->sqlRequest($request, array($pseudo, $pass, $mail, $key), True);$/;"	v
 valid	app/model/UserManager.php	/^        $valid = false;$/;"	v

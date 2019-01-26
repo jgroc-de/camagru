@@ -1,6 +1,6 @@
 <?php
 
-function reinit($c, $options)
+function reinitGet($c, $options)
 {
     $userManager = $c->user;
     $pseudo = "";
@@ -8,21 +8,7 @@ function reinit($c, $options)
     $valid = 0;
 
 	$response['code'] = 200;
-    if (isset($_POST['pseudo']))
-    {
-        $pseudo = $_POST['pseudo'];
-        $reinit = 1;
-        if ($userManager->resetValidkey($pseudo))
-        {
-            $c->mail->sendReinitMail($userManager->getUser($pseudo));
-        }
-        else
-		{
-			$response['code'] = 404;
-			$response['flash'] = "Soldat inconnu";
-		}
-    }
-    elseif (isset($_GET['log'], $_GET['key']))
+    if (isset($_GET['log'], $_GET['key']))
     {
         $pseudo = $_GET['log'];
         $key = $_GET['key'];

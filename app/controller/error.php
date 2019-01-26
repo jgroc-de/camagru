@@ -16,6 +16,6 @@ function error($c, $error, $options)
 	$header = [
 		'/common/error.php',
 	];
-	require __DIR__.'/../view/template.php';
+	require __DIR__.'/../../view/template.php';
 	exit;
 }
