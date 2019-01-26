@@ -25,11 +25,11 @@ __get	dumb/Dumbee.php	/^    public function __get($key)$/;"	f
 __set	dumb/Bunkee.php	/^	public function __set(string $method, array $routes)$/;"	f
 actif	app/model/UserManager.php	/^			$actif = $row['actif'];$/;"	v
 actif	app/model/UserManager.php	/^		$actif = false;$/;"	v
-action	dumb/Bunkee.php	/^			$action = $this->middlewares[$middleware];$/;"	v
+action	dumb/Bunkee.php	/^			$action = array_shift($form);$/;"	v
 add	dumb/Bunkee.php	/^	public function add($function, array $routes)$/;"	f
 addComment	app/controller/addComment.php	/^function addComment($c)$/;"	f
 addComment	app/model/CommentManager.php	/^    public function addComment()$/;"	f
-addComment	public/js/picView.js	/^function addComment(id)$/;"	f
+addComment	public/js/routes.js	/^function addComment(status, json)$/;"	f
 addLike	app/controller/addLike.php	/^function addLike($c)$/;"	f
 addLike	app/model/PicManager.php	/^	public function addLike($id_img)$/;"	f
 addLike	public/js/routes.js	/^function addLike(status, json)$/;"	f
@@ -45,14 +45,14 @@ buton	public/js/camagruView.js	/^    var buton = document.getElementById("snap")
 camagru	app/controller/camagru.php	/^function camagru($c, $options)$/;"	f
 changeTitle	app/controller/changeTitle.php	/^function changeTitle($c)$/;"	f
 changeTitle	app/model/PicManager.php	/^    public function changeTitle($id, $title)$/;"	f
-changeTitle	public/js/picView.js	/^function changeTitle(id) {$/;"	f
 checkValidationMail	app/model/UserManager.php	/^	public function checkValidationMail($login, $key)$/;"	f
 checklogin	app/model/UserManager.php	/^	public function checklogin($pseudo, $pass)$/;"	f
-com	app/controller/addComment.php	/^	$com = $commentManager->getCommentByImgId($_POST['id']);$/;"	v
 comment	app/controller/picture.php	/^	$comment = $c->comment->getComments($id);$/;"	v
+commentDivFactory	public/js/common.js	/^function commentDivFactory(json)$/;"	f
 commentManager	app/controller/addComment.php	/^	$commentManager = $c->comment;$/;"	v
 comments	app/config/camagru.sql	/^CREATE TABLE comments ($/;"	t
-comments.content	app/config/camagru.sql	/^  date date NOT NULL,$/;"	F
+comments	app/controller/picture.php	/^	$comments = $comment->fetchAll();$/;"	v
+comments.content	app/config/camagru.sql	/^  date datetime NOT NULL,$/;"	F
 comments.date	app/config/camagru.sql	/^  id_author int NOT NULL,$/;"	F
 comments.id	app/config/camagru.sql	/^CREATE TABLE comments ($/;"	F
 comments.id_author	app/config/camagru.sql	/^  img_id int NOT NULL,$/;"	F
@@ -82,6 +82,7 @@ d_size	app/controller/createPic.php	/^        $d_size = getimagesizefromstring(b
 data	app/lib/user.php	/^	$data = htmlspecialchars($data);$/;"	v
 data	app/lib/user.php	/^	$data = stripslashes($data);$/;"	v
 data	app/lib/user.php	/^	$data = trim($data);$/;"	v
+day	public/js/common.js	/^	var options = {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"};$/;"	p	class:commentDivFactory.options
 db	app/model/ConfigManager.php	/^		$db = $this->dbconnect();$/;"	v
 db	app/model/ConfigManager.php	/^		$db = $this->env;$/;"	v
 db	app/model/SqlManager.php	/^		$db = $this->container->db;$/;"	v
@@ -116,6 +117,8 @@ filter.id	app/config/camagru.sql	/^CREATE TABLE filter ($/;"	F
 filter.title	app/config/camagru.sql	/^  id SERIAL PRIMARY KEY,$/;"	F
 filter.x	app/config/camagru.sql	/^  url text NOT NULL,$/;"	F
 filter.y	app/config/camagru.sql	/^  x int NOT NULL DEFAULT '0',$/;"	F
+form	dumb/Bunkee.php	/^	protected function form()$/;"	f
+forms	dumb/Bunkee.php	/^	private $forms = array();$/;"	v
 found	dumb/Bunkee.php	/^			$this->found = true;$/;"	v
 found	dumb/Bunkee.php	/^	private $found = false;$/;"	v
 ft_scroll	public/js/common.js	/^function ft_scroll(element)$/;"	f
@@ -140,9 +143,10 @@ headers	app/model/MailManager.php	/^        $headers = 'From: jgroc2s@free.fr' .
 height	app/controller/createPic.php	/^        $height = 480;$/;"	v
 height	app/controller/createPic.php	/^        $height = 640 * $size[1] \/ $size[0];$/;"	v
 home	app/controller/home.php	/^function home(Dumbee $container, array $options)$/;"	f
+hour	public/js/common.js	/^	var options = {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"};$/;"	p	class:commentDivFactory.options
+hour12	public/js/common.js	/^	var options = {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"};$/;"	p	class:commentDivFactory.options
 i	app/controller/createPic.php	/^    $i = 0;$/;"	v
-i	dumb/Bunkee.php	/^	private $i = 0;$/;"	v
-id	app/controller/changeTitle.php	/^        $id = $_GET['q'];$/;"	v
+id	app/controller/changeTitle.php	/^	$id = intval($_POST['id']);$/;"	v
 id	app/controller/picture.php	/^	$id = intval($_GET['id']);$/;"	v
 id	app/model/PicManager.php	/^        $id = $this->sqlRequestFetch($request, array($id_img, $id_author));$/;"	v
 id_author	app/model/PicManager.php	/^        $id_author = $_SESSION['id'];$/;"	v
@@ -185,6 +189,8 @@ message_html	mail.php	/^$message_html = "<html><head><\/head><body><b>Salut à t
 message_txt	mail.php	/^$message_txt = "Salut à tous, voici un e-mail envoyé par un script PHP.";$/;"	v
 middleware	dumb/Bunkee.php	/^	protected function middleware()$/;"	f
 middlewares	dumb/Bunkee.php	/^	private $middlewares = array();$/;"	v
+minute	public/js/common.js	/^	var options = {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"};$/;"	p	class:commentDivFactory.options
+month	public/js/common.js	/^	var options = {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"};$/;"	p	class:commentDivFactory.options
 name	app/controller/createPic.php	/^        $name = createName($_SESSION['id']);$/;"	v
 obj	app/model/SqlManager.php	/^        $obj = $db->prepare($request);$/;"	v
 oldPseudo	app/model/UserManager.php	/^        $oldPseudo = $_SESSION['pseudo'];$/;"	v
@@ -198,9 +204,10 @@ password	app/controller/password.php	/^        $password = testInput($_POST['pas
 password	app/controller/password.php	/^function password($c, $options)$/;"	f
 password	app/controller/signup.php	/^	$password = testInput($_POST['password']);$/;"	v
 pic	app/controller/deletePic.php	/^        $pic = $picManager->getPicByUrl($_POST['url']);$/;"	v
+picDivFactory	public/js/common.js	/^function picDivFactory(json)$/;"	f
 picInDb	app/model/PicManager.php	/^	public function picInDb($id)$/;"	f
 picManager	app/controller/addLike.php	/^    $picManager = $c->picture;$/;"	v
-picManager	app/controller/changeTitle.php	/^        $picManager = $c->picture;$/;"	v
+picManager	app/controller/changeTitle.php	/^	$picManager = $c->picture;$/;"	v
 picManager	app/controller/deletePic.php	/^        $picManager = $c->picture;$/;"	v
 picManager	app/controller/home.php	/^    $picManager = $container->picture;$/;"	v
 picManager	app/controller/listPics.php	/^    $picManager = $container->picture;$/;"	v
@@ -242,8 +249,8 @@ request	app/model/UserManager.php	/^        $request = $this->container->db->pre
 request	dumb/dumb.php	/^		$request = explode('\/', $_SERVER['REQUEST_URI']);$/;"	v
 resampled	app/controller/createPic.php	/^function resampled($src, $size)$/;"	f
 resetValidkey	app/model/UserManager.php	/^	public function resetValidkey($login)$/;"	f
+response	app/controller/addComment.php	/^	$response = $commentManager->getCommentByImgId($_POST['id']);$/;"	v
 response	dumb/dumb.php	/^			$response = (ltrim($this->uri, '\/'))($this->container, $args);$/;"	v
-route	dumb/Bunkee.php	/^	private $route = array();$/;"	v
 s_size	app/controller/createPic.php	/^            $s_size = getimagesize($src);$/;"	v
 sendCommentMail	app/model/MailManager.php	/^    public function sendCommentMail($user)$/;"	f
 sendMail	app/model/MailManager.php	/^    public function sendMail($dest, $subject, $message, $headers)$/;"	f
@@ -274,7 +281,7 @@ tab	app/model/CamagruManager.php	/^        $tab = array();$/;"	v
 tab	app/model/PicManager.php	/^		$tab = array();$/;"	v
 testInput	app/lib/user.php	/^function testInput($data)$/;"	f
 testPassword	app/lib/user.php	/^function testPassword($pass)$/;"	f
-title	app/controller/changeTitle.php	/^        $title = $_GET['title'];$/;"	v
+title	app/controller/changeTitle.php	/^	$title = $_POST['title'];$/;"	v
 title	app/controller/createPic.php	/^    $title = array();$/;"	v
 title	app/model/PicManager.php	/^		$title = $this->sqlRequestFetch($request, array($id));$/;"	v
 updatePassword	app/model/UserManager.php	/^	public function updatePassword($passwd)$/;"	f
@@ -303,6 +310,7 @@ users.validkey	app/config/camagru.sql	/^  alert bool NOT NULL DEFAULT false,$/;"
 valid	app/controller/reinit.php	/^    $valid = 0;$/;"	v
 valid	app/model/UserManager.php	/^            $valid = $this->sqlRequest($request, array($pseudo, $pass, $mail, $key), True);$/;"	v
 valid	app/model/UserManager.php	/^        $valid = false;$/;"	v
+validTitle	public/js/common.js	/^function validTitle(str)$/;"	f
 validation	app/controller/validation.php	/^function validation($c)$/;"	f
 value	app/model/PicManager.php	/^		$value = $this->sqlRequest($request, array($id));$/;"	v
 value	app/model/PicManager.php	/^		$value = $this->sqlRequest($request, array($pseudo));$/;"	v
@@ -314,4 +322,4 @@ view	app/controller/picture.php	/^	$view = 'Picture';$/;"	v
 width	app/controller/createPic.php	/^        $width = 480 * $size[0] \/ $size[1];$/;"	v
 width	app/controller/createPic.php	/^        $width = 640;$/;"	v
 xmlhttp.onreadystatechange	public/js/common.js	/^    xmlhttp.open("POST", url, true);$/;"	f
-xmlhttp.onreadystatechange	public/js/picView.js	/^        xmlhttp.setRequestHeader("Content-type", "application\/x-www-form-urlencoded");$/;"	f
+year	public/js/common.js	/^	var options = {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"};$/;"	p	class:commentDivFactory.options

@@ -128,4 +128,3 @@ function createPic(data, filter)
 	}
 	ggAjax(str, '/createPic', addPic);
 }
-

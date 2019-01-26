@@ -12,7 +12,7 @@ CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   img_id int NOT NULL,
   id_author int NOT NULL,
-  date date NOT NULL,
+  date datetime NOT NULL,
   content text NOT NULL
 );
 

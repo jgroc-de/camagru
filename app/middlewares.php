@@ -43,13 +43,43 @@ $api->add(function() {
 		'/picture',
 ]);
 
-$api->add(function() {
-	if (!isset($_POST['id']) || !is_numeric($_POST['id']))
+//pour les formulaires
+$api->add(function($key, $type) {
+	if (!isset($_POST[$key]) || !$_POST[$key])
+	{
+		return (401);
+	}
+	if ($type === 'numeric')
+	{
+		if (!is_numeric($_POST[$key]))
+		{
+			return (401);
+		}
+	}
+	else if ($type === '')
+	{
+		if ($_POST[$key] == '')
+		{
+			return (401);
+		}
+	}
+	return (0);
+},
+	[
+		'/login' => ['password' => '', 'pseudo' => '',],
+		'/addLike' => ['id' => 'numeric',],
+		'/addComment' => ['id' => 'numeric', 'comment' => ''],
+		'/changeTitle' => ['id' => 'numeric', 'title' => ''],
+]);
+
+$api->add(function($key, $type) {
+	if (strlen($_POST[$key]) >= 30)
 	{
 		return (401);
 	}
 	return (0);
 },
 	[
-		'/addLike',
+		'/changeTitle' => ['title' => '',],
+		'/login' => ['pseudo' => '',],
 ]);

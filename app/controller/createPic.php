@@ -42,8 +42,11 @@ function createPic($c)
 		$response['code'] = 500;
         $_SESSION['flash'] = 'plus de place';
 	}
-	$response['flash'] = $_SESSION['flash'];
-	unset($_SESSION['flash']);
+	if (isset($_SESSION['flash']))
+	{
+		$response['flash'] = $_SESSION['flash'];
+		unset($_SESSION['flash']);
+	}
 	return $response;
 } 
 

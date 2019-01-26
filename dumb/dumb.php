@@ -25,13 +25,13 @@ class Dumb extends Bunkee
 
 	public function dumb($args = null)
 	{
-		if ($this->middleware())
+		if ($this->middleware() && $this->form())
 		{
 			require '../app/controller' . $this->uri . '.php';
 			$response = (ltrim($this->uri, '/'))($this->container, $args);
 			if ($response)
 			{
-				header(self::HTTP_CODE[$response['code']]);
+				header("HTTP/1.1 ".$response['code']." ".self::HTTP_CODE[$response['code']]);
 				unset($response['code']);
 				echo json_encode($response);
 			}

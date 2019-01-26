@@ -1,42 +1,39 @@
-<div class="w3-container w3-padding-32">
-	<div class="">
-	<h2 class="w3-border-bottom w3-border-light-grey w3-padding-16">Auteur: <?= htmlspecialchars($elem['pseudo']) ?></h2>
-		<p>le <?= htmlspecialchars($elem['date2']) ?></p>
-		<img src="<?= '/'.htmlspecialchars($elem['url']) ?>"
-	   alt="<?= htmlspecialchars($elem['title'])?>">
-	<div>
-		<span id="like">
-			<?= htmlspecialchars($elem['nb_like']); ?> likes
-		</span>
-
-		<?php if (isset($_SESSION['pseudo'])): ?>
-
-		<button type="button" class="w3-button w3-black" onclick="ggAjax(<?php echo '\'id='.$id.'\'' ?>, '/addLike', addLike)" id="likeButton">Like this</button>
-		<span id="lol"></span>
-		<div>
-			<textarea class="text" class="w3-input w3-border"
-			 rows="3" cols="50" placeholder="Troll this!"></textarea>
+<div class="w3-container w3-padding-64">
+	<div class="w3-col l6">
+		<h2 class="w3-border-bottom w3-border-light-grey w3-padding-16"><form><div><input type="number" name="id" class="w3-hide" value="<?= $elem['id'] ?>" required></input></div><div><input type="text" name="title" onblur="ggForm(this)" value="<?= htmlspecialchars($elem['title']) ?>"> <span class="w3-opacity w3-large">by <?= htmlspecialchars($elem['pseudo']) ?> on <?= htmlspecialchars($elem['date2']) ?></span></div></form></h2>
+		<div class="w3-padding-16">
+			<img width="100%" src="<?= '/'.htmlspecialchars($elem['url']) ?>" alt="<?= htmlspecialchars($elem['title'])?>">
+		</div>
+		<div class="w3-right w3-margin-right">
+		   <span id="like">
+			   <?= htmlspecialchars($elem['nb_like']); ?> likes
+		   </span>
+		   <button type="button" class="w3-button w3-black <?php if (!isset($_SESSION['pseudo'])): ?>w3-hide<?php endif; ?>" onclick="ggAjax(<?php echo '\'id='.$id.'\'' ?>, '/addLike', addLike)" id="likeButton">Like this</button>
+	   </div>
+	</div>
+	<div class="w3-col l6">
+		<h2 class="w3-border-bottom w3-border-light-grey w3-padding-16">Comments</h2>
+		<form method="post" action="#" id="trollInput" class="w3-container w3-padding-16 w3-border-bottom <?php if (!isset($_SESSION['pseudo'])): ?>w3-hide<?php endif;?>">
+			<div class="w3-hide">
+				<input name="id" type="number" value=<?= $id ?> disabled required>
+			</div>
+			<div>
+				<textarea name="comment" width="100%" class="w3-input w3-border" rows="3" placeholder="Troll this!" required></textarea>
+			</div>
 			<div class="submit">
-				<button type="button" class="w3-button w3-black" onclick='addComment(<?= $elem["id"] ?>)'>
+				<button type="button" class="w3-right w3-button w3-black" onclick="ggForm(this, '/addComment', addComment)">
 					<i class="fa fa-paper-plane"></i>
-					Troller
+					Troll this
 				</button>
 			</div>
+		</form>
+		<div id="comments" class="w3-container w3-padding-16">	
+			<?php foreach ($comments as $comment) { ?>
+			<div class="w3-row w3-margin-bottom">
+				<h3><?= htmlspecialchars($comment['pseudo']) ?> <span class="w3-opacity w3-medium">on <?php echo date('d F Y, h:i A', (strtotime($comment['date2']))) ?></span></span></h3>
+					<p style="word-wrap:break-word"><?= htmlspecialchars($comment['content'])?></p>
+			</div>
+			<?php } ?>
 		</div>
-
-		<?php endif; ?>
-
-	</div>
-	</div>
-	<div class="comment">
-
-		<?php while ($com = $comment->fetch()): ?>
-
-		<div>	
-			<h3><?= htmlspecialchars($comment['pseudo'])?></h3>
-			<p>le <?= htmlspecialchars($comment['date2'])?><br>
-			<?= htmlspecialchars($commnent['content'])?></p>
-		</div>
-		<?php endwhile; ?>
 	</div>
 </div>

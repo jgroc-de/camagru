@@ -13,13 +13,11 @@ class Bunkee
 
 	private $found = false;
 
-	private $route = array();
-
 	protected $uri;
 
 	private $middlewares = array();
 
-	private $i = 0;
+	private $forms = array();
 
 	protected $args = array();
 
@@ -41,16 +39,14 @@ class Bunkee
 
 	public function add($function, array $routes)
 	{
-		$this->middlewares[] = $function;
-		if (empty($routes))
+		if (empty($routes) || in_array($this->uri, $routes))
 		{
-			$this->route[] = $this->i;
+			$this->middlewares[] = $function;
 		}
-		else if (in_array($this->uri, $routes))
+		else if (isset($routes[$this->uri]))
 		{
-			$this->route[] = $this->i;
+			$this->forms[] = [$function, $routes[$this->uri]];
 		}
-		$this->i++;
 	}
 
 	protected function error(int $httpCode)
@@ -67,13 +63,29 @@ class Bunkee
 			$this->error(404);
 			return 0;
 		}
-		foreach ($this->route as $middleware)
+		foreach ($this->middlewares as $middleware)
 		{
-			$action = $this->middlewares[$middleware];
-			if (($error = $action()) >= 400)
+			if (($error = $middleware()) >= 400)
 			{
 				$this->error($error);
 				return 0;
+			}
+		}
+		return 1;
+	}
+	
+	protected function form()
+	{
+		foreach ($this->forms as $form)
+		{
+			$action = array_shift($form);
+			foreach ($form as $key => $type)
+			{
+				if (($error = $action($key, $type)) >= 400)
+				{
+					$this->error($error);
+					return 0;
+				}
 			}
 		}
 		return 1;

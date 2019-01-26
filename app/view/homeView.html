@@ -5,7 +5,7 @@
 	<section class="w3-row-padding gg-wall" onscroll="ft_scroll(this)">
 		<?php while ($elem = $pics->fetch()): ?>
 	 <div class="w3-col l3 m6 w3-margin-bottom">
-		 <a href="/picture?id=<?= htmlspecialchars($elem['id'])?>">
+		 <a href="/picture/<?= htmlspecialchars($elem['id'])?>">
 			 <div class="w3-display-container">
 				 <div class="w3-display-topleft w3-black w3-padding"><?= htmlspecialchars($elem['title'])?></div>
 				 <img class='' style="width:100%" src="<?= htmlspecialchars($elem['url'])?>"

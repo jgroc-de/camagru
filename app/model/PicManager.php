@@ -93,7 +93,7 @@ class PicManager extends SqlManager
             DELETE FROM comments
             WHERE img_id = ?
             ';
-            $this->sqlRequest($request, array($id), True);
+            $this->sqlRequest($request, array($img_id), True);
         }
     }
 	

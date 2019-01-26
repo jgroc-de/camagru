@@ -37,9 +37,10 @@ $description = "Bienvenue sur ce petit site type image-board/instagram. Vous pou
 		}
 	?>
 	</div>
-	<footer class="w3-center w3-black w3-padding-16">
+	<footer class="w3-container w3-black w3-padding-16">
 		<hr>
-		<em class="">© jgroc-de 2018</em>
+		<a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+		<a href="https://jgroc-de.github.io/" class="w3-button w3-black w3-padding-large w3-margin-bottom w3-right"><em class="">© jgroc-de 2018</em></a>
 	</footer>
 	<script src="/js/common.js"></script>
 	<script src="/js/routes.js"></script>

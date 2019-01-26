@@ -35,6 +35,6 @@ class CommentManager extends SqlManager
                 INSERT INTO comments (img_id, id_author, date, content)
                 Values (?, ?, NOW(), ?)
             ';
-        $this->sqlRequest($request, array($_POST['id'], $_SESSION['id'], $_POST['text']), True);
+        $this->sqlRequest($request, array($_POST['id'], $_SESSION['id'], $_POST['comment']), True);
     }
 }

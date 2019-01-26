@@ -14,9 +14,9 @@ function picture($c, $options)
 	$elem = $picManager->getPic($id);
 	$comment = $c->comment->getComments($id);
 	$options['title2'] = htmlspecialchars($elem['title']);
-	$options['script'] = "/js/picView.js";
 	$view = 'Picture';
 	$main = '/picView.html';
 	$options['components'] = [];
+	$comments = $comment->fetchAll();
 	require __DIR__.'/../view/template.php';
 }

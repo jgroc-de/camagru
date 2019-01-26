@@ -37,7 +37,7 @@ function ggAjax(data, url, callback)
 			{
 				printNotif(json['flash'], this.status);
 			}
-			if (callback && status == 200)
+			if (callback && this.status == 200)
 			{
 				callback(this.status, json);
 			}
@@ -70,5 +70,65 @@ function ft_scroll(element)
 {
 	if (element.scrollTop > 350) {
 		alert('lol');
+	}
+}
+
+function picDivFactory(json)
+{
+	var first = document.createElement('div');
+	var second = document.createElement('div');
+	var title = document.createElement('div');
+   	var img = document.createElement('img');
+	var path = json['path'];
+
+	first.setAttribute('class', "w3-col l3 m6 w3-margin-bottom");
+	second.setAttribute('class', "w3-display-container");
+	title.setAttribute('class', "w3-display-topleft w3-black w3-padding");
+	title.innerHTML = path;
+	img.style = "width:100%";
+	img.src = path;
+	img.alt = path;
+	img.title = path;
+	first.id = path;
+	second.appendChild(title);
+	second.appendChild(img);
+	first.appendChild(second);
+	return first;
+}
+
+function commentDivFactory(json)
+{
+	var first = document.createElement('div');
+	var comment = document.createElement('p');
+	var title = document.createElement('h3');
+	var span = document.createElement('span');
+	var date = new Date(json['date2']);
+	var options = {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"};
+
+	first.setAttribute('class', "w3-row w3-margin-bottom");
+	span.setAttribute('class', "w3-opacity w3-medium");
+	comment.style.wordWrap = "break-Word";
+	comment.innerHTML = json['content'];
+	title.innerHTML = json['pseudo'] + ' ';
+	span.innerHTML = 'on ' + date.toLocaleString('en-GB', options); 
+	title.appendChild(span);
+	first.appendChild(title);
+	first.appendChild(comment);
+	return first;
+}
+
+function validTitle(str)
+{
+	if (!str || str.length == 0)
+	{
+		printNotif("can't be empty", 400);
+	}
+	else if (str.length > 30)
+	{
+		printNotif("too long", 400);
+	}
+	else
+	{
+		ggAjax(str, '/changeTitle');
 	}
 }
