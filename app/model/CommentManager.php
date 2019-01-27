@@ -12,9 +12,10 @@ class CommentManager extends SqlManager
 			WHERE img_id = ?
 			ORDER BY comments.id DESC
 		';
-        return ($this->sqlRequest($request, array($id)));
+
+        return $this->sqlRequest($request, array($id));
     }
-    
+
     public function getCommentByImgId($id)
     {
         $request = '
@@ -26,6 +27,7 @@ class CommentManager extends SqlManager
 			ORDER BY comments.id DESC
 			LIMIT 1
 		';
+
         return $this->sqlRequestFetch($request, array($id));
     }
 

@@ -19,7 +19,8 @@ function signup($c, $options)
         unset($_SESSION['flash']);
     } else {
         $response['code'] = 401;
-        $response['flash'] = "Bad password or login";
+        $response['flash'] = 'Bad password or login';
     }
+
     return $response;
 }

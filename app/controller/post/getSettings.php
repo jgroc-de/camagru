@@ -6,5 +6,6 @@ function getSettings($c, $options)
 {
     $response['code'] = 200;
     $response['settings'] = $c->user->getUserSettings($_SESSION['pseudo']);
+
     return $response;
 }

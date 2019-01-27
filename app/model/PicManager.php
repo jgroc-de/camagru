@@ -11,6 +11,7 @@ class PicManager extends SqlManager
             ON img.id_author = users.id
 			WHERE img.id = ?
 		';
+
         return $this->sqlRequestFetch($request, array($id));
     }
 
@@ -26,9 +27,10 @@ class PicManager extends SqlManager
 		');
         $request->bindParam(':start', $start, PDO::PARAM_INT);
         $request->execute();
+
         return $request;
     }
-    
+
     public function getPicsByLike($start)
     {
         $request = $this->db->prepare('
@@ -41,9 +43,10 @@ class PicManager extends SqlManager
 		');
         $request->bindParam(':start', $start, PDO::PARAM_INT);
         $request->execute();
+
         return $request;
     }
-    
+
     public function getPicsByLogin($pseudo)
     {
         $tab = array();
@@ -58,6 +61,7 @@ class PicManager extends SqlManager
         while ($elemt = $value->fetch()) {
             $tab[] = $elemt;
         }
+
         return $tab;
     }
 
@@ -68,6 +72,7 @@ class PicManager extends SqlManager
             FROM img
             WHERE url = ?
         ';
+
         return $this->sqlRequestFetch($request, array($url));
     }
 
@@ -78,7 +83,7 @@ class PicManager extends SqlManager
 			(title, id_author, url, date)
 			VALUES (?, ?, ?, NOW())
 		';
-        $this->sqlRequest($request, array($_SESSION['pseudo'] . '_' . rand(), $_SESSION['id'], $path), true);
+        $this->sqlRequest($request, array($_SESSION['pseudo'].'_'.rand(), $_SESSION['id'], $path), true);
     }
 
     public function deletePic($img_id, $author_id)
@@ -95,16 +100,17 @@ class PicManager extends SqlManager
             $this->sqlRequest($request, array($img_id), true);
         }
     }
-    
+
     public function countPics()
     {
         $request = '
 			SELECT count(*)
 			FROM img
 		';
+
         return $this->sqlRequestFetch($request);
     }
-    
+
     public function picInDb($id)
     {
         $request = '
@@ -115,8 +121,10 @@ class PicManager extends SqlManager
         $value = $this->sqlRequest($request, array($id));
         if ($value->fetch()) {
             $value->closecursor();
+
             return true;
         }
+
         return false;
     }
 
@@ -143,7 +151,7 @@ class PicManager extends SqlManager
                 ';
             $this->sqlRequest($request, array($id_img, $id_author), true);
         } else {
-            return (-1);
+            return -1;
         }
         $request = '
 			SELECT nb_like 
@@ -151,7 +159,8 @@ class PicManager extends SqlManager
 			WHERE id = ?
 		';
         $count = $this->sqlRequestFetch($request, array($id_img));
-        return($count[0]);
+
+        return $count[0];
     }
 
     public function changeTitle($id, $title)
@@ -169,6 +178,7 @@ class PicManager extends SqlManager
 			WHERE id = ?
 		';
         $title = $this->sqlRequestFetch($request, array($id));
-        return($title['title']);
+
+        return $title['title'];
     }
 }

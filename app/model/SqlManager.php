@@ -12,7 +12,7 @@ class SqlManager
     protected function sqlRequest($request, $array = array(), $bool = false)
     {
         $db = $this->container->db;
-        
+
         $obj = $db->prepare($request);
         $success = $obj->execute($array);
         if ($bool) {

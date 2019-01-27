@@ -10,6 +10,7 @@ class CamagruManager extends SqlManager
         while ($elemt = $request->fetch()) {
             $tab[] = $elemt;
         }
+
         return $tab;
     }
 }

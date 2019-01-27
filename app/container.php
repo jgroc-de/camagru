@@ -5,12 +5,14 @@ require '../app/config/env.php';
 $api->setContainer([
     'env' => function (&$c) {
         global $DB;
+
         return $DB;
     },
     'db' => function (&$c) {
         $DB = $c->env;
 
-        $DB_DSN = $DB['driver'] . ':host='. $DB['host'] . ';dbname=' . $DB['name'] .';';
+        $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';
+
         return new PDO($DB_DSN, $DB['user'], $DB['password'], array(
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         ));

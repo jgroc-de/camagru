@@ -6,5 +6,6 @@ function logout()
     $response['flash'] = 'Cya '.$_SESSION['pseudo'].'!';
     session_unset();
     session_destroy();
+
     return $response;
 }

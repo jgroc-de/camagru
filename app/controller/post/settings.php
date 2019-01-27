@@ -18,5 +18,6 @@ function settings($c, $options)
         $response['code'] = 400;
         $response['flash'] = 'Pseudo unavailable!';
     }
+
     return $response;
 }

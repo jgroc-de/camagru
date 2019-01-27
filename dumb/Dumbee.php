@@ -2,7 +2,6 @@
 
 /**
  * @class Dumbee
- *
  */
 class Dumbee
 {

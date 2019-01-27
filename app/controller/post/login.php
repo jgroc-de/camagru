@@ -11,10 +11,11 @@ function login($c, $options)
         $_SESSION['id'] = $user['id'];
         $_SESSION['alert'] = $user['alert'];
         $response['code'] = 200;
-        $response['flash'] = "Welcome back ".$pseudo;
+        $response['flash'] = 'Welcome back '.$pseudo;
     } else {
         $response['code'] = 401;
-        $response['flash'] = "Bad password or login";
+        $response['flash'] = 'Bad password or login';
     }
+
     return $response;
 }

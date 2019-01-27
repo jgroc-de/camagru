@@ -11,5 +11,6 @@ function addComment($c)
     if ($user['alert']) {
         $c->mail->sendCommentMail($user);
     }
+
     return $response;
 }

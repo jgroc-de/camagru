@@ -5,7 +5,7 @@ $description = "Bienvenue sur ce petit site type image-board/instagram. Vous pou
 ?>
 	<head>
 		<meta charset="utf-8"/>
-		<meta name="description" content="<?= $description ?>">
+		<meta name="description" content="<?= $description; ?>">
 		<meta name="keywords" lang="fr" content="image-board photo-montage">
 		<title>Camagru</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,7 +15,7 @@ $description = "Bienvenue sur ce petit site type image-board/instagram. Vous pou
 	</head>
 
 <body>	
-	<?php require __DIR__.'/common/navbar.php' ?>
+	<?php require __DIR__.'/common/navbar.php'; ?>
 	<?php
         foreach ($options['header'] as $value) {
             require __DIR__.$value;
@@ -44,7 +44,7 @@ $description = "Bienvenue sur ce petit site type image-board/instagram. Vous pou
 	<script src="/js/common.js"></script>
 	<script src="/js/routes.js"></script>
 	<?php if ($options['script']): ?>        
-	<script src="<?= $options['script'] ?>"></script>
-	<?php endif;?>
+	<script src="<?= $options['script']; ?>"></script>
+	<?php endif; ?>
 	</body>
 </html>

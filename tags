@@ -173,7 +173,7 @@ CustomFilterIteratorTest	vendor/symfony/finder/Tests/Iterator/CustomFilterIterat
 D	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/OrderedClassElementsFixer.php	/^    public function D(){}$/;"	f
 DB	app/config/env.php	/^$DB = array($/;"	v
 DB	app/container.php	/^        $DB = $c->env;$/;"	v
-DB_DSN	app/container.php	/^        $DB_DSN = $DB['driver'] . ':host='. $DB['host'] . ';dbname=' . $DB['name'] .';';$/;"	v
+DB_DSN	app/container.php	/^        $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';$/;"	v
 DateComparator	vendor/symfony/finder/Comparator/DateComparator.php	/^class DateComparator extends Comparator$/;"	c
 DateComparatorTest	vendor/symfony/finder/Tests/Comparator/DateComparatorTest.php	/^class DateComparatorTest extends TestCase$/;"	c
 DateRangeFilterIterator	vendor/symfony/finder/Iterator/DateRangeFilterIterator.php	/^class DateRangeFilterIterator extends \\FilterIterator$/;"	c
@@ -895,7 +895,7 @@ __clone	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Tokens.php	/^    public f
 __clone	vendor/symfony/process/Process.php	/^    public function __clone()$/;"	f
 __construct	app/model/SqlManager.php	/^    public function __construct(&$container)$/;"	f
 __construct	dumb/Dumbee.php	/^    public function __construct(array $functions)$/;"	f
-__construct	dumb/dumb.php	/^	public function __construct()$/;"	f
+__construct	dumb/dumb.php	/^    public function __construct()$/;"	f
 __construct	vendor/composer/semver/src/Constraint/Constraint.php	/^    public function __construct($operator, $version)$/;"	f
 __construct	vendor/composer/semver/src/Constraint/MultiConstraint.php	/^    public function __construct(array $constraints, $conjunctive = true)$/;"	f
 __construct	vendor/composer/xdebug-handler/src/Status.php	/^    public function __construct($envAllowXdebug, $debug)$/;"	f
@@ -1124,7 +1124,7 @@ __invoke	vendor/symfony/event-dispatcher/Tests/AbstractEventDispatcherTest.php	/
 __invoke	vendor/symfony/event-dispatcher/Tests/Debug/WrappedListenerTest.php	/^    public function __invoke()$/;"	f
 __invoke	vendor/symfony/event-dispatcher/Tests/DependencyInjection/RegisterListenersPassTest.php	/^    public function __invoke()$/;"	f
 __isset	vendor/friendsofphp/php-cs-fixer/src/Test/AccessibleObject.php	/^    public function __isset($name)$/;"	f
-__set	dumb/Bunkee.php	/^	public function __set(string $method, array $routes)$/;"	f
+__set	dumb/Bunkee.php	/^    public function __set(string $method, array $routes)$/;"	f
 __set	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation.php	/^    public function __set($name, $value)$/;"	f
 __set	vendor/friendsofphp/php-cs-fixer/src/Test/AccessibleObject.php	/^    public function __set($name, $value)$/;"	f
 __toString	vendor/composer/semver/src/Constraint/Constraint.php	/^    public function __toString()$/;"	f
@@ -1232,7 +1232,7 @@ accept	vendor/symfony/finder/Tests/Iterator/MultiplePcreFilterIteratorTest.php	/
 acceptValue	vendor/symfony/console/Input/InputOption.php	/^    public function acceptValue()$/;"	f
 actif	app/model/UserManager.php	/^            $actif = $row['actif'];$/;"	v
 actif	app/model/UserManager.php	/^        $actif = false;$/;"	v
-action	dumb/Bunkee.php	/^			$action = array_shift($form);$/;"	v
+action	dumb/Bunkee.php	/^            $action = array_shift($form);$/;"	v
 activeSections	vendor/symfony/stopwatch/Stopwatch.php	/^    private $activeSections;$/;"	v
 actual	vendor/symfony/finder/Tests/Iterator/DepthRangeFilterIteratorTest.php	/^        $actual = array_keys(iterator_to_array($iterator));$/;"	v
 actual	vendor/symfony/finder/Tests/Iterator/RecursiveDirectoryIteratorTest.php	/^        $actual = array();$/;"	v
@@ -1244,7 +1244,7 @@ actualOptions	vendor/symfony/options-resolver/Tests/OptionsResolverTest.php	/^  
 actualOptions	vendor/symfony/options-resolver/Tests/OptionsResolverTest.php	/^        $actualOptions = $this->resolver->resolve(array('ip' => '127.0.0.1'));$/;"	v
 actualOutput	vendor/symfony/console/Tests/Helper/QuestionHelperTest.php	/^        $actualOutput = stream_get_contents($outputStream);$/;"	v
 actualTypes	vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/NoSuperfluousPhpdocTagsFixer.php	/^        $actualTypes = null === $info['type'] ? [] : [$info['type']];$/;"	v
-add	dumb/Bunkee.php	/^	public function add($function, array $routes)$/;"	f
+add	dumb/Bunkee.php	/^    public function add($function, array $routes)$/;"	f
 add	vendor/composer/ClassLoader.php	/^    public function add($prefix, $paths, $prepend = false)$/;"	f
 add	vendor/symfony/console/Application.php	/^    public function add(Command $command)$/;"	f
 addAllowedTypes	vendor/symfony/options-resolver/OptionsResolver.php	/^    public function addAllowedTypes($option, $allowedTypes)$/;"	f
@@ -1717,7 +1717,7 @@ arg	vendor/symfony/console/Input/ArgvInput.php	/^            $arg = $this->defin
 arg	vendor/symfony/console/Input/ArgvInput.php	/^            $arg = $this->definition->getArgument($c);$/;"	v
 argBefore	vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitExpectationFixer.php	/^                $argBefore = $tokens->getPrevMeaningfulToken($argStart);$/;"	v
 argStart	vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitExpectationFixer.php	/^                $argStart = array_keys($arguments)[$cnt];$/;"	v
-args	dumb/Bunkee.php	/^	protected $args = array();$/;"	v
+args	dumb/Bunkee.php	/^    protected $args = array();$/;"	v
 args	public/index.php	/^$args = array($/;"	v
 args	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^            $args = Process::addColorOption($args, $this->colorOption);$/;"	v
 args	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^        $args = array_merge($php, array($this->script), $args);$/;"	v
@@ -2004,7 +2004,7 @@ boundaries	vendor/friendsofphp/php-cs-fixer/src/Fixer/Alias/MbStrFunctionsFixer.
 boundaries	vendor/friendsofphp/php-cs-fixer/src/Fixer/Alias/RandomApiMigrationFixer.php	/^                $boundaries = $this->find($functionIdentity, $tokens, $currIndex, $tokens->count() - 1);$/;"	v
 boundaries	vendor/friendsofphp/php-cs-fixer/src/Fixer/CastNotation/ModernizeTypesCastingFixer.php	/^                $boundaries = $this->find($functionIdentity, $tokens, $currIndex, $tokens->count() - 1);$/;"	v
 boundaries	vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/DirConstantFixer.php	/^            $boundaries = $this->find('dirname', $tokens, $currIndex, $tokens->count() - 1);$/;"	v
-boundary	mail.php	/^$boundary = "-----=".md5(rand());$/;"	v
+boundary	mail.php	/^$boundary = '-----='.md5(rand());$/;"	v
 box	vendor/symfony/console/Helper/Table.php	/^        $box = (new TableStyle())$/;"	v
 box	vendor/symfony/filesystem/Filesystem.php	/^    private static function box($func)$/;"	f
 boxDouble	vendor/symfony/console/Helper/Table.php	/^        $boxDouble = (new TableStyle())$/;"	v
@@ -2893,8 +2893,8 @@ container	app/model/SqlManager.php	/^        $this->container = $container;$/;"	
 container	app/model/SqlManager.php	/^    protected $container;$/;"	v
 container	dumb/Dumbee.php	/^        $this->container = $functions;$/;"	v
 container	dumb/Dumbee.php	/^    protected $container = array();$/;"	v
-container	dumb/dumb.php	/^		$this->container = new Dumbee($functions);$/;"	v
-container	dumb/dumb.php	/^	public $container;$/;"	v
+container	dumb/dumb.php	/^        $this->container = new Dumbee($functions);$/;"	v
+container	dumb/dumb.php	/^    public $container;$/;"	v
 container	vendor/symfony/console/CommandLoader/ContainerCommandLoader.php	/^        $this->container = $container;$/;"	v
 container	vendor/symfony/console/CommandLoader/ContainerCommandLoader.php	/^    private $container;$/;"	v
 container	vendor/symfony/console/Tests/ApplicationTest.php	/^        $container = new ContainerBuilder();$/;"	v
@@ -3409,7 +3409,7 @@ day	public/js/common.js	/^	var options = {hour12: true, year: "numeric", month: 
 db	app/model/ConfigManager.php	/^        $db = $this->dbconnect();$/;"	v
 db	app/model/ConfigManager.php	/^        $db = $this->env;$/;"	v
 db	app/model/SqlManager.php	/^        $db = $this->container->db;$/;"	v
-db_dsn	app/model/ConfigManager.php	/^        $db_dsn = $db['driver'] . ':host='. $db['host'] . ';port=' . $db['port'];$/;"	v
+db_dsn	app/model/ConfigManager.php	/^        $db_dsn = $db['driver'].':host='.$db['host'].';port='.$db['port'];$/;"	v
 dbconnect	app/model/ConfigManager.php	/^    protected function dbconnect()$/;"	f
 debug	vendor/composer/xdebug-handler/src/Status.php	/^        $this->debug = $debug && defined('STDERR');$/;"	v
 debug	vendor/composer/xdebug-handler/src/Status.php	/^    private $debug;$/;"	v
@@ -3907,7 +3907,7 @@ doubleQuoted	vendor/friendsofphp/php-cs-fixer/src/Fixer/StringNotation/EscapeImp
 doubleQuotedRegex	vendor/friendsofphp/php-cs-fixer/src/Fixer/StringNotation/EscapeImplicitBackslashesFixer.php	/^        static $doubleQuotedRegex = '\/(?<!\\\\\\\\)\\\\\\\\((?:\\\\\\\\\\\\\\\\)*)(?![efnrtv$"\\\\\\\\0-7]|x[0-9A-Fa-f]|u{)\/';$/;"	v
 downloadLatestUrl	vendor/friendsofphp/php-cs-fixer/src/Console/Command/ReadmeCommand.php	/^        $downloadLatestUrl = sprintf('https:\/\/github.com\/FriendsOfPHP\/PHP-CS-Fixer\/releases\/download\/v%s\/php-cs-fixer.phar', HelpCommand::getLatestReleaseVersionFromChangeLog());$/;"	v
 downloadUrl	vendor/friendsofphp/php-cs-fixer/src/Console/Command/ReadmeCommand.php	/^        $downloadUrl = 'https:\/\/cs.symfony.com\/download\/php-cs-fixer-v2.phar';$/;"	v
-dumb	dumb/dumb.php	/^	public function dumb($args = null)$/;"	f
+dumb	dumb/dumb.php	/^    public function dumb($args = null)$/;"	f
 dummy	vendor/psr/log/Psr/Log/Test/LoggerInterfaceTest.php	/^            $dummy = $this->createPartialMock('Psr\\Log\\Test\\DummyTest', array('__toString'));$/;"	v
 dummy	vendor/psr/log/Psr/Log/Test/LoggerInterfaceTest.php	/^            $dummy = $this->getMock('Psr\\Log\\Test\\DummyTest', array('__toString'));$/;"	v
 dummy	vendor/symfony/console/Tests/Logger/ConsoleLoggerTest.php	/^            $dummy = $this->createPartialMock('Symfony\\Component\\Console\\Tests\\Logger\\DummyTest', array('__toString'));$/;"	v
@@ -4147,7 +4147,7 @@ err	vendor/symfony/process/Process.php	/^                $err = stream_get_conte
 err	vendor/symfony/process/Tests/PipeStdinInStdoutStdErrStreamSelect.php	/^        $err = (string) substr($err, $written);$/;"	v
 error	app/controller/error.php	/^        $error = [];$/;"	v
 error	app/controller/error.php	/^function error($c, $error, $options)$/;"	f
-error	dumb/Bunkee.php	/^	protected function error(int $httpCode)$/;"	f
+error	dumb/Bunkee.php	/^    protected function error(int $httpCode)$/;"	f
 error	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^                $error = 'Unable to read ini: '.$file;$/;"	v
 error	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^            $error = $error ?: 'Unable to create temp ini file at: '.$tmpDir;$/;"	v
 error	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^            $error = 'PHP version does not report scanned inis: '.PHP_VERSION;$/;"	v
@@ -4952,7 +4952,7 @@ forbiddenTokens	vendor/friendsofphp/php-cs-fixer/src/Fixer/Casing/LowercaseConst
 foreground	vendor/symfony/console/Formatter/OutputFormatterStyle.php	/^            $this->foreground = null;$/;"	v
 foreground	vendor/symfony/console/Formatter/OutputFormatterStyle.php	/^        $this->foreground = static::$availableForegroundColors[$color];$/;"	v
 foreground	vendor/symfony/console/Formatter/OutputFormatterStyle.php	/^    private $foreground;$/;"	v
-form	dumb/Bunkee.php	/^	protected function form()$/;"	f
+form	dumb/Bunkee.php	/^    protected function form()$/;"	f
 format	vendor/friendsofphp/php-cs-fixer/src/Config.php	/^        $this->format = $format;$/;"	v
 format	vendor/friendsofphp/php-cs-fixer/src/Config.php	/^    private $format = 'txt';$/;"	v
 format	vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php	/^            $format = $this->getFormat();$/;"	v
@@ -5004,9 +5004,9 @@ formatter	vendor/symfony/console/Tests/Helper/FormatterHelperTest.php	/^        
 formatterHelper	vendor/symfony/console/Tests/Command/CommandTest.php	/^        $formatterHelper = new FormatterHelper();$/;"	v
 formatters	vendor/symfony/console/Helper/ProgressBar.php	/^    private static $formatters;$/;"	v
 formatters	vendor/symfony/console/Helper/ProgressIndicator.php	/^    private static $formatters;$/;"	v
-forms	dumb/Bunkee.php	/^	private $forms = array();$/;"	v
-found	dumb/Bunkee.php	/^			$this->found = true;$/;"	v
-found	dumb/Bunkee.php	/^	private $found = false;$/;"	v
+forms	dumb/Bunkee.php	/^    private $forms = array();$/;"	v
+found	dumb/Bunkee.php	/^            $this->found = true;$/;"	v
+found	dumb/Bunkee.php	/^    private $found = false;$/;"	v
 found	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php	/^                             $found = true;$/;"	v
 found	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php	/^                            $found = true;$/;"	v
 found	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php	/^                        $found = true;$/;"	v
@@ -6515,7 +6515,7 @@ haystack	vendor/symfony/polyfill-mbstring/Mbstring.php	/^                $haysta
 haystack	vendor/symfony/polyfill-mbstring/Mbstring.php	/^                $haystack = self::mb_substr($haystack, 0, $offset, $encoding);$/;"	v
 haystack	vendor/symfony/polyfill-mbstring/Mbstring.php	/^        $haystack = self::mb_convert_case($haystack, self::MB_CASE_FOLD, $encoding);$/;"	v
 header	app/controller/error.php	/^    $header = [$/;"	v
-header	mail.php	/^$header = "From: \\"WeaponsB\\"<weaponsb@mail.fr>".$passage_ligne;$/;"	v
+header	mail.php	/^$header = 'From: "WeaponsB"<weaponsb@mail.fr>'.$passage_ligne;$/;"	v
 header	vendor/friendsofphp/php-cs-fixer/src/Console/Command/ReadmeCommand.php	/^        $header = <<<'EOF'$/;"	v
 header	vendor/friendsofphp/php-cs-fixer/src/Console/Command/ReadmeCommand.php	/^        $header = str_replace('%download.url%', $downloadUrl, $header);$/;"	v
 header	vendor/friendsofphp/php-cs-fixer/src/Console/Command/ReadmeCommand.php	/^        $header = str_replace('%download.version_url%', $downloadLatestUrl, $header);$/;"	v
@@ -6540,7 +6540,7 @@ headerTitle	vendor/symfony/console/Helper/Table.php	/^        $this->headerTitle
 headerTitle	vendor/symfony/console/Helper/Table.php	/^    private $headerTitle;$/;"	v
 headerTitleFormat	vendor/symfony/console/Helper/TableStyle.php	/^        $this->headerTitleFormat = $format;$/;"	v
 headerTitleFormat	vendor/symfony/console/Helper/TableStyle.php	/^    private $headerTitleFormat = '<fg=black;bg=white;options=bold> %s <\/>';$/;"	v
-headers	app/model/MailManager.php	/^        $headers = 'From: jgroc2s@free.fr' . "\\r\\n" . 'Reply-To: jgroc2s@free.fr' . "\\r\\n" . 'X-Mailer: PHP\/' . phpversion();$/;"	v
+headers	app/model/MailManager.php	/^        $headers = 'From: jgroc2s@free.fr'."\\r\\n".'Reply-To: jgroc2s@free.fr'."\\r\\n".'X-Mailer: PHP\/'.phpversion();$/;"	v
 headers	vendor/symfony/console/Helper/Table.php	/^            $headers = array($headers);$/;"	v
 headers	vendor/symfony/console/Helper/Table.php	/^        $headers = array_values($headers);$/;"	v
 headers	vendor/symfony/console/Helper/Table.php	/^        $this->headers = $headers;$/;"	v
@@ -8525,10 +8525,10 @@ memoryLimit	vendor/php-cs-fixer/diff/src/v3_0/Differ.php	/^        $memoryLimit 
 memoryXML	vendor/friendsofphp/php-cs-fixer/src/Report/XmlReporter.php	/^        $memoryXML = $dom->createElement('memory');$/;"	v
 mergeApplicationDefinition	vendor/symfony/console/Command/Command.php	/^    public function mergeApplicationDefinition($mergeArgs = true)$/;"	f
 mergeLoadedConfig	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^    private function mergeLoadedConfig(array $loadedConfig, array $iniConfig)$/;"	f
-message	app/model/MailManager.php	/^        $message = 'Bienvenue sur Camagru ' . $user['pseudo'] . ',$/;"	v
-message	app/model/MailManager.php	/^        $message = 'Bonjour ' . $login . ',$/;"	v
-message	app/model/MailManager.php	/^        $message = 'Hi ' . $user['pseudo'] . ', You have a new comment for one of your picture! Check-it out';$/;"	v
-message	mail.php	/^$message = $passage_ligne."--".$boundary.$passage_ligne;$/;"	v
+message	app/model/MailManager.php	/^        $message = 'Bienvenue sur Camagru '.$user['pseudo'].',$/;"	v
+message	app/model/MailManager.php	/^        $message = 'Bonjour '.$login.',$/;"	v
+message	app/model/MailManager.php	/^        $message = 'Hi '.$user['pseudo'].', You have a new comment for one of your picture! Check-it out';$/;"	v
+message	mail.php	/^$message = $passage_ligne.'--'.$boundary.$passage_ligne;$/;"	v
 message	vendor/composer/semver/src/VersionParser.php	/^        $message = 'Could not parse version constraint ' . $constraint;$/;"	v
 message	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php	/^        $message  = sprintf('Expected %s, got ', $expected);$/;"	v
 message	vendor/friendsofphp/php-cs-fixer/src/AbstractFixer.php	/^                $message = sprintf($/;"	v
@@ -8576,8 +8576,8 @@ message	vendor/symfony/filesystem/Exception/FileNotFoundException.php	/^        
 message	vendor/symfony/filesystem/Exception/FileNotFoundException.php	/^                $message = sprintf('File "%s" could not be found.', $path);$/;"	v
 message	vendor/symfony/options-resolver/OptionsResolver.php	/^                $message = sprintf($/;"	v
 messageEnd	vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php	/^                $messageEnd = [] === $successors$/;"	v
-message_html	mail.php	/^$message_html = "<html><head><\/head><body><b>Salut à tous<\/b>, voici un e-mail envoyé par un <i>script PHP<\/i>.<\/body><\/html>";$/;"	v
-message_txt	mail.php	/^$message_txt = "Salut à tous, voici un e-mail envoyé par un script PHP.";$/;"	v
+message_html	mail.php	/^$message_html = '<html><head><\/head><body><b>Salut à tous<\/b>, voici un e-mail envoyé par un <i>script PHP<\/i>.<\/body><\/html>';$/;"	v
+message_txt	mail.php	/^$message_txt = 'Salut à tous, voici un e-mail envoyé par un script PHP.';$/;"	v
 messages	vendor/symfony/console/Application.php	/^            $messages = array();$/;"	v
 messages	vendor/symfony/console/Helper/FormatterHelper.php	/^            $messages = array($messages);$/;"	v
 messages	vendor/symfony/console/Helper/FormatterHelper.php	/^        $messages = $large ? array(str_repeat(' ', $len)) : array();$/;"	v
@@ -8604,8 +8604,8 @@ methodMap	vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitExpectationF
 methodMap	vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitExpectationFixer.php	/^    private $methodMap = [];$/;"	v
 methodModifiers	vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocReturnSelfReferenceFixer.php	/^        static $methodModifiers = [T_STATIC, T_FINAL, T_ABSTRACT, T_PRIVATE, T_PROTECTED, T_PUBLIC];$/;"	v
 methodName	vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitTestCaseStaticMethodCallsFixer.php	/^            $methodName = $tokens[$index]->getContent();$/;"	v
-middleware	dumb/Bunkee.php	/^	protected function middleware()$/;"	f
-middlewares	dumb/Bunkee.php	/^	private $middlewares = array();$/;"	v
+middleware	dumb/Bunkee.php	/^    protected function middleware()$/;"	f
+middlewares	dumb/Bunkee.php	/^    private $middlewares = array();$/;"	v
 minDepth	vendor/symfony/finder/Finder.php	/^                    $minDepth = $comparator->getTarget() + 1;$/;"	v
 minDepth	vendor/symfony/finder/Finder.php	/^                    $minDepth = $comparator->getTarget();$/;"	v
 minDepth	vendor/symfony/finder/Finder.php	/^                    $minDepth = $maxDepth = $comparator->getTarget();$/;"	v
@@ -9569,7 +9569,7 @@ padType	vendor/symfony/console/Helper/TableStyle.php	/^        $this->padType = 
 padType	vendor/symfony/console/Helper/TableStyle.php	/^    private $padType = STR_PAD_RIGHT;$/;"	v
 paddingChar	vendor/symfony/console/Helper/TableStyle.php	/^        $this->paddingChar = $paddingChar;$/;"	v
 paddingChar	vendor/symfony/console/Helper/TableStyle.php	/^    private $paddingChar = ' ';$/;"	v
-param	dumb/Bunkee.php	/^			$param = $form[0];$/;"	v
+param	dumb/Bunkee.php	/^            $param = $form[0];$/;"	v
 paramContentEnd	vendor/friendsofphp/php-cs-fixer/src/Fixer/CastNotation/ModernizeTypesCastingFixer.php	/^                    $paramContentEnd = $commaCandidate;$/;"	v
 paramContentEnd	vendor/friendsofphp/php-cs-fixer/src/Fixer/CastNotation/ModernizeTypesCastingFixer.php	/^                $paramContentEnd = $closeParenthesis;$/;"	v
 paramContentIndex	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/ArgumentsAnalyzer.php	/^                $paramContentIndex = $tokens->findBlockEnd($blockDefinitionProbe['type'], $paramContentIndex);$/;"	v
@@ -10232,7 +10232,7 @@ providerNoEqualOp	vendor/composer/semver/src/Constraint/Constraint.php	/^       
 proxyFixers	vendor/friendsofphp/php-cs-fixer/src/AbstractProxyFixer.php	/^    protected $proxyFixers;$/;"	v
 pseudo	app/controller/get/reinitGet.php	/^        $pseudo = $_GET['log'];$/;"	v
 pseudo	app/controller/post/login.php	/^    $pseudo = $_POST['pseudo'];$/;"	v
-pseudo	app/controller/post/reinitPost.php	/^	$pseudo = $_POST['pseudo'];$/;"	v
+pseudo	app/controller/post/reinitPost.php	/^    $pseudo = $_POST['pseudo'];$/;"	v
 pseudo	app/controller/post/settings.php	/^    $pseudo = $_POST['pseudo'];$/;"	v
 pseudo	app/controller/post/signup.php	/^    $pseudo = $_POST['pseudo'];$/;"	v
 pseudoInDb	app/model/UserManager.php	/^    public function pseudoInDb($pseudo)$/;"	f
@@ -10438,7 +10438,7 @@ remaining	vendor/symfony/console/Helper/ProgressBar.php	/^                    $r
 remoteFilename	vendor/friendsofphp/php-cs-fixer/src/Console/Command/SelfUpdateCommand.php	/^        $remoteFilename = $this->toolInfo->getPharDownloadUri($remoteTag);$/;"	v
 remoteTag	vendor/friendsofphp/php-cs-fixer/src/Console/Command/SelfUpdateCommand.php	/^            $remoteTag = $latestVersionOfCurrentMajor;$/;"	v
 remoteTag	vendor/friendsofphp/php-cs-fixer/src/Console/Command/SelfUpdateCommand.php	/^        $remoteTag = $latestVersion;$/;"	v
-remove	app/controller/post/createPic.php	/^    $remove = array( ' ', 'data:image\/png;base64,' );$/;"	v
+remove	app/controller/post/createPic.php	/^    $remove = array(' ', 'data:image\/png;base64,');$/;"	v
 remove	vendor/friendsofphp/php-cs-fixer/src/DocBlock/Annotation.php	/^    public function remove()$/;"	f
 remove	vendor/friendsofphp/php-cs-fixer/src/DocBlock/Line.php	/^    public function remove()$/;"	f
 remove	vendor/symfony/filesystem/Filesystem.php	/^    public function remove($files)$/;"	f
@@ -10492,7 +10492,7 @@ repeatIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/SingleClass
 repeatIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/SingleClassElementPerStatementFixer.php	/^            $repeatIndex = $tokens->getNextMeaningfulToken($repeatIndex);$/;"	v
 repeatIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/SingleClassElementPerStatementFixer.php	/^        $repeatIndex = $index;$/;"	v
 repeatToken	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/SingleClassElementPerStatementFixer.php	/^            $repeatToken = $tokens[$repeatIndex];$/;"	v
-replace	app/controller/post/createPic.php	/^    $replace = array( '+', '' );$/;"	v
+replace	app/controller/post/createPic.php	/^    $replace = array('+', '');$/;"	v
 replace	vendor/friendsofphp/php-cs-fixer/src/Preg.php	/^    public static function replace($pattern, $replacement, $subject, $limit = -1, &$count = null)$/;"	f
 replaceCallback	vendor/friendsofphp/php-cs-fixer/src/Preg.php	/^    public static function replaceCallback($pattern, $callback, $subject, $limit = -1, &$count = null)$/;"	f
 replaceClassKeyword	vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/ClassKeywordRemoveFixer.php	/^    private function replaceClassKeyword(Tokens $tokens, $classIndex)$/;"	f
@@ -10541,7 +10541,7 @@ request	app/model/UserManager.php	/^            $request = '$/;"	v
 request	app/model/UserManager.php	/^        $request = $this->container->db->prepare('UPDATE users SET passwd = :pass  WHERE pseudo = :login');$/;"	v
 request	app/model/UserManager.php	/^        $request = $this->container->db->prepare('UPDATE users SET validkey = ? WHERE pseudo = ?');$/;"	v
 request	app/model/UserManager.php	/^        $request = '$/;"	v
-request	dumb/dumb.php	/^		$request = explode('\/', $_SERVER['REQUEST_URI']);$/;"	v
+request	dumb/dumb.php	/^        $request = explode('\/', $_SERVER['REQUEST_URI']);$/;"	v
 require	vendor/bin/php-cs-fixer	/^        $require = false;$/;"	v
 require	vendor/bin/php-cs-fixer	/^$require = true;$/;"	v
 require	vendor/friendsofphp/php-cs-fixer/php-cs-fixer	/^        $require = false;$/;"	v
@@ -10604,7 +10604,7 @@ resolver	vendor/symfony/options-resolver/Tests/OptionsResolverTest.php	/^       
 resolver	vendor/symfony/options-resolver/Tests/OptionsResolverTest.php	/^    private $resolver;$/;"	v
 resource	vendor/symfony/filesystem/Tests/FilesystemTest.php	/^        $resource = fopen('php:\/\/memory', 'rw');$/;"	v
 response	app/controller/post/addComment.php	/^    $response = $commentManager->getCommentByImgId($_POST['id']);$/;"	v
-response	dumb/dumb.php	/^			$response = (ltrim($this->uri, '\/'))($this->container, $args);$/;"	v
+response	dumb/dumb.php	/^            $response = (ltrim($this->uri, '\/'))($this->container, $args);$/;"	v
 responsesCodeProvider	vendor/symfony/process/Tests/ProcessTest.php	/^    public function responsesCodeProvider()$/;"	f
 restart	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^    protected function restart($command)$/;"	f
 restart	vendor/symfony/process/Process.php	/^    public function restart(callable $callback = null, array $env = array())$/;"	f
@@ -10952,7 +10952,7 @@ setCommand	vendor/symfony/console/Command/HelpCommand.php	/^    public function 
 setCommand	vendor/symfony/console/Helper/HelperSet.php	/^    public function setCommand(Command $command = null)$/;"	f
 setCommandLine	vendor/symfony/process/Process.php	/^    public function setCommandLine($commandline)$/;"	f
 setCommandLoader	vendor/symfony/console/Application.php	/^    public function setCommandLoader(CommandLoaderInterface $commandLoader)$/;"	f
-setContainer	dumb/dumb.php	/^	public function setContainer(array $functions)$/;"	f
+setContainer	dumb/dumb.php	/^    public function setContainer(array $functions)$/;"	f
 setContainer	vendor/symfony/contracts/Service/ServiceSubscriberTrait.php	/^    public function setContainer(ContainerInterface $container)$/;"	f
 setContainer	vendor/symfony/contracts/Tests/Service/ServiceSubscriberTraitTest.php	/^    public function setContainer(ContainerInterface $container)$/;"	f
 setContent	vendor/friendsofphp/php-cs-fixer/src/DocBlock/Line.php	/^    public function setContent($content)$/;"	f
@@ -11355,7 +11355,7 @@ start	app/controller/get/home.php	/^    $start = isset($_GET['start']) ? $_GET['
 start	app/controller/get/listPics.php	/^        $start = 0;$/;"	v
 start	app/controller/get/listPics.php	/^    $start = isset($_GET['start']) ? $_GET['start'] : 0;$/;"	v
 start	app/controller/get/listPicsByLike.php	/^        $start = 0;$/;"	v
-start	app/controller/get/listPicsByLike.php	/^    $start = isset($_GET['start'])? $_GET['start']: 0;$/;"	v
+start	app/controller/get/listPicsByLike.php	/^    $start = isset($_GET['start']) ? $_GET['start'] : 0;$/;"	v
 start	vendor/composer/xdebug-handler/src/Status.php	/^        $start = getenv(self::ENV_RESTART);$/;"	v
 start	vendor/friendsofphp/php-cs-fixer/src/DocBlock/Annotation.php	/^        $this->start = $keys[0];$/;"	v
 start	vendor/friendsofphp/php-cs-fixer/src/DocBlock/Annotation.php	/^    private $start;$/;"	v
@@ -11679,7 +11679,7 @@ suffixes	vendor/symfony/process/ExecutableFinder.php	/^        $suffixes = array
 suffixes	vendor/symfony/process/ExecutableFinder.php	/^        $this->suffixes = $suffixes;$/;"	v
 suffixes	vendor/symfony/process/ExecutableFinder.php	/^    private $suffixes = array('.exe', '.bat', '.cmd', '.com');$/;"	v
 suggestions	vendor/symfony/console/Application.php	/^            $suggestions = $this->getAbbreviationSuggestions($abbrevs);$/;"	v
-sujet	mail.php	/^$sujet = "Hey mon ami !";$/;"	v
+sujet	mail.php	/^$sujet = 'Hey mon ami !';$/;"	v
 summary	vendor/friendsofphp/php-cs-fixer/src/FixerDefinition/FixerDefinition.php	/^        $this->summary = $summary;$/;"	v
 summary	vendor/friendsofphp/php-cs-fixer/src/FixerDefinition/FixerDefinition.php	/^    private $summary;$/;"	v
 summaryEnd	vendor/friendsofphp/php-cs-fixer/src/Fixer/Phpdoc/PhpdocTrimConsecutiveBlankLineSeparationFixer.php	/^            $summaryEnd = (new ShortDescription($doc))->getEnd();$/;"	v
@@ -13541,10 +13541,10 @@ upperLimit	vendor/php-cs-fixer/diff/src/v2_0/Output/UnifiedDiffOutputBuilder.php
 upperLimit	vendor/php-cs-fixer/diff/src/v2_0/Output/UnifiedDiffOutputBuilder.php	/^        $upperLimit = \\count($diff);$/;"	v
 upperLimit	vendor/php-cs-fixer/diff/src/v3_0/Output/StrictUnifiedDiffOutputBuilder.php	/^        $upperLimit = \\count($diff);$/;"	v
 upperLimit	vendor/php-cs-fixer/diff/src/v3_0/Output/UnifiedDiffOutputBuilder.php	/^        $upperLimit = \\count($diff);$/;"	v
-uri	dumb/Bunkee.php	/^				$this->uri = $key;$/;"	v
-uri	dumb/Bunkee.php	/^		$this->uri = '\/error';$/;"	v
-uri	dumb/Bunkee.php	/^	protected $uri;$/;"	v
-uri	dumb/dumb.php	/^		$this->uri = '\/'.$request[1];$/;"	v
+uri	dumb/Bunkee.php	/^                $this->uri = $key;$/;"	v
+uri	dumb/Bunkee.php	/^        $this->uri = '\/error';$/;"	v
+uri	dumb/Bunkee.php	/^    protected $uri;$/;"	v
+uri	dumb/dumb.php	/^        $this->uri = '\/'.$request[1];$/;"	v
 url	app/controller/post/createPic.php	/^        $url = parsePost($_POST, $filter);$/;"	v
 url	app/controller/post/createPic.php	/^    $url = array();$/;"	v
 url	vendor/friendsofphp/php-cs-fixer/src/Console/SelfUpdate/GithubClient.php	/^        $url = 'https:\/\/api.github.com\/repos\/FriendsOfPHP\/PHP-CS-Fixer\/tags';$/;"	v

@@ -5,7 +5,7 @@ function listpicsByLike($c, $options)
     $options['trend'] = true;
     $picManager = $c->picture;
     $count = $picManager->countPics();
-    $start = isset($_GET['start'])? $_GET['start']: 0;
+    $start = isset($_GET['start']) ? $_GET['start'] : 0;
 
     $count = $count[0] / 6;
     if (!is_numeric($start) || $start > $count) {

@@ -10,7 +10,7 @@ function createPic($c)
         $name = createName($_SESSION['id']);
         $d_size = getimagesizefromstring(base64_decode($dest));
         $dest = imagecreatefromstring(base64_decode($dest));
-        if ($d_size[0] != 640 || $d_size[1] != 480) {
+        if (640 != $d_size[0] || 480 != $d_size[1]) {
             $dest = resampled($dest, $d_size);
             $d_size[0] = 640;
             $d_size[1] = 480;
@@ -50,6 +50,7 @@ function createPic($c)
         $response['flash'] = $_SESSION['flash'];
         unset($_SESSION['flash']);
     }
+
     return $response;
 }
 
@@ -64,21 +65,23 @@ function resampled($src, $size)
         $height = 480;
     }
     imagecopyresampled($dest, $src, 0, 0, 0, 0, $width, $height, $size[0], $size[1]);
+
     return $dest;
 }
 
 function isPng($data)
 {
-    if (strpos($data, 'data:image/png;base64,') === 0) {
+    if (0 === strpos($data, 'data:image/png;base64,')) {
         return true;
     }
+
     return false;
 }
 
 function decodeUrl($imgEncode)
 {
-    $remove = array( ' ', 'data:image/png;base64,' );
-    $replace = array( '+', '' );
+    $remove = array(' ', 'data:image/png;base64,');
+    $replace = array('+', '');
 
     return str_replace($remove, $replace, $imgEncode);
 }
@@ -89,18 +92,19 @@ function parsePost($post, $filter)
     $url = array();
     $i = 0;
 
-    while (isset($post['title' . $i])) {
-        $title[] = $post['title' . $i++];
+    while (isset($post['title'.$i])) {
+        $title[] = $post['title'.$i++];
     }
     foreach ($filter as $elemt) {
         if (in_array($elemt['title'], $title)) {
             $url[] = $elemt;
         }
     }
+
     return $url;
 }
 
 function createName($author)
 {
-    return 'img/pics/' . $author . '_' . rand() . '.png';
+    return 'img/pics/'.$author.'_'.rand().'.png';
 }

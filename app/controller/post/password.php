@@ -8,5 +8,6 @@ function password($c, $options)
     $userManager->updatePassword($password);
     $response['code'] = 200;
     $response['flash'] = 'Password Succesfully updated';
+
     return $response;
 }

@@ -9,6 +9,7 @@ class UserManager extends SqlManager
 			FROM users 
 			WHERE pseudo= ?
 		';
+
         return $this->sqlRequestFetch($request, array($pseudo));
     }
 
@@ -39,12 +40,13 @@ class UserManager extends SqlManager
                 $_SESSION['flash'] = ['fail' => 'Proudly Fail!'];
             }
         } else {
-            $_SESSION['flash'] = ['fail' =>'Votre compte ne peut, malheureusement, pas etre activé'];
+            $_SESSION['flash'] = ['fail' => 'Votre compte ne peut, malheureusement, pas etre activé'];
         }
+
         return true;
     }
 
-    #### About password_verify: it's a fuction from the standard library
+    //### About password_verify: it's a fuction from the standard library
 
     public function checklogin($pseudo, $pass)
     {
@@ -60,11 +62,12 @@ class UserManager extends SqlManager
             } elseif (!$elmt['actif']) {
                 $_SESSION['flash'] = ['fail' => 'compte inactif'];
             } else {
-                $_SESSION['flash'] = ['fail'=> 'mauvais mot de passe'];
+                $_SESSION['flash'] = ['fail' => 'mauvais mot de passe'];
             }
         } else {
             $_SESSION['flash'] = ['fail' => 'compte inexistant ou mauvais mot de passe'];
         }
+
         return false;
     }
 
@@ -73,6 +76,7 @@ class UserManager extends SqlManager
         $key = md5(microtime(true) * 100000);
 
         $request = $this->container->db->prepare('UPDATE users SET validkey = ? WHERE pseudo = ?');
+
         return $request->execute(array($key, $login));
     }
 
@@ -90,6 +94,7 @@ class UserManager extends SqlManager
         } else {
             $_SESSION['flash'] = ['fail' => 'Pseudo déja pris, dsl…'];
         }
+
         return $valid;
     }
 
@@ -100,9 +105,10 @@ class UserManager extends SqlManager
 			FROM users
 			WHERE pseudo = ?
 		';
+
         return $this->sqlRequestFetch($request, array($pseudo));
     }
-    
+
     public function getUserSettings($pseudo)
     {
         $request = '
@@ -110,9 +116,10 @@ class UserManager extends SqlManager
 			FROM users
 			WHERE pseudo = ?
 		';
+
         return $this->sqlRequestFetch($request, array($pseudo));
     }
-    
+
     public function getUserById($id)
     {
         $request = '
@@ -120,6 +127,7 @@ class UserManager extends SqlManager
 			FROM users
 			WHERE id = ?
 		';
+
         return $this->sqlRequestFetch($request, array($id));
     }
 
@@ -132,6 +140,7 @@ class UserManager extends SqlManager
             ON img.id_author = users.id
 			WHERE img.id = ?
 		';
+
         return $this->sqlRequestFetch($request, array($id));
     }
 
@@ -151,6 +160,7 @@ class UserManager extends SqlManager
             $request->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
             $request->bindParam(':login', $oldPseudo, PDO::PARAM_STR);
             $request->execute();
+
             return true;
         }
     }

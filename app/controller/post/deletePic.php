@@ -9,10 +9,11 @@ function deletePic($c)
         $picManager->deletePic($pic['id'], $pic['id_author']);
         unlink($_POST['url']);
         $response['code'] = 200;
-        $response['flash'] = "Picture successfully deleted!";
+        $response['flash'] = 'Picture successfully deleted!';
     } else {
         $response['code'] = 404;
-        $response['flash'] = "Something went wrong. Plz contact us!";
+        $response['flash'] = 'Something went wrong. Plz contact us!';
     }
+
     return $response;
 }
