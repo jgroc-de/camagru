@@ -9,18 +9,17 @@ class SqlManager
         $this->container = $container;
     }
 
-	protected function sqlRequest($request, $array = array(), $bool = False)
-	{
-		$db = $this->container->db;
+    protected function sqlRequest($request, $array = array(), $bool = false)
+    {
+        $db = $this->container->db;
         
         $obj = $db->prepare($request);
-		$success = $obj->execute($array);
-        if ($bool)
-        {
+        $success = $obj->execute($array);
+        if ($bool) {
             return $success;
+        } else {
+            return $obj;
         }
-		else
-			return $obj;
     }
 
     protected function sqlRequestFetch($request, $array = array())
@@ -28,8 +27,8 @@ class SqlManager
         return $this->sqlRequest($request, $array)->fetch();
     }
 
-	public function  __get($name)
-	{
-		return $this->container->$name;
-	}
+    public function __get($name)
+    {
+        return $this->container->$name;
+    }
 }

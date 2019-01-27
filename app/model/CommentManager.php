@@ -4,7 +4,7 @@ class CommentManager extends SqlManager
 {
     public function getComments($id)
     {
-		$request = '
+        $request = '
             SELECT content, date as date2, pseudo
             FROM comments 
             INNER JOIN users
@@ -12,12 +12,12 @@ class CommentManager extends SqlManager
 			WHERE img_id = ?
 			ORDER BY comments.id DESC
 		';
-		return ($this->sqlRequest($request, array($id)));
-	}
-	
+        return ($this->sqlRequest($request, array($id)));
+    }
+    
     public function getCommentByImgId($id)
     {
-		$request = '
+        $request = '
             SELECT content, date as date2, pseudo
             FROM comments
             INNER JOIN users
@@ -26,8 +26,8 @@ class CommentManager extends SqlManager
 			ORDER BY comments.id DESC
 			LIMIT 1
 		';
-		return $this->sqlRequestFetch($request, array($id));
-	}
+        return $this->sqlRequestFetch($request, array($id));
+    }
 
     public function addComment()
     {
@@ -35,6 +35,6 @@ class CommentManager extends SqlManager
                 INSERT INTO comments (img_id, id_author, date, content)
                 Values (?, ?, NOW(), ?)
             ';
-        $this->sqlRequest($request, array($_POST['id'], $_SESSION['id'], $_POST['comment']), True);
+        $this->sqlRequest($request, array($_POST['id'], $_SESSION['id'], $_POST['comment']), true);
     }
 }

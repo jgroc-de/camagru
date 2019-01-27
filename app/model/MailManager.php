@@ -2,7 +2,7 @@
 
 class MailManager
 {
-    CONST URL = 'http://jgroc2s.free.fr';
+    const URL = 'http://jgroc2s.free.fr';
     
     public function sendMail($dest, $subject, $message, $headers)
     {
@@ -15,17 +15,17 @@ class MailManager
         $mail->Port = 25;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'ssl';
-		$mail->Port = 465;
+        $mail->Port = 465;
         $mail->Password = 'secret';/
         $mail->Username = 'jgroc2s@free.fr';
         $mail->setFrom('jgroc2s@free.fr', 'jgroc-de');
         $mail->addAddress($dest);
         $mail->Subject = $subject;
-		$mail->Body = $message;*/
+        $mail->Body = $message;*/
         return mail($dest, $subject, $message, $headers);
         //return $mail->send();
     }
-	
+    
     public function sendReinitMail($user)
     {
         $key = $user['validkey'];
@@ -45,12 +45,12 @@ class MailManager
         $headers = 'From: jgroc2s@free.fr' . "\r\n" . 'Reply-To: jgroc2s@free.fr' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
         $this->sendMail($dest, $subject, $message, $headers);
         $_SESSION['flash'] = ['success' => 'Opération éffectuée! Scrutez votre boite mail avec attention'];
-    } 
+    }
     
     public function sendValidationMail($user)
-	{
-		$subject = 'Camagru Activation link';
-		$message = 'Bienvenue sur Camagru ' . $user['pseudo'] . ',
+    {
+        $subject = 'Camagru Activation link';
+        $message = 'Bienvenue sur Camagru ' . $user['pseudo'] . ',
 			 
 			Pour activer votre compte, veuillez cliquer sur le lien ci dessous
 ou copier/coller dans votre navigateur internet.
@@ -62,16 +62,13 @@ ou copier/coller dans votre navigateur internet.
 Ceci est un mail automatique, Merci de ne pas y répondre.';
 
         $headers = 'From: jgroc2s@free.fr' . "\r\n" . 'Reply-To: jgroc2s@free.fr' . "\r\n" . 'X-Mailer: PHP/' . phpversion();
-        if ($this->sendMail($user['email'], $subject, $message, $headers))
-        {
-			$_SESSION['flash'] = ['success' => 'Bienvenu! Un mail vous a été envoyé'];
-        }
-		else
-        {
-			$_SESSION['flash'] = ['success' => 'Bienvenu! Pas de mail pour vous par contre…'];
+        if ($this->sendMail($user['email'], $subject, $message, $headers)) {
+            $_SESSION['flash'] = ['success' => 'Bienvenu! Un mail vous a été envoyé'];
+        } else {
+            $_SESSION['flash'] = ['success' => 'Bienvenu! Pas de mail pour vous par contre…'];
         }
         return true;
-	}
+    }
 
     public function sendCommentMail($user)
     {

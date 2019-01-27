@@ -7,8 +7,9 @@ class CamagruManager extends SqlManager
         $tab = array();
 
         $request = $this->db->query('SELECT * FROM filter');
-        while ($elemt = $request->fetch())
-			$tab[] = $elemt;
-		return $tab;
-	}
+        while ($elemt = $request->fetch()) {
+            $tab[] = $elemt;
+        }
+        return $tab;
+    }
 }

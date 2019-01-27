@@ -16,11 +16,10 @@ $description = "Bienvenue sur ce petit site type image-board/instagram. Vous pou
 
 <body>	
 	<?php require __DIR__.'/common/navbar.php' ?>
-	<?php 
-		foreach ($options['header'] as $value)
-		{
-			require __DIR__.$value;
-		}?>
+	<?php
+        foreach ($options['header'] as $value) {
+            require __DIR__.$value;
+        }?>
 
 	<!-- notif -->
 	<div id="notif" style="position:fixed;bottom:10px;right:10px;z-index:20"></div>
@@ -29,13 +28,13 @@ $description = "Bienvenue sur ce petit site type image-board/instagram. Vous pou
 
 	<!-- Project Section -->
 	<?php
-		if (isset($main))
-			require __DIR__.$main;
-		foreach ($options['components'] as $value)
-		{
-			require __DIR__.$value;
-		}
-	?>
+        if (isset($main)) {
+            require __DIR__.$main;
+        }
+        foreach ($options['components'] as $value) {
+            require __DIR__.$value;
+        }
+    ?>
 	</div>
 	<footer class="w3-container w3-black w3-padding-16">
 		<hr>

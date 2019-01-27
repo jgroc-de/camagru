@@ -14,5 +14,5 @@ $DB = array(
     'host' => 'localhost',
     'name' => 'camagru',
     'export' => __DIR__.'/../config/camagru.sql',
-	'port' => '3306'
+    'port' => '3306'
 );
