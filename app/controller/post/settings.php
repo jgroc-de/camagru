@@ -9,10 +9,9 @@ function settings($c, $options)
     $alert = $_POST['alert'] ? true : false;
     if ($userManager->updateUser($pseudo, $email, $alert))
     {
-        $user = $userManager->getUserById($response['id']);
-        $_SESSION['pseudo'] = $user['pseudo'];
-        $_SESSION['id'] = $user['id'];
-        $_SESSION['alert'] = $user['alert'];
+        $_SESSION['pseudo'] = $pseudo;
+        $_SESSION['alert'] = $alert;
+        $_SESSION['email'] = $email;
         $response['code'] = 200;
         $response['flash'] = 'Profil Succesfully updated';
     }

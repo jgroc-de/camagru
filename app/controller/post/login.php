@@ -11,6 +11,7 @@ function login($c, $options)
         $_SESSION['pseudo'] = $user['pseudo'];
         $_SESSION['id'] = $user['id'];
         $_SESSION['alert'] = $user['alert'];
+        $_SESSION['email'] = $user['email'];
         $response['code'] = 200;
         $response['flash'] = 'Welcome back '.$pseudo;
     }

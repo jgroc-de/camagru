@@ -9,15 +9,16 @@ function ggForm(button, url, callback = null)
 
 		for (var i = 0; i < input.length - 1; i++)
 		{
-			if (input[i] != '')
-				data += '&';
-
 			if (!input[i].validity.valid)
 			{
 				printNotif(input[i].name + ': ' +input[i].validationMessage, 400);
 				return ;
 			}
-			data += input[i].name + "=" + input[i].value;
+			if (input[i].type !== 'checkbox' || input[i].checked === true)
+			{
+				data += '&';
+				data += input[i].name + "=" + input[i].value;
+			}
 		}
 	}
 	ggAjax(data, url, callback);

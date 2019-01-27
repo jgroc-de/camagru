@@ -231,7 +231,6 @@ class UserManager extends SqlManager
                     UPDATE users
                     SET pseudo = :pseudo, email = :email, alert = :alert
                     WHERE pseudo = :login');
-        $passwd = password_hash($passwd, PASSWORD_DEFAULT);
         $request->bindParam(':alert', $alert, PDO::PARAM_BOOL);
         $request->bindParam(':email', $email, PDO::PARAM_STR);
         $request->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);

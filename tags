@@ -13573,7 +13573,6 @@ useStartParenthesisIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNota
 useStaticLoader	vendor/composer/autoload_real.php	/^        $useStaticLoader = PHP_VERSION_ID >= 50600 && !defined('HHVM_VERSION') && (!function_exists('zend_loader_file_encoded') || !zend_loader_file_encoded());$/;"	v
 user	app/controller/post/addComment.php	/^    $user = $userManager->getUserByImgId($_POST['id']);$/;"	v
 user	app/controller/post/login.php	/^        $user = $userManager->getUser($pseudo);$/;"	v
-user	app/controller/post/settings.php	/^        $user = $userManager->getUserById($response['id']);$/;"	v
 userManager	app/controller/get/reinitGet.php	/^    $userManager = $c->user;$/;"	v
 userManager	app/controller/post/addComment.php	/^    $userManager = $c->user;$/;"	v
 userManager	app/controller/post/login.php	/^    $userManager = $c->user;$/;"	v
