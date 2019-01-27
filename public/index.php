@@ -26,7 +26,7 @@ $args = [
     ],
 ];
 
-require '../dumb/dumb.php';
+require '../dumb/Dumb.php';
 $api = new Dumb();
 require '../app/routes.php';
 require '../app/middlewares.php';

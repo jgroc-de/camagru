@@ -1,21 +1,19 @@
 <?php
 
-function error($c, $error, $options)
+function error(Dumbee $c, array $options)
 {
-    if (!$error)
+    if (!isset($options['code']))
     {
-        $error = [];
-        $error['error']['code'] = 404;
-        $error['error']['message'] = 'Not Found';
+        $options['code'] = 404;
+        $options['message'] = 'Not Found';
     }
-    header('HTTP/1.1 '.$error['error']['code'].' '.$error['error']['message']);
-    $components = [
+    header('HTTP/1.1 '.$options['code'].' '.$options['message']);
+    $options['components'] = [
         '/common/about.php',
         '/common/contact.php',
     ];
-    $header = [
+    $options['header'] = [
         '/common/error.php',
     ];
-    require __DIR__.'/../../view/template.php';
-    exit;
+    require __DIR__.'/../view/template.php';
 }

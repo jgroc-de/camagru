@@ -46,7 +46,7 @@ $description = "Bienvenue sur ce petit site type image-board/instagram. Vous pou
 	</footer>
 	<script src="/js/common.js"></script>
 	<script src="/js/routes.js"></script>
-	<?php if ($options['script'])
+	<?php if (isset($options['script']))
     {
         ?>        
 	<script src="<?php echo $options['script']; ?>"></script>

@@ -1,6 +1,22 @@
 {
-    "require": {
-        "friendsofphp/php-cs-fixer": "^2.14",
-        "phpunit/phpunit": "^7.5"
-    }
+    "name": "gg/camagru",
+    "description": "site web",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "jgroc-de",
+            "email": "jgroc-de@student.42.fr"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^7.5",
+        "friendsofphp/php-cs-fixer": "^2.14"
+    },
+	"autoload": {
+		"psr-4": {
+			"Grafikart\\": "src/"
+		}
+	}
 }

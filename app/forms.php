@@ -2,12 +2,11 @@
 
 $api->add(
     function ($key, $type) {
-        $_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
-
         if (!isset($_POST[$key]) || !$_POST[$key])
         {
             return 401;
         }
+        $_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
         switch ($type) {
             case 'numeric':
                 if (!is_numeric($_POST[$key]))
@@ -32,7 +31,7 @@ $api->add(
 
                 break;
             case'pseudo':
-                if (strlen($_POST[$key]) > 30)
+                if (mb_strlen($_POST[$key]) > 30)
                 {
                     return 401;
                 }

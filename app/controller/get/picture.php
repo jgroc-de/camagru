@@ -14,7 +14,7 @@ function picture(Dumbee $c, array $options)
     if (!($picManager->picInDb($id)))
     {
         require '../app/controller/error.php';
-        error($this->container, null, $options);
+        error($c, $options);
     }
     array_shift($options['header']);
     $elem = $picManager->getPic($id);

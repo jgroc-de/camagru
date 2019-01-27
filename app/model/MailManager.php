@@ -14,7 +14,7 @@ class MailManager
      *
      * @return bool
      */
-    public function sendMail(string $dest, string $subject, strnig $message, string $headers)
+    public function sendMail(string $dest, string $subject, string $message, string $headers)
     {
         //$mail = new PHPMailer\PHPMailer\PHPMailer();
 
@@ -69,7 +69,7 @@ class MailManager
      *
      * @return bool
      */
-    public function sendValidationMail(string $user)
+    public function sendValidationMail(array $user)
     {
         $subject = 'Camagru Activation link';
         $message = 'Bienvenue sur Camagru '.$user['pseudo'].',

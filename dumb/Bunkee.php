@@ -13,7 +13,7 @@ class Bunkee
 
     protected $uri;
 
-    protected $args = [];
+    protected $error = 0;
 
     private $found = false;
 
@@ -42,7 +42,7 @@ class Bunkee
             }
             if ($_SERVER['REQUEST_METHOD'] !== $method)
             {
-                $this->error(405);
+                $this->error = 405;
             }
         }
     }
@@ -66,45 +66,35 @@ class Bunkee
     }
 
     /**
-     * error.
-     *
-     * @param int $httpCode
-     */
-    protected function error(int $httpCode)
-    {
-        $this->uri = '/error';
-        $this->args['error']['code'] = $httpCode;
-        $this->args['error']['message'] = self::HTTP_CODE[$httpCode];
-    }
-
-    /**
      * middleware.
      *
-     * @return bool
+     * @return void
      */
     protected function middleware()
     {
         if (!$this->found)
         {
-            $this->error(404);
+            $this->error = 404;
 
-            return false;
+            return ;
         }
         foreach ($this->middlewares as $middleware)
         {
             if (($error = $middleware()) >= 400)
             {
-                $this->error($error);
+                $this->error = $error;
 
-                return false;
+                break ;
             }
         }
 
-        return true;
+        return ;
     }
 
     /**
      * form.
+	 *
+	 * @return void
      */
     protected function form()
     {
@@ -116,13 +106,13 @@ class Bunkee
             {
                 if (($error = $action($key, $type)) >= 400)
                 {
-                    $this->error($error);
+                    $this->error = $error;
 
-                    return false;
+                    return ;
                 }
             }
         }
 
-        return true;
+        return ;
     }
 }
