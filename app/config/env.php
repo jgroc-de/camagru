@@ -1,7 +1,7 @@
 <?php
 
 //$dbopts = parse_url(getenv('DATABASE_URL'));
-$DB = array(
+$DB = [
     /*'driver' => 'pgsql',
     'user' => $dbopts['user'],
     'host' => $dbopts['host'],
@@ -15,4 +15,4 @@ $DB = array(
     'name' => 'camagru',
     'export' => __DIR__.'/../config/camagru.sql',
     'port' => '3306',
-);
+];

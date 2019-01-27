@@ -2,7 +2,12 @@
 
 class CommentManager extends SqlManager
 {
-    public function getComments($id)
+    /**
+     * getComments.
+     *
+     * @param mixed $id
+     */
+    public function getComments(int $id)
     {
         $request = '
             SELECT content, date as date2, pseudo
@@ -13,10 +18,15 @@ class CommentManager extends SqlManager
 			ORDER BY comments.id DESC
 		';
 
-        return $this->sqlRequest($request, array($id));
+        return $this->sqlRequest($request, [$id]);
     }
 
-    public function getCommentByImgId($id)
+    /**
+     * getCommentByImgId.
+     *
+     * @param int $id
+     */
+    public function getCommentByImgId(int $id)
     {
         $request = '
             SELECT content, date as date2, pseudo
@@ -28,15 +38,18 @@ class CommentManager extends SqlManager
 			LIMIT 1
 		';
 
-        return $this->sqlRequestFetch($request, array($id));
+        return $this->sqlRequestFetch($request, [$id]);
     }
 
+    /**
+     * addComment.
+     */
     public function addComment()
     {
         $request = '
                 INSERT INTO comments (img_id, id_author, date, content)
                 Values (?, ?, NOW(), ?)
             ';
-        $this->sqlRequest($request, array($_POST['id'], $_SESSION['id'], $_POST['comment']), true);
+        $this->sqlRequest($request, [$_POST['id'], $_SESSION['id'], $_POST['comment']], true);
     }
 }

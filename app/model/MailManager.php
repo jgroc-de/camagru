@@ -4,7 +4,17 @@ class MailManager
 {
     const URL = 'http://jgroc2s.free.fr';
 
-    public function sendMail($dest, $subject, $message, $headers)
+    /**
+     * sendMail.
+     *
+     * @param mixed $dest
+     * @param mixed $subject
+     * @param mixed $message
+     * @param mixed $headers
+     *
+     * @return bool
+     */
+    public function sendMail(string $dest, string $subject, strnig $message, string $headers)
     {
         //$mail = new PHPMailer\PHPMailer\PHPMailer();
 
@@ -26,7 +36,12 @@ class MailManager
         //return $mail->send();
     }
 
-    public function sendReinitMail($user)
+    /**
+     * sendReinitMail.
+     *
+     * @param array $user
+     */
+    public function sendReinitMail(array $user)
     {
         $key = $user['validkey'];
         $dest = $user['email'];
@@ -47,7 +62,14 @@ class MailManager
         $_SESSION['flash'] = ['success' => 'Opération éffectuée! Scrutez votre boite mail avec attention'];
     }
 
-    public function sendValidationMail($user)
+    /**
+     * sendValidationMail.
+     *
+     * @param string $user
+     *
+     * @return bool
+     */
+    public function sendValidationMail(string $user)
     {
         $subject = 'Camagru Activation link';
         $message = 'Bienvenue sur Camagru '.$user['pseudo'].',
@@ -62,16 +84,24 @@ ou copier/coller dans votre navigateur internet.
 Ceci est un mail automatique, Merci de ne pas y répondre.';
 
         $headers = 'From: jgroc2s@free.fr'."\r\n".'Reply-To: jgroc2s@free.fr'."\r\n".'X-Mailer: PHP/'.phpversion();
-        if ($this->sendMail($user['email'], $subject, $message, $headers)) {
+        if ($this->sendMail($user['email'], $subject, $message, $headers))
+        {
             $_SESSION['flash'] = ['success' => 'Bienvenu! Un mail vous a été envoyé'];
-        } else {
+        }
+        else
+        {
             $_SESSION['flash'] = ['success' => 'Bienvenu! Pas de mail pour vous par contre…'];
         }
 
         return true;
     }
 
-    public function sendCommentMail($user)
+    /**
+     * sendCommentMail.
+     *
+     * @param array $user
+     */
+    public function sendCommentMail(array $user)
     {
         $subject = 'nouveau commentaire';
         $message = 'Hi '.$user['pseudo'].', You have a new comment for one of your picture! Check-it out';

@@ -1,9 +1,12 @@
 i<?php
 $mail = 'jerome.gds@gmail.com'; // Déclaration de l'adresse de destination.
 
-if (!preg_match('#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#', $mail)) { // On filtre les serveurs qui rencontrent des bogues.
+if (!preg_match('#^[a-z0-9._-]+@(hotmail|live|msn).[a-z]{2,4}$#', $mail))
+{ // On filtre les serveurs qui rencontrent des bogues.
     $passage_ligne = "\r\n";
-} else {
+}
+else
+{
     $passage_ligne = "\n";
 }
 
@@ -35,7 +38,7 @@ $header .= 'Reply-to: "WeaponsB" <jgroc2s@free.fr>'.$passage_ligne;
 
 $header .= 'MIME-Version: 1.0'.$passage_ligne;
 
-$header .= 'Content-Type: multipart/alternative;'.$passage_ligne." boundary=\"$boundary\"".$passage_ligne;
+$header .= 'Content-Type: multipart/alternative;'.$passage_ligne." boundary=\"${boundary}\"".$passage_ligne;
 
 //==========
 

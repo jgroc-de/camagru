@@ -1,6 +1,12 @@
 <?php
 
-function camagru($c, $options)
+/**
+ * camagru.
+ *
+ * @param Dumbee $c
+ * @param array  $options
+ */
+function camagru(Dumbee $c, array $options)
 {
     array_shift($options['header']);
 

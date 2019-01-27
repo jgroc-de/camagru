@@ -8,7 +8,13 @@ $finder = PhpCsFixer\Finder::create()
 return PhpCsFixer\Config::create()
 	->setRules([
         '@Symfony' => true,
-        'full_opening_tag' => false,
+		'@PhpCsFixer' => true,
+		'@PSR2' => true,
+		'@PSR1' => true,
+		'braces' => [
+			'position_after_control_structures' => 'next',
+		],
+		'no_short_echo_tag' => false
     ])
     ->setFinder($finder)
 ;

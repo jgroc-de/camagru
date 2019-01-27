@@ -2,7 +2,12 @@
 
 class UserManager extends SqlManager
 {
-    public function pseudoInDb($pseudo)
+    /**
+     * pseudoInDb.
+     *
+     * @param mixed $pseudo
+     */
+    public function pseudoInDb(string $pseudo)
     {
         $request = '
 			SELECT * 
@@ -10,10 +15,16 @@ class UserManager extends SqlManager
 			WHERE pseudo= ?
 		';
 
-        return $this->sqlRequestFetch($request, array($pseudo));
+        return $this->sqlRequestFetch($request, [$pseudo]);
     }
 
-    public function checkValidationMail($login, $key)
+    /**
+     * checkValidationMail.
+     *
+     * @param mixed $login
+     * @param mixed $key
+     */
+    public function checkValidationMail(strnig $login, string $key)
     {
         $actif = false;
 
@@ -22,83 +33,126 @@ class UserManager extends SqlManager
 			FROM users
 			WHERE pseudo = ?
 		';
-        if ($row = $this->sqlRequestFetch($request, array($login))) {
+        if ($row = $this->sqlRequestFetch($request, [$login]))
+        {
             $actif = $row['actif'];
             $keyBd = $row['validkey'];
         }
-        if ($actif) {
+        if ($actif)
+        {
             $_SESSION['flash'] = ['success' => 'Votre compte est déja actif'];
-        } elseif (!strcmp($key, $keyBd)) {
+        }
+        elseif (!strcmp($key, $keyBd))
+        {
             $request = '
 				UPDATE users
 				SET actif = true 
 				WHERE pseudo = ?
 			';
-            if ($this->sqlRequest($request, array($login), true)) {
+            if ($this->sqlRequest($request, [$login], true))
+            {
                 $_SESSION['flash'] = ['success' => 'Votre compte a bien été activé'];
-            } else {
+            }
+            else
+            {
                 $_SESSION['flash'] = ['fail' => 'Proudly Fail!'];
             }
-        } else {
+        }
+        else
+        {
             $_SESSION['flash'] = ['fail' => 'Votre compte ne peut, malheureusement, pas etre activé'];
         }
 
         return true;
     }
 
-    //### About password_verify: it's a fuction from the standard library
+    //### About password_verify: it's a function from the standard library
 
-    public function checklogin($pseudo, $pass)
+    /**
+     * checklogin.
+     *
+     * @param mixed $pseudo
+     * @param mixed $pass
+     */
+    public function checklogin(string $pseudo, string $pass)
     {
-        if ($this->pseudoInDb($pseudo)) {
+        if ($this->pseudoInDb($pseudo))
+        {
             $request = '
 				SELECT * 
 				FROM users
 				WHERE pseudo = ?
 			';
-            $elmt = $this->sqlRequestFetch($request, array($pseudo));
-            if ($elmt['actif'] && password_verify($pass, $elmt['passwd'])) {
+            $elmt = $this->sqlRequestFetch($request, [$pseudo]);
+            if ($elmt['actif'] && password_verify($pass, $elmt['passwd']))
+            {
                 return true;
-            } elseif (!$elmt['actif']) {
+            }
+            if (!$elmt['actif'])
+            {
                 $_SESSION['flash'] = ['fail' => 'compte inactif'];
-            } else {
+            }
+            else
+            {
                 $_SESSION['flash'] = ['fail' => 'mauvais mot de passe'];
             }
-        } else {
+        }
+        else
+        {
             $_SESSION['flash'] = ['fail' => 'compte inexistant ou mauvais mot de passe'];
         }
 
         return false;
     }
 
-    public function resetValidkey($login)
+    /**
+     * resetValidkey.
+     *
+     * @param mixed $login
+     */
+    public function resetValidkey(strnig $login)
     {
         $key = md5(microtime(true) * 100000);
 
         $request = $this->container->db->prepare('UPDATE users SET validkey = ? WHERE pseudo = ?');
 
-        return $request->execute(array($key, $login));
+        return $request->execute([$key, $login]);
     }
 
-    public function addUser($pseudo, $pass, $mail)
+    /**
+     * addUser.
+     *
+     * @param mixed $pseudo
+     * @param mixed $pass
+     * @param mixed $mail
+     */
+    public function addUser(string $pseudo, string $pass, string $mail)
     {
         $valid = false;
         $key = md5(microtime(true) * 100000);
-        if (!($this->pseudoInDb($pseudo))) {
+        if (!($this->pseudoInDb($pseudo)))
+        {
             $request = '
 				INSERT INTO users
 				(pseudo, passwd, email, validkey)
 				VALUES (?, ?, ?, ?)'
             ;
-            $valid = $this->sqlRequest($request, array($pseudo, $pass, $mail, $key), true);
-        } else {
+            $valid = $this->sqlRequest($request, [$pseudo, $pass, $mail, $key], true);
+        }
+        else
+        {
             $_SESSION['flash'] = ['fail' => 'Pseudo déja pris, dsl…'];
         }
 
         return $valid;
     }
 
-    public function getUser($pseudo)
+    /**
+     * getUser.
+     *
+     * @param mixed $pseudo
+     */
+    public function getUser(string $pseudo)
     {
         $request = '
 			SELECT *
@@ -106,10 +160,15 @@ class UserManager extends SqlManager
 			WHERE pseudo = ?
 		';
 
-        return $this->sqlRequestFetch($request, array($pseudo));
+        return $this->sqlRequestFetch($request, [$pseudo]);
     }
 
-    public function getUserSettings($pseudo)
+    /**
+     * getUserSettings.
+     *
+     * @param mixed $pseudo
+     */
+    public function getUserSettings(string $pseudo)
     {
         $request = '
 			SELECT pseudo, email, alert
@@ -117,10 +176,15 @@ class UserManager extends SqlManager
 			WHERE pseudo = ?
 		';
 
-        return $this->sqlRequestFetch($request, array($pseudo));
+        return $this->sqlRequestFetch($request, [$pseudo]);
     }
 
-    public function getUserById($id)
+    /**
+     * getUserById.
+     *
+     * @param mixed $id
+     */
+    public function getUserById(int $id)
     {
         $request = '
 			SELECT *
@@ -128,10 +192,15 @@ class UserManager extends SqlManager
 			WHERE id = ?
 		';
 
-        return $this->sqlRequestFetch($request, array($id));
+        return $this->sqlRequestFetch($request, [$id]);
     }
 
-    public function getUserByImgId($id)
+    /**
+     * getUserByImgId.
+     *
+     * @param mixed $id
+     */
+    public function getUserByImgId(int $id)
     {
         $request = '
             SELECT *
@@ -141,31 +210,43 @@ class UserManager extends SqlManager
 			WHERE img.id = ?
 		';
 
-        return $this->sqlRequestFetch($request, array($id));
+        return $this->sqlRequestFetch($request, [$id]);
     }
 
-    public function updateUser($pseudo, $email, $alert)
+    /**
+     * updateUser.
+     *
+     * @param mixed $pseudo
+     * @param mixed $email
+     * @param mixed $alert
+     */
+    public function updateUser(string $pseudo, string $email, string $alert)
     {
         $oldPseudo = $_SESSION['pseudo'];
-        if ($pseudo != $oldPseudo && $this->pseudoInDb($pseudo)) {
+        if ($pseudo != $oldPseudo && $this->pseudoInDb($pseudo))
+        {
             return false;
-        } else {
-            $request = $this->container->db->prepare('
+        }
+        $request = $this->container->db->prepare('
                     UPDATE users
                     SET pseudo = :pseudo, email = :email, alert = :alert
                     WHERE pseudo = :login');
-            $passwd = password_hash($passwd, PASSWORD_DEFAULT);
-            $request->bindParam(':alert', $alert, PDO::PARAM_BOOL);
-            $request->bindParam(':email', $email, PDO::PARAM_STR);
-            $request->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-            $request->bindParam(':login', $oldPseudo, PDO::PARAM_STR);
-            $request->execute();
+        $passwd = password_hash($passwd, PASSWORD_DEFAULT);
+        $request->bindParam(':alert', $alert, PDO::PARAM_BOOL);
+        $request->bindParam(':email', $email, PDO::PARAM_STR);
+        $request->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
+        $request->bindParam(':login', $oldPseudo, PDO::PARAM_STR);
+        $request->execute();
 
-            return true;
-        }
+        return true;
     }
 
-    public function updatePassword($passwd)
+    /**
+     * updatePassword.
+     *
+     * @param mixed $passwd
+     */
+    public function updatePassword(string $passwd)
     {
         $request = $this->container->db->prepare('UPDATE users SET passwd = :pass  WHERE pseudo = :login');
         $passwd = password_hash($passwd, PASSWORD_DEFAULT);

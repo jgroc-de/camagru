@@ -1,6 +1,12 @@
 <?php
 
-function listpicsByLike($c, $options)
+/**
+ * listpicsByLike.
+ *
+ * @param Dumbee $container
+ * @param array  $options
+ */
+function listpicsByLike(Dumbee $c, array $options)
 {
     $options['trend'] = true;
     $picManager = $c->picture;
@@ -8,7 +14,8 @@ function listpicsByLike($c, $options)
     $start = isset($_GET['start']) ? $_GET['start'] : 0;
 
     $count = $count[0] / 6;
-    if (!is_numeric($start) || $start > $count) {
+    if (!is_numeric($start) || $start > $count)
+    {
         $start = 0;
     }
     $pics = $picManager->getPicsByLike($start * 6);

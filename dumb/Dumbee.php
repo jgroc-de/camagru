@@ -5,14 +5,24 @@
  */
 class Dumbee
 {
-    protected $container = array();
+    protected $container = [];
 
+    /**
+     * __construct.
+     *
+     * @param array $functions
+     */
     public function __construct(array $functions)
     {
         $this->container = $functions;
     }
 
-    public function __get($key)
+    /**
+     * __get.
+     *
+     * @param string $key
+     */
+    public function __get(string $key)
     {
         return $this->container[$key]($this);
     }

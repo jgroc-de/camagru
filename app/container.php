@@ -13,9 +13,9 @@ $api->setContainer([
 
         $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';
 
-        return new PDO($DB_DSN, $DB['user'], $DB['password'], array(
+        return new PDO($DB_DSN, $DB['user'], $DB['password'], [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        ));
+        ]);
     },
     'camagru' => function (&$c) {
         return new CamagruManager($c);

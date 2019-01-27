@@ -2,7 +2,8 @@
 
 $api->add(
     function () {
-        if (isset($_SESSION['pseudo'])) {
+        if (isset($_SESSION['pseudo']))
+        {
             return 401;
         }
 
@@ -18,7 +19,8 @@ $api->add(
 
 $api->add(
     function () {
-        if (!isset($_SESSION['pseudo'])) {
+        if (!isset($_SESSION['pseudo']))
+        {
             return 403;
         }
 
@@ -40,7 +42,8 @@ $api->add(
 
 $api->add(
     function () {
-        if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+        if (!isset($_GET['id']) || !is_numeric($_GET['id']))
+        {
             return 401;
         }
 

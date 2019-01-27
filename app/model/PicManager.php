@@ -2,7 +2,12 @@
 
 class PicManager extends SqlManager
 {
-    public function getPic($id)
+    /**
+     * getPic.
+     *
+     * @param mixed $id
+     */
+    public function getPic(int $id)
     {
         $request = '
 			SELECT img.id, img.title, img.url, img.date as date2, img.nb_like, users.pseudo
@@ -12,10 +17,15 @@ class PicManager extends SqlManager
 			WHERE img.id = ?
 		';
 
-        return $this->sqlRequestFetch($request, array($id));
+        return $this->sqlRequestFetch($request, [$id]);
     }
 
-    public function getPics($start)
+    /**
+     * getPics.
+     *
+     * @param int $start
+     */
+    public function getPics(int $start)
     {
         $request = $this->db->prepare('
 			SELECT img.id, img.title, img.url, img.date AS date2, users.pseudo
@@ -31,7 +41,12 @@ class PicManager extends SqlManager
         return $request;
     }
 
-    public function getPicsByLike($start)
+    /**
+     * getPicsByLike.
+     *
+     * @param int $start
+     */
+    public function getPicsByLike(int $start)
     {
         $request = $this->db->prepare('
 			SELECT img.id, img.title, img.url, img.date AS date2, users.pseudo
@@ -47,9 +62,14 @@ class PicManager extends SqlManager
         return $request;
     }
 
-    public function getPicsByLogin($pseudo)
+    /**
+     * getPicsByLogin.
+     *
+     * @param mixed $pseudo
+     */
+    public function getPicsByLogin(string $pseudo)
     {
-        $tab = array();
+        $tab = [];
 
         $request = '
 			SELECT url, title
@@ -57,15 +77,21 @@ class PicManager extends SqlManager
             WHERE id_author = ?
 			ORDER BY id DESC
 		';
-        $value = $this->sqlRequest($request, array($pseudo));
-        while ($elemt = $value->fetch()) {
+        $value = $this->sqlRequest($request, [$pseudo]);
+        while ($elemt = $value->fetch())
+        {
             $tab[] = $elemt;
         }
 
         return $tab;
     }
 
-    public function getPicByUrl($url)
+    /**
+     * getPicByUrl.
+     *
+     * @param mixed $url
+     */
+    public function getPicByUrl(string $url)
     {
         $request = '
             SELECT id, id_author
@@ -73,34 +99,49 @@ class PicManager extends SqlManager
             WHERE url = ?
         ';
 
-        return $this->sqlRequestFetch($request, array($url));
+        return $this->sqlRequestFetch($request, [$url]);
     }
 
-    public function addPic($path)
+    /**
+     * addPic.
+     *
+     * @param mixed $path
+     */
+    public function addPic(string $path)
     {
         $request = '
 			INSERT INTO img
 			(title, id_author, url, date)
 			VALUES (?, ?, ?, NOW())
 		';
-        $this->sqlRequest($request, array($_SESSION['pseudo'].'_'.rand(), $_SESSION['id'], $path), true);
+        $this->sqlRequest($request, [$_SESSION['pseudo'].'_'.rand(), $_SESSION['id'], $path], true);
     }
 
-    public function deletePic($img_id, $author_id)
+    /**
+     * deletePic.
+     *
+     * @param mixed $img_id
+     * @param mixed $author_id
+     */
+    public function deletePic(int $img_id, int $author_id)
     {
         $request = '
             DELETE FROM img
             WHERE id = ? AND id_author = ?
         ';
-        if ($this->sqlRequest($request, array($img_id, $author_id), true)) {
+        if ($this->sqlRequest($request, [$img_id, $author_id], true))
+        {
             $request = '
             DELETE FROM comments
             WHERE img_id = ?
             ';
-            $this->sqlRequest($request, array($img_id), true);
+            $this->sqlRequest($request, [$img_id], true);
         }
     }
 
+    /**
+     * countPics.
+     */
     public function countPics()
     {
         $request = '
@@ -111,15 +152,23 @@ class PicManager extends SqlManager
         return $this->sqlRequestFetch($request);
     }
 
-    public function picInDb($id)
+    /**
+     * picInDb.
+     *
+     * @param mixed $id
+     *
+     * @return bool
+     */
+    public function picInDb(int $id)
     {
         $request = '
 			SELECT *
 			FROM img
 			WHERE id = ?
 		';
-        $value = $this->sqlRequest($request, array($id));
-        if ($value->fetch()) {
+        $value = $this->sqlRequest($request, [$id]);
+        if ($value->fetch())
+        {
             $value->closecursor();
 
             return true;
@@ -128,7 +177,12 @@ class PicManager extends SqlManager
         return false;
     }
 
-    public function addLike($id_img)
+    /**
+     * addLike.
+     *
+     * @param mixed $id_img
+     */
+    public function addLike(int $id_img)
     {
         $id_author = $_SESSION['id'];
         $request = '
@@ -136,21 +190,24 @@ class PicManager extends SqlManager
             FROM likes
             WHERE id_img = ? AND id_author = ?
         ';
-        $id = $this->sqlRequestFetch($request, array($id_img, $id_author));
-        if (!isset($id['id'])) {
+        $id = $this->sqlRequestFetch($request, [$id_img, $id_author]);
+        if (!isset($id['id']))
+        {
             $request = '
                 UPDATE img 
                 SET nb_like = nb_like + 1 
                 WHERE id = ?
                 ';
-            $this->sqlRequest($request, array($id_img), true);
+            $this->sqlRequest($request, [$id_img], true);
             $request = '
                 INSERT INTO likes
                 (id_img, id_author)
                 VALUES (?, ?)
                 ';
-            $this->sqlRequest($request, array($id_img, $id_author), true);
-        } else {
+            $this->sqlRequest($request, [$id_img, $id_author], true);
+        }
+        else
+        {
             return -1;
         }
         $request = '
@@ -158,12 +215,20 @@ class PicManager extends SqlManager
 			FROM img 
 			WHERE id = ?
 		';
-        $count = $this->sqlRequestFetch($request, array($id_img));
+        $count = $this->sqlRequestFetch($request, [$id_img]);
 
         return $count[0];
     }
 
-    public function changeTitle($id, $title)
+    /**
+     * changeTitle.
+     *
+     * @param mixed $id
+     * @param mixed $title
+     *
+     * @return string
+     */
+    public function changeTitle(int $id, strnig $title)
     {
         $request = '
             UPDATE img
@@ -171,13 +236,13 @@ class PicManager extends SqlManager
             WHERE id = ?
             AND id_author = ?
         ';
-        $this->sqlRequest($request, array($title, $id, $_SESSION['id']), true);
+        $this->sqlRequest($request, [$title, $id, $_SESSION['id']], true);
         $request = '
 			SELECT title 
 			FROM img 
 			WHERE id = ?
 		';
-        $title = $this->sqlRequestFetch($request, array($id));
+        $title = $this->sqlRequestFetch($request, [$id]);
 
         return $title['title'];
     }

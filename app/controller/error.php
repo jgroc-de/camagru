@@ -2,7 +2,8 @@
 
 function error($c, $error, $options)
 {
-    if (!$error) {
+    if (!$error)
+    {
         $error = [];
         $error['error']['code'] = 404;
         $error['error']['message'] = 'Not Found';

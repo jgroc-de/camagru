@@ -4,31 +4,55 @@ class SqlManager
 {
     protected $container;
 
-    public function __construct(&$container)
+    /**
+     * __construct.
+     *
+     * @param mixed $container
+     */
+    public function __construct(Dumbee &$container)
     {
         $this->container = $container;
     }
 
-    protected function sqlRequest($request, $array = array(), $bool = false)
+    /**
+     * __get.
+     *
+     * @param mixed $name
+     */
+    public function __get(string $name)
+    {
+        return $this->container->{$name};
+    }
+
+    /**
+     * sqlRequest.
+     *
+     * @param mixed $request
+     * @param mixed $array
+     * @param mixed $bool
+     */
+    protected function sqlRequest($request, array $array = [], bool $bool = false)
     {
         $db = $this->container->db;
 
         $obj = $db->prepare($request);
         $success = $obj->execute($array);
-        if ($bool) {
+        if ($bool)
+        {
             return $success;
-        } else {
-            return $obj;
         }
+
+        return $obj;
     }
 
-    protected function sqlRequestFetch($request, $array = array())
+    /**
+     * sqlRequestFetch.
+     *
+     * @param mixed $request
+     * @param mixed $array
+     */
+    protected function sqlRequestFetch($request, array $array = [])
     {
         return $this->sqlRequest($request, $array)->fetch();
-    }
-
-    public function __get($name)
-    {
-        return $this->container->$name;
     }
 }

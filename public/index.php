@@ -5,7 +5,7 @@ session_start();
 /**
  * initialisation de variable pour app/view/template.php.
  */
-$args = array(
+$args = [
     'camagru' => '',
     'login' => isset($_SESSION['pseudo']),
     'title2' => '',
@@ -23,8 +23,8 @@ $args = array(
     'error' => [
         'code' => '',
         'message' => '',
-        ],
-);
+    ],
+];
 
 require '../dumb/dumb.php';
 $api = new Dumb();

@@ -2,12 +2,18 @@
 
 class CamagruManager extends SqlManager
 {
+    /**
+     * getFilters.
+     *
+     * @return array
+     */
     public function getFilters()
     {
-        $tab = array();
+        $tab = [];
 
         $request = $this->db->query('SELECT * FROM filter');
-        while ($elemt = $request->fetch()) {
+        while ($elemt = $request->fetch())
+        {
             $tab[] = $elemt;
         }
 
