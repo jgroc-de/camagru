@@ -43,6 +43,7 @@ $api->add(
     },
     [
         '/login' => ['password' => 'password', 'pseudo' => 'pseudo'],
+        '/password' => ['password' => 'password',],
         '/signup' => ['password' => 'password', 'pseudo' => 'pseudo', 'email' => 'email'],
         '/settings' => ['pseudo' => 'pseudo', 'email' => 'email'],
         '/addLike' => ['id' => 'numeric'],

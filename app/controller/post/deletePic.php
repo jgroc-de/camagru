@@ -5,7 +5,7 @@ function deletePic($c)
     $response['url'] = $_POST['url'];
     $picManager = $c->picture;
     $pic = $picManager->getPicByUrl($_POST['url']);
-    if ($pic && $_SESSION['id'] === $pic['id_author'])
+    if (!empty($pic) && $_SESSION['id'] === $pic['id_author'])
     {
         $picManager->deletePic($pic['id'], $pic['id_author']);
         unlink($_POST['url']);

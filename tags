@@ -1328,7 +1328,7 @@ afterParenthesisIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructur
 afterParenthesisIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/FunctionDeclarationFixer.php	/^            $afterParenthesisIndex = $tokens->getNextNonWhitespace($endParenthesisIndex);$/;"	v
 afterParenthesisToken	vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/FunctionDeclarationFixer.php	/^            $afterParenthesisToken = $tokens[$afterParenthesisIndex];$/;"	v
 afterSemicolon	vendor/friendsofphp/php-cs-fixer/src/Fixer/Import/SingleLineAfterImportsFixer.php	/^                $afterSemicolon = $tokens->getNextMeaningfulToken($semicolonIndex);$/;"	v
-alert	app/controller/post/settings.php	/^    $alert = $_POST['alert'] ? true : false;$/;"	v
+alert	app/controller/post/settings.php	/^    $alert = isset($_POST['alert']) ? true : false;$/;"	v
 alert	vendor/psr/log/Psr/Log/AbstractLogger.php	/^    public function alert($message, array $context = array())$/;"	f
 alert	vendor/psr/log/Psr/Log/LoggerInterface.php	/^    public function alert($message, array $context = array());$/;"	f
 alert	vendor/psr/log/Psr/Log/LoggerTrait.php	/^    public function alert($message, array $context = array())$/;"	f
@@ -2051,7 +2051,7 @@ builtInFixers	vendor/friendsofphp/php-cs-fixer/src/FixerFactory.php	/^          
 builtInFixers	vendor/friendsofphp/php-cs-fixer/src/FixerFactory.php	/^        static $builtInFixers = null;$/;"	v
 builtInReporters	vendor/friendsofphp/php-cs-fixer/src/Report/ReporterFactory.php	/^            $builtInReporters = [];$/;"	v
 builtInReporters	vendor/friendsofphp/php-cs-fixer/src/Report/ReporterFactory.php	/^        static $builtInReporters;$/;"	v
-buton	public/js/camagruView.js	/^    var buton = document.getElementById("snap");$/;"	v
+button	public/js/camagruView.js	/^    var button = document.getElementById("snap");$/;"	v
 bytesCopied	vendor/symfony/filesystem/Filesystem.php	/^            $bytesCopied = stream_copy_to_stream($source, $target);$/;"	v
 bytesWritten	vendor/friendsofphp/php-cs-fixer/src/Cache/FileHandler.php	/^        $bytesWritten = @file_put_contents($this->file, $content);$/;"	v
 c	vendor/friendsofphp/php-cs-fixer/src/Fixer/Basic/BracesFixer.php	/^            $c = $tokens[$braceIndex]->getContent();$/;"	v
@@ -2299,7 +2299,7 @@ checkPreg	vendor/friendsofphp/php-cs-fixer/src/Fixer/Alias/EregToPregFixer.php	/
 checkScanDirConfig	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^    private function checkScanDirConfig()$/;"	f
 checkTimeout	vendor/symfony/process/Process.php	/^    public function checkTimeout()$/;"	f
 checkToken	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/TokensAnalyzer.php	/^            $checkToken = $this->tokens[$this->tokens->getNextMeaningfulToken($nextIndex)];$/;"	v
-checkValidationMail	app/model/UserManager.php	/^    public function checkValidationMail(strnig $login, string $key)$/;"	f
+checkValidationMail	app/model/UserManager.php	/^    public function checkValidationMail(string $login, string $key)$/;"	f
 checklogin	app/model/UserManager.php	/^    public function checklogin(string $pseudo, string $pass)$/;"	f
 checks	vendor/symfony/console/Output/ConsoleOutput.php	/^        $checks = array($/;"	v
 checkstyles	vendor/friendsofphp/php-cs-fixer/src/Report/CheckstyleReporter.php	/^        $checkstyles = $dom->appendChild($dom->createElement('checkstyle'));$/;"	v
@@ -3080,6 +3080,7 @@ copy	vendor/symfony/filesystem/Filesystem.php	/^    public function copy($origin
 copyOnWindows	vendor/symfony/filesystem/Filesystem.php	/^        $copyOnWindows = $options['copy_on_windows'] ?? false;$/;"	v
 copyRow	vendor/symfony/console/Helper/Table.php	/^    private function copyRow(array $rows, int $line): array$/;"	f
 correctLineBreaks	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/ClassAttributesSeparationFixer.php	/^    private function correctLineBreaks(Tokens $tokens, $startIndex, $endIndex, $reqLineCount = 2)$/;"	f
+count	app/controller/get/camagru.php	/^	$count = (int)(12 \/ count($listFilter));$/;"	v
 count	app/controller/get/home.php	/^    $count = $count[0] \/ 6;$/;"	v
 count	app/controller/get/home.php	/^    $count = $picManager->countPics();$/;"	v
 count	app/controller/get/listPics.php	/^    $count = $count[0] \/ 6;$/;"	v
@@ -3804,7 +3805,7 @@ dispatcher	vendor/symfony/event-dispatcher/Tests/ImmutableEventDispatcherTest.ph
 dispatcherService	vendor/symfony/event-dispatcher/DependencyInjection/RegisterListenersPass.php	/^        $this->dispatcherService = $dispatcherService;$/;"	v
 dispatcherService	vendor/symfony/event-dispatcher/DependencyInjection/RegisterListenersPass.php	/^    protected $dispatcherService;$/;"	v
 display	app/view/st_camagru.html	/^function display()$/;"	f
-display	public/js/camagruView.js	/^function display(filter)$/;"	f
+display	public/js/camagruView.js	/^function display(btn, filter)$/;"	f
 display	vendor/symfony/console/Helper/ProgressBar.php	/^                $display = str_repeat($bar->getBarCharacter(), $completeBars);$/;"	v
 display	vendor/symfony/console/Helper/ProgressBar.php	/^    public function display(): void$/;"	f
 display	vendor/symfony/console/Helper/ProgressIndicator.php	/^    private function display()$/;"	f
@@ -10004,7 +10005,6 @@ prevTokenIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/IsNu
 prevTokenIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/LanguageConstruct/IsNullFixer.php	/^            $prevTokenIndex = $tokens->getPrevMeaningfulToken($matches[0]);$/;"	v
 prevTokenIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/TernaryToNullCoalescingFixer.php	/^        $prevTokenIndex = $tokens->getPrevMeaningfulToken($index);$/;"	v
 prevWhitespaceTokenIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/MethodArgumentSpaceFixer.php	/^            $prevWhitespaceTokenIndex = $tokens->getPrevTokenOfKind($/;"	v
-preview	public/js/camagruView.js	/^    var preview = document.getElementById('miseEnPage');$/;"	v
 previous	vendor/friendsofphp/php-cs-fixer/src/AbstractLinesBeforeNamespaceFixer.php	/^        $previous = $tokens[$previousIndex];$/;"	v
 previous	vendor/friendsofphp/php-cs-fixer/src/AbstractNoUselessElseFixer.php	/^                $previous = $tokens->getPrevMeaningfulToken($previous);$/;"	v
 previous	vendor/friendsofphp/php-cs-fixer/src/AbstractNoUselessElseFixer.php	/^            $previous = $previousBlockEnd;$/;"	v
@@ -10569,7 +10569,7 @@ reset	vendor/symfony/stopwatch/Stopwatch.php	/^    public function reset()$/;"	f
 resetPeek	vendor/doctrine/lexer/lib/Doctrine/Common/Lexer/AbstractLexer.php	/^    public function resetPeek()$/;"	f
 resetPosition	vendor/doctrine/lexer/lib/Doctrine/Common/Lexer/AbstractLexer.php	/^    public function resetPosition($position = 0)$/;"	f
 resetProcessData	vendor/symfony/process/Process.php	/^    private function resetProcessData()$/;"	f
-resetValidkey	app/model/UserManager.php	/^    public function resetValidkey(strnig $login)$/;"	f
+resetValidkey	app/model/UserManager.php	/^    public function resetValidkey(string $login)$/;"	f
 resolve	vendor/friendsofphp/php-cs-fixer/src/FixerConfiguration/FixerConfigurationResolver.php	/^    public function resolve(array $options)$/;"	f
 resolve	vendor/friendsofphp/php-cs-fixer/src/FixerConfiguration/FixerConfigurationResolverInterface.php	/^    public function resolve(array $configuration);$/;"	f
 resolve	vendor/friendsofphp/php-cs-fixer/src/FixerConfiguration/FixerConfigurationResolverRootless.php	/^    public function resolve(array $options)$/;"	f
@@ -11257,7 +11257,7 @@ skipped	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^    private stati
 skipped	vendor/symfony/event-dispatcher/Debug/TraceableEventDispatcher.php	/^                $skipped = true;$/;"	v
 skipped	vendor/symfony/event-dispatcher/Debug/TraceableEventDispatcher.php	/^        $skipped = false;$/;"	v
 skippedTypes	vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/PhpdocToReturnTypeFixer.php	/^    private $skippedTypes = [$/;"	v
-snap	public/js/camagruView.js	/^function snap()$/;"	f
+snap	public/js/camagruView.js	/^function snap(buttonSnap)$/;"	f
 sort	vendor/composer/semver/src/Semver.php	/^    public static function sort(array $versions)$/;"	f
 sort	vendor/symfony/finder/Finder.php	/^        $this->sort = $closure;$/;"	v
 sort	vendor/symfony/finder/Finder.php	/^        $this->sort = $useNaturalSort ? Iterator\\SortableIterator::SORT_BY_NAME_NATURAL : Iterator\\SortableIterator::SORT_BY_NAME;$/;"	v
@@ -13573,6 +13573,7 @@ useStartParenthesisIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNota
 useStaticLoader	vendor/composer/autoload_real.php	/^        $useStaticLoader = PHP_VERSION_ID >= 50600 && !defined('HHVM_VERSION') && (!function_exists('zend_loader_file_encoded') || !zend_loader_file_encoded());$/;"	v
 user	app/controller/post/addComment.php	/^    $user = $userManager->getUserByImgId($_POST['id']);$/;"	v
 user	app/controller/post/login.php	/^        $user = $userManager->getUser($pseudo);$/;"	v
+user	app/controller/post/reinitPost.php	/^	$user = $userManager->getUser($pseudo);$/;"	v
 userManager	app/controller/get/reinitGet.php	/^    $userManager = $c->user;$/;"	v
 userManager	app/controller/post/addComment.php	/^    $userManager = $c->user;$/;"	v
 userManager	app/controller/post/login.php	/^    $userManager = $c->user;$/;"	v

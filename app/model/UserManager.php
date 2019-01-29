@@ -24,7 +24,7 @@ class UserManager extends SqlManager
      * @param mixed $login
      * @param mixed $key
      */
-    public function checkValidationMail(strnig $login, string $key)
+    public function checkValidationMail(string $login, string $key)
     {
         $actif = false;
 
@@ -110,7 +110,7 @@ class UserManager extends SqlManager
      *
      * @param mixed $login
      */
-    public function resetValidkey(strnig $login)
+    public function resetValidkey(string $login)
     {
         $key = md5(microtime(true) * 100000);
 

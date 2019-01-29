@@ -5,8 +5,7 @@ play();
  {   
     var allowedTypes = ['png'];
     var fileInput = document.getElementById('file');
-    var preview = document.getElementById('miseEnPage');
-    var buton = document.getElementById("snap");
+    var button = document.getElementById("snap");
 
     fileInput.addEventListener('change', function()
     {    
@@ -15,29 +14,29 @@ play();
         imgType = files[0].name.split('.');
         imgType = imgType[1].toLowerCase();
         if (allowedTypes.indexOf(imgType) != -1) {
-            snap();
+            snap(button);
             createThumbnail(files[0]);
         }
     });
 })();
 
-function display(filter)
+function display(btn, filter)
 {
+	console.log(btn);
     var preview = document.getElementById(filter);
-    var btn = document.getElementById('btn_' + filter);
 
     if (filter === undefined)
         filter = "troll";
-    if (preview.style.visibility === "visible")
+    if (preview.className === "")
     {
-        btn.style.boxShadow = "0px 0px 0px 0px";
-        preview.style.visibility = "hidden";
+        btn.className = btn.className.replace('green', 'black');
+        preview.className = "w3-hide";
         preview.alt = "hidden";
     }
     else
     {
-        btn.style.boxShadow = "0px 0px 5px 5px";
-        preview.style.visibility = "visible";
+        btn.className = btn.className.replace('black', 'green');
+        preview.className = "";
         preview.alt = "visible";
     }
 }
@@ -66,10 +65,8 @@ function createThumbnail(file)
 }
 
 // Trigger photo take
-function snap()
+function snap(buttonSnap)
 {
-    var buttonSnap = document.getElementById('snap');
-
     buttonSnap.removeAttribute('onclick');
     if (typeof snap.on == 'undefined')
     {
@@ -109,7 +106,7 @@ function play()
     {
 		navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream)
         {
-            snap();
+            snap(button);
 			video.srcObject = stream;
 			video.play();
 		});

@@ -6,7 +6,7 @@ function settings($c, $options)
 
     $pseudo = $_POST['pseudo'];
     $email = $_POST['email'];
-    $alert = $_POST['alert'] ? true : false;
+    $alert = isset($_POST['alert']) ? true : false;
     if ($userManager->updateUser($pseudo, $email, $alert))
     {
         $_SESSION['pseudo'] = $pseudo;

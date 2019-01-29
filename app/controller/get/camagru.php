@@ -12,6 +12,7 @@ function camagru(Dumbee $c, array $options)
 
     $pics = $c->picture->getPicsByLogin($_SESSION['id']);
     $listFilter = $c->camagru->getFilters();
+	$count = (int)(12 / count($listFilter));
     $options['script'] = 'js/camagruView.js';
     $view = 'Camagru Factory';
     $main = '/camagruView.html';
