@@ -5,10 +5,10 @@ function reinitPost($c, $options)
     $userManager = $c->user;
     $pseudo = $_POST['pseudo'];
 
-	$user = $userManager->getUser($pseudo);
+    $user = $userManager->getUser($pseudo);
     if (!empty($user) && $userManager->resetValidkey($pseudo))
     {
-		$c->mail->sendReinitMail($user);
+        $c->mail->sendReinitMail($user);
         $response['code'] = 200;
     }
     else

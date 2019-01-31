@@ -10,8 +10,10 @@
  */
 function listpicsByLike(Dumbee $container, array $options)
 {
-	return [
-		'pics' => $container->picture->getPicsByLike(($_POST['start'] - 1) * 4), 
-		'code' => 200,
-	];
+    return [
+        'pics' => $container->picture->getPicsByLike(($_POST['start'] - 1) * 4),
+        'code' => 200,
+        'start' => $_POST['start'] + 1,
+        'url' => '/listPicsByDate',
+    ];
 }

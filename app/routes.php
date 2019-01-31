@@ -1,6 +1,6 @@
 <?php
 
-$api->GET = [
+$baka->GET = [
     '/home' => '/',
     '/home',
     '/picture',
@@ -9,7 +9,7 @@ $api->GET = [
     '/setup',
     '/reinit' => '/reinitGet',
 ];
-$api->POST = [
+$baka->POST = [
     '/listPicsByLike',
     '/listPicsByDate',
     '/signup',
@@ -24,5 +24,5 @@ $api->POST = [
     '/changeTitle',
     '/createPic',
     '/deletePic',
-	'/contact',
+    '/contact',
 ];

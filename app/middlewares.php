@@ -1,6 +1,6 @@
 <?php
 
-$api->add(
+$baka->eat(
     function () {
         if (isset($_SESSION['pseudo']))
         {
@@ -17,7 +17,7 @@ $api->add(
     ]
 );
 
-$api->add(
+$baka->eat(
     function () {
         if (!isset($_SESSION['pseudo']))
         {
@@ -40,7 +40,7 @@ $api->add(
     ]
 );
 
-$api->add(
+$baka->eat(
     function () {
         if (!isset($_GET['id']) || !is_numeric($_GET['id']))
         {

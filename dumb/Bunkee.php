@@ -48,12 +48,12 @@ class Bunkee
     }
 
     /**
-     * add.
+     * eat.
      *
      * @param mixed $function
      * @param array $routes
      */
-    public function add($function, array $routes)
+    public function eat($function, array $routes)
     {
         if (empty($routes) || in_array($this->uri, $routes))
         {
@@ -67,8 +67,6 @@ class Bunkee
 
     /**
      * middleware.
-     *
-     * @return void
      */
     protected function middleware()
     {
@@ -76,7 +74,7 @@ class Bunkee
         {
             $this->error = 404;
 
-            return ;
+            return;
         }
         foreach ($this->middlewares as $middleware)
         {
@@ -84,17 +82,13 @@ class Bunkee
             {
                 $this->error = $error;
 
-                break ;
+                break;
             }
         }
-
-        return ;
     }
 
     /**
      * form.
-	 *
-	 * @return void
      */
     protected function form()
     {
@@ -108,11 +102,9 @@ class Bunkee
                 {
                     $this->error = $error;
 
-                    return ;
+                    return;
                 }
             }
         }
-
-        return ;
     }
 }

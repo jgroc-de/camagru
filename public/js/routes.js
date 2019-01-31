@@ -10,6 +10,12 @@ function listPics(status, json)
 		node.setAttribute("onclick", "window.location.href='/picture/"+item['id']+"'");
 		box.appendChild(node);
 	});
+	if (json['start'] < 4)
+		ggAjax('&start='+json['start'], json['url'], listPics);
+	else
+	{
+		//ggAjax('&start=3', url, listPics);
+	}
 }
 
 function addComment(status, json)
@@ -61,16 +67,7 @@ function login(status, json)
 
 function logout(status, json)
 {
-	var camagru = document.getElementById("btnCamagru");
-	var settings = document.getElementById("btnSettings");
-	var logout = document.getElementById("btnLog");
-
-	settings.style.display = 'none';
-	logout.className = "w3-bar-item w3-green w3-button";
-	logout.removeAttribute('onclick');
-	logout.setAttribute('onclick', "document.getElementById('form').style.display='block'");
-	camagru.href = "#camagru";
-	camagru.setAttribute('onclick', "document.getElementById('form').style.display='block'");
+	window.location = '/';
 }
 
 function fillSettings(status, json)

@@ -109,8 +109,8 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
         $headers = 'From: jgroc2s@free.fr'."\r\n".'Reply-To: jgroc2s@free.fr'."\r\n".'X-Mailer: PHP/'.phpversion();
         $this->sendMail($user['email'], $subject, $message, $headers);
     }
-	
-	/**
+
+    /**
      * sendContactMail.
      *
      * @param string $user

@@ -1,6 +1,14 @@
 <div class="w3-container w3-padding-64">
 	<div class="w3-col l6">
-		<h2 class="w3-border-bottom w3-border-light-grey w3-padding-16"><form><div><input type="number" name="id" class="w3-hide" value="<?= $elem['id'] ?>" required></input></div><div><input type="text" name="title" onblur="ggForm(this)" value="<?= htmlspecialchars($elem['title']) ?>"> <span class="w3-opacity w3-large">by <?= htmlspecialchars($elem['pseudo']) ?> on <?= htmlspecialchars($elem['date2']) ?></span></div></form></h2>
+		<h2 class="w3-border-bottom w3-border-light-grey w3-padding-16">
+			<form>
+				<div>
+					<?= htmlspecialchars($elem['title']) ?>
+					<?php if ($elem['pseudo'] == $_SESSION['pseudo']) {?> <i class="w3-button fa fa-pen"></i><?php }?>
+					<span class="w3-opacity w3-large">by <?= htmlspecialchars($elem['pseudo']) ?> on <?= htmlspecialchars($elem['date2']) ?></span>
+				</div>
+			</form>
+		</h2>
 		<div class="w3-padding-16">
 			<img width="100%" src="<?= '/'.htmlspecialchars($elem['url']) ?>" alt="<?= htmlspecialchars($elem['title'])?>">
 		</div>

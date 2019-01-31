@@ -19,10 +19,10 @@ $args = [
 ];
 
 require '../dumb/Dumb.php';
-$api = new Dumb();
+$baka = new Dumb();
 require '../app/routes.php';
 require '../app/middlewares.php';
 require '../app/forms.php';
 require '../app/container.php';
 
-$api->dumb($args);
+$baka->kamehameha($args);

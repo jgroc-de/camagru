@@ -141,8 +141,6 @@ function ggDestroy(button, id, url)
 	}
 	button.setAttribute('disabled', "");
 	ggAjax('&start=1', url, listPics);
-	ggAjax('&start=2', url, listPics);
-	ggAjax('&start=3', url, listPics);
 }
 
 function ft_scroll(element)

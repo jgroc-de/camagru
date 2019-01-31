@@ -1,6 +1,6 @@
 <?php
 
-$api->add(
+$baka->eat(
     function ($key, $type) {
         if (!isset($_POST[$key]) || !$_POST[$key])
         {
@@ -13,7 +13,7 @@ $api->add(
                 {
                     return 401;
                 }
-                $_POST[$key] = (int)$_POST[$key];
+                $_POST[$key] = (int) $_POST[$key];
 
                 break;
             case 'password':
@@ -43,7 +43,7 @@ $api->add(
     },
     [
         '/login' => ['password' => 'password', 'pseudo' => 'pseudo'],
-        '/password' => ['password' => 'password',],
+        '/password' => ['password' => 'password'],
         '/signup' => ['password' => 'password', 'pseudo' => 'pseudo', 'email' => 'email'],
         '/contact' => ['name' => 'pseudo', 'subject' => '', 'email' => 'email', 'message' => ''],
         '/settings' => ['pseudo' => 'pseudo', 'email' => 'email'],

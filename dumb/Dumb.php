@@ -38,11 +38,11 @@ class Dumb extends Bunkee
      *
      * @param mixed $args
      */
-    public function dumb($args = null)
+    public function kamehameha($args = null)
     {
-		$this->middleware(); 
-		$this->form();
-		if ($this->error === 0)
+        $this->middleware();
+        $this->form();
+        if (0 === $this->error)
         {
             require '../app/controller/'.strtolower($_SERVER['REQUEST_METHOD']).$this->uri.'.php';
             $response = (ltrim($this->uri, '/'))($this->container, $args);
@@ -56,8 +56,8 @@ class Dumb extends Bunkee
         else
         {
             require '../app/controller/error.php';
-			$error['code'] = $this->error;
-			$error['message'] = self::HTTP_CODE[$this->error];
+            $error['code'] = $this->error;
+            $error['message'] = self::HTTP_CODE[$this->error];
             error($this->container, $error);
         }
     }

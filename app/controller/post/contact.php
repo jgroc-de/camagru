@@ -11,10 +11,9 @@
 function contact(Dumbee $c, array $options = null)
 {
     $c->mail->sendContactMail();
-	$response = [
-		'code' => '200',
-		'flash' => 'Thx!',
-	];
 
-    return $response;
+    return [
+        'code' => '200',
+        'flash' => 'Thx!',
+    ];
 }

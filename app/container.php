@@ -2,7 +2,7 @@
 
 require '../app/config/env.php';
 
-$api->setContainer([
+$baka->setContainer([
     'env' => function (&$c) {
         global $DB;
 
