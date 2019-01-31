@@ -3,15 +3,15 @@
 $api->GET = [
     '/home' => '/',
     '/home',
-    '/listPicsByLike',
     '/picture',
     '/camagru' => '/b',
     '/camagru',
     '/setup',
     '/reinit' => '/reinitGet',
-    '/st_camagru',
 ];
 $api->POST = [
+    '/listPicsByLike',
+    '/listPicsByDate',
     '/signup',
     '/login',
     '/reinitPost',
@@ -24,4 +24,5 @@ $api->POST = [
     '/changeTitle',
     '/createPic',
     '/deletePic',
+	'/contact',
 ];

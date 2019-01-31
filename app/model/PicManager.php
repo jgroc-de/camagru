@@ -28,17 +28,17 @@ class PicManager extends SqlManager
     public function getPics(int $start)
     {
         $request = $this->db->prepare('
-			SELECT img.id, img.title, img.url, img.date AS date2, users.pseudo
+			SELECT img.id, img.title, img.url as path
             FROM img
             INNER JOIN users
             ON img.id_author = users.id
 			ORDER BY img.id DESC
-			LIMIT 12 OFFSET :start
+			LIMIT 4 OFFSET :start
 		');
         $request->bindParam(':start', $start, PDO::PARAM_INT);
         $request->execute();
 
-        return $request;
+        return $request->fetchAll();
     }
 
     /**
@@ -49,17 +49,17 @@ class PicManager extends SqlManager
     public function getPicsByLike(int $start)
     {
         $request = $this->db->prepare('
-			SELECT img.id, img.title, img.url, img.date AS date2, users.pseudo
+			SELECT img.id, img.title, img.url as path
             FROM img
             INNER JOIN users
             ON img.id_author = users.id
 			ORDER BY img.nb_like DESC
-			LIMIT 8 OFFSET :start
+			LIMIT 4 OFFSET :start
 		');
         $request->bindParam(':start', $start, PDO::PARAM_INT);
         $request->execute();
 
-        return $request;
+        return $request->fetchAll();
     }
 
     /**

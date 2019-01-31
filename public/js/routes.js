@@ -1,5 +1,17 @@
 'use strict';
 
+function listPics(status, json)
+{
+	var box = document.getElementById('carroussel');
+
+	json['pics'].forEach(function(item) {
+		var node = picDivFactory(item);
+
+		node.setAttribute("onclick", "window.location.href='/picture/"+item['id']+"'");
+		box.appendChild(node);
+	});
+}
+
 function addComment(status, json)
 {
 	var comments = document.getElementById("comments");

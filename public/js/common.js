@@ -51,46 +51,53 @@ function ggAjax(data, url, callback)
 function printNotif(str, status)
 {
     var p = document.createElement('p');
-    var div = document.createElement('div');
+    var div = createNode('div', {class:"w3-panel w3-round"});
     var notif = document.getElementById('notif');
 
     p.textContent = str;
+    div.style.margin = "0";
     div.appendChild(p);
-    div.className = "w3-panel w3-round";
     if (status == 200)
         div.classList.add('w3-green');
     else
         div.classList.add('w3-red');
-    div.style.margin = "0";
     notif.appendChild(div);
 
     setTimeout(function() {notif.removeChild(div);}, 4500, notif, div);
 }
 
-function ft_scroll(element)
+function createNode(type, attributes)
 {
-	if (element.scrollTop > 350) {
-		alert('lol');
+	var node = document.createElement(type);
+
+	for (var property in attributes)
+	{
+		node.setAttribute(property, attributes[property]);
 	}
+	return node;
 }
 
 function picDivFactory(json)
 {
-	var first = document.createElement('div');
-	var second = document.createElement('div');
-	var title = document.createElement('div');
-   	var img = document.createElement('img');
 	var path = json['path'];
+	var first = createNode('div', {
+		class:'w3-col l3 m6 w3-margin-bottom w3-button',
+		id:path,
+	});
+	var second = createNode('div', {
+		class:"w3-display-container",
+	});
+	var title = createNode('div', {
+		class:"w3-display-topleft w3-black w3-padding",
+	});
+   	var img = createNode('img', {
+		width:"100%",
+		src:path,
+		alt:path,
+		title:path
+	});
 
-	first.setAttribute('class', "w3-col l3 m6 w3-margin-bottom");
-	second.setAttribute('class', "w3-display-container");
-	title.setAttribute('class', "w3-display-topleft w3-black w3-padding");
-	title.innerHTML = path;
-	img.style = "width:100%";
-	img.src = path;
-	img.alt = path;
-	img.title = path;
-	first.id = path;
+	title.textContent = json['title'];
 	second.appendChild(title);
 	second.appendChild(img);
 	first.appendChild(second);
@@ -99,23 +106,47 @@ function picDivFactory(json)
 
 function commentDivFactory(json)
 {
-	var first = document.createElement('div');
+	var date = new Date(json['date2']);
+	var first = createNode('div', {
+		class:"w3-row w3-margin-bottom",
+	});
+	var span = createNode('span', {
+		class:"w3-opacity w3-medium",
+	});
 	var comment = document.createElement('p');
 	var title = document.createElement('h3');
-	var span = document.createElement('span');
-	var date = new Date(json['date2']);
-	var options = {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"};
 
-	first.setAttribute('class', "w3-row w3-margin-bottom");
-	span.setAttribute('class', "w3-opacity w3-medium");
 	comment.style.wordWrap = "break-Word";
-	comment.innerHTML = json['content'];
-	title.innerHTML = json['pseudo'] + ' ';
-	span.innerHTML = 'on ' + date.toLocaleString('en-GB', options); 
+	comment.textContent = json['content'];
+	title.textContent = json['pseudo'] + ' ';
+	span.textContent = 'on ' + date.toLocaleString('en-GB', {hour12: true, year: "numeric", month: "long", day: "numeric", hour: "2-digit", minute: "2-digit"});
 	title.appendChild(span);
 	first.appendChild(title);
 	first.appendChild(comment);
 	return first;
+}
+
+function ggDestroy(button, id, url)
+{
+	var box = document.getElementById(id);
+	var childs = button.parentNode.children;
+
+	while (box.firstChild)
+	{
+    	box.removeChild(box.firstChild);
+	}
+	for (var i = 0; i < childs.length; i++)
+	{
+		childs[i].removeAttribute('disabled');
+	}
+	button.setAttribute('disabled', "");
+	ggAjax('&start=1', url, listPics);
+	ggAjax('&start=2', url, listPics);
+	ggAjax('&start=3', url, listPics);
+}
+
+function ft_scroll(element)
+{
 }
 
 function validTitle(str)

@@ -9,11 +9,11 @@ $api->add(
         $_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
         switch ($type) {
             case 'numeric':
-                if (!is_numeric($_POST[$key]))
+                if (!is_numeric($_POST[$key]) || $_POST[$key] <= 0)
                 {
                     return 401;
                 }
-                    $_POST[$key] = intval($_POST[$key]);
+                $_POST[$key] = (int)$_POST[$key];
 
                 break;
             case 'password':
@@ -45,22 +45,14 @@ $api->add(
         '/login' => ['password' => 'password', 'pseudo' => 'pseudo'],
         '/password' => ['password' => 'password',],
         '/signup' => ['password' => 'password', 'pseudo' => 'pseudo', 'email' => 'email'],
+        '/contact' => ['name' => 'pseudo', 'subject' => '', 'email' => 'email', 'message' => ''],
         '/settings' => ['pseudo' => 'pseudo', 'email' => 'email'],
         '/addLike' => ['id' => 'numeric'],
+        '/listPicsByLike' => ['start' => 'numeric'],
+        '/listPicsByDate' => ['start' => 'numeric'],
         '/addComment' => ['id' => 'numeric', 'comment' => ''],
         '/changeTitle' => ['id' => 'numeric', 'title' => 'pseudo'],
         '/deletePic' => ['url' => ''],
         '/reinitPost' => ['pseudo' => 'pseudo'],
     ]
 );
-
-/*$api->add(function($key, $type) {
-    if (0)
-    {
-        return (401);
-    }
-    return (0);
-},
-    [
-        '/changeTitle' => ['title' => '',],
-    ]);*/

@@ -3,6 +3,7 @@
 class MailManager
 {
     const URL = 'http://jgroc2s.free.fr';
+    const EMAIL = 'jgroc2s@free.fr';
 
     /**
      * sendMail.
@@ -107,5 +108,27 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
         $message = 'Hi '.$user['pseudo'].', You have a new comment for one of your picture! Check-it out';
         $headers = 'From: jgroc2s@free.fr'."\r\n".'Reply-To: jgroc2s@free.fr'."\r\n".'X-Mailer: PHP/'.phpversion();
         $this->sendMail($user['email'], $subject, $message, $headers);
+    }
+	
+	/**
+     * sendContactMail.
+     *
+     * @param string $user
+     *
+     * @return bool
+     */
+    public function sendContactMail()
+    {
+        $headers = 'From: '.$_POST['email']."\r\n".'Reply-To: '.self::EMAIL."\r\n".'X-Mailer: PHP/'.phpversion();
+        if ($this->sendMail(self::EMAIL, $_POST['subject'], $_POST['message'], $headers))
+        {
+            $_SESSION['flash'] = ['success' => 'Bienvenu! Un mail vous a été envoyé'];
+        }
+        else
+        {
+            $_SESSION['flash'] = ['success' => 'Bienvenu! Pas de mail pour vous par contre…'];
+        }
+
+        return true;
     }
 }
