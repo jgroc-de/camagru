@@ -10,9 +10,12 @@
  */
 function listpicsByDate(Dumbee $container, array $options)
 {
+    $pics = $container->picture->getPics(($_POST['start'] - 1) * 4);
+	$code = empty($pics) ? 404 : 200;
+
     return [
-        'pics' => $container->picture->getPics(($_POST['start'] - 1) * 4),
-        'code' => 200,
+        'pics' => $pics,
+        'code' => $code,
         'start' => $_POST['start'] + 1,
         'url' => '/listPicsByDate',
     ];

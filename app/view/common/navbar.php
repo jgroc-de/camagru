@@ -13,8 +13,14 @@
     {
         ?>href="/camagru"<?php
     } ?>>/b</a>
+<?php if (!empty($options['components']))
+    {
+        ?>
 	  <a class="w3-hide-small w3-bar-item w3-button" href="#about">about</a>
 	  <a class="w3-hide-small w3-bar-item w3-button" href="#contact">contact</a>
+<?php
+	}
+        ?>
 <?php if (!isset($_SESSION['pseudo']))
     {
         ?>

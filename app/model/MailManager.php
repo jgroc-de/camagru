@@ -28,8 +28,8 @@ class MailManager
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
         $mail->Password = 'secret';/
-        $mail->Username = 'jgroc2s@free.fr';
-        $mail->setFrom('jgroc2s@free.fr', 'jgroc-de');
+        $mail->Username = 'lol@camagru.fr';
+        $mail->setFrom('lol@camagru.fr', 'jgroc-de');
         $mail->addAddress($dest);
         $mail->Subject = $subject;
         $mail->Body = $message;*/
@@ -58,7 +58,7 @@ class MailManager
 
             ---------------
             Por favor, ne me spammez pas...';
-        $headers = 'From: jgroc2s@free.fr'."\r\n".'Reply-To: jgroc2s@free.fr'."\r\n".'X-Mailer: PHP/'.phpversion();
+        $headers = 'From: lol@camagru.fr'."\r\n".'Reply-To: jgroc2s@free.fr'."\r\n".'X-Mailer: PHP/'.phpversion();
         $this->sendMail($dest, $subject, $message, $headers);
         $_SESSION['flash'] = ['success' => 'Opération éffectuée! Scrutez votre boite mail avec attention'];
     }
@@ -84,7 +84,7 @@ ou copier/coller dans votre navigateur internet.
 ---------------
 Ceci est un mail automatique, Merci de ne pas y répondre.';
 
-        $headers = 'From: jgroc2s@free.fr'."\r\n".'Reply-To: jgroc2s@free.fr'."\r\n".'X-Mailer: PHP/'.phpversion();
+        $headers = 'From: lol@camagru.fr'."\r\n".'Reply-To: jgroc2s@free.fr'."\r\n".'X-Mailer: PHP/'.phpversion();
         if ($this->sendMail($user['email'], $subject, $message, $headers))
         {
             $_SESSION['flash'] = ['success' => 'Bienvenu! Un mail vous a été envoyé'];
@@ -106,7 +106,7 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
     {
         $subject = 'nouveau commentaire';
         $message = 'Hi '.$user['pseudo'].', You have a new comment for one of your picture! Check-it out';
-        $headers = 'From: jgroc2s@free.fr'."\r\n".'Reply-To: jgroc2s@free.fr'."\r\n".'X-Mailer: PHP/'.phpversion();
+        $headers = 'From: lol@camagru.fr'."\r\n".'Reply-To: jgroc2s@free.fr'."\r\n".'X-Mailer: PHP/'.phpversion();
         $this->sendMail($user['email'], $subject, $message, $headers);
     }
 
