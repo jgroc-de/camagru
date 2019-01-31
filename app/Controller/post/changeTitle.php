@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controller\post;
+
 use Dumb\Dumbee;
 
 /**

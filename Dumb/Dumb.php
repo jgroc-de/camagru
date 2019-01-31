@@ -4,6 +4,7 @@ namespace Dumb;
 
 //require 'Bunkee.php';
 //require 'Dumbee.php';
+use function App\Controller\error;
 
 class Dumb extends Bunkee
 {
@@ -46,21 +47,19 @@ class Dumb extends Bunkee
         $this->form();
         if (0 === $this->error)
         {
-            require '../app/controller/'.strtolower($_SERVER['REQUEST_METHOD']).$this->uri.'.php';
-            $response = (ltrim($this->uri, '/'))($this->container, $args);
-            if ($response)
+			$class = '\App\Controller\\'.strtolower($_SERVER['REQUEST_METHOD']).'\\'.(ltrim($this->uri, '/'));
+			$response = new $class($this->container, $args);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                header('HTTP/1.1 '.$response['code'].' '.self::HTTP_CODE[$response['code']]);
-                unset($response['code']);
-                echo json_encode($response);
+                header('HTTP/1.1 '.$response->code.' '.self::HTTP_CODE[$response->code]);
+                echo json_encode($response->args);
             }
         }
         else
         {
-            require '../app/controller/error.php';
             $error['code'] = $this->error;
             $error['message'] = self::HTTP_CODE[$this->error];
-            \App\Controller\error($this->container, $error);
+            new \App\Controller\error($this->container, $error);
         }
     }
 }
