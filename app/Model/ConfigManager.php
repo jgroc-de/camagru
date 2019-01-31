@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Model;
+
 class ConfigManager extends SqlManager
 {
     /**
@@ -27,15 +29,15 @@ class ConfigManager extends SqlManager
     /**
      * dbconnect.
      *
-     * @return PDO
+     * @return \PDO
      */
     protected function dbconnect()
     {
         $db = $this->env;
         $db_dsn = $db['driver'].':host='.$db['host'].';port='.$db['port'];
 
-        return new PDO($db_dsn, $db['user'], $db['password'], [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        return new \PDO($db_dsn, $db['user'], $db['password'], [
+            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
         ]);
     }
 }

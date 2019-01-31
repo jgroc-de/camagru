@@ -2,6 +2,13 @@
 
 require '../app/config/env.php';
 
+use App\Model\CamagruManager;
+use App\Model\CommentManager;
+use App\Model\ConfigManager;
+use App\Model\MailManager;
+use App\Model\PicManager;
+use App\Model\UserManager;
+
 $baka->setContainer([
     'env' => function (&$c) {
         global $DB;
@@ -13,8 +20,8 @@ $baka->setContainer([
 
         $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';
 
-        return new PDO($DB_DSN, $DB['user'], $DB['password'], [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        return new \PDO($DB_DSN, $DB['user'], $DB['password'], [
+            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
         ]);
     },
     'camagru' => function (&$c) {

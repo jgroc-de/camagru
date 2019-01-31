@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Model;
+
 class PicManager extends SqlManager
 {
     /**
@@ -35,7 +37,7 @@ class PicManager extends SqlManager
 			ORDER BY img.id DESC
 			LIMIT 4 OFFSET :start
 		');
-        $request->bindParam(':start', $start, PDO::PARAM_INT);
+        $request->bindParam(':start', $start, \PDO::PARAM_INT);
         $request->execute();
 
         return $request->fetchAll();
@@ -56,7 +58,7 @@ class PicManager extends SqlManager
 			ORDER BY img.nb_like DESC
 			LIMIT 4 OFFSET :start
 		');
-        $request->bindParam(':start', $start, PDO::PARAM_INT);
+        $request->bindParam(':start', $start, \PDO::PARAM_INT);
         $request->execute();
 
         return $request->fetchAll();

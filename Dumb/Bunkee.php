@@ -1,5 +1,7 @@
 <?php
 
+namespace Dumb;
+
 class Bunkee
 {
     const HTTP_CODE = [

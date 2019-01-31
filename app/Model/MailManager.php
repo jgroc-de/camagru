@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Model;
+
 class MailManager
 {
     const URL = 'http://jgroc2s.free.fr';

@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Controller;
+
+use Dumb\Dumbee;
+
 function error(Dumbee $c, array $options)
 {
     if (!isset($options['code']))

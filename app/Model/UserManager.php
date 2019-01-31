@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Model;
+
 class UserManager extends SqlManager
 {
     /**
@@ -231,10 +233,10 @@ class UserManager extends SqlManager
                     UPDATE users
                     SET pseudo = :pseudo, email = :email, alert = :alert
                     WHERE pseudo = :login');
-        $request->bindParam(':alert', $alert, PDO::PARAM_BOOL);
-        $request->bindParam(':email', $email, PDO::PARAM_STR);
-        $request->bindParam(':pseudo', $pseudo, PDO::PARAM_STR);
-        $request->bindParam(':login', $oldPseudo, PDO::PARAM_STR);
+        $request->bindParam(':alert', $alert, \PDO::PARAM_BOOL);
+        $request->bindParam(':email', $email, \PDO::PARAM_STR);
+        $request->bindParam(':pseudo', $pseudo, \PDO::PARAM_STR);
+        $request->bindParam(':login', $oldPseudo, \PDO::PARAM_STR);
         $request->execute();
 
         return true;
@@ -249,8 +251,8 @@ class UserManager extends SqlManager
     {
         $request = $this->container->db->prepare('UPDATE users SET passwd = :pass  WHERE pseudo = :login');
         $passwd = password_hash($passwd, PASSWORD_DEFAULT);
-        $request->bindParam(':pass', $passwd, PDO::PARAM_STR);
-        $request->bindParam(':login', $_SESSION['pseudo'], PDO::PARAM_STR);
+        $request->bindParam(':pass', $passwd, \PDO::PARAM_STR);
+        $request->bindParam(':login', $_SESSION['pseudo'], \PDO::PARAM_STR);
         $request->execute();
     }
 }

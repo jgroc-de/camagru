@@ -1,5 +1,7 @@
 <?php
 
+use Dumb\Dumbee;
+
 /**
  * reinitGet.
  *

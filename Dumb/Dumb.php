@@ -1,7 +1,9 @@
 <?php
 
-require '../dumb/Dumbee.php';
-require '../dumb/Bunkee.php';
+namespace Dumb;
+
+//require 'Bunkee.php';
+//require 'Dumbee.php';
 
 class Dumb extends Bunkee
 {
@@ -12,9 +14,9 @@ class Dumb extends Bunkee
      */
     public function __construct()
     {
-        spl_autoload_register(function ($class) {
-            require '../app/model/'.$class.'.php';
-        });
+        /*spl_autoload_register(function ($class) {
+            require '../app/Model/'.$class.'.php';
+        });*/
         $request = explode('/', $_SERVER['REQUEST_URI']);
         $this->uri = '/'.$request[1];
         if (isset($request[2]))
@@ -58,7 +60,7 @@ class Dumb extends Bunkee
             require '../app/controller/error.php';
             $error['code'] = $this->error;
             $error['message'] = self::HTTP_CODE[$this->error];
-            error($this->container, $error);
+            \App\Controller\error($this->container, $error);
         }
     }
 }

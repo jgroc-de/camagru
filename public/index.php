@@ -2,6 +2,8 @@
 
 session_start();
 
+require __DIR__.'/../vendor/autoload.php';
+
 /**
  * initialisation de variable pour app/view/template.php.
  */
@@ -18,8 +20,8 @@ $args = [
     ],
 ];
 
-require '../dumb/Dumb.php';
-$baka = new Dumb();
+require '../Dumb/Dumb.php';
+$baka = new Dumb\Dumb();
 require '../app/routes.php';
 require '../app/middlewares.php';
 require '../app/forms.php';

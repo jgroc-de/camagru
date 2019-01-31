@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Model;
+
+use Dumb\Dumbee;
+
 class SqlManager
 {
     protected $container;
