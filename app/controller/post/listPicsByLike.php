@@ -11,7 +11,7 @@
 function listpicsByLike(Dumbee $container, array $options)
 {
     $pics = $container->picture->getPicsByLike(($_POST['start'] - 1) * 4);
-	$code = empty($pics) ? 404 : 200;
+    $code = empty($pics) ? 404 : 200;
 
     return [
         'pics' => $pics,

@@ -19,14 +19,14 @@
 	  <a class="w3-hide-small w3-bar-item w3-button" href="#about">about</a>
 	  <a class="w3-hide-small w3-bar-item w3-button" href="#contact">contact</a>
 <?php
-	}
+    }
         ?>
 <?php if (!isset($_SESSION['pseudo']))
-    {
-        ?>
+        {
+            ?>
 	  <a id="btnLog" class="w3-bar-item w3-green w3-button" href="#login" onclick="document.getElementById('form').style.display='block';">
 <?php
-    }
+        }
     else
     {
         ?>
