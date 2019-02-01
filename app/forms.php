@@ -1,13 +1,15 @@
 <?php
 
-$baka->eat(
-    function ($key, $type) {
-        if (!isset($_POST[$key]) || !$_POST[$key])
-        {
-            return 401;
-        }
-        $_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
-        switch ($type) {
+function trollBumper($baka)
+{
+    $baka->eat(
+        function ($key, $type) {
+            if (!isset($_POST[$key]) || !$_POST[$key])
+            {
+                return 401;
+            }
+            $_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
+            switch ($type) {
             case 'numeric':
                 if (!is_numeric($_POST[$key]) || $_POST[$key] <= 0)
                 {
@@ -37,22 +39,23 @@ $baka->eat(
                 }
 
                 break;
-        }
+            }
 
-        return 0;
-    },
-    [
-        '/login' => ['password' => 'password', 'pseudo' => 'pseudo'],
-        '/password' => ['password' => 'password'],
-        '/signup' => ['password' => 'password', 'pseudo' => 'pseudo', 'email' => 'email'],
-        '/contact' => ['name' => 'pseudo', 'subject' => '', 'email' => 'email', 'message' => ''],
-        '/settings' => ['pseudo' => 'pseudo', 'email' => 'email'],
-        '/addLike' => ['id' => 'numeric'],
-        '/listPicsByLike' => ['start' => 'numeric'],
-        '/listPicsByDate' => ['start' => 'numeric'],
-        '/addComment' => ['id' => 'numeric', 'comment' => ''],
-        '/changeTitle' => ['id' => 'numeric', 'title' => 'pseudo'],
-        '/deletePic' => ['url' => ''],
-        '/reinitPost' => ['pseudo' => 'pseudo'],
-    ]
-);
+            return 0;
+        },
+        [
+            '/login' => ['password' => 'password', 'pseudo' => 'pseudo'],
+            '/password' => ['password' => 'password'],
+            '/signup' => ['password' => 'password', 'pseudo' => 'pseudo', 'email' => 'email'],
+            '/contact' => ['name' => 'pseudo', 'subject' => '', 'email' => 'email', 'message' => ''],
+            '/settings' => ['pseudo' => 'pseudo', 'email' => 'email'],
+            '/addLike' => ['id' => 'numeric'],
+            '/listPicsByLike' => ['start' => 'numeric'],
+            '/listPicsByDate' => ['start' => 'numeric'],
+            '/addComment' => ['id' => 'numeric', 'comment' => ''],
+            '/changeTitle' => ['id' => 'numeric', 'title' => 'pseudo'],
+            '/deletePic' => ['url' => ''],
+            '/reinitPost' => ['pseudo' => 'pseudo'],
+        ]
+    );
+}

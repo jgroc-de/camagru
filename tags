@@ -364,8 +364,8 @@ CustomFilterIterator	vendor/symfony/finder/Iterator/CustomFilterIterator.php	/^c
 CustomFilterIteratorTest	vendor/symfony/finder/Tests/Iterator/CustomFilterIteratorTest.php	/^class CustomFilterIteratorTest extends IteratorTestCase$/;"	c
 D	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/OrderedClassElementsFixer.php	/^    public function D(){}$/;"	f
 DB	app/config/env.php	/^$DB = [$/;"	v
-DB	app/container.php	/^        $DB = $c->env;$/;"	v
-DB_DSN	app/container.php	/^        $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';$/;"	v
+DB	app/container.php	/^			$DB = $c->env;$/;"	v
+DB_DSN	app/container.php	/^			$DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';$/;"	v
 DIExtension	vendor/nette/di/src/DI/Extensions/DIExtension.php	/^class DIExtension extends Nette\\DI\\CompilerExtension$/;"	c
 DNumber	vendor/nikic/php-parser/lib/PhpParser/Node/Scalar/DNumber.php	/^class DNumber extends Scalar$/;"	c
 DateComparator	vendor/symfony/finder/Comparator/DateComparator.php	/^class DateComparator extends Comparator$/;"	c
@@ -3375,6 +3375,7 @@ argumentsStart	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/Arguments
 argumentsStart	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/ArgumentsAnalyzer.php	/^        $argumentsStart = $paramContentIndex;$/;"	v
 argumentsStart	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/FunctionsAnalyzer.php	/^        $argumentsStart = $tokens->getNextTokenOfKind($methodIndex, ['(']);$/;"	v
 argv	vendor/symfony/console/Input/ArgvInput.php	/^            $argv = $_SERVER['argv'];$/;"	v
+armory	app/container.php	/^function armory($baka)$/;"	f
 arr	vendor/nette/php-generator/src/PhpGenerator/Helpers.php	/^			$arr = (array) $var;$/;"	v
 arr	vendor/nette/utils/src/Utils/Arrays.php	/^				$arr = $arr[$k];$/;"	v
 arr	vendor/nette/utils/src/Utils/Arrays.php	/^				$arr = &$arr[$k];$/;"	v
@@ -3608,6 +3609,7 @@ backtickTokens	vendor/friendsofphp/php-cs-fixer/src/Fixer/Alias/BacktickToShellE
 backticks_expr	vendor/nikic/php-parser/grammar/php5.y	/^backticks_expr:$/;"	l
 backticks_expr	vendor/nikic/php-parser/grammar/php7.y	/^backticks_expr:$/;"	l
 baka	public/index.php	/^$baka = new Dumb\\Dumb();$/;"	v
+bakaDo	app/routes.php	/^function bakaDo($baka)$/;"	f
 bar	vendor/friendsofphp/php-cs-fixer/src/Fixer/Basic/BracesFixer.php	/^    public function bar($baz) {$/;"	f
 bar	vendor/friendsofphp/php-cs-fixer/src/Fixer/Basic/BracesFixer.php	/^    public function bar($baz)$/;"	f
 bar	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/ClassAttributesSeparationFixer.php	/^    protected function bar()$/;"	f
@@ -21300,6 +21302,7 @@ shellVerbosity	vendor/symfony/console/Application.php	/^                $shellVe
 shellVerbosity	vendor/symfony/console/Application.php	/^                $shellVerbosity = 2;$/;"	v
 shellVerbosity	vendor/symfony/console/Application.php	/^                $shellVerbosity = 3;$/;"	v
 shellVerbosity	vendor/symfony/console/Application.php	/^            $shellVerbosity = -1;$/;"	v
+shield	app/middlewares.php	/^function shield($baka)$/;"	f
 short	vendor/nette/php-generator/src/PhpGenerator/PhpNamespace.php	/^				$short = $alias . substr($name, strlen($original));$/;"	v
 shortName	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/Analysis/NamespaceAnalysis.php	/^        $this->shortName = $shortName;$/;"	v
 shortName	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/Analysis/NamespaceAnalysis.php	/^    private $shortName;$/;"	v
@@ -24510,6 +24513,7 @@ trimBeginning	vendor/phpstan/phpstan/src/File/RelativePathHelper.php	/^		$trimBe
 trimmedContent	vendor/friendsofphp/php-cs-fixer/src/Fixer/Comment/NoTrailingWhitespaceInCommentFixer.php	/^                    $trimmedContent = ltrim($tokens[$index + 1]->getContent(), " \\t");$/;"	v
 trimmedContent	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Transformer/WhitespacyCommentTransformer.php	/^        $trimmedContent = rtrim($content);$/;"	v
 trimmedLine	vendor/friendsofphp/php-cs-fixer/src/Fixer/Whitespace/NoTrailingWhitespaceFixer.php	/^                    $trimmedLine = rtrim($lines[$i], " \\t");$/;"	v
+trollBumper	app/forms.php	/^function trollBumper($baka)$/;"	f
 true	vendor/phpstan/phpstan/src/Analyser/TypeSpecifierContext.php	/^	public function true(): bool$/;"	f
 trueAnswerRegex	vendor/symfony/console/Question/ConfirmationQuestion.php	/^        $this->trueAnswerRegex = $trueAnswerRegex;$/;"	v
 trueAnswerRegex	vendor/symfony/console/Question/ConfirmationQuestion.php	/^    private $trueAnswerRegex;$/;"	v

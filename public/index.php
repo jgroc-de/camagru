@@ -2,7 +2,25 @@
 
 session_start();
 
+//autoloader
 require __DIR__.'/../vendor/autoload.php';
+//Dumb Framework
+require '../Dumb/Dumb.php';
+
+//Dumb Framework is alive!!!
+$baka = new Dumb\Dumb();
+
+require '../app/routes.php';
+bakaDo($baka);
+
+require '../app/middlewares.php';
+shield($baka);
+
+require '../app/forms.php';
+trollBumper($baka);
+
+require '../app/container.php';
+armory($baka);
 
 /**
  * initialisation de variable pour app/view/template.php.
@@ -19,12 +37,5 @@ $args = [
         '/common/contact.php',
     ],
 ];
-
-require '../Dumb/Dumb.php';
-$baka = new Dumb\Dumb();
-require '../app/routes.php';
-require '../app/middlewares.php';
-require '../app/forms.php';
-require '../app/container.php';
 
 $baka->kamehameha($args);
