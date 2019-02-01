@@ -46,10 +46,25 @@ $baka->eat(
         {
             return 401;
         }
+        $_GET['id'] = (int) $_GET['id'];
 
         return 0;
     },
     [
         '/picture',
+    ]
+);
+
+$baka->eat(
+    function () {
+        if (!isset($_GET['log'], $_GET['key']))
+        {
+            return 401;
+        }
+
+        return 0;
+    },
+    [
+        '/reinitGet',
     ]
 );

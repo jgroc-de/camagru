@@ -4,11 +4,6 @@ namespace App\Model;
 
 class PicManager extends SqlManager
 {
-    /**
-     * getPic.
-     *
-     * @param mixed $id
-     */
     public function getPic(int $id)
     {
         $request = '
@@ -22,11 +17,6 @@ class PicManager extends SqlManager
         return $this->sqlRequestFetch($request, [$id]);
     }
 
-    /**
-     * getPics.
-     *
-     * @param int $start
-     */
     public function getPics(int $start)
     {
         $request = $this->db->prepare('
@@ -43,11 +33,6 @@ class PicManager extends SqlManager
         return $request->fetchAll();
     }
 
-    /**
-     * getPicsByLike.
-     *
-     * @param int $start
-     */
     public function getPicsByLike(int $start)
     {
         $request = $this->db->prepare('
@@ -64,11 +49,6 @@ class PicManager extends SqlManager
         return $request->fetchAll();
     }
 
-    /**
-     * getPicsByLogin.
-     *
-     * @param mixed $pseudo
-     */
     public function getPicsByLogin(string $pseudo)
     {
         $tab = [];
@@ -88,11 +68,6 @@ class PicManager extends SqlManager
         return $tab;
     }
 
-    /**
-     * getPicByUrl.
-     *
-     * @param mixed $url
-     */
     public function getPicByUrl(string $url)
     {
         $request = '
@@ -104,11 +79,6 @@ class PicManager extends SqlManager
         return $this->sqlRequestFetch($request, [$url]);
     }
 
-    /**
-     * addPic.
-     *
-     * @param mixed $path
-     */
     public function addPic(string $path)
     {
         $request = '
@@ -119,12 +89,6 @@ class PicManager extends SqlManager
         $this->sqlRequest($request, [$_SESSION['pseudo'].'_'.rand(), $_SESSION['id'], $path], true);
     }
 
-    /**
-     * deletePic.
-     *
-     * @param mixed $img_id
-     * @param mixed $author_id
-     */
     public function deletePic(int $img_id, int $author_id)
     {
         $request = '
@@ -141,9 +105,6 @@ class PicManager extends SqlManager
         }
     }
 
-    /**
-     * countPics.
-     */
     public function countPics()
     {
         $request = '
@@ -154,13 +115,6 @@ class PicManager extends SqlManager
         return $this->sqlRequestFetch($request);
     }
 
-    /**
-     * picInDb.
-     *
-     * @param mixed $id
-     *
-     * @return bool
-     */
     public function picInDb(int $id)
     {
         $request = '
@@ -179,11 +133,6 @@ class PicManager extends SqlManager
         return false;
     }
 
-    /**
-     * addLike.
-     *
-     * @param mixed $id_img
-     */
     public function addLike(int $id_img)
     {
         $id_author = $_SESSION['id'];
@@ -222,15 +171,7 @@ class PicManager extends SqlManager
         return $count[0];
     }
 
-    /**
-     * changeTitle.
-     *
-     * @param mixed $id
-     * @param mixed $title
-     *
-     * @return string
-     */
-    public function changeTitle(int $id, strnig $title)
+    public function changeTitle(int $id, string $title)
     {
         $request = '
             UPDATE img

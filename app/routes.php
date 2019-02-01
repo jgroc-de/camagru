@@ -7,7 +7,7 @@ $baka->GET = [
     '/camagru' => '/b',
     '/camagru',
     '/setup',
-    '/reinit' => '/reinitGet',
+    '/reinit' => ['/reinitGet', '/validation'],
 ];
 $baka->POST = [
     '/listPicsByLike',

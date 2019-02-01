@@ -1,29 +1,32 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\post;
 
 use Dumb\Dumbee;
+use Dumb\Patronus;
 
-/**
- * addComment.
- *
- * @param Dumbee $c
- * @param array  $options
- *
- * @return array
- */
-function addComment(Dumbee $c, array $options = null)
+class addComment extends Patronus
 {
-    $commentManager = $c->comment;
-    $userManager = $c->user;
-
-    $commentManager->addComment();
-    $response = $commentManager->getCommentByImgId($_POST['id']);
-    $user = $userManager->getUserByImgId($_POST['id']);
-    if ($user['alert'])
+    public function trap(Dumbee $c)
     {
-        $c->mail->sendCommentMail($user);
-    }
+        $commentManager = $c->comment;
+        $id = $_POST['id'];
 
-    return $response;
+        if (!($c->picture->picInDb($id)))
+        {
+            $this->code = 404;
+        }
+        else
+        {
+            $commentManager->addComment();
+            $user = $c->user->getUserByImgId($id);
+            if ($user['alert'])
+            {
+                $c->mail->sendCommentMail($user);
+            }
+            $this->response = $commentManager->getCommentByImgId($id);
+        }
+    }
 }

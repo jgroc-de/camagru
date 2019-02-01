@@ -1,26 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller;
 
-use Dumb\Dumbee;
+use Dumb\Patronus;
 
-class error
+class error extends Patronus
 {
-	public function __construct(Dumbee $c, array $options)
-	{
-		if (!isset($options['code']))
-		{
-			$options['code'] = 404;
-			$options['message'] = 'Not Found';
-		}
-		header('HTTP/1.1 '.$options['code'].' '.$options['message']);
-		$options['components'] = [
-			'/common/about.php',
-			'/common/contact.php',
-		];
-		$options['header'] = [
-			'/common/error.php',
-		];
-		require __DIR__.'/../view/template.php';
-	}
+    const HTTP_CODE = [
+        200 => 'OK',
+        401 => 'Bad Request',
+        403 => 'Forbidden',
+        404 => 'Not Found',
+        405 => 'Method Not Allowed',
+        500 => 'Server Internal Error',
+    ];
+
+    public function bomb(array $options)
+    {
+        $options['code'] = $this->code;
+        $options['message'] = self::HTTP_CODE[$this->code];
+        $options['components'] = [
+            '/common/about.php',
+            '/common/contact.php',
+        ];
+        $options['header'] = [
+            '/common/error.php',
+        ];
+
+        require __DIR__.'/../view/template.php';
+    }
 }

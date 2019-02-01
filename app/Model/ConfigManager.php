@@ -4,11 +4,6 @@ namespace App\Model;
 
 class ConfigManager extends SqlManager
 {
-    /**
-     * createDB.
-     *
-     * @param string $DBName
-     */
     public function createDB(string $DBName)
     {
         $db = $this->dbconnect();
@@ -16,21 +11,11 @@ class ConfigManager extends SqlManager
         $db->exec('CREATE DATABASE '.$DBName);
     }
 
-    /**
-     * request.
-     *
-     * @param string $file
-     */
     public function request(string $file)
     {
         $this->db->exec($file);
     }
 
-    /**
-     * dbconnect.
-     *
-     * @return \PDO
-     */
     protected function dbconnect()
     {
         $db = $this->env;

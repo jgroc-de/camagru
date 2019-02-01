@@ -1,25 +1,31 @@
 <?php
 
-function settings($c, $options)
+declare(strict_types=1);
+
+namespace App\Controller\post;
+
+use Dumb\Dumbee;
+use Dumb\Patronus;
+
+class settings extends Patronus
 {
-    $userManager = $c->user;
-
-    $pseudo = $_POST['pseudo'];
-    $email = $_POST['email'];
-    $alert = isset($_POST['alert']) ? true : false;
-    if ($userManager->updateUser($pseudo, $email, $alert))
+    public function trap(Dumbee $c)
     {
-        $_SESSION['pseudo'] = $pseudo;
-        $_SESSION['alert'] = $alert;
-        $_SESSION['email'] = $email;
-        $response['code'] = 200;
-        $response['flash'] = 'Profil Succesfully updated';
-    }
-    else
-    {
-        $response['code'] = 400;
-        $response['flash'] = 'Pseudo unavailable!';
-    }
+        $pseudo = $_POST['pseudo'];
+        $email = $_POST['email'];
+        $alert = isset($_POST['alert']) ? true : false;
 
-    return $response;
+        if ($c->user->updateUser($pseudo, $email, $alert))
+        {
+            $_SESSION['pseudo'] = $pseudo;
+            $_SESSION['alert'] = $alert;
+            $_SESSION['email'] = $email;
+            $this->response['flash'] = 'Profil Succesfully updated';
+        }
+        else
+        {
+            $response['code'] = 400;
+            $response['flash'] = 'Pseudo unavailable!';
+        }
+    }
 }

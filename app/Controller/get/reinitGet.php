@@ -1,42 +1,42 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\get;
 
 use Dumb\Dumbee;
+use Dumb\Patronus;
 
-/**
- * reinitGet.
- *
- * @param Dumbee $c
- * @param array  $options
- *
- * @return array
- */
-class reinitGet
+class reinitGet extends Patronus
 {
-	public function __construct(Dumbee $c, array $options)
-	{
-		$userManager = $c->user;
+    public function trap(Dumbee $c)
+    {
+        $userManager = $c->user;
+        $pseudo = $_GET['log'];
 
-		$response['code'] = 200;
-		if (isset($_GET['log'], $_GET['key']))
-		{
-			$pseudo = $_GET['log'];
-			if ($userManager->pseudoInDb($pseudo) && $userManager->checkValidationMail($pseudo, $_GET['key']))
-			{
-				logUser($userManager->getUser($pseudo));
-			}
-			else
-			{
-				$response['code'] = 400;
-				$response['flash'] = "Bimp! N'y aurait-il pas une petite erreur de typo dans votre pseudo?";
-			}
-		}
-		if (isset($_SESSION['flash']))
-		{
-			$response['flash'] = $_SESSION['flash'];
-		}
+        if ($userManager->pseudoInDb($pseudo) && $userManager->checkValidationMail($pseudo, $_GET['key']))
+        {
+            $user = $userManager->getUser($pseudo);
+            $_SESSION['pseudo'] = $user['pseudo'];
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['alert'] = $user['alert'];
+            $_SESSION['email'] = $user['email'];
+        }
+        else
+        {
+            $this->code = 400;
+        }
+    }
 
-		return $response;
-	}
+    public function bomb(array $options)
+    {
+        if ($this->code >= 400)
+        {
+            header('Location: /error');
+        }
+        else
+        {
+            header('Location: /');
+        }
+    }
 }

@@ -1,11 +1,17 @@
 <?php
 
-function logout()
-{
-    $response['code'] = 200;
-    $response['flash'] = 'Cya '.$_SESSION['pseudo'].'!';
-    session_unset();
-    session_destroy();
+declare(strict_types=1);
 
-    return $response;
+namespace App\Controller\post;
+
+use Dumb\Dumbee;
+use Dumb\Patronus;
+
+class logout extends Patronus
+{
+    public function trap(Dumbee $c)
+    {
+        session_unset();
+        session_destroy();
+    }
 }

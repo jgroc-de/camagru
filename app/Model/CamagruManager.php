@@ -4,11 +4,6 @@ namespace App\Model;
 
 class CamagruManager extends SqlManager
 {
-    /**
-     * getFilters.
-     *
-     * @return array
-     */
     public function getFilters()
     {
         $tab = [];

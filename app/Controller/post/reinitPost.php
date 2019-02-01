@@ -1,25 +1,31 @@
 <?php
 
-function reinitPost($c, $options)
+declare(strict_types=1);
+
+namespace App\Controller\post;
+
+use Dumb\Dumbee;
+use Dumb\Patronus;
+
+class reinitPost extends Patronus
 {
-    $userManager = $c->user;
-    $pseudo = $_POST['pseudo'];
+    public function trap(Dumbee $c)
+    {
+        $userManager = $c->user;
+        $pseudo = $_POST['pseudo'];
+        $user = $userManager->getUser($pseudo);
 
-    $user = $userManager->getUser($pseudo);
-    if (!empty($user) && $userManager->resetValidkey($pseudo))
-    {
-        $c->mail->sendReinitMail($user);
-        $response['code'] = 200;
+        if (!empty($user) && $userManager->resetValidkey($pseudo))
+        {
+            $c->mail->sendReinitMail($user);
+        }
+        else
+        {
+            $this->code = 404;
+        }
+        if (isset($_SESSION['flash']))
+        {
+            $this->response['flash'] = $_SESSION['flash'];
+        }
     }
-    else
-    {
-        $response['code'] = 404;
-        $response['flash'] = 'Soldat inconnu';
-    }
-    if (isset($_SESSION['flash']))
-    {
-        $response['flash'] = $_SESSION['flash'];
-    }
-
-    return $response;
 }

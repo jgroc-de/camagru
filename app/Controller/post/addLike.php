@@ -1,39 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\post;
 
 use Dumb\Dumbee;
+use Dumb\Patronus;
 
-/**
- * addLike.
- *
- * @param Dumbee $c
- * @param array  $options
- *
- * @return array
- */
-function addLike(Dumbee $c, array $options = null)
+class addLike extends Patronus
 {
-    $picManager = $c->picture;
-
-    if (($picManager->picInDb($_POST['id'])))
+    public function trap(Dumbee $c)
     {
-        $response['likes_counter'] = $picManager->addlike($_POST['id']);
-        if ($response['likes_counter'] < 0)
+        $picManager = $c->picture;
+
+        if (($picManager->picInDb($_POST['id'])))
         {
-            $response['code'] = 401;
-            $response['flash'] = 'Already liked!';
+            $this->response['likes_counter'] = $picManager->addlike($_POST['id']);
+            if ($this->response['likes_counter'] < 0)
+            {
+                $this->code = 200;
+                $this->response['flash'] = 'Already liked!';
+            }
         }
         else
         {
-            $response['code'] = 200;
+            $this->code = 404;
         }
     }
-    else
-    {
-        $response['code'] = 404;
-        $response['flash'] = "Picture doesn't exist anymore";
-    }
-
-    return $response;
 }

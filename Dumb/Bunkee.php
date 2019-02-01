@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Dumb;
 
 class Bunkee
@@ -104,7 +106,7 @@ class Bunkee
                 {
                     $this->error = $error;
 
-                    return;
+                    break;
                 }
             }
         }

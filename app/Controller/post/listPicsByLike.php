@@ -1,24 +1,29 @@
 <?php
 
+declare(strict_types=1);
+
+namespace App\Controller\post;
+
 use Dumb\Dumbee;
+use Dumb\Patronus;
 
-/**
- * listpicsByLike.
- *
- * @param Dumbee $container
- * @param array  $options
- *
- * @return array $response
- */
-function listpicsByLike(Dumbee $container, array $options)
+class listPicsByLike extends Patronus
 {
-    $pics = $container->picture->getPicsByLike(($_POST['start'] - 1) * 4);
-    $code = empty($pics) ? 404 : 200;
-
-    return [
-        'pics' => $pics,
-        'code' => $code,
-        'start' => $_POST['start'] + 1,
-        'url' => '/listPicsByDate',
-    ];
+    public function trap(Dumbee $container)
+    {
+        $pics = $container->picture->getPicsByLike(($_POST['start'] - 1) * 4);
+        if (empty($pics))
+        {
+            $this->code = 404;
+        }
+        else
+        {
+            $this->response = [
+                'pics' => $pics,
+                'code' => $this->code,
+                'start' => $_POST['start'] + 1,
+                'url' => '/listPicsByDate',
+            ];
+        }
+    }
 }

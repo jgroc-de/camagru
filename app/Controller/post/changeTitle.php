@@ -1,22 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\post;
 
 use Dumb\Dumbee;
+use Dumb\Patronus;
 
-/**
- * changeTitle.
- *
- * @param Dumbee $c
- * @param array  $options
- */
-function changeTitle(Dumbee $c, array $options = null)
+class changeTitle extends Patronus
 {
-    $id = $_POST['id'];
-    $title = $_POST['title'];
-    $picManager = $c->picture;
-    if ($picManager->picInDb($id))
+    public function trap(Dumbee $c)
     {
-        echo $picManager->changeTitle($id, $title);
+        $id = $_POST['id'];
+        $picManager = $c->picture;
+
+        if ($picManager->picInDb($id))
+        {
+            $this->response = $picManager->changeTitle($id, $_POST['title']);
+        }
     }
 }

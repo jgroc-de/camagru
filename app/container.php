@@ -37,7 +37,7 @@ $baka->setContainer([
         return new PicManager($c);
     },
     'mail' => function (&$c) {
-        return new MailManager($c);
+        return new MailManager();
     },
     'user' => function (&$c) {
         return new UserManager($c);

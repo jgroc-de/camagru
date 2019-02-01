@@ -4,11 +4,6 @@ namespace App\Model;
 
 class CommentManager extends SqlManager
 {
-    /**
-     * getComments.
-     *
-     * @param mixed $id
-     */
     public function getComments(int $id)
     {
         $request = '
@@ -23,11 +18,6 @@ class CommentManager extends SqlManager
         return $this->sqlRequest($request, [$id]);
     }
 
-    /**
-     * getCommentByImgId.
-     *
-     * @param int $id
-     */
     public function getCommentByImgId(int $id)
     {
         $request = '
@@ -43,9 +33,6 @@ class CommentManager extends SqlManager
         return $this->sqlRequestFetch($request, [$id]);
     }
 
-    /**
-     * addComment.
-     */
     public function addComment()
     {
         $request = '

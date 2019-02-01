@@ -7,16 +7,6 @@ class MailManager
     const URL = 'http://jgroc2s.free.fr';
     const EMAIL = 'jgroc2s@free.fr';
 
-    /**
-     * sendMail.
-     *
-     * @param mixed $dest
-     * @param mixed $subject
-     * @param mixed $message
-     * @param mixed $headers
-     *
-     * @return bool
-     */
     public function sendMail(string $dest, string $subject, string $message, string $headers)
     {
         //$mail = new PHPMailer\PHPMailer\PHPMailer();
@@ -39,11 +29,6 @@ class MailManager
         //return $mail->send();
     }
 
-    /**
-     * sendReinitMail.
-     *
-     * @param array $user
-     */
     public function sendReinitMail(array $user)
     {
         $key = $user['validkey'];
@@ -65,13 +50,6 @@ class MailManager
         $_SESSION['flash'] = ['success' => 'Opération éffectuée! Scrutez votre boite mail avec attention'];
     }
 
-    /**
-     * sendValidationMail.
-     *
-     * @param string $user
-     *
-     * @return bool
-     */
     public function sendValidationMail(array $user)
     {
         $subject = 'Camagru Activation link';
@@ -99,11 +77,6 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
         return true;
     }
 
-    /**
-     * sendCommentMail.
-     *
-     * @param array $user
-     */
     public function sendCommentMail(array $user)
     {
         $subject = 'nouveau commentaire';
@@ -112,13 +85,6 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
         $this->sendMail($user['email'], $subject, $message, $headers);
     }
 
-    /**
-     * sendContactMail.
-     *
-     * @param string $user
-     *
-     * @return bool
-     */
     public function sendContactMail()
     {
         $headers = 'From: '.$_POST['email']."\r\n".'Reply-To: '.self::EMAIL."\r\n".'X-Mailer: PHP/'.phpversion();

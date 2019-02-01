@@ -1,25 +1,33 @@
 <?php
 
-function login($c, $options)
-{
-    $pseudo = $_POST['pseudo'];
-    $password = $_POST['password'];
-    $userManager = $c->user;
-    if ($userManager->checkLogin($pseudo, $password))
-    {
-        $user = $userManager->getUser($pseudo);
-        $_SESSION['pseudo'] = $user['pseudo'];
-        $_SESSION['id'] = $user['id'];
-        $_SESSION['alert'] = $user['alert'];
-        $_SESSION['email'] = $user['email'];
-        $response['code'] = 200;
-        $response['flash'] = 'Welcome back '.$pseudo;
-    }
-    else
-    {
-        $response['code'] = 401;
-        $response['flash'] = 'Bad password or login';
-    }
+declare(strict_types=1);
 
-    return $response;
+namespace App\Controller\post;
+
+use Dumb\Dumbee;
+use Dumb\Patronus;
+
+class login extends Patronus
+{
+    public function trap(Dumbee $c)
+    {
+        $pseudo = $_POST['pseudo'];
+        $password = $_POST['password'];
+        $userManager = $c->user;
+
+        if ($userManager->checkLogin($pseudo, $password))
+        {
+            $user = $userManager->getUser($pseudo);
+            $_SESSION['pseudo'] = $user['pseudo'];
+            $_SESSION['id'] = $user['id'];
+            $_SESSION['alert'] = $user['alert'];
+            $_SESSION['email'] = $user['email'];
+            $this->response['flash'] = 'Welcome back '.$pseudo;
+        }
+        else
+        {
+            $this->code = 401;
+            $this->response['flash'] = 'Bad password or login';
+        }
+    }
 }

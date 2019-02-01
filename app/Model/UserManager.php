@@ -4,11 +4,6 @@ namespace App\Model;
 
 class UserManager extends SqlManager
 {
-    /**
-     * pseudoInDb.
-     *
-     * @param mixed $pseudo
-     */
     public function pseudoInDb(string $pseudo)
     {
         $request = '
@@ -20,12 +15,6 @@ class UserManager extends SqlManager
         return $this->sqlRequestFetch($request, [$pseudo]);
     }
 
-    /**
-     * checkValidationMail.
-     *
-     * @param mixed $login
-     * @param mixed $key
-     */
     public function checkValidationMail(string $login, string $key)
     {
         $actif = false;
@@ -35,6 +24,7 @@ class UserManager extends SqlManager
 			FROM users
 			WHERE pseudo = ?
 		';
+        $keyBd = '';
         if ($row = $this->sqlRequestFetch($request, [$login]))
         {
             $actif = $row['actif'];
@@ -70,12 +60,6 @@ class UserManager extends SqlManager
 
     //### About password_verify: it's a function from the standard library
 
-    /**
-     * checklogin.
-     *
-     * @param mixed $pseudo
-     * @param mixed $pass
-     */
     public function checklogin(string $pseudo, string $pass)
     {
         if ($this->pseudoInDb($pseudo))
@@ -107,31 +91,19 @@ class UserManager extends SqlManager
         return false;
     }
 
-    /**
-     * resetValidkey.
-     *
-     * @param mixed $login
-     */
     public function resetValidkey(string $login)
     {
-        $key = md5(microtime(true) * 100000);
+        $key = md5((string) ((int) microtime(true) * 100000));
 
         $request = $this->container->db->prepare('UPDATE users SET validkey = ? WHERE pseudo = ?');
 
         return $request->execute([$key, $login]);
     }
 
-    /**
-     * addUser.
-     *
-     * @param mixed $pseudo
-     * @param mixed $pass
-     * @param mixed $mail
-     */
     public function addUser(string $pseudo, string $pass, string $mail)
     {
         $valid = false;
-        $key = md5(microtime(true) * 100000);
+        $key = md5((string) ((int) microtime(true) * 100000));
         if (!($this->pseudoInDb($pseudo)))
         {
             $request = '
@@ -149,11 +121,6 @@ class UserManager extends SqlManager
         return $valid;
     }
 
-    /**
-     * getUser.
-     *
-     * @param mixed $pseudo
-     */
     public function getUser(string $pseudo)
     {
         $request = '
@@ -165,11 +132,6 @@ class UserManager extends SqlManager
         return $this->sqlRequestFetch($request, [$pseudo]);
     }
 
-    /**
-     * getUserSettings.
-     *
-     * @param mixed $pseudo
-     */
     public function getUserSettings(string $pseudo)
     {
         $request = '
@@ -181,11 +143,6 @@ class UserManager extends SqlManager
         return $this->sqlRequestFetch($request, [$pseudo]);
     }
 
-    /**
-     * getUserById.
-     *
-     * @param mixed $id
-     */
     public function getUserById(int $id)
     {
         $request = '
@@ -197,11 +154,6 @@ class UserManager extends SqlManager
         return $this->sqlRequestFetch($request, [$id]);
     }
 
-    /**
-     * getUserByImgId.
-     *
-     * @param mixed $id
-     */
     public function getUserByImgId(int $id)
     {
         $request = '
@@ -215,14 +167,7 @@ class UserManager extends SqlManager
         return $this->sqlRequestFetch($request, [$id]);
     }
 
-    /**
-     * updateUser.
-     *
-     * @param mixed $pseudo
-     * @param mixed $email
-     * @param mixed $alert
-     */
-    public function updateUser(string $pseudo, string $email, string $alert)
+    public function updateUser(string $pseudo, string $email, bool $alert): bool
     {
         $oldPseudo = $_SESSION['pseudo'];
         if ($pseudo != $oldPseudo && $this->pseudoInDb($pseudo))
@@ -242,11 +187,6 @@ class UserManager extends SqlManager
         return true;
     }
 
-    /**
-     * updatePassword.
-     *
-     * @param mixed $passwd
-     */
     public function updatePassword(string $passwd)
     {
         $request = $this->container->db->prepare('UPDATE users SET passwd = :pass  WHERE pseudo = :login');

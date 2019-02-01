@@ -1,21 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+namespace App\Controller\post;
+
 use Dumb\Dumbee;
+use Dumb\Patronus;
 
-/**
- * contact.
- *
- * @param Dumbee $c
- * @param array  $options
- *
- * @return array
- */
-function contact(Dumbee $c, array $options = null)
+class contact extends Patronus
 {
-    $c->mail->sendContactMail();
-
-    return [
-        'code' => '200',
-        'flash' => 'Thx!',
-    ];
+    public function trap(Dumbee $container)
+    {
+        $container->mail->sendContactMail();
+        $this->response['flash'] = 'Thx!';
+    }
 }

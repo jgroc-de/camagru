@@ -1,10 +1,8 @@
 <?php
 
-namespace Dumb;
+declare(strict_types=1);
 
-//require 'Bunkee.php';
-//require 'Dumbee.php';
-use function App\Controller\error;
+namespace Dumb;
 
 class Dumb extends Bunkee
 {
@@ -47,19 +45,19 @@ class Dumb extends Bunkee
         $this->form();
         if (0 === $this->error)
         {
-			$class = '\App\Controller\\'.strtolower($_SERVER['REQUEST_METHOD']).'\\'.(ltrim($this->uri, '/'));
-			$response = new $class($this->container, $args);
-            if ($_SERVER['REQUEST_METHOD'] === 'POST')
-            {
-                header('HTTP/1.1 '.$response->code.' '.self::HTTP_CODE[$response->code]);
-                echo json_encode($response->args);
-            }
+            $class = '\App\Controller\\'.strtolower($_SERVER['REQUEST_METHOD']).'\\'.(ltrim($this->uri, '/'));
+            $letter = new $class();
         }
         else
         {
-            $error['code'] = $this->error;
-            $error['message'] = self::HTTP_CODE[$this->error];
-            new \App\Controller\error($this->container, $error);
+            $letter = new \App\Controller\error($this->error);
         }
+        $letter->trap($this->container);
+        header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
+        if ($letter->code >= 400 && 'GET' === $_SERVER['REQUEST_METHOD'])
+        {
+            $letter = new \App\Controller\error($letter->code);
+        }
+        $letter->bomb($args);
     }
 }

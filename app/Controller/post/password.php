@@ -1,13 +1,17 @@
 <?php
 
-function password($c, $options)
+declare(strict_types=1);
+
+namespace App\Controller\post;
+
+use Dumb\Dumbee;
+use Dumb\Patronus;
+
+class password extends Patronus
 {
-    $userManager = $c->user;
-
-    $password = $_POST['password'];
-    $userManager->updatePassword($password);
-    $response['code'] = 200;
-    $response['flash'] = 'Password Succesfully updated';
-
-    return $response;
+    public function trap(Dumbee $c)
+    {
+        $c->user->updatePassword($_POST['password']);
+        $this->response['flash'] = 'Password Succesfully updated';
+    }
 }

@@ -1,25 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\get;
 
-use Dumb\Dumbee;
+use Dumb\Patronus;
 
-/**
- * home.
- *
- * @param Dumbee $container
- * @param array  $options
- */
-class home
+class home extends Patronus
 {
-	public function __construct(Dumbee $container, array $options)
-	{
-		$components = $options['components'];
+    public function bomb(array $options)
+    {
+        $onLoad = "ggDestroy(document.getElementById('launch'), 'carroussel', '/listPicsByDate');";
+        $components = $options['components'];
+        $components['body'] = $onLoad;
+        $main = '/homeView.html';
+        $view = 'Last Pictures';
 
-		$onLoad = "ggDestroy(document.getElementById('launch'), 'carroussel', '/listPicsByDate');";
-		$components['body'] = $onLoad;
-		$main = '/homeView.html';
-		$view = 'Last Pictures';
-		require __DIR__.'/../../view/template.php';
-	}
+        require __DIR__.'/../../view/template.php';
+    }
 }
