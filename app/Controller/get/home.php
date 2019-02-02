@@ -16,6 +16,6 @@ class home extends Patronus
         $main = '/homeView.html';
         $view = 'Last Pictures';
 
-        require __DIR__.'/../../view/template.php';
+        require __DIR__.'/../../view/template.html';
     }
 }

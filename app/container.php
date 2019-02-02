@@ -1,7 +1,5 @@
 <?php
 
-require '../app/config/env.php';
-
 use App\Model\CamagruManager;
 use App\Model\CommentManager;
 use App\Model\ConfigManager;
@@ -13,7 +11,22 @@ function armory($baka)
 {
     $baka->setContainer([
         'env' => function (&$c) {
-            global $DB;
+            //$dbopts = parse_url(getenv('DATABASE_URL'));
+            $DB = [
+                /*'driver' => 'pgsql',
+                    'user' => $dbopts['user'],
+                    'host' => $dbopts['host'],
+                    'port' => $dbopts['port'],
+                    'password' => $dbopts['pass'],
+                    'name' => ltrim($dbopts['path'], '/'),*/
+                'driver' => 'mysql',
+                'user' => 'root',
+                'password' => 'root00',
+                'host' => 'localhost',
+                'name' => 'camagru',
+                'export' => __DIR__.'/../config/camagru.sql',
+                'port' => '3306',
+            ];
 
             return $DB;
         },

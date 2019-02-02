@@ -18,7 +18,6 @@ class addLike extends Patronus
             $this->response['likes_counter'] = $picManager->addlike($_POST['id']);
             if ($this->response['likes_counter'] < 0)
             {
-                $this->code = 200;
                 $this->response['flash'] = 'Already liked!';
             }
         }

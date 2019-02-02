@@ -27,4 +27,9 @@ class Patronus
         }
         echo json_encode($this->response);
     }
+
+	protected function render(string $path = '../app/view/template.html', array $response)
+	{
+		require $path;
+	}
 }

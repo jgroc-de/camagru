@@ -33,6 +33,6 @@ class camagru extends Patronus
         $main = '/camagruView.html';
         $components = $options['components'];
 
-        require __DIR__.'/../../view/template.php';
+        require __DIR__.'/../../view/template.html';
     }
 }

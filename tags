@@ -364,8 +364,9 @@ CustomFilterIterator	vendor/symfony/finder/Iterator/CustomFilterIterator.php	/^c
 CustomFilterIteratorTest	vendor/symfony/finder/Tests/Iterator/CustomFilterIteratorTest.php	/^class CustomFilterIteratorTest extends IteratorTestCase$/;"	c
 D	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/OrderedClassElementsFixer.php	/^    public function D(){}$/;"	f
 DB	app/config/env.php	/^$DB = [$/;"	v
-DB	app/container.php	/^			$DB = $c->env;$/;"	v
-DB_DSN	app/container.php	/^			$DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';$/;"	v
+DB	app/container.php	/^			$DB = [$/;"	v
+DB	app/container.php	/^            $DB = $c->env;$/;"	v
+DB_DSN	app/container.php	/^            $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';$/;"	v
 DIExtension	vendor/nette/di/src/DI/Extensions/DIExtension.php	/^class DIExtension extends Nette\\DI\\CompilerExtension$/;"	c
 DNumber	vendor/nikic/php-parser/lib/PhpParser/Node/Scalar/DNumber.php	/^class DNumber extends Scalar$/;"	c
 DateComparator	vendor/symfony/finder/Comparator/DateComparator.php	/^class DateComparator extends Comparator$/;"	c
@@ -5023,7 +5024,6 @@ code	Dumb/Patronus.php	/^    public $code;$/;"	v
 code	app/Controller/get/picture.php	/^            $this->code = 404;$/;"	v
 code	app/Controller/get/reinitGet.php	/^            $this->code = 400;$/;"	v
 code	app/Controller/post/addComment.php	/^            $this->code = 404;$/;"	v
-code	app/Controller/post/addLike.php	/^                $this->code = 200;$/;"	v
 code	app/Controller/post/addLike.php	/^            $this->code = 404;$/;"	v
 code	app/Controller/post/deletePic.php	/^            $this->code = 404;$/;"	v
 code	app/Controller/post/listPicsByDate.php	/^            $this->code = 404;$/;"	v
@@ -6333,8 +6333,8 @@ date	vendor/nette/utils/src/Utils/DateTime.php	/^		$date = parent::createFromFor
 date	vendor/symfony/finder/Comparator/DateComparator.php	/^            $date = new \\DateTime($matches[2]);$/;"	v
 date	vendor/symfony/finder/Finder.php	/^    public function date($dates)$/;"	f
 dates	vendor/symfony/finder/Finder.php	/^    private $dates = array();$/;"	v
+db	app/Model/ConfigManager.php	/^        $db = $this->container->env;$/;"	v
 db	app/Model/ConfigManager.php	/^        $db = $this->dbconnect();$/;"	v
-db	app/Model/ConfigManager.php	/^        $db = $this->env;$/;"	v
 db	app/Model/SqlManager.php	/^        $db = $this->container->db;$/;"	v
 db_dsn	app/Model/ConfigManager.php	/^        $db_dsn = $db['driver'].':host='.$db['host'].';port='.$db['port'];$/;"	v
 dbconnect	app/Model/ConfigManager.php	/^    protected function dbconnect()$/;"	f
@@ -19291,6 +19291,7 @@ removesBracesFromAnnotations	vendor/friendsofphp/php-cs-fixer/src/Fixer/Doctrine
 rename	vendor/nette/utils/src/Utils/FileSystem.php	/^	public static function rename($name, $newName, $overwrite = true)$/;"	f
 rename	vendor/symfony/filesystem/Filesystem.php	/^    public function rename($origin, $target, $overwrite = false)$/;"	f
 renameKey	vendor/nette/utils/src/Utils/Arrays.php	/^	public static function renameKey(array &$arr, $oldKey, $newKey)$/;"	f
+render	Dumb/Patronus.php	/^	protected function render(string $path = '..\/app\/view\/template.html', array $response)$/;"	f
 render	vendor/nette/utils/src/Utils/Html.php	/^	public function render($indent = null)$/;"	f
 render	vendor/symfony/console/Helper/Table.php	/^    public function render()$/;"	f
 renderCell	vendor/symfony/console/Helper/Table.php	/^    private function renderCell(array $row, int $column, string $cellFormat)$/;"	f
@@ -19378,11 +19379,11 @@ reporterFactory	vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolv
 reporters	vendor/friendsofphp/php-cs-fixer/src/Report/ReporterFactory.php	/^    private $reporters = [];$/;"	v
 reprToTokenMap	vendor/friendsofphp/php-cs-fixer/src/Fixer/Whitespace/NoExtraBlankLinesFixer.php	/^        static $reprToTokenMap = [$/;"	v
 request	Dumb/Dumb.php	/^        $request = explode('\/', $_SERVER['REQUEST_URI']);$/;"	v
-request	app/Model/CamagruManager.php	/^        $request = $this->db->query('SELECT * FROM filter');$/;"	v
+request	app/Model/CamagruManager.php	/^        $request = $this->container->db->query('SELECT * FROM filter');$/;"	v
 request	app/Model/CommentManager.php	/^        $request = '$/;"	v
 request	app/Model/ConfigManager.php	/^    public function request(string $file)$/;"	f
 request	app/Model/PicManager.php	/^            $request = '$/;"	v
-request	app/Model/PicManager.php	/^        $request = $this->db->prepare('$/;"	v
+request	app/Model/PicManager.php	/^        $request = $this->container->db->prepare('$/;"	v
 request	app/Model/PicManager.php	/^        $request = '$/;"	v
 request	app/Model/UserManager.php	/^            $request = '$/;"	v
 request	app/Model/UserManager.php	/^        $request = $this->container->db->prepare('$/;"	v

@@ -10,16 +10,16 @@ require '../Dumb/Dumb.php';
 //Dumb Framework is alive!!!
 $baka = new Dumb\Dumb();
 
-require '../app/routes.php';
+//require '../app/routes.php';
 bakaDo($baka);
 
-require '../app/middlewares.php';
+//require '../app/middlewares.php';
 shield($baka);
 
-require '../app/forms.php';
+//require '../app/forms.php';
 trollBumper($baka);
 
-require '../app/container.php';
+//require '../app/container.php';
 armory($baka);
 
 /**
@@ -34,7 +34,7 @@ $args = [
     ],
     'components' => [
         '/common/about.php',
-        '/common/contact.php',
+        '/common/contact.html',
     ],
 ];
 

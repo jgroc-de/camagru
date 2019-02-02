@@ -18,6 +18,7 @@
 		"psr-4": {
 			"Dumb\\": "Dumb",
 			"App\\": "app"
-		}
+		},
+		"files": ["app/routes.php", "app/middlewares.php", "app/forms.php", "app/container.php"]
 	}
 }

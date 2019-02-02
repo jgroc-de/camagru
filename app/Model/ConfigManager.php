@@ -13,12 +13,12 @@ class ConfigManager extends SqlManager
 
     public function request(string $file)
     {
-        $this->db->exec($file);
+        $this->container->db->exec($file);
     }
 
     protected function dbconnect()
     {
-        $db = $this->env;
+        $db = $this->container->env;
         $db_dsn = $db['driver'].':host='.$db['host'].';port='.$db['port'];
 
         return new \PDO($db_dsn, $db['user'], $db['password'], [

@@ -40,6 +40,6 @@ class picture extends Patronus
         $main = '/picView.html';
         $options['components'] = [];
 
-        require __DIR__.'/../../view/template.php';
+        require __DIR__.'/../../view/template.html';
     }
 }

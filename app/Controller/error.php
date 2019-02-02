@@ -26,9 +26,9 @@ class error extends Patronus
             '/common/contact.php',
         ];
         $options['header'] = [
-            '/common/error.php',
+            '/common/error.html',
         ];
 
-        require __DIR__.'/../view/template.php';
+        require __DIR__.'/../view/template.html';
     }
 }
