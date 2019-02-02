@@ -143,22 +143,30 @@ function ggDestroy(button, id, url)
 	ggAjax('&start=1', url, listPics);
 }
 
-function ft_scroll(element)
+function ggCarroussel(button, start, url)
 {
-}
+	console.log("lol");
+	var box = document.getElementById('carroussel').children;
+	var buttons = button.parentNode.children;
+	var id = parseInt(start, 10);
 
-function validTitle(str)
-{
-	if (!str || str.length == 0)
+	for (var i = 0; i < box.length; i++)
 	{
-		printNotif("can't be empty", 400);
+		box[i].className = 'w3-hide';
 	}
-	else if (str.length > 30)
+	box[(id - 1)].className = 'w3-show';
+	if (id === box.length)
 	{
-		printNotif("too long", 400);
+		ggAjax('&start='+ (id + 1), url, listPics);
+	}
+	if (id - 1 > 0)
+	{
+		buttons[0].setAttribute('onclick', "ggCarroussel(this, " + (id - 1) + ", '" + url + "');");
+		buttons[0].removeAttribute('disabled');
 	}
 	else
 	{
-		ggAjax(str, '/changeTitle');
+		buttons[0].setAttribute('disabled', '');
 	}
+	buttons[1].setAttribute('onclick', "ggCarroussel(this, " + (id + 1) + ", '" + url + "');");
 }

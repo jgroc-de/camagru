@@ -363,9 +363,8 @@ CustomDefaultCommandApplication	vendor/symfony/console/Tests/ApplicationTest.php
 CustomFilterIterator	vendor/symfony/finder/Iterator/CustomFilterIterator.php	/^class CustomFilterIterator extends \\FilterIterator$/;"	c
 CustomFilterIteratorTest	vendor/symfony/finder/Tests/Iterator/CustomFilterIteratorTest.php	/^class CustomFilterIteratorTest extends IteratorTestCase$/;"	c
 D	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/OrderedClassElementsFixer.php	/^    public function D(){}$/;"	f
-DB	app/config/env.php	/^$DB = [$/;"	v
-DB	app/container.php	/^			$DB = [$/;"	v
 DB	app/container.php	/^            $DB = $c->env;$/;"	v
+DB	app/container.php	/^            $DB = [$/;"	v
 DB_DSN	app/container.php	/^            $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';$/;"	v
 DIExtension	vendor/nette/di/src/DI/Extensions/DIExtension.php	/^class DIExtension extends Nette\\DI\\CompilerExtension$/;"	c
 DNumber	vendor/nikic/php-parser/lib/PhpParser/Node/Scalar/DNumber.php	/^class DNumber extends Scalar$/;"	c
@@ -5025,8 +5024,10 @@ code	app/Controller/get/picture.php	/^            $this->code = 404;$/;"	v
 code	app/Controller/get/reinitGet.php	/^            $this->code = 400;$/;"	v
 code	app/Controller/post/addComment.php	/^            $this->code = 404;$/;"	v
 code	app/Controller/post/addLike.php	/^            $this->code = 404;$/;"	v
+code	app/Controller/post/createPic.php	/^			$this->code = 500;$/;"	v
+code	app/Controller/post/createPic.php	/^                $this->code = 500;$/;"	v
+code	app/Controller/post/createPic.php	/^            $this->code = 500;$/;"	v
 code	app/Controller/post/deletePic.php	/^            $this->code = 404;$/;"	v
-code	app/Controller/post/listPicsByDate.php	/^            $this->code = 404;$/;"	v
 code	app/Controller/post/listPicsByLike.php	/^            $this->code = 404;$/;"	v
 code	app/Controller/post/login.php	/^            $this->code = 401;$/;"	v
 code	app/Controller/post/reinitPost.php	/^            $this->code = 404;$/;"	v
@@ -6058,7 +6059,6 @@ createMemoryElement	vendor/friendsofphp/php-cs-fixer/src/Report/XmlReporter.php	
 createMethod	vendor/phpstan/phpstan/src/Reflection/Php/PhpClassReflectionExtension.php	/^	private function createMethod($/;"	f
 createMethodBuilder	vendor/nikic/php-parser/test/PhpParser/Builder/MethodTest.php	/^    public function createMethodBuilder($name) {$/;"	f
 createMethods	vendor/phpstan/phpstan/src/Reflection/Annotations/AnnotationsMethodsClassReflectionExtension.php	/^	private function createMethods($/;"	f
-createName	app/Controller/post/createPic.php	/^    public function createName(string $author)$/;"	f
 createNamespaceBuilder	vendor/nikic/php-parser/test/PhpParser/Builder/NamespaceTest.php	/^    protected function createNamespaceBuilder($fqn) {$/;"	f
 createNo	vendor/phpstan/phpstan/src/Reflection/PassedByReference.php	/^	public static function createNo(): self$/;"	f
 createNo	vendor/phpstan/phpstan/src/TrinaryLogic.php	/^	public static function createNo(): self$/;"	f
@@ -6312,7 +6312,7 @@ cwd	vendor/symfony/process/Process.php	/^        $this->cwd = $cwd;$/;"	v
 cwd	vendor/symfony/process/Process.php	/^    private $cwd;$/;"	v
 d	vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/BinaryOperatorSpacesFixer.php	/^$d = $ee+=$f;$/;"	v
 d	vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/BinaryOperatorSpacesFixer.php	/^$d = $f   ===  $g;$/;"	v
-d_size	app/Controller/post/createPic.php	/^        $d_size = getimagesizefromstring(base64_decode($dest));$/;"	v
+d_size	app/Controller/post/createPic.php	/^        $d_size = getimagesizefromstring($_POST['data']);$/;"	v
 data	vendor/friendsofphp/php-cs-fixer/src/Cache/Cache.php	/^        $data = json_decode($json, true);$/;"	v
 data	vendor/nette/di/src/DI/Config/Adapters/IniAdapter.php	/^		$data = [];$/;"	v
 data	vendor/nette/di/src/DI/Config/Loader.php	/^			$data = $this->getSection($data, $section, $file);$/;"	v
@@ -6415,7 +6415,6 @@ decodeArray	vendor/nikic/php-parser/lib/PhpParser/JsonDecoder.php	/^    private 
 decodeComment	vendor/nikic/php-parser/lib/PhpParser/JsonDecoder.php	/^    private function decodeComment(array $value) : Comment {$/;"	f
 decodeNode	vendor/nikic/php-parser/lib/PhpParser/JsonDecoder.php	/^    private function decodeNode(array $value) : Node {$/;"	f
 decodeRecursive	vendor/nikic/php-parser/lib/PhpParser/JsonDecoder.php	/^    private function decodeRecursive($value) {$/;"	f
-decodeUrl	app/Controller/post/createPic.php	/^    public function decodeUrl($imgEncode)$/;"	f
 decoded	vendor/friendsofphp/php-cs-fixer/tests/Test/AbstractIntegrationCaseFactory.php	/^            $decoded = [];$/;"	v
 decoded	vendor/friendsofphp/php-cs-fixer/tests/Test/AbstractIntegrationCaseFactory.php	/^            $decoded = array_merge($/;"	v
 decoded	vendor/friendsofphp/php-cs-fixer/tests/Test/AbstractIntegrationCaseFactory.php	/^            $decoded = json_decode($encoded, true);$/;"	v
@@ -6712,7 +6711,6 @@ describedNamespace	vendor/symfony/console/Descriptor/JsonDescriptor.php	/^      
 describedNamespace	vendor/symfony/console/Descriptor/MarkdownDescriptor.php	/^        $describedNamespace = isset($options['namespace']) ? $options['namespace'] : null;$/;"	v
 describedNamespace	vendor/symfony/console/Descriptor/TextDescriptor.php	/^        $describedNamespace = isset($options['namespace']) ? $options['namespace'] : null;$/;"	v
 describedNamespaceInfo	vendor/symfony/console/Descriptor/TextDescriptor.php	/^                $describedNamespaceInfo = reset($namespaces);$/;"	v
-description	app/view/template.php	/^$description = "Bienvenue sur ce petit site type image-board\/instagram. Vous pouvez vous prendre en photo dans l'onglet \/b et faire un petit montage avec les filtres proposés.";$/;"	v
 description	vendor/friendsofphp/php-cs-fixer/src/Console/Command/DescribeCommand.php	/^                $description = Preg::replace('\/(`.+?`)\/', '<info>$1<\/info>', OutputFormatter::escape($option->getDescription()));$/;"	v
 description	vendor/friendsofphp/php-cs-fixer/src/Console/Command/DescribeCommand.php	/^        $description = $definition->getSummary();$/;"	v
 description	vendor/friendsofphp/php-cs-fixer/src/Console/Command/HelpCommand.php	/^                $description = $fixer->getDefinition()->getSummary();$/;"	v
@@ -6761,9 +6759,7 @@ descriptor	vendor/symfony/console/Helper/DescriptorHelper.php	/^        $descrip
 descriptors	vendor/symfony/console/Helper/DescriptorHelper.php	/^    private $descriptors = array();$/;"	v
 descriptors	vendor/symfony/process/Process.php	/^        $descriptors = $this->getDescriptors();$/;"	v
 descriptorspec	vendor/symfony/console/Terminal.php	/^        $descriptorspec = array($/;"	v
-dest	app/Controller/post/createPic.php	/^            $dest = $this->resampled($dest, $d_size);$/;"	v
-dest	app/Controller/post/createPic.php	/^        $dest = $this->decodeUrl($_POST['data']);$/;"	v
-dest	app/Controller/post/createPic.php	/^        $dest = imagecreatefromstring(base64_decode($dest));$/;"	v
+dest	app/Controller/post/createPic.php	/^        $dest = imagecreatefromstring($_POST['data']);$/;"	v
 dest	app/Controller/post/createPic.php	/^        $dest = imagecreatetruecolor(640, 480);$/;"	v
 dest	app/Model/MailManager.php	/^        $dest = $user['email'];$/;"	v
 details	vendor/friendsofphp/php-cs-fixer/src/Console/WarningsDetector.php	/^            $details = $this->toolInfo->getComposerInstallationDetails();$/;"	v
@@ -9069,7 +9065,6 @@ fromString	vendor/nette/utils/src/Utils/Image.php	/^	public static function from
 fromString	vendor/nikic/php-parser/lib/PhpParser/Node/Scalar/LNumber.php	/^    public static function fromString(string $str, array $attributes = [], bool $allowInvalidOctal = false) : LNumber {$/;"	f
 fromType	vendor/phpstan/phpstan/src/Type/TypeCombinator.php	/^				$fromType = self::remove($fromType, $unionTypeToRemove);$/;"	v
 fs	vendor/friendsofphp/php-cs-fixer/tests/Test/AbstractIntegrationTestCase.php	/^                $fs = new Filesystem();$/;"	v
-ft_scroll	public/js/common.js	/^function ft_scroll(element)$/;"	f
 fulfills	vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitTargetVersion.php	/^    public static function fulfills($candidate, $target)$/;"	f
 fullName	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/Analysis/NamespaceAnalysis.php	/^        $this->fullName = $fullName;$/;"	v
 fullName	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/Analysis/NamespaceAnalysis.php	/^    private $fullName;$/;"	v
@@ -11664,6 +11659,7 @@ getWrappedListener	vendor/symfony/event-dispatcher/Debug/WrappedListener.php	/^ 
 getWrapperMethodSequence	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/NoPhp4ConstructorFixer.php	/^    private function getWrapperMethodSequence(Tokens $tokens, $method, $startIndex, $bodyIndex)$/;"	f
 getterClosureType	vendor/phpstan/phpstan/src/Internal/UnionTypeGetInternalDynamicReturnTypeExtension.php	/^		$getterClosureType = $scope->getType($methodCall->args[1]->value);$/;"	v
 ggAjax	public/js/common.js	/^function ggAjax(data, url, callback)$/;"	f
+ggCarroussel	public/js/common.js	/^function ggCarroussel(button, start, url)$/;"	f
 ggDestroy	public/js/common.js	/^function ggDestroy(button, id, url)$/;"	f
 ggForm	public/js/common.js	/^function ggForm(button, url, callback = null)$/;"	f
 githubClient	vendor/friendsofphp/php-cs-fixer/src/Console/SelfUpdate/NewVersionChecker.php	/^        $this->githubClient = $githubClient;$/;"	v
@@ -12020,8 +12016,8 @@ headers	vendor/symfony/console/Helper/Table.php	/^        $headers = array_value
 headers	vendor/symfony/console/Helper/Table.php	/^        $this->headers = $headers;$/;"	v
 headers	vendor/symfony/console/Helper/Table.php	/^    private $headers = array();$/;"	v
 headers	vendor/symfony/console/Tests/Fixtures/Style/SymfonyStyle/command/command_8.php	/^    $headers = array($/;"	v
+height	app/Controller/post/createPic.php	/^            $height = (int) (640 * $d_size[1] \/ $d_size[0]);$/;"	v
 height	app/Controller/post/createPic.php	/^            $height = 480;$/;"	v
-height	app/Controller/post/createPic.php	/^            $height = 640 * $size[1] \/ $size[0];$/;"	v
 height	vendor/nette/utils/src/Utils/Image.php	/^		$height = $image->getHeight();$/;"	v
 height	vendor/nette/utils/src/Utils/Image.php	/^		$height = (int) $height;$/;"	v
 height	vendor/symfony/console/Terminal.php	/^        $height = getenv('LINES');$/;"	v
@@ -13736,7 +13732,6 @@ isParenthesisNeeded	vendor/friendsofphp/php-cs-fixer/src/Fixer/Alias/PowToExpone
 isPartialCodeMultiline	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Tokens.php	/^    public function isPartialCodeMultiline($start, $end)$/;"	f
 isPhpIdentifier	vendor/nette/utils/src/Utils/Validators.php	/^	public static function isPhpIdentifier($value)$/;"	f
 isPhpUnitClass	vendor/friendsofphp/php-cs-fixer/src/Indicator/PhpUnitTestCaseIndicator.php	/^    public function isPhpUnitClass(Tokens $tokens, $index)$/;"	f
-isPng	app/Controller/post/createPic.php	/^    public function isPng($data)$/;"	f
 isPositive	vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpUnit/PhpUnitDedicateAssertFixer.php	/^        $isPositive = 'asserttrue' === $assertCall['loweredName'];$/;"	v
 isPrivate	vendor/nikic/php-parser/lib/PhpParser/Node/Stmt/ClassConst.php	/^    public function isPrivate() : bool {$/;"	f
 isPrivate	vendor/nikic/php-parser/lib/PhpParser/Node/Stmt/ClassMethod.php	/^    public function isPrivate() : bool {$/;"	f
@@ -15698,7 +15693,7 @@ n	vendor/symfony/process/Tests/PipeStdinInStdoutStdErrStreamSelect.php	/^    $n 
 n	vendor/symfony/process/Tests/SignalListener.php	/^$n = 0;$/;"	v
 n1	vendor/nikic/php-parser/test/PhpParser/NodeVisitor/NameResolverTest.php	/^        $n1 = new Name('Bar');$/;"	v
 n2	vendor/nikic/php-parser/test/PhpParser/NodeVisitor/NameResolverTest.php	/^        $n2 = new Name('bar');$/;"	v
-name	app/Controller/post/createPic.php	/^        $name = $this->createName($_SESSION['id']);$/;"	v
+name	app/Controller/post/createPic.php	/^        $name = 'img\/pics\/'.$_SESSION['pseudo'].'_'.rand().'.png';$/;"	v
 name	vendor/composer/semver/src/VersionParser.php	/^        $name = trim($name);$/;"	v
 name	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^    private static $name;$/;"	v
 name	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation/Attribute.php	/^    public $name;$/;"	v
@@ -18015,7 +18010,7 @@ pickArrays	vendor/phpstan/phpstan/src/Type/Php/ArraySearchFunctionDynamicReturnT
 pics	app/Controller/get/camagru.php	/^        $pics = $this->pics;$/;"	v
 pics	app/Controller/get/camagru.php	/^        $this->pics = $c->picture->getPicsByLogin($_SESSION['id']);$/;"	v
 pics	app/Controller/get/camagru.php	/^    private $pics;$/;"	v
-pics	app/Controller/post/listPicsByDate.php	/^        $pics = $container->picture->getPics(($_POST['start'] - 1) * 4);$/;"	v
+pics	app/Controller/post/listPicsByDate.php	/^		$pics = $container->picture->getPics(($_POST['start'] - 1) * 4);$/;"	v
 pics	app/Controller/post/listPicsByLike.php	/^        $pics = $container->picture->getPicsByLike(($_POST['start'] - 1) * 4);$/;"	v
 picture	app/Controller/get/picture.php	/^class picture extends Patronus$/;"	c
 piece	vendor/nikic/php-parser/grammar/rebuildParsers.php	/^        $piece = trim($piece);$/;"	v
@@ -19225,7 +19220,6 @@ remoteTag	vendor/friendsofphp/php-cs-fixer/src/Console/Command/SelfUpdateCommand
 removalInfo	vendor/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php	/^                $removalInfo = $this->removalMap[$key];$/;"	v
 removalMap	vendor/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php	/^        $this->removalMap = [$/;"	v
 removalMap	vendor/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php	/^    protected $removalMap;$/;"	v
-remove	app/Controller/post/createPic.php	/^        $remove = [' ', 'data:image\/png;base64,'];$/;"	v
 remove	vendor/friendsofphp/php-cs-fixer/src/DocBlock/Annotation.php	/^    public function remove()$/;"	f
 remove	vendor/friendsofphp/php-cs-fixer/src/DocBlock/Line.php	/^    public function remove()$/;"	f
 remove	vendor/nette/utils/src/Utils/ObjectMixin.php	/^	public static function remove($_this, $name)$/;"	f
@@ -19291,7 +19285,7 @@ removesBracesFromAnnotations	vendor/friendsofphp/php-cs-fixer/src/Fixer/Doctrine
 rename	vendor/nette/utils/src/Utils/FileSystem.php	/^	public static function rename($name, $newName, $overwrite = true)$/;"	f
 rename	vendor/symfony/filesystem/Filesystem.php	/^    public function rename($origin, $target, $overwrite = false)$/;"	f
 renameKey	vendor/nette/utils/src/Utils/Arrays.php	/^	public static function renameKey(array &$arr, $oldKey, $newKey)$/;"	f
-render	Dumb/Patronus.php	/^	protected function render(string $path = '..\/app\/view\/template.html', array $response)$/;"	f
+render	Dumb/Patronus.php	/^    protected function render(string $path = '..\/app\/view\/template.html', array $response)$/;"	f
 render	vendor/nette/utils/src/Utils/Html.php	/^	public function render($indent = null)$/;"	f
 render	vendor/symfony/console/Helper/Table.php	/^    public function render()$/;"	f
 renderCell	vendor/symfony/console/Helper/Table.php	/^    private function renderCell(array $row, int $column, string $cellFormat)$/;"	f
@@ -19310,7 +19304,6 @@ repeatIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/SingleClass
 repeatIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/SingleClassElementPerStatementFixer.php	/^            $repeatIndex = $tokens->getNextMeaningfulToken($repeatIndex);$/;"	v
 repeatIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/SingleClassElementPerStatementFixer.php	/^        $repeatIndex = $index;$/;"	v
 repeatToken	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/SingleClassElementPerStatementFixer.php	/^            $repeatToken = $tokens[$repeatIndex];$/;"	v
-replace	app/Controller/post/createPic.php	/^        $replace = ['+', ''];$/;"	v
 replace	vendor/friendsofphp/php-cs-fixer/src/Preg.php	/^    public static function replace($pattern, $replacement, $subject, $limit = -1, &$count = null)$/;"	f
 replace	vendor/nette/utils/src/Utils/Strings.php	/^	public static function replace($subject, $pattern, $replacement = null, $limit = -1)$/;"	f
 replaceCallback	vendor/friendsofphp/php-cs-fixer/src/Preg.php	/^    public static function replaceCallback($pattern, $callback, $subject, $limit = -1, &$count = null)$/;"	f
@@ -19438,7 +19431,7 @@ res	vendor/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php	/^          
 res	vendor/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php	/^                    $res = $this->pFixup($fixup, $subNode, $class, $subStartPos, $subEndPos);$/;"	v
 res	vendor/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php	/^                $res = $this->p($arrItem, true);$/;"	v
 res	vendor/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php	/^                $res = $this->pFixup($fixup, $arrItem, null, $itemStartPos, $itemEndPos);$/;"	v
-resampled	app/Controller/post/createPic.php	/^    public function resampled($src, $size)$/;"	f
+resampled	app/Controller/post/createPic.php	/^    public function resampled($src, &$d_size)$/;"	f
 reserved	vendor/nette/di/src/DI/Compiler.php	/^	private static $reserved = ['services' => 1, 'parameters' => 1];$/;"	v
 reservedTypes	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/Analysis/TypeAnalysis.php	/^    private static $reservedTypes = [$/;"	v
 reserved_non_modifiers	vendor/nikic/php-parser/grammar/php5.y	/^reserved_non_modifiers:$/;"	l
@@ -19570,7 +19563,7 @@ respectEarlyTermination	vendor/phpstan/phpstan/src/Analyser/LookForAssignsSettin
 response	Dumb/Patronus.php	/^    protected $response = [];$/;"	v
 response	app/Controller/post/addComment.php	/^            $this->response = $commentManager->getCommentByImgId($id);$/;"	v
 response	app/Controller/post/changeTitle.php	/^            $this->response = $picManager->changeTitle($id, $_POST['title']);$/;"	v
-response	app/Controller/post/listPicsByDate.php	/^            $this->response = [$/;"	v
+response	app/Controller/post/listPicsByDate.php	/^		$this->response = [$/;"	v
 response	app/Controller/post/listPicsByLike.php	/^            $this->response = [$/;"	v
 responsesCodeProvider	vendor/symfony/process/Tests/ProcessTest.php	/^    public function responsesCodeProvider()$/;"	f
 restart	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^    protected function restart($command)$/;"	f
@@ -21564,7 +21557,6 @@ sq	vendor/nette/neon/src/Neon/Decoder.php	/^		$sq = $m[0];$/;"	v
 sqlRequest	app/Model/SqlManager.php	/^    protected function sqlRequest($request, array $array = [], bool $bool = false)$/;"	f
 sqlRequestFetch	app/Model/SqlManager.php	/^    protected function sqlRequestFetch($request, array $array = [])$/;"	f
 src	app/Controller/post/createPic.php	/^            $src = $value['url'];$/;"	v
-src	app/Controller/post/createPic.php	/^            $src = imagecreatefrompng($src);$/;"	v
 stabilities	vendor/composer/semver/src/VersionParser.php	/^    private static $stabilities = array('stable', 'RC', 'beta', 'alpha', 'dev');$/;"	v
 stability	vendor/composer/semver/src/VersionParser.php	/^        $stability = strtolower($stability);$/;"	v
 stabilityModifier	vendor/composer/semver/src/VersionParser.php	/^                $stabilityModifier = $match[2];$/;"	v
@@ -25261,7 +25253,6 @@ valid	vendor/friendsofphp/php-cs-fixer/src/DocBlock/Tag.php	/^    public functio
 valid	vendor/symfony/finder/Tests/Iterator/Iterator.php	/^    public function valid()$/;"	f
 valid	vendor/symfony/options-resolver/OptionsResolver.php	/^            $valid = false;$/;"	v
 validFlags	vendor/friendsofphp/php-cs-fixer/src/AbstractFopenFlagFixer.php	/^        $validFlags = [$/;"	v
-validTitle	public/js/common.js	/^function validTitle(str)$/;"	f
 validate	vendor/nette/php-generator/src/PhpGenerator/ClassType.php	/^	public function validate(): void$/;"	f
 validate	vendor/nette/php-generator/src/PhpGenerator/Method.php	/^	public function validate(): void$/;"	f
 validate	vendor/symfony/console/Input/Input.php	/^    public function validate()$/;"	f
@@ -25783,7 +25774,7 @@ whitespaces	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Transformer/Whitespac
 whitespacesConfig	vendor/friendsofphp/php-cs-fixer/src/AbstractFixer.php	/^            $this->whitespacesConfig = $this->getDefaultWhitespacesFixerConfig();$/;"	v
 whitespacesConfig	vendor/friendsofphp/php-cs-fixer/src/AbstractFixer.php	/^        $this->whitespacesConfig = $config;$/;"	v
 whitespacesConfig	vendor/friendsofphp/php-cs-fixer/src/AbstractFixer.php	/^    protected $whitespacesConfig;$/;"	v
-width	app/Controller/post/createPic.php	/^            $width = 480 * $size[0] \/ $size[1];$/;"	v
+width	app/Controller/post/createPic.php	/^            $width = (int) (480 * $d_size[0] \/ $d_size[1]);$/;"	v
 width	app/Controller/post/createPic.php	/^            $width = 640;$/;"	v
 width	vendor/nette/utils/src/Utils/Image.php	/^		$width = $image->getWidth();$/;"	v
 width	vendor/nette/utils/src/Utils/Image.php	/^		$width = (int) $width;$/;"	v

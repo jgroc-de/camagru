@@ -11,27 +11,35 @@ class createPic extends Patronus
 {
     public function trap(Dumbee $c)
     {
-        if (isset($_POST['data']) && $this->isPng($_POST['data']))
-        {
-        }
-        $dest = $this->decodeUrl($_POST['data']);
         $filter = $c->camagru->getFilters();
         $url = $this->parsePost($_POST, $filter);
+        $name = 'img/pics/'.$_SESSION['pseudo'].'_'.rand().'.png';
 
-        $name = $this->createName($_SESSION['id']);
-        $d_size = getimagesizefromstring(base64_decode($dest));
-        $dest = imagecreatefromstring(base64_decode($dest));
+        $d_size = getimagesizefromstring($_POST['data']);
+        $dest = imagecreatefromstring($_POST['data']);
+		if (!$dest)
+		{
+			$this->code = 500;
+
+			return;
+		}
         if (640 != $d_size[0] || 480 != $d_size[1])
         {
-            $dest = $this->resampled($dest, $d_size);
-            $d_size[0] = 640;
-            $d_size[1] = 480;
+            if (!($dest = $this->resampled($dest, $d_size)))
+            {
+                return;
+            }
         }
         foreach ($url as $value)
         {
             $src = $value['url'];
             $s_size = getimagesize($src);
-            $src = imagecreatefrompng($src);
+            if (!($src = imagecreatefrompng($src)))
+            {
+                $this->code = 500;
+
+                return;
+            }
             imagealphablending($dest, true);
             imagesavealpha($dest, true);
             imagecopyresized(
@@ -54,14 +62,6 @@ class createPic extends Patronus
         imagedestroy($dest);
         $c->picture->addPic($name);
         $this->response['path'] = $name;
-        if (1)
-        {
-        }
-        else
-        {
-            $this->response['code'] = 500;
-            $_SESSION['flash'] = 'plus de place';
-        }
         if (isset($_SESSION['flash']))
         {
             $this->response['flash'] = $_SESSION['flash'];
@@ -73,52 +73,32 @@ class createPic extends Patronus
      * resampled.
      *
      * @param mixed $src
-     * @param mixed $size
+     * @param mixed $d_size
      */
-    public function resampled($src, $size)
+    public function resampled($src, &$d_size)
     {
         $dest = imagecreatetruecolor(640, 480);
-        if ($size[0] > $size[1])
+        if (!$dest)
+        {
+            $this->code = 500;
+
+            return false;
+        }
+        if ($d_size[0] > $d_size[1])
         {
             $width = 640;
-            $height = 640 * $size[1] / $size[0];
+            $height = (int) (640 * $d_size[1] / $d_size[0]);
         }
         else
         {
-            $width = 480 * $size[0] / $size[1];
+            $width = (int) (480 * $d_size[0] / $d_size[1]);
             $height = 480;
         }
-        imagecopyresampled($dest, $src, 0, 0, 0, 0, $width, $height, $size[0], $size[1]);
+        imagecopyresampled($dest, $src, 0, 0, 0, 0, $width, $height, (int) $d_size[0], (int) $d_size[1]);
+        $d_size[0] = 640;
+        $d_size[1] = 480;
 
         return $dest;
-    }
-
-    /**
-     * isPng.
-     *
-     * @param mixed $data
-     */
-    public function isPng($data)
-    {
-        if (0 === strpos($data, 'data:image/png;base64,'))
-        {
-            return true;
-        }
-
-        return false;
-    }
-
-    /**
-     * decodeUrl.
-     *
-     * @param mixed $imgEncode
-     */
-    public function decodeUrl($imgEncode)
-    {
-        $remove = [' ', 'data:image/png;base64,'];
-        $replace = ['+', ''];
-
-        return str_replace($remove, $replace, $imgEncode);
     }
 
     /**
@@ -146,15 +126,5 @@ class createPic extends Patronus
         }
 
         return $url;
-    }
-
-    /**
-     * createName.
-     *
-     * @param mixed $author
-     */
-    public function createName(string $author)
-    {
-        return 'img/pics/'.$author.'_'.rand().'.png';
     }
 }

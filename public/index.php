@@ -34,7 +34,7 @@ $args = [
     ],
     'components' => [
         '/common/about.php',
-        '/common/contact.html',
+        '/common/contact.php',
     ],
 ];
 

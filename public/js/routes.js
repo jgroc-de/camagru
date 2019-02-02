@@ -2,19 +2,31 @@
 
 function listPics(status, json)
 {
-	var box = document.getElementById('carroussel');
+	if (json['pics'].length != 0)
+	{
+		var child = createNode('div', {class:'w3-hide'});
+		var box = document.getElementById('carroussel');
 
-	json['pics'].forEach(function(item) {
-		var node = picDivFactory(item);
+		json['pics'].forEach(function(item) {
+			var node = picDivFactory(item);
 
-		node.setAttribute("onclick", "window.location.href='/picture/"+item['id']+"'");
-		box.appendChild(node);
-	});
-	if (json['start'] < 4)
-		ggAjax('&start='+json['start'], json['url'], listPics);
+			node.setAttribute("onclick", "window.location.href='/picture/"+item['id']+"'");
+			child.appendChild(node);
+		});
+		box.appendChild(child);
+		if (box.children.length === 1)
+		{
+			var btn = document.getElementById("carrousselBtn");
+
+			btn.removeAttribute('onload');
+			ggCarroussel(btn, parseInt(json['start']) - 1, json['url']);
+		}
+	}
 	else
 	{
-		//ggAjax('&start=3', url, listPics);
+		var btn = document.getElementById("carrousselBtn");
+
+		ggCarroussel(btn, 1, json['url']);
 	}
 }
 
@@ -32,7 +44,7 @@ function addPic(status, json)
 	var first = picDivFactory(json);
 	var path = json['path'];
 
-	first.setAttribute('onclick', "if (confirm('Voulez Vous vraiment supprimer cette image?')){ggAjax('url=" + path + "', '/deletePic', deletePic)}");
+	first.setAttribute('onclick', "if (confirm('Do you really want to delete this pictures?')){ggAjax('url=" + path + "', '/deletePic', deletePic)}");
 	main.insertBefore(first, main.firstChild);
 }
 

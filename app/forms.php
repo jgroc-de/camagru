@@ -7,10 +7,13 @@ function trollBumper($baka)
             if (!isset($_POST[$key]) || !$_POST[$key])
             {
                 return 401;
-            }
-            $_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
-            switch ($type) {
-            case 'numeric':
+			}
+			if ($key != 'data')
+			{
+				$_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
+			}
+			switch ($type) {
+			case 'numeric':
                 if (!is_numeric($_POST[$key]) || $_POST[$key] <= 0)
                 {
                     return 401;
@@ -32,11 +35,31 @@ function trollBumper($baka)
                 }
 
                 break;
-            case'pseudo':
+            case 'pseudo':
                 if (mb_strlen($_POST[$key]) > 30)
                 {
                     return 401;
                 }
+
+                break;
+            case 'data':
+                if (0 === strpos($_POST['data'], 'data:image/png;base64,'))
+                {
+                    $_POST['type'] = 'png';
+                }
+                elseif (0 === strpos($_POST['data'], 'data:image/jpeg;base64,'))
+                {
+                    $_POST['type'] = 'jpeg';
+                }
+                else
+                {
+                    return 401;
+                }
+                $_POST['data'] = str_replace(
+                    [' ', 'data:image/png;base64,'],
+                    ['+', ''],
+                    $_POST['data']
+                );
 
                 break;
             }
@@ -55,6 +78,7 @@ function trollBumper($baka)
             '/addComment' => ['id' => 'numeric', 'comment' => ''],
             '/changeTitle' => ['id' => 'numeric', 'title' => 'pseudo'],
             '/deletePic' => ['url' => ''],
+            '/createPic' => ['data' => 'data'],
             '/reinitPost' => ['pseudo' => 'pseudo'],
         ]
     );

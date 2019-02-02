@@ -5,6 +5,10 @@
 	</h3>
 </div>
 <div class="w3-row-padding">
-	<section id="carroussel" class="w3-row-padding gg-wall" onscroll="ft_scroll(this)">
+	<section id="carroussel" class="w3-row-padding gg-wall">
 	</section>
+	<div>
+		<button type="button" class="w3-button w3-grey" disabled><</button>
+		<button id="carrousselBtn" type="button" class="w3-button w3-grey" onload="ggAjax('&start=1', '/listPicsByDate', listPics);">></button>
+	</div>
 </div>

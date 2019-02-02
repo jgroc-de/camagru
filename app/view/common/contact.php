@@ -6,7 +6,7 @@
       <input class="w3-input w3-border" type="text" maxlength="30" placeholder="Name" required name="name">
       <input class="w3-input w3-section w3-border" type="email" placeholder="Email" required name="email">
       <input class="w3-input w3-section w3-border" type="text" placeholder="Subject" required name="subject">
-      <textarea class="w3-input w3-section w3-border" placeholder="Message" rows="6" required name="message"></textarea>
+      <textarea class="w3-input w3-section w3-border" placeholder="Message" rows="6" required name="message" spellcheck="true"></textarea>
 <div>
 	  <button class="w3-button w3-black w3-section" type="button" onclick="ggForm(this, '/contact')">
 		<i class="fa fa-paper-plane"></i> SEND MESSAGE

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <?php
 ?>
 	<head>
@@ -10,7 +10,10 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 		<link rel="stylesheet" href="/css/main.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+		<script src="/js/common.js" async></script>
+		<script src="/js/routes.js" async></script>
+		<?php if (isset($options['script'])) { ?><script src="<?php echo $options['script']; ?>" async></script><?php } ?>
 	</head>
 
 	<body <?php if (isset($components['body']))
@@ -46,13 +49,5 @@
 		<a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
 		<a href="https://jgroc-de.github.io/" class="w3-button w3-black w3-padding-large w3-margin-bottom w3-right"><em class="">© jgroc-de 2018</em></a>
 	</footer>
-	<script src="/js/common.js"></script>
-	<script src="/js/routes.js"></script>
-	<?php if (isset($options['script']))
-    {
-        ?>        
-	<script src="<?php echo $options['script']; ?>"></script>
-	<?php
-    } ?>
 	</body>
 </html>
