@@ -17,12 +17,12 @@ class createPic extends Patronus
 
         $d_size = getimagesizefromstring($_POST['data']);
         $dest = imagecreatefromstring($_POST['data']);
-		if (!$dest)
-		{
-			$this->code = 500;
+        if (!$dest)
+        {
+            $this->code = 500;
 
-			return;
-		}
+            return;
+        }
         if (640 != $d_size[0] || 480 != $d_size[1])
         {
             if (!($dest = $this->resampled($dest, $d_size)))

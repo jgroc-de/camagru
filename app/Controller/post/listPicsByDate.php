@@ -11,11 +11,11 @@ class listPicsByDate extends Patronus
 {
     public function trap(Dumbee $container)
     {
-		$pics = $container->picture->getPics(($_POST['start'] - 1) * 4);
-		$this->response = [
-			'pics' => $pics,
-			'start' => $_POST['start'] + 1,
-			'url' => '/listPicsByDate',
-		];
-	}
+        $pics = $container->picture->getPics(($_POST['start'] - 1) * 4);
+        $this->response = [
+            'pics' => $pics,
+            'start' => $_POST['start'] + 1,
+            'url' => '/listPicsByDate',
+        ];
+    }
 }

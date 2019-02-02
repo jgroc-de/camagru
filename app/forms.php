@@ -7,13 +7,13 @@ function trollBumper($baka)
             if (!isset($_POST[$key]) || !$_POST[$key])
             {
                 return 401;
-			}
-			if ($key != 'data')
-			{
-				$_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
-			}
-			switch ($type) {
-			case 'numeric':
+            }
+            if ('data' != $key)
+            {
+                $_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
+            }
+            switch ($type) {
+            case 'numeric':
                 if (!is_numeric($_POST[$key]) || $_POST[$key] <= 0)
                 {
                     return 401;
