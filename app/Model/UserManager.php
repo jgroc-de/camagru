@@ -7,7 +7,7 @@ class UserManager extends SqlManager
     public function pseudoInDb(string $pseudo)
     {
         $request = '
-			SELECT * 
+			SELECT id 
 			FROM users 
 			WHERE pseudo= ?
 		';
@@ -95,30 +95,28 @@ class UserManager extends SqlManager
     {
         $key = md5((string) ((int) microtime(true) * 100000));
 
-        $request = $this->container->db->prepare('UPDATE users SET validkey = ? WHERE pseudo = ?');
+        $request = $this->db->prepare('UPDATE users SET validkey = ? WHERE pseudo = ?');
 
         return $request->execute([$key, $login]);
     }
 
     public function addUser(string $pseudo, string $pass, string $mail)
     {
-        $valid = false;
-        $key = md5((string) ((int) microtime(true) * 100000));
         if (!($this->pseudoInDb($pseudo)))
         {
+            $key = md5((string) ((int) microtime(true) * 100000));
             $request = '
 				INSERT INTO users
 				(pseudo, passwd, email, validkey)
 				VALUES (?, ?, ?, ?)'
             ;
-            $valid = $this->sqlRequest($request, [$pseudo, $pass, $mail, $key], true);
-        }
-        else
-        {
-            $_SESSION['flash'] = ['fail' => 'Pseudo déja pris, dsl…'];
+
+            return $this->sqlRequest($request, [$pseudo, $pass, $mail, $key], true);
         }
 
-        return $valid;
+        $_SESSION['flash'] = ['fail' => 'Pseudo déja pris, dsl…'];
+
+        return false;
     }
 
     public function getUser(string $pseudo)
@@ -174,7 +172,7 @@ class UserManager extends SqlManager
         {
             return false;
         }
-        $request = $this->container->db->prepare('
+        $request = $this->db->prepare('
                     UPDATE users
                     SET pseudo = :pseudo, email = :email, alert = :alert
                     WHERE pseudo = :login');
@@ -189,7 +187,7 @@ class UserManager extends SqlManager
 
     public function updatePassword(string $passwd)
     {
-        $request = $this->container->db->prepare('UPDATE users SET passwd = :pass  WHERE pseudo = :login');
+        $request = $this->db->prepare('UPDATE users SET passwd = :pass  WHERE pseudo = :login');
         $passwd = password_hash($passwd, PASSWORD_DEFAULT);
         $request->bindParam(':pass', $passwd, \PDO::PARAM_STR);
         $request->bindParam(':login', $_SESSION['pseudo'], \PDO::PARAM_STR);

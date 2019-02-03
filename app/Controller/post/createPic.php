@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controller\post;
 
-use Dumb\Dumbee;
 use Dumb\Patronus;
 
 class createPic extends Patronus
 {
-    public function trap(Dumbee $c)
+    public function trap(array $c)
     {
-        $filter = $c->camagru->getFilters();
+        $filter = $c['camagru']($c)->getFilters();
         $url = $this->parsePost($_POST, $filter);
         $name = 'img/pics/'.$_SESSION['pseudo'].'_'.rand().'.png';
 
@@ -60,7 +59,7 @@ class createPic extends Patronus
         imagesavealpha($dest, true);
         imagepng($dest, $name);
         imagedestroy($dest);
-        $c->picture->addPic($name);
+        $c['picture']($c)->addPic($name);
         $this->response['path'] = $name;
         if (isset($_SESSION['flash']))
         {

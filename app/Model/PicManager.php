@@ -19,7 +19,7 @@ class PicManager extends SqlManager
 
     public function getPics(int $start)
     {
-        $request = $this->container->db->prepare('
+        $request = $this->db->prepare('
 			SELECT img.id, img.title, img.url as path
             FROM img
             INNER JOIN users
@@ -35,7 +35,7 @@ class PicManager extends SqlManager
 
     public function getPicsByLike(int $start)
     {
-        $request = $this->container->db->prepare('
+        $request = $this->db->prepare('
 			SELECT img.id, img.title, img.url as path
             FROM img
             INNER JOIN users

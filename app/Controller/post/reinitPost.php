@@ -4,20 +4,19 @@ declare(strict_types=1);
 
 namespace App\Controller\post;
 
-use Dumb\Dumbee;
 use Dumb\Patronus;
 
 class reinitPost extends Patronus
 {
-    public function trap(Dumbee $c)
+    public function trap(array $c)
     {
-        $userManager = $c->user;
+        $userManager = $c['user']($c);
         $pseudo = $_POST['pseudo'];
         $user = $userManager->getUser($pseudo);
 
         if (!empty($user) && $userManager->resetValidkey($pseudo))
         {
-            $c->mail->sendReinitMail($user);
+            $c['mail']($c)->sendReinitMail($user);
         }
         else
         {

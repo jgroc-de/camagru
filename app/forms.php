@@ -2,7 +2,7 @@
 
 function trollBumper($baka)
 {
-    $baka->eat(
+    $baka->eatF(
         function ($key, $type) {
             if (!isset($_POST[$key]) || !$_POST[$key])
             {

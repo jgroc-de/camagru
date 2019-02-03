@@ -19,16 +19,23 @@ class error extends Patronus
 
     public function bomb(array $options)
     {
-        $options['code'] = $this->code;
-        $options['message'] = self::HTTP_CODE[$this->code];
-        $options['components'] = [
-            '/common/about.php',
-            '/common/contact.php',
-        ];
-        $options['header'] = [
-            '/common/error.html',
-        ];
+        if ('GET' === $_SERVER['REQUEST_METHOD'])
+        {
+            $options['code'] = $this->code;
+            $options['message'] = self::HTTP_CODE[$this->code];
+            $options['components'] = [
+                '/common/about.php',
+                '/common/contact.php',
+            ];
+            $options['header'] = [
+                '/common/error.html',
+            ];
 
-        require __DIR__.'/../view/template.html';
+            require __DIR__.'/../view/template.html';
+        }
+        else
+        {
+            echo json_encode(['flash' => 'Not Found…']);
+        }
     }
 }

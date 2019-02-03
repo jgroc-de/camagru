@@ -4,7 +4,7 @@
 			<form>
 				<div>
 					<?= htmlspecialchars($elem['title']) ?>
-					<?php if (isset($_SESSION['pseudo']) && $elem['pseudo'] === $_SESSION['pseudo']) {?> <i class="w3-button fa fa-pen"></i><?php }?>
+					<?php if (isset($_SESSION['pseudo']) && $elem['pseudo'] === $_SESSION['pseudo']) {?> <i class="w3-button w3-large fa fa-pen"></i><?php }?>
 					<span class="w3-opacity w3-large">by <?= htmlspecialchars($elem['pseudo']) ?> on <?= htmlspecialchars($elem['date2']) ?></span>
 				</div>
 			</form>

@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace App\Controller\post;
 
-use Dumb\Dumbee;
 use Dumb\Patronus;
 
 class settings extends Patronus
 {
-    public function trap(Dumbee $c)
+    public function trap(array $c)
     {
         $pseudo = $_POST['pseudo'];
         $email = $_POST['email'];
         $alert = isset($_POST['alert']) ? true : false;
 
-        if ($c->user->updateUser($pseudo, $email, $alert))
+        if ($c['user']($c)->updateUser($pseudo, $email, $alert))
         {
             $_SESSION['pseudo'] = $pseudo;
             $_SESSION['alert'] = $alert;

@@ -19,6 +19,6 @@
 			"Dumb\\": "Dumb",
 			"App\\": "app"
 		},
-		"files": ["app/routes.php", "app/middlewares.php", "app/forms.php", "app/container.php"]
+		"files": ["app/routes.php", "app/middlewares.php", "app/forms.php", "app/container.php", "app/ghosts.php"]
 	}
 }

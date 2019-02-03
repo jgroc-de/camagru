@@ -28,6 +28,11 @@
 }
 
 .gg-wall {
-	height: 550px;
+	height: 600px;
 	overflow: scroll;
+}
+
+.gg-post-it {
+	position: relative;
+	left: -8px;
 }

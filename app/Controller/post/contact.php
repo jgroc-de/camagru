@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controller\post;
 
-use Dumb\Dumbee;
 use Dumb\Patronus;
 
 class contact extends Patronus
 {
-    public function trap(Dumbee $container)
+    public function trap(array $c)
     {
-        $container->mail->sendContactMail();
+        $c['mail']()->sendContactMail();
         $this->response['flash'] = 'Thx!';
     }
 }

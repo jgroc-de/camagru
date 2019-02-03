@@ -39,6 +39,7 @@ j=0
 printf "*** \033[32mtests\033[0m *** \n"
 success=0
 total=${#tests[@]}
+bool=0
 for i in ${tests[@]}; do
 	array=(${i//;/ })
 	response=$(curl -w "%{http_code}\n"\
@@ -60,8 +61,13 @@ for i in ${tests[@]}; do
 		((success++))
 	else
 		out="31mFAIL!!!"
+		bool=1
 	fi
 	printf "$i:[\033[%s\033[0m]\n" $out;
+	if [ $bool -eq 1 ];then
+		echo $response
+		bool=0
+	fi
 	((j++))
 done
 printf "\n\033[42mtests succeed\033[0m : $success/$total\n"

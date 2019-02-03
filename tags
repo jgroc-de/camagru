@@ -363,8 +363,6 @@ CustomDefaultCommandApplication	vendor/symfony/console/Tests/ApplicationTest.php
 CustomFilterIterator	vendor/symfony/finder/Iterator/CustomFilterIterator.php	/^class CustomFilterIterator extends \\FilterIterator$/;"	c
 CustomFilterIteratorTest	vendor/symfony/finder/Tests/Iterator/CustomFilterIteratorTest.php	/^class CustomFilterIteratorTest extends IteratorTestCase$/;"	c
 D	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/OrderedClassElementsFixer.php	/^    public function D(){}$/;"	f
-DB	app/container.php	/^            $DB = $c->env;$/;"	v
-DB	app/container.php	/^            $DB = [$/;"	v
 DB_DSN	app/container.php	/^            $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';$/;"	v
 DIExtension	vendor/nette/di/src/DI/Extensions/DIExtension.php	/^class DIExtension extends Nette\\DI\\CompilerExtension$/;"	c
 DNumber	vendor/nikic/php-parser/lib/PhpParser/Node/Scalar/DNumber.php	/^class DNumber extends Scalar$/;"	c
@@ -449,8 +447,7 @@ DoctrineAnnotationBracesFixer	vendor/friendsofphp/php-cs-fixer/src/Fixer/Doctrin
 DoctrineAnnotationIndentationFixer	vendor/friendsofphp/php-cs-fixer/src/Fixer/DoctrineAnnotation/DoctrineAnnotationIndentationFixer.php	/^final class DoctrineAnnotationIndentationFixer extends AbstractDoctrineAnnotationFixer$/;"	c
 DoctrineAnnotationSpacesFixer	vendor/friendsofphp/php-cs-fixer/src/Fixer/DoctrineAnnotation/DoctrineAnnotationSpacesFixer.php	/^final class DoctrineAnnotationSpacesFixer extends AbstractDoctrineAnnotationFixer$/;"	c
 Double	vendor/nikic/php-parser/lib/PhpParser/Node/Expr/Cast/Double.php	/^class Double extends Cast$/;"	c
-Dumb	Dumb/Dumb.php	/^class Dumb extends Bunkee$/;"	c
-Dumbee	Dumb/Dumbee.php	/^class Dumbee$/;"	c
+Dumb	Dumb/Dumb.php	/^class Dumb$/;"	c
 DummyConstantReflection	vendor/phpstan/phpstan/src/Reflection/Dummy/DummyConstantReflection.php	/^class DummyConstantReflection implements ConstantReflection$/;"	c
 DummyMethodReflection	vendor/phpstan/phpstan/src/Reflection/Dummy/DummyMethodReflection.php	/^class DummyMethodReflection implements MethodReflection$/;"	c
 DummyNode	vendor/nikic/php-parser/test/PhpParser/NodeAbstractTest.php	/^class DummyNode extends NodeAbstract$/;"	c
@@ -1686,10 +1683,9 @@ __clone	vendor/nette/php-generator/src/PhpGenerator/ClassType.php	/^	public func
 __clone	vendor/nette/utils/src/Utils/Html.php	/^	public function __clone()$/;"	f
 __clone	vendor/nette/utils/src/Utils/Image.php	/^	public function __clone()$/;"	f
 __clone	vendor/symfony/process/Process.php	/^    public function __clone()$/;"	f
-__construct	Dumb/Dumb.php	/^    public function __construct()$/;"	f
-__construct	Dumb/Dumbee.php	/^    public function __construct(array $functions)$/;"	f
+__construct	Dumb/Dumb.php	/^    public function __construct($functions = [])$/;"	f
 __construct	Dumb/Patronus.php	/^    public function __construct(int $code = 200)$/;"	f
-__construct	app/Model/SqlManager.php	/^    public function __construct(Dumbee &$container)$/;"	f
+__construct	app/Model/SqlManager.php	/^    public function __construct(array $container = [])$/;"	f
 __construct	vendor/composer/semver/src/Constraint/Constraint.php	/^    public function __construct($operator, $version)$/;"	f
 __construct	vendor/composer/semver/src/Constraint/MultiConstraint.php	/^    public function __construct(array $constraints, $conjunctive = true)$/;"	f
 __construct	vendor/composer/xdebug-handler/src/Status.php	/^    public function __construct($envAllowXdebug, $debug)$/;"	f
@@ -2291,7 +2287,6 @@ __destruct	vendor/friendsofphp/php-cs-fixer/src/Linter/ProcessLinter.php	/^    p
 __destruct	vendor/symfony/process/Pipes/UnixPipes.php	/^    public function __destruct()$/;"	f
 __destruct	vendor/symfony/process/Pipes/WindowsPipes.php	/^    public function __destruct()$/;"	f
 __destruct	vendor/symfony/process/Process.php	/^    public function __destruct()$/;"	f
-__get	Dumb/Dumbee.php	/^    public function __get(string $key)$/;"	f
 __get	app/Model/SqlManager.php	/^    public function __get(string $name)$/;"	f
 __get	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation.php	/^    public function __get($name)$/;"	f
 __get	vendor/friendsofphp/php-cs-fixer/src/Test/AccessibleObject.php	/^    public function __get($name)$/;"	f
@@ -2310,7 +2305,7 @@ __isset	vendor/nette/di/src/DI/Container.php	/^	public function __isset($name)$/
 __isset	vendor/nette/utils/src/Utils/Html.php	/^	public function __isset($name)$/;"	f
 __isset	vendor/nette/utils/src/Utils/LegacyObject.php	/^	public function __isset($name)$/;"	f
 __isset	vendor/nette/utils/src/Utils/SmartObject.php	/^	public function __isset($name)$/;"	f
-__set	Dumb/Bunkee.php	/^    public function __set(string $method, array $routes)$/;"	f
+__set	Dumb/Dumb.php	/^    public function __set(string $method, array $routes)$/;"	f
 __set	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/Annotation.php	/^    public function __set($name, $value)$/;"	f
 __set	vendor/friendsofphp/php-cs-fixer/src/Test/AccessibleObject.php	/^    public function __set($name, $value)$/;"	f
 __set	vendor/nette/di/src/DI/Container.php	/^	public function __set($name, $service)$/;"	f
@@ -2560,7 +2555,7 @@ accepts	vendor/phpstan/phpstan/src/Type/UnionType.php	/^	public function accepts
 accepts	vendor/phpstan/phpstan/src/Type/VoidType.php	/^	public function accepts(Type $type, bool $strictTypes): TrinaryLogic$/;"	f
 actif	app/Model/UserManager.php	/^            $actif = $row['actif'];$/;"	v
 actif	app/Model/UserManager.php	/^        $actif = false;$/;"	v
-action	Dumb/Bunkee.php	/^            $action = array_shift($form);$/;"	v
+action	Dumb/Dumb.php	/^            $action = array_shift($form);$/;"	v
 action	vendor/nikic/php-parser/lib/PhpParser/Parser/Php5.php	/^    protected $action = array($/;"	v
 action	vendor/nikic/php-parser/lib/PhpParser/Parser/Php7.php	/^    protected $action = array($/;"	v
 action	vendor/nikic/php-parser/lib/PhpParser/ParserAbstract.php	/^    protected $action;$/;"	v
@@ -3375,7 +3370,6 @@ argumentsStart	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/Arguments
 argumentsStart	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/ArgumentsAnalyzer.php	/^        $argumentsStart = $paramContentIndex;$/;"	v
 argumentsStart	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/FunctionsAnalyzer.php	/^        $argumentsStart = $tokens->getNextTokenOfKind($methodIndex, ['(']);$/;"	v
 argv	vendor/symfony/console/Input/ArgvInput.php	/^            $argv = $_SERVER['argv'];$/;"	v
-armory	app/container.php	/^function armory($baka)$/;"	f
 arr	vendor/nette/php-generator/src/PhpGenerator/Helpers.php	/^			$arr = (array) $var;$/;"	v
 arr	vendor/nette/utils/src/Utils/Arrays.php	/^				$arr = $arr[$k];$/;"	v
 arr	vendor/nette/utils/src/Utils/Arrays.php	/^				$arr = &$arr[$k];$/;"	v
@@ -5020,17 +5014,16 @@ cnt	vendor/symfony/polyfill-mbstring/Mbstring.php	/^        $cnt = floor(\\count
 coalesceReplacements	vendor/nikic/php-parser/lib/PhpParser/Internal/Differ.php	/^    private function coalesceReplacements(array $diff) {$/;"	f
 code	Dumb/Patronus.php	/^        $this->code = $code;$/;"	v
 code	Dumb/Patronus.php	/^    public $code;$/;"	v
-code	app/Controller/get/picture.php	/^            $this->code = 404;$/;"	v
+code	app/Controller/get/picture.php	/^			$this->code = 404;$/;"	v
 code	app/Controller/get/reinitGet.php	/^            $this->code = 400;$/;"	v
 code	app/Controller/post/addComment.php	/^            $this->code = 404;$/;"	v
-code	app/Controller/post/addLike.php	/^            $this->code = 404;$/;"	v
-code	app/Controller/post/createPic.php	/^			$this->code = 500;$/;"	v
 code	app/Controller/post/createPic.php	/^                $this->code = 500;$/;"	v
 code	app/Controller/post/createPic.php	/^            $this->code = 500;$/;"	v
-code	app/Controller/post/deletePic.php	/^            $this->code = 404;$/;"	v
-code	app/Controller/post/listPicsByLike.php	/^            $this->code = 404;$/;"	v
+code	app/Controller/post/listPicsByDate.php	/^			$this->code = 404;$/;"	v
+code	app/Controller/post/listPicsByLike.php	/^			$this->code = 404;$/;"	v
 code	app/Controller/post/login.php	/^            $this->code = 401;$/;"	v
 code	app/Controller/post/reinitPost.php	/^            $this->code = 404;$/;"	v
+code	app/Controller/post/signup.php	/^            $this->code = 401;$/;"	v
 code	vendor/bin/php-parse	/^        $code = $file;$/;"	v
 code	vendor/bin/php-parse	/^        $code = file_get_contents($file);$/;"	v
 code	vendor/friendsofphp/php-cs-fixer/src/Console/Output/ErrorOutput.php	/^            $code = $e->getCode();$/;"	v
@@ -5249,7 +5242,7 @@ commentContent	vendor/friendsofphp/php-cs-fixer/src/Fixer/Comment/SingleLineComm
 commentDivFactory	public/js/common.js	/^function commentDivFactory(json)$/;"	f
 commentIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/Basic/BracesFixer.php	/^            $commentIndex = $tokens->getNextNonWhitespace($prevIndex);$/;"	v
 commentIndices	vendor/friendsofphp/php-cs-fixer/src/Fixer/Comment/CommentToPhpdocFixer.php	/^            $commentIndices = $commentsAnalyzer->getCommentBlockIndices($tokens, $index);$/;"	v
-commentManager	app/Controller/post/addComment.php	/^        $commentManager = $c->comment;$/;"	v
+commentManager	app/Controller/post/addComment.php	/^        $commentManager = $c['comment']($c);$/;"	v
 commentPosition	vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/NoBreakCommentFixer.php	/^                        $commentPosition = null;$/;"	v
 commentPosition	vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/NoBreakCommentFixer.php	/^                $commentPosition = $i;$/;"	v
 commentPosition	vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/NoBreakCommentFixer.php	/^        $commentPosition = null;$/;"	v
@@ -5261,7 +5254,7 @@ commentToken	vendor/friendsofphp/php-cs-fixer/src/Fixer/Basic/BracesFixer.php	/^
 commentTokens	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Token.php	/^        static $commentTokens = [T_COMMENT, T_DOC_COMMENT];$/;"	v
 commentType	vendor/friendsofphp/php-cs-fixer/src/Fixer/Comment/NoEmptyCommentFixer.php	/^        $commentType = $this->getCommentType($tokens[$index]->getContent());$/;"	v
 commentType	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Analyzer/CommentsAnalyzer.php	/^        $commentType = $this->getCommentType($tokens[$index]->getContent());$/;"	v
-comments	app/Controller/get/picture.php	/^            $this->comments = $c->comment->getComments($id)->fetchAll();$/;"	v
+comments	app/Controller/get/picture.php	/^			$this->comments = $c['comment']($c)->getComments($id)->fetchAll();$/;"	v
 comments	app/Controller/get/picture.php	/^        $comments = $this->comments;$/;"	v
 comments	app/Controller/get/picture.php	/^    private $comments;$/;"	v
 comments	app/config/camagru.sql	/^CREATE TABLE comments ($/;"	t
@@ -5416,6 +5409,7 @@ configFinderIsOverridden	vendor/friendsofphp/php-cs-fixer/src/Console/Configurat
 configFinderIsOverridden	vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php	/^        $this->configFinderIsOverridden = false;$/;"	v
 configFinderIsOverridden	vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php	/^    private $configFinderIsOverridden;$/;"	v
 configFinderIsOverridden	vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php	/^    public function configFinderIsOverridden()$/;"	f
+configManager	app/Controller/post/setup.php	/^        $configManager = $c['config']($c);$/;"	v
 configPath	vendor/phpstan/phpstan/src/Testing/LevelsTestCase.php	/^		$configPath = $this->getPhpStanConfigPath();$/;"	v
 configuration	vendor/friendsofphp/php-cs-fixer/src/AbstractFixer.php	/^            $configuration = [];$/;"	v
 configuration	vendor/friendsofphp/php-cs-fixer/src/AbstractFixer.php	/^            $this->configuration = $this->getConfigurationDefinition()->resolve($configuration);$/;"	v
@@ -5607,10 +5601,9 @@ consts	vendor/nikic/php-parser/lib/PhpParser/Node/Stmt/Const_.php	/^        $thi
 consts	vendor/nikic/php-parser/lib/PhpParser/Node/Stmt/Const_.php	/^    public $consts;$/;"	v
 consumeTokenType	vendor/phpstan/phpdoc-parser/src/Parser/TokenIterator.php	/^	public function consumeTokenType(int $tokenType)$/;"	f
 contact	app/Controller/post/contact.php	/^class contact extends Patronus$/;"	c
-container	Dumb/Dumb.php	/^        $this->container = new Dumbee($functions);$/;"	v
-container	Dumb/Dumb.php	/^    public $container;$/;"	v
-container	Dumb/Dumbee.php	/^        $this->container = $functions;$/;"	v
-container	Dumb/Dumbee.php	/^    protected $container = [];$/;"	v
+container	Dumb/Dumb.php	/^	public $container;$/;"	v
+container	Dumb/Dumb.php	/^        $this->container = $functions;$/;"	v
+container	Dumb/Dumb.php	/^        $this->container = array_merge($this->container, $functions);$/;"	v
 container	app/Model/SqlManager.php	/^        $this->container = $container;$/;"	v
 container	app/Model/SqlManager.php	/^    protected $container;$/;"	v
 container	vendor/nette/bootstrap/src/Bootstrap/Configurator.php	/^		$container = new $class($this->dynamicParameters);$/;"	v
@@ -6333,9 +6326,10 @@ date	vendor/nette/utils/src/Utils/DateTime.php	/^		$date = parent::createFromFor
 date	vendor/symfony/finder/Comparator/DateComparator.php	/^            $date = new \\DateTime($matches[2]);$/;"	v
 date	vendor/symfony/finder/Finder.php	/^    public function date($dates)$/;"	f
 dates	vendor/symfony/finder/Finder.php	/^    private $dates = array();$/;"	v
-db	app/Model/ConfigManager.php	/^        $db = $this->container->env;$/;"	v
-db	app/Model/ConfigManager.php	/^        $db = $this->dbconnect();$/;"	v
-db	app/Model/SqlManager.php	/^        $db = $this->container->db;$/;"	v
+db	app/Model/ConfigManager.php	/^        $db = $this->container['env'];$/;"	v
+db	app/Model/ConfigManager.php	/^        $this->db = new \\PDO($db_dsn, $db['user'], $db['password'], [$/;"	v
+db	app/Model/SqlManager.php	/^		$this->db = $container['db']($container['env']());$/;"	v
+db	app/Model/SqlManager.php	/^	protected $db;$/;"	v
 db_dsn	app/Model/ConfigManager.php	/^        $db_dsn = $db['driver'].':host='.$db['host'].';port='.$db['port'];$/;"	v
 dbconnect	app/Model/ConfigManager.php	/^    protected function dbconnect()$/;"	f
 debug	vendor/composer/xdebug-handler/src/Status.php	/^        $this->debug = $debug && defined('STDERR');$/;"	v
@@ -7188,7 +7182,9 @@ earlyTerminatingMethodCalls	vendor/phpstan/phpstan/src/Analyser/NodeScopeResolve
 earlyTerminatingMethodCalls	vendor/phpstan/phpstan/src/Analyser/NodeScopeResolver.php	/^	private $earlyTerminatingMethodCalls;$/;"	v
 earlyTerminationStatement	vendor/phpstan/phpstan/src/Analyser/NodeScopeResolver.php	/^				$earlyTerminationStatement = $this->findStatementEarlyTermination($statement, $branchScope);$/;"	v
 earlyTerminationStatement	vendor/phpstan/phpstan/src/Analyser/NodeScopeResolver.php	/^			$earlyTerminationStatement = null;$/;"	v
-eat	Dumb/Bunkee.php	/^    public function eat($function, array $routes)$/;"	f
+eatF	Dumb/Dumb.php	/^	public function eatF($function, array $routes)$/;"	f
+eatG	Dumb/Dumb.php	/^	public function eatG($function, array $routes)$/;"	f
+eatM	Dumb/Dumb.php	/^    public function eatM($function, array $routes)$/;"	f
 echo	vendor/nikic/php-parser/test/PhpParser/ParserTest.php	/^        $echo = $fn->stmts[0];$/;"	v
 echoNode	vendor/nikic/php-parser/test/PhpParser/NodeTraverserTest.php	/^        $echoNode = new Node\\Stmt\\Echo_([$str1Node, $str2Node]);$/;"	v
 effectiveColumnWidths	vendor/symfony/console/Helper/Table.php	/^        $this->effectiveColumnWidths = array();$/;"	v
@@ -7199,7 +7195,7 @@ elapsedTime	vendor/nette/di/src/Bridges/DITracy/ContainerPanel.php	/^		$elapsedT
 elapsedTime	vendor/nette/di/src/Bridges/DITracy/ContainerPanel.php	/^		$this->elapsedTime = self::$compilationTime ? microtime(true) - self::$compilationTime : null;$/;"	v
 elapsedTime	vendor/nette/di/src/Bridges/DITracy/ContainerPanel.php	/^	private $elapsedTime;$/;"	v
 elapsedTime	vendor/phpstan/phpstan/src/Analyser/Analyser.php	/^		$elapsedTime = microtime(true) - $startTime;$/;"	v
-elem	app/Controller/get/picture.php	/^            $this->elem = $picManager->getPic($id);$/;"	v
+elem	app/Controller/get/picture.php	/^		$this->elem = $c['picture']($c)->getPic($id);$/;"	v
 elem	app/Controller/get/picture.php	/^        $elem = $this->elem;$/;"	v
 elem	app/Controller/get/picture.php	/^    private $elem;$/;"	v
 element	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/OrderedClassElementsFixer.php	/^            $element = [$/;"	v
@@ -7491,7 +7487,7 @@ entity	vendor/nette/di/src/DI/PhpGenerator.php	/^		$entity = $statement->getEnti
 entity	vendor/nette/di/src/DI/Statement.php	/^		$this->entity = $entity;$/;"	v
 entity	vendor/nette/di/src/DI/Statement.php	/^	private $entity;$/;"	v
 enumeratorError	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/AnnotationException.php	/^    public static function enumeratorError($attributeName, $annotationName, $context, $available, $given)$/;"	f
-env	app/Controller/post/setup.php	/^        $env = $c->env;$/;"	v
+env	app/Controller/post/setup.php	/^        $env = $c['env']();$/;"	v
 env	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^            $env = getenv(self::$name.self::SUFFIX_INIS);$/;"	v
 env	vendor/symfony/process/Process.php	/^        $env = array();$/;"	v
 env	vendor/symfony/process/Process.php	/^        $env = array_filter($env, function ($value) {$/;"	v
@@ -7540,15 +7536,16 @@ equals	vendor/phpstan/phpstan/src/Type/UnionType.php	/^	public function equals(T
 equals	vendor/phpstan/phpstan/src/Type/VoidType.php	/^	public function equals(Type $type): bool$/;"	f
 equals	vendor/symfony/console/Input/InputOption.php	/^    public function equals(self $option)$/;"	f
 equalsAny	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Token.php	/^    public function equalsAny(array $others, $caseSensitive = true)$/;"	f
+equip	app/container.php	/^function equip($baka)$/;"	f
 erasedContent	vendor/symfony/console/Output/ConsoleSectionOutput.php	/^        $erasedContent = $this->popStreamContentUntilCurrentSection();$/;"	v
 erasedContent	vendor/symfony/console/Output/ConsoleSectionOutput.php	/^        $erasedContent = array();$/;"	v
 err	vendor/symfony/process/Process.php	/^                $err = stream_get_contents($this->stderr, -1, $this->incrementalErrorOutputOffset);$/;"	v
 err	vendor/symfony/process/Tests/PipeStdinInStdoutStdErrStreamSelect.php	/^        $err = (string) substr($err, $written);$/;"	v
-error	Dumb/Bunkee.php	/^                    $this->error = $error;$/;"	v
-error	Dumb/Bunkee.php	/^                $this->error = $error;$/;"	v
-error	Dumb/Bunkee.php	/^                $this->error = 405;$/;"	v
-error	Dumb/Bunkee.php	/^            $this->error = 404;$/;"	v
-error	Dumb/Bunkee.php	/^    protected $error = 0;$/;"	v
+error	Dumb/Dumb.php	/^			$this->error = 404;$/;"	v
+error	Dumb/Dumb.php	/^                    $this->error = $error;$/;"	v
+error	Dumb/Dumb.php	/^                $this->error = $error;$/;"	v
+error	Dumb/Dumb.php	/^                $this->error = 405;$/;"	v
+error	Dumb/Dumb.php	/^    protected $error = 0;$/;"	v
 error	app/Controller/error.php	/^class error extends Patronus$/;"	c
 error	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^                $error = 'Unable to read ini: '.$file;$/;"	v
 error	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^            $error = $error ?: 'Unable to create temp ini file at: '.$tmpDir;$/;"	v
@@ -7787,6 +7784,7 @@ excludedPattern	vendor/symfony/finder/Iterator/ExcludeDirectoryFilterIterator.ph
 excludedTokens	vendor/friendsofphp/php-cs-fixer/src/Fixer/Casing/LowercaseKeywordsFixer.php	/^    private static $excludedTokens = [T_HALT_COMPILER];$/;"	v
 exe	vendor/symfony/console/Helper/QuestionHelper.php	/^                $exe = $tmpExe;$/;"	v
 exe	vendor/symfony/console/Helper/QuestionHelper.php	/^            $exe = __DIR__.'\/..\/Resources\/bin\/hiddeninput.exe';$/;"	v
+exec	app/Model/ConfigManager.php	/^    public function exec(string $file)$/;"	f
 executable	vendor/friendsofphp/php-cs-fixer/src/Linter/ProcessLinter.php	/^                $executable = str_replace('phpdbg', 'php', $executable);$/;"	v
 executable	vendor/friendsofphp/php-cs-fixer/src/Linter/ProcessLinter.php	/^            $executable = $executableFinder->find(false);$/;"	v
 executable	vendor/friendsofphp/php-cs-fixer/src/Linter/ProcessLinterProcessBuilder.php	/^        $this->executable = $executable;$/;"	v
@@ -8374,7 +8372,7 @@ filesystem	vendor/symfony/filesystem/Tests/FilesystemTestCase.php	/^    protecte
 fillCells	vendor/symfony/console/Helper/Table.php	/^    private function fillCells($row)$/;"	f
 fillNextRows	vendor/symfony/console/Helper/Table.php	/^    private function fillNextRows(array $rows, int $line): array$/;"	f
 fillSettings	public/js/routes.js	/^function fillSettings(status, json)$/;"	f
-filter	app/Controller/post/createPic.php	/^        $filter = $c->camagru->getFilters();$/;"	v
+filter	app/Controller/post/createPic.php	/^        $filter = $c['camagru']($c)->getFilters();$/;"	v
 filter	app/config/camagru.sql	/^CREATE TABLE filter ($/;"	t
 filter	vendor/nette/finder/src/Utils/Finder.php	/^	public function filter($callback)$/;"	f
 filter	vendor/symfony/finder/Finder.php	/^    public function filter(\\Closure $closure)$/;"	f
@@ -8901,7 +8899,7 @@ foreach_variable	vendor/nikic/php-parser/grammar/php7.y	/^foreach_variable:$/;"	
 foreground	vendor/symfony/console/Formatter/OutputFormatterStyle.php	/^            $this->foreground = null;$/;"	v
 foreground	vendor/symfony/console/Formatter/OutputFormatterStyle.php	/^        $this->foreground = static::$availableForegroundColors[$color];$/;"	v
 foreground	vendor/symfony/console/Formatter/OutputFormatterStyle.php	/^    private $foreground;$/;"	v
-form	Dumb/Bunkee.php	/^    protected function form()$/;"	f
+form	Dumb/Dumb.php	/^    protected function form()$/;"	f
 format	vendor/friendsofphp/php-cs-fixer/src/Config.php	/^        $this->format = $format;$/;"	v
 format	vendor/friendsofphp/php-cs-fixer/src/Config.php	/^    private $format = 'txt';$/;"	v
 format	vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolver.php	/^            $format = $this->getFormat();$/;"	v
@@ -8980,9 +8978,9 @@ formatter	vendor/symfony/console/Tests/Helper/FormatterHelperTest.php	/^        
 formatterHelper	vendor/symfony/console/Tests/Command/CommandTest.php	/^        $formatterHelper = new FormatterHelper();$/;"	v
 formatters	vendor/symfony/console/Helper/ProgressBar.php	/^    private static $formatters;$/;"	v
 formatters	vendor/symfony/console/Helper/ProgressIndicator.php	/^    private static $formatters;$/;"	v
-forms	Dumb/Bunkee.php	/^    private $forms = [];$/;"	v
-found	Dumb/Bunkee.php	/^            $this->found = true;$/;"	v
-found	Dumb/Bunkee.php	/^    private $found = false;$/;"	v
+forms	Dumb/Dumb.php	/^    private $forms = [];$/;"	v
+found	Dumb/Dumb.php	/^            $this->found = true;$/;"	v
+found	Dumb/Dumb.php	/^    private $found = false;$/;"	v
 found	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php	/^                             $found = true;$/;"	v
 found	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php	/^                            $found = true;$/;"	v
 found	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php	/^                        $found = true;$/;"	v
@@ -11662,6 +11660,8 @@ ggAjax	public/js/common.js	/^function ggAjax(data, url, callback)$/;"	f
 ggCarroussel	public/js/common.js	/^function ggCarroussel(button, start, url)$/;"	f
 ggDestroy	public/js/common.js	/^function ggDestroy(button, id, url)$/;"	f
 ggForm	public/js/common.js	/^function ggForm(button, url, callback = null)$/;"	f
+ghost	Dumb/Dumb.php	/^    protected function ghost()$/;"	f
+ghosts	Dumb/Dumb.php	/^    private $ghosts = [];$/;"	v
 githubClient	vendor/friendsofphp/php-cs-fixer/src/Console/SelfUpdate/NewVersionChecker.php	/^        $this->githubClient = $githubClient;$/;"	v
 githubClient	vendor/friendsofphp/php-cs-fixer/src/Console/SelfUpdate/NewVersionChecker.php	/^    private $githubClient;$/;"	v
 given	vendor/symfony/options-resolver/OptionsResolver.php	/^    private $given = array();$/;"	v
@@ -11724,6 +11724,7 @@ h	vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/BinaryOperatorSpacesFixer.
 h	vendor/symfony/process/Tests/ProcessTest.php	/^        $h = $h->getValue($p);$/;"	v
 h	vendor/symfony/process/Tests/ProcessTest.php	/^        $h = fopen($lock, 'w');$/;"	v
 h	vendor/symfony/process/Tests/ProcessTest.php	/^        $h = new \\ReflectionProperty($p, 'process');$/;"	v
+hack	app/ghosts.php	/^function hack($baka)$/;"	f
 handle	vendor/nette/di/src/DI/ContainerLoader.php	/^		$handle = @fopen("$file.lock", 'c+'); \/\/ @ is escalated to exception$/;"	v
 handle	vendor/nette/robot-loader/src/RobotLoader/RobotLoader.php	/^		$handle = fopen("$file.lock", 'c+');$/;"	v
 handle	vendor/phpstan/phpstan/src/Type/VerbosityLevel.php	/^	public function handle($/;"	f
@@ -12207,9 +12208,9 @@ i	vendor/symfony/polyfill-mbstring/Mbstring.php	/^        $i = 0;$/;"	v
 i	vendor/symfony/polyfill-mbstring/Mbstring.php	/^        $i = 1;$/;"	v
 i	vendor/symfony/process/Tests/ProcessTest.php	/^        $i = 0;$/;"	v
 iLast	vendor/friendsofphp/php-cs-fixer/src/Fixer/PhpTag/FullOpeningTagFixer.php	/^                $iLast = \\count($parts) - 1;$/;"	v
+id	app/Controller/get/picture.php	/^		$id = $_GET['id'];$/;"	v
 id	app/Controller/get/picture.php	/^        $id = $_GET['id'];$/;"	v
 id	app/Controller/post/addComment.php	/^        $id = $_POST['id'];$/;"	v
-id	app/Controller/post/changeTitle.php	/^        $id = $_POST['id'];$/;"	v
 id	app/Model/PicManager.php	/^        $id = $this->sqlRequestFetch($request, [$id_img, $id_author]);$/;"	v
 id	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Token.php	/^            $this->id = $prototype[0];$/;"	v
 id	vendor/friendsofphp/php-cs-fixer/src/Tokenizer/Token.php	/^            $this->id = $token[0];$/;"	v
@@ -14286,6 +14287,7 @@ k	vendor/symfony/finder/Tests/GlobTest.php	/^            $k = str_replace(\\DIRE
 k1	vendor/friendsofphp/php-cs-fixer/src/Fixer/Import/OrderedImportsFixer.php	/^                            $k1 = $k2;$/;"	v
 kamehameha	Dumb/Dumb.php	/^    public function kamehameha($args = null)$/;"	f
 key	app/Model/MailManager.php	/^        $key = $user['validkey'];$/;"	v
+key	app/Model/UserManager.php	/^        	$key = md5((string) ((int) microtime(true) * 100000));$/;"	v
 key	app/Model/UserManager.php	/^        $key = md5((string) ((int) microtime(true) * 100000));$/;"	v
 key	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php	/^                $key = $this->Constant();$/;"	v
 key	vendor/doctrine/annotations/lib/Doctrine/Common/Annotations/DocParser.php	/^                $key = $this->lexer->token['value'];$/;"	v
@@ -14853,7 +14855,7 @@ list	vendor/nette/utils/src/Utils/ArrayList.php	/^	private $list = [];$/;"	v
 list	vendor/nette/utils/src/Utils/ObjectMixin.php	/^		$list = &self::$extMethods[strtolower($name)];$/;"	v
 listErrors	vendor/friendsofphp/php-cs-fixer/src/Console/Output/ErrorOutput.php	/^    public function listErrors($process, array $errors)$/;"	f
 listFilter	app/Controller/get/camagru.php	/^        $listFilter = $this->listFilter;$/;"	v
-listFilter	app/Controller/get/camagru.php	/^        $this->listFilter = $c->camagru->getFilters();$/;"	v
+listFilter	app/Controller/get/camagru.php	/^        $this->listFilter = $c['camagru']($c)->getFilters();$/;"	v
 listFilter	app/Controller/get/camagru.php	/^    private $listFilter;$/;"	v
 listInsertionMap	vendor/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php	/^        $this->listInsertionMap = [$/;"	v
 listInsertionMap	vendor/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php	/^    protected $listInsertionMap;$/;"	v
@@ -15582,8 +15584,8 @@ methodsClassReflectionExtensions	vendor/phpstan/phpstan/src/Broker/Broker.php	/^
 methodsClassReflectionExtensions	vendor/phpstan/phpstan/src/Reflection/ClassReflection.php	/^		$this->methodsClassReflectionExtensions = $methodsClassReflectionExtensions;$/;"	v
 methodsClassReflectionExtensions	vendor/phpstan/phpstan/src/Reflection/ClassReflection.php	/^	private $methodsClassReflectionExtensions;$/;"	v
 methodsIncludingAnnotations	vendor/phpstan/phpstan/src/Reflection/Php/PhpClassReflectionExtension.php	/^	private $methodsIncludingAnnotations = [];$/;"	v
-middleware	Dumb/Bunkee.php	/^    protected function middleware()$/;"	f
-middlewares	Dumb/Bunkee.php	/^    private $middlewares = [];$/;"	v
+middleware	Dumb/Dumb.php	/^    protected function middleware()$/;"	f
+middlewares	Dumb/Dumb.php	/^    private $middlewares = [];$/;"	v
 min	vendor/nette/utils/src/Utils/ObjectHelpers.php	/^				$min = $len;$/;"	v
 min	vendor/nette/utils/src/Utils/ObjectHelpers.php	/^		$min = (strlen($value) \/ 4 + 1) * 10 + .1;$/;"	v
 min	vendor/phpstan/phpstan/src/TrinaryLogic.php	/^		$min = min($operandValues);$/;"	v
@@ -16631,7 +16633,7 @@ o	vendor/php-cs-fixer/diff/src/v3_0/TimeEfficientLongestCommonSubsequenceCalcula
 o	vendor/php-cs-fixer/diff/src/v3_0/TimeEfficientLongestCommonSubsequenceCalculator.php	/^                $o = ($j * $width) + $i;$/;"	v
 o	vendor/symfony/process/Tests/ProcessTest.php	/^        $o = $p->getOutput();$/;"	v
 obFuncs	vendor/symfony/polyfill-php72/Php72.php	/^        $obFuncs = array('ob_clean', 'ob_end_clean', 'ob_flush', 'ob_end_flush', 'ob_get_contents', 'ob_get_flush');$/;"	v
-obj	app/Model/SqlManager.php	/^        $obj = $db->prepare($request);$/;"	v
+obj	app/Model/SqlManager.php	/^        $obj = $this->db->prepare($request);$/;"	v
 obj	vendor/nette/neon/src/Neon/Encoder.php	/^			$obj = $var;$/;"	v
 obj	vendor/nette/utils/src/Utils/ArrayHash.php	/^		$obj = new static;$/;"	v
 obj	vendor/symfony/polyfill-php72/Php72.php	/^        $obj = (object) array();$/;"	v
@@ -17375,7 +17377,7 @@ page	vendor/nette/utils/src/Utils/Paginator.php	/^		$this->page = (int) $page;$/
 page	vendor/nette/utils/src/Utils/Paginator.php	/^	private $page;$/;"	v
 pair	vendor/nette/di/src/DI/ContainerBuilder.php	/^					$pair = explode('::', $val, 2);$/;"	v
 pair	vendor/nette/utils/src/Utils/Reflection.php	/^			$pair = explode('::', $const);$/;"	v
-param	Dumb/Bunkee.php	/^            $param = $form[0];$/;"	v
+param	Dumb/Dumb.php	/^            $param = $form[0];$/;"	v
 param	vendor/nette/di/src/DI/PhpGenerator.php	/^			$param = $res[] = new Nette\\PhpGenerator\\Parameter(end($tmp));$/;"	v
 param	vendor/nette/php-generator/src/PhpGenerator/Factory.php	/^		$param = new Parameter($from->getName());$/;"	v
 param	vendor/nette/php-generator/src/PhpGenerator/Traits/FunctionLike.php	/^		$param = new Parameter($name);$/;"	v
@@ -17998,20 +18000,16 @@ phpVersion	vendor/friendsofphp/php-cs-fixer/src/Cache/Signature.php	/^    privat
 php_os_family	vendor/symfony/polyfill-php72/Php72.php	/^    public static function php_os_family()$/;"	f
 phprc	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^        $phprc = getenv('PHPRC');$/;"	v
 phpunitPositions	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/OrderedClassElementsFixer.php	/^        static $phpunitPositions = [$/;"	v
-pic	app/Controller/post/deletePic.php	/^        $pic = $picManager->getPicByUrl($_POST['url']);$/;"	v
+pic	app/ghosts.php	/^        	$pic = $c['picture']->getPicByUrl($_POST['url']);$/;"	v
 picDivFactory	public/js/common.js	/^function picDivFactory(json)$/;"	f
 picInDb	app/Model/PicManager.php	/^    public function picInDb(int $id)$/;"	f
-picManager	app/Controller/get/picture.php	/^        $picManager = $c->picture;$/;"	v
-picManager	app/Controller/post/addLike.php	/^        $picManager = $c->picture;$/;"	v
-picManager	app/Controller/post/changeTitle.php	/^        $picManager = $c->picture;$/;"	v
-picManager	app/Controller/post/deletePic.php	/^        $picManager = $c->picture;$/;"	v
 pick	vendor/nette/utils/src/Utils/Arrays.php	/^	public static function pick(array &$arr, $key, $default = null)$/;"	f
 pickArrays	vendor/phpstan/phpstan/src/Type/Php/ArraySearchFunctionDynamicReturnTypeExtension.php	/^	private function pickArrays(Type $type): array$/;"	f
 pics	app/Controller/get/camagru.php	/^        $pics = $this->pics;$/;"	v
-pics	app/Controller/get/camagru.php	/^        $this->pics = $c->picture->getPicsByLogin($_SESSION['id']);$/;"	v
+pics	app/Controller/get/camagru.php	/^        $this->pics = $c['picture']($c)->getPicsByLogin($_SESSION['id']);$/;"	v
 pics	app/Controller/get/camagru.php	/^    private $pics;$/;"	v
-pics	app/Controller/post/listPicsByDate.php	/^		$pics = $container->picture->getPics(($_POST['start'] - 1) * 4);$/;"	v
-pics	app/Controller/post/listPicsByLike.php	/^        $pics = $container->picture->getPicsByLike(($_POST['start'] - 1) * 4);$/;"	v
+pics	app/Controller/post/listPicsByDate.php	/^        $pics = $c['picture']($c)->getPics(($_POST['start'] - 1) * 8);$/;"	v
+pics	app/Controller/post/listPicsByLike.php	/^		$pics = $c['picture']($c)->getPicsByLike(($_POST['start'] - 1) * 8);$/;"	v
 picture	app/Controller/get/picture.php	/^class picture extends Patronus$/;"	c
 piece	vendor/nikic/php-parser/grammar/rebuildParsers.php	/^        $piece = trim($piece);$/;"	v
 pieces	vendor/nikic/php-parser/grammar/rebuildParsers.php	/^    $pieces = preg_split(regex('(?:(?&string)|(?&comment)|(?&code))(*SKIP)(*FAIL)|' . $regex), $string);$/;"	v
@@ -19285,7 +19283,6 @@ removesBracesFromAnnotations	vendor/friendsofphp/php-cs-fixer/src/Fixer/Doctrine
 rename	vendor/nette/utils/src/Utils/FileSystem.php	/^	public static function rename($name, $newName, $overwrite = true)$/;"	f
 rename	vendor/symfony/filesystem/Filesystem.php	/^    public function rename($origin, $target, $overwrite = false)$/;"	f
 renameKey	vendor/nette/utils/src/Utils/Arrays.php	/^	public static function renameKey(array &$arr, $oldKey, $newKey)$/;"	f
-render	Dumb/Patronus.php	/^    protected function render(string $path = '..\/app\/view\/template.html', array $response)$/;"	f
 render	vendor/nette/utils/src/Utils/Html.php	/^	public function render($indent = null)$/;"	f
 render	vendor/symfony/console/Helper/Table.php	/^    public function render()$/;"	f
 renderCell	vendor/symfony/console/Helper/Table.php	/^    private function renderCell(array $row, int $column, string $cellFormat)$/;"	f
@@ -19372,16 +19369,15 @@ reporterFactory	vendor/friendsofphp/php-cs-fixer/src/Console/ConfigurationResolv
 reporters	vendor/friendsofphp/php-cs-fixer/src/Report/ReporterFactory.php	/^    private $reporters = [];$/;"	v
 reprToTokenMap	vendor/friendsofphp/php-cs-fixer/src/Fixer/Whitespace/NoExtraBlankLinesFixer.php	/^        static $reprToTokenMap = [$/;"	v
 request	Dumb/Dumb.php	/^        $request = explode('\/', $_SERVER['REQUEST_URI']);$/;"	v
-request	app/Model/CamagruManager.php	/^        $request = $this->container->db->query('SELECT * FROM filter');$/;"	v
+request	app/Model/CamagruManager.php	/^        $request = $this->db->query('SELECT * FROM filter');$/;"	v
 request	app/Model/CommentManager.php	/^        $request = '$/;"	v
-request	app/Model/ConfigManager.php	/^    public function request(string $file)$/;"	f
 request	app/Model/PicManager.php	/^            $request = '$/;"	v
-request	app/Model/PicManager.php	/^        $request = $this->container->db->prepare('$/;"	v
+request	app/Model/PicManager.php	/^        $request = $this->db->prepare('$/;"	v
 request	app/Model/PicManager.php	/^        $request = '$/;"	v
 request	app/Model/UserManager.php	/^            $request = '$/;"	v
-request	app/Model/UserManager.php	/^        $request = $this->container->db->prepare('$/;"	v
-request	app/Model/UserManager.php	/^        $request = $this->container->db->prepare('UPDATE users SET passwd = :pass  WHERE pseudo = :login');$/;"	v
-request	app/Model/UserManager.php	/^        $request = $this->container->db->prepare('UPDATE users SET validkey = ? WHERE pseudo = ?');$/;"	v
+request	app/Model/UserManager.php	/^        $request = $this->db->prepare('$/;"	v
+request	app/Model/UserManager.php	/^        $request = $this->db->prepare('UPDATE users SET passwd = :pass  WHERE pseudo = :login');$/;"	v
+request	app/Model/UserManager.php	/^        $request = $this->db->prepare('UPDATE users SET validkey = ? WHERE pseudo = ?');$/;"	v
 request	app/Model/UserManager.php	/^        $request = '$/;"	v
 require	vendor/bin/php-cs-fixer	/^        $require = false;$/;"	v
 require	vendor/bin/php-cs-fixer	/^$require = true;$/;"	v
@@ -19562,9 +19558,9 @@ respectEarlyTermination	vendor/phpstan/phpstan/src/Analyser/LookForAssignsSettin
 respectEarlyTermination	vendor/phpstan/phpstan/src/Analyser/LookForAssignsSettings.php	/^	private $respectEarlyTermination;$/;"	v
 response	Dumb/Patronus.php	/^    protected $response = [];$/;"	v
 response	app/Controller/post/addComment.php	/^            $this->response = $commentManager->getCommentByImgId($id);$/;"	v
-response	app/Controller/post/changeTitle.php	/^            $this->response = $picManager->changeTitle($id, $_POST['title']);$/;"	v
-response	app/Controller/post/listPicsByDate.php	/^		$this->response = [$/;"	v
-response	app/Controller/post/listPicsByLike.php	/^            $this->response = [$/;"	v
+response	app/Controller/post/changeTitle.php	/^    	$this->response = $c['picture']($c)->changeTitle($_POST['id'], $_POST['title']);$/;"	v
+response	app/Controller/post/listPicsByDate.php	/^			$this->response = [$/;"	v
+response	app/Controller/post/listPicsByLike.php	/^			$this->response = [$/;"	v
 responsesCodeProvider	vendor/symfony/process/Tests/ProcessTest.php	/^    public function responsesCodeProvider()$/;"	f
 restart	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^    protected function restart($command)$/;"	f
 restart	vendor/symfony/process/Process.php	/^    public function restart(callable $callback = null, array $env = array())$/;"	f
@@ -19865,6 +19861,7 @@ rootDirectory	vendor/phpstan/phpstan/src/DependencyInjection/ContainerFactory.ph
 rootPackage	vendor/ocramius/package-versions/src/PackageVersions/Installer.php	/^        $rootPackage = $composer->getPackage();$/;"	v
 rootPath	vendor/symfony/finder/Iterator/RecursiveDirectoryIterator.php	/^        $this->rootPath = $path;$/;"	v
 rootPath	vendor/symfony/finder/Iterator/RecursiveDirectoryIterator.php	/^    private $rootPath;$/;"	v
+routes	Dumb/Dumb.php	/^	protected function routes()$/;"	f
 row	vendor/nette/utils/src/Utils/Arrays.php	/^						$row = is_object($rowOrig) ? $rowOrig : (object) $row;$/;"	v
 row	vendor/nette/utils/src/Utils/Arrays.php	/^						$row = null;$/;"	v
 row	vendor/nette/utils/src/Utils/Arrays.php	/^			$row = (array) $rowOrig;$/;"	v
@@ -20929,7 +20926,7 @@ setComment	vendor/nette/php-generator/src/PhpGenerator/Traits/CommentAware.php	/
 setCompiler	vendor/nette/di/src/DI/CompilerExtension.php	/^	public function setCompiler(Compiler $compiler, $name)$/;"	f
 setConfig	vendor/nette/di/src/DI/CompilerExtension.php	/^	public function setConfig(array $config)$/;"	f
 setConstants	vendor/nette/php-generator/src/PhpGenerator/ClassType.php	/^	public function setConstants(array $consts): self$/;"	f
-setContainer	Dumb/Dumb.php	/^    public function setContainer(array $functions)$/;"	f
+setContainer	Dumb/Dumb.php	/^	public function setContainer(array $functions)$/;"	f
 setContainer	vendor/symfony/contracts/Service/ServiceSubscriberTrait.php	/^    public function setContainer(ContainerInterface $container)$/;"	f
 setContainer	vendor/symfony/contracts/Tests/Service/ServiceSubscriberTraitTest.php	/^    public function setContainer(ContainerInterface $container)$/;"	f
 setContent	vendor/friendsofphp/php-cs-fixer/src/DocBlock/Line.php	/^    public function setContent($content)$/;"	f
@@ -24459,26 +24456,26 @@ translator	vendor/symfony/contracts/Tests/Translation/TranslatorTest.php	/^     
 translator	vendor/symfony/contracts/Tests/Translation/TranslatorTest.php	/^        $translator = new class() {$/;"	v
 transliterator	vendor/nette/utils/src/Utils/Strings.php	/^			$transliterator = \\Transliterator::create('Any-Latin; Latin-ASCII');$/;"	v
 transliterator	vendor/nette/utils/src/Utils/Strings.php	/^		static $transliterator = null;$/;"	v
-trap	Dumb/Patronus.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/get/camagru.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/get/picture.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/get/reinitGet.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/addComment.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/addLike.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/changeTitle.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/contact.php	/^    public function trap(Dumbee $container)$/;"	f
-trap	app/Controller/post/createPic.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/deletePic.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/getSettings.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/listPicsByDate.php	/^    public function trap(Dumbee $container)$/;"	f
-trap	app/Controller/post/listPicsByLike.php	/^    public function trap(Dumbee $container)$/;"	f
-trap	app/Controller/post/login.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/logout.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/password.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/reinitPost.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/settings.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/setup.php	/^    public function trap(Dumbee $c)$/;"	f
-trap	app/Controller/post/signup.php	/^    public function trap(Dumbee $c)$/;"	f
+trap	Dumb/Patronus.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/get/camagru.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/get/picture.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/get/reinitGet.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/addComment.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/addLike.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/changeTitle.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/contact.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/createPic.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/deletePic.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/getSettings.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/listPicsByDate.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/listPicsByLike.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/login.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/logout.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/password.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/reinitPost.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/settings.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/setup.php	/^    public function trap(array $c)$/;"	f
+trap	app/Controller/post/signup.php	/^    public function trap(array $c)$/;"	f
 traversableType	vendor/phpstan/phpstan/src/Type/TypeCombinator.php	/^			$traversableType = new ObjectType(\\Traversable::class);$/;"	v
 traverse	vendor/nikic/php-parser/lib/PhpParser/NodeTraverser.php	/^    public function traverse(array $nodes) : array {$/;"	f
 traverse	vendor/nikic/php-parser/lib/PhpParser/NodeTraverserInterface.php	/^    public function traverse(array $nodes) : array;$/;"	f
@@ -25103,9 +25100,9 @@ upperLimit	vendor/php-cs-fixer/diff/src/v2_0/Output/UnifiedDiffOutputBuilder.php
 upperLimit	vendor/php-cs-fixer/diff/src/v2_0/Output/UnifiedDiffOutputBuilder.php	/^        $upperLimit = \\count($diff);$/;"	v
 upperLimit	vendor/php-cs-fixer/diff/src/v3_0/Output/StrictUnifiedDiffOutputBuilder.php	/^        $upperLimit = \\count($diff);$/;"	v
 upperLimit	vendor/php-cs-fixer/diff/src/v3_0/Output/UnifiedDiffOutputBuilder.php	/^        $upperLimit = \\count($diff);$/;"	v
-uri	Dumb/Bunkee.php	/^                $this->uri = $key;$/;"	v
-uri	Dumb/Bunkee.php	/^    protected $uri;$/;"	v
+uri	Dumb/Dumb.php	/^                $this->uri = $key;$/;"	v
 uri	Dumb/Dumb.php	/^        $this->uri = '\/'.$request[1];$/;"	v
+uri	Dumb/Dumb.php	/^    protected $uri;$/;"	v
 url	app/Controller/post/createPic.php	/^        $url = $this->parsePost($_POST, $filter);$/;"	v
 url	app/Controller/post/createPic.php	/^        $url = [];$/;"	v
 url	vendor/friendsofphp/php-cs-fixer/src/Console/SelfUpdate/GithubClient.php	/^        $url = 'https:\/\/api.github.com\/repos\/FriendsOfPHP\/PHP-CS-Fixer\/tags';$/;"	v
@@ -25153,13 +25150,13 @@ usedAttributes	vendor/nikic/php-parser/lib/PhpParser/Lexer.php	/^    protected $
 usedName	vendor/phpstan/phpstan/src/Rules/Namespaces/ExistingNamesInGroupUseRule.php	/^			$usedName = (string) $name;$/;"	v
 usedName	vendor/phpstan/phpstan/src/Rules/Namespaces/ExistingNamesInUseRule.php	/^				$usedName = (string) $use->name;$/;"	v
 user	app/Controller/get/reinitGet.php	/^            $user = $userManager->getUser($pseudo);$/;"	v
-user	app/Controller/post/addComment.php	/^            $user = $c->user->getUserByImgId($id);$/;"	v
+user	app/Controller/post/addComment.php	/^        $user = $c['user']($c)->getUserByImgId($id);$/;"	v
 user	app/Controller/post/login.php	/^            $user = $userManager->getUser($pseudo);$/;"	v
 user	app/Controller/post/reinitPost.php	/^        $user = $userManager->getUser($pseudo);$/;"	v
-userManager	app/Controller/get/reinitGet.php	/^        $userManager = $c->user;$/;"	v
-userManager	app/Controller/post/login.php	/^        $userManager = $c->user;$/;"	v
-userManager	app/Controller/post/reinitPost.php	/^        $userManager = $c->user;$/;"	v
-userManager	app/Controller/post/signup.php	/^        $userManager = $c->user;$/;"	v
+userManager	app/Controller/get/reinitGet.php	/^        $userManager = $c['user']($c);$/;"	v
+userManager	app/Controller/post/login.php	/^        $userManager = $c['user']($c);$/;"	v
+userManager	app/Controller/post/reinitPost.php	/^        $userManager = $c['user']($c);$/;"	v
+userManager	app/Controller/post/signup.php	/^        $userManager = $c['user']($c);$/;"	v
 users	app/config/camagru.sql	/^CREATE TABLE users ($/;"	t
 users.actif	app/config/camagru.sql	/^  validkey varchar(32) NOT NULL,$/;"	F
 users.alert	app/config/camagru.sql	/^  email varchar(255) NOT NULL,$/;"	F
@@ -25247,8 +25244,6 @@ val	vendor/nette/utils/src/Utils/SmartObject.php	/^				$val = $rp->getValue($thi
 val	vendor/nette/utils/src/Utils/SmartObject.php	/^				$val = $this->$m();$/;"	v
 val	vendor/nette/utils/src/Utils/SmartObject.php	/^			$val = Callback::closure($this, $name);$/;"	v
 val	vendor/nikic/php-parser/lib/PhpParser/BuilderFactory.php	/^    public function val($value) : Expr {$/;"	f
-valid	app/Model/UserManager.php	/^            $valid = $this->sqlRequest($request, [$pseudo, $pass, $mail, $key], true);$/;"	v
-valid	app/Model/UserManager.php	/^        $valid = false;$/;"	v
 valid	vendor/friendsofphp/php-cs-fixer/src/DocBlock/Tag.php	/^    public function valid()$/;"	f
 valid	vendor/symfony/finder/Tests/Iterator/Iterator.php	/^    public function valid()$/;"	f
 valid	vendor/symfony/options-resolver/OptionsResolver.php	/^            $valid = false;$/;"	v

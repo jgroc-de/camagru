@@ -26,7 +26,7 @@ function listPics(status, json)
 	{
 		var btn = document.getElementById("carrousselBtn");
 
-		ggCarroussel(btn, 1, json['url']);
+		btn.setAttribute('onclick', "ggCarroussel(this, 1, '" + json['url'] + "');");
 	}
 }
 

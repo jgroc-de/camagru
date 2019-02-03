@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\get;
 
-use Dumb\Dumbee;
 use Dumb\Patronus;
 
 class camagru extends Patronus
@@ -13,10 +12,10 @@ class camagru extends Patronus
 
     private $listFilter;
 
-    public function trap(Dumbee $c)
+    public function trap(array $c)
     {
-        $this->pics = $c->picture->getPicsByLogin($_SESSION['id']);
-        $this->listFilter = $c->camagru->getFilters();
+        $this->pics = $c['picture']($c)->getPicsByLogin($_SESSION['id']);
+        $this->listFilter = $c['camagru']($c)->getFilters();
     }
 
     public function bomb(array $options)

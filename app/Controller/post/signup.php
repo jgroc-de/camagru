@@ -4,21 +4,20 @@ declare(strict_types=1);
 
 namespace App\Controller\post;
 
-use Dumb\Dumbee;
 use Dumb\Patronus;
 
 class signup extends Patronus
 {
-    public function trap(Dumbee $c)
+    public function trap(array $c)
     {
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
         $email = $_POST['email'];
-        $userManager = $c->user;
+        $userManager = $c['user']($c);
 
         if ($userManager->addUser($pseudo, password_hash($password, PASSWORD_DEFAULT), $email))
         {
-            $c->mail->sendValidationMail($userManager->getUser($pseudo));
+            $c['mail']()->sendValidationMail($userManager->getUser($pseudo));
             if (isset($_SESSION['flash']['success']))
             {
                 $this->response['flash'] = $_SESSION['flash']['success'];
@@ -32,8 +31,9 @@ class signup extends Patronus
         }
         else
         {
-            $this->response['code'] = 401;
-            $this->response['flash'] = 'Bad password or login';
+            $this->code = 401;
+            $this->response['flash'] = $_SESSION['flash']['fail'];
+            unset($_SESSION['flash']);
         }
     }
 }

@@ -81,7 +81,7 @@ function picDivFactory(json)
 {
 	var path = json['path'];
 	var first = createNode('div', {
-		class:'w3-col l3 m6 w3-margin-bottom w3-button',
+		class:'w3-col l3 m6 w3-margin-bottom w3-button w3-hover-grayscale',
 		id:path,
 	});
 	var second = createNode('div', {
@@ -145,7 +145,6 @@ function ggDestroy(button, id, url)
 
 function ggCarroussel(button, start, url)
 {
-	console.log("lol");
 	var box = document.getElementById('carroussel').children;
 	var buttons = button.parentNode.children;
 	var id = parseInt(start, 10);
@@ -154,7 +153,14 @@ function ggCarroussel(button, start, url)
 	{
 		box[i].className = 'w3-hide';
 	}
-	box[(id - 1)].className = 'w3-show';
+	if (id - 1 < 0)
+	{
+		box[0].className = 'w3-show';
+	}
+	else
+	{
+		box[(id - 1)].className = 'w3-show';
+	}
 	if (id === box.length)
 	{
 		ggAjax('&start='+ (id + 1), url, listPics);

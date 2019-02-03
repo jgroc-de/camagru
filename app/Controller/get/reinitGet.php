@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controller\get;
 
-use Dumb\Dumbee;
 use Dumb\Patronus;
 
 class reinitGet extends Patronus
 {
-    public function trap(Dumbee $c)
+    public function trap(array $c)
     {
-        $userManager = $c->user;
+        $userManager = $c['user']($c);
         $pseudo = $_GET['log'];
 
         if ($userManager->pseudoInDb($pseudo) && $userManager->checkValidationMail($pseudo, $_GET['key']))

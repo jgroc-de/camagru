@@ -4,15 +4,14 @@ declare(strict_types=1);
 
 namespace App\Controller\post;
 
-use Dumb\Dumbee;
 use Dumb\Patronus;
 
 class listPicsByLike extends Patronus
 {
-    public function trap(Dumbee $container)
+    public function trap(array $c)
     {
-        $pics = $container->picture->getPicsByLike(($_POST['start'] - 1) * 4);
-        if (empty($pics))
+        $pics = $c['picture']($c)->getPicsByLike(($_POST['start'] - 1) * 8);
+        if (!$pics)
         {
             $this->code = 404;
         }
@@ -20,9 +19,8 @@ class listPicsByLike extends Patronus
         {
             $this->response = [
                 'pics' => $pics,
-                'code' => $this->code,
                 'start' => $_POST['start'] + 1,
-                'url' => '/listPicsByDate',
+                'url' => '/listPicsByLike',
             ];
         }
     }

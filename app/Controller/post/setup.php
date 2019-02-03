@@ -4,18 +4,18 @@ declare(strict_types=1);
 
 namespace App\Controller\post;
 
-use Dumb\Dumbee;
 use Dumb\Patronus;
 
 class setup extends Patronus
 {
-    public function trap(Dumbee $c)
+    public function trap(array $c)
     {
         //if ($_SESSION['pseudo'] === 'troll2')
         //{
-        $env = $c->env;
-        $c->config->createDB($env['name']);
-        $c->config->request(file_get_contents($env['export']));
+        $env = $c['env']();
+        $configManager = $c['config']($c);
+        $configManager->createDB($env['name']);
+        $configManager->exec(file_get_contents($env['export']));
         //}
     }
 

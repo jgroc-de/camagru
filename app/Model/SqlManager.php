@@ -2,15 +2,16 @@
 
 namespace App\Model;
 
-use Dumb\Dumbee;
-
 class SqlManager
 {
     protected $container;
 
-    public function __construct(Dumbee &$container)
+    protected $db;
+
+    public function __construct(array $container = [])
     {
         $this->container = $container;
+        $this->db = $container['db']($container['env']());
     }
 
     public function __get(string $name)
@@ -20,9 +21,7 @@ class SqlManager
 
     protected function sqlRequest($request, array $array = [], bool $bool = false)
     {
-        $db = $this->container->db;
-
-        $obj = $db->prepare($request);
+        $obj = $this->db->prepare($request);
         $success = $obj->execute($array);
         if ($bool)
         {

@@ -10,6 +10,9 @@ require '../Dumb/Dumb.php';
 //Dumb Framework is alive!!!
 $baka = new Dumb\Dumb();
 
+//require '../app/container.php';
+equip($baka);
+
 //require '../app/routes.php';
 bakaDo($baka);
 
@@ -19,8 +22,8 @@ shield($baka);
 //require '../app/forms.php';
 trollBumper($baka);
 
-//require '../app/container.php';
-armory($baka);
+//require '../app/ghosts.php';
+hack($baka);
 
 /**
  * initialisation de variable pour app/view/template.php.

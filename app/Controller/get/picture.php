@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\get;
 
-use Dumb\Dumbee;
 use Dumb\Patronus;
 
 class picture extends Patronus
@@ -13,19 +12,18 @@ class picture extends Patronus
 
     private $comments;
 
-    public function trap(Dumbee $c)
+    public function trap(array $c)
     {
         $id = $_GET['id'];
-        $picManager = $c->picture;
 
-        if (!($picManager->picInDb($id)))
+        $this->elem = $c['picture']($c)->getPic($id);
+        if (!$this->elem || empty($this->elem))
         {
             $this->code = 404;
         }
         else
         {
-            $this->elem = $picManager->getPic($id);
-            $this->comments = $c->comment->getComments($id)->fetchAll();
+            $this->comments = $c['comment']($c)->getComments($id)->fetchAll();
         }
     }
 

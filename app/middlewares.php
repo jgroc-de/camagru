@@ -2,7 +2,7 @@
 
 function shield($baka)
 {
-    $baka->eat(
+    $baka->eatM(
         function () {
             if (isset($_SESSION['pseudo']))
             {
@@ -19,7 +19,7 @@ function shield($baka)
         ]
     );
 
-    $baka->eat(
+    $baka->eatM(
         function () {
             if (!isset($_SESSION['pseudo']))
             {
@@ -42,7 +42,7 @@ function shield($baka)
         ]
     );
 
-    $baka->eat(
+    $baka->eatM(
         function () {
             if (!isset($_GET['id']) || !is_numeric($_GET['id']))
             {
@@ -57,7 +57,7 @@ function shield($baka)
         ]
     );
 
-    $baka->eat(
+    $baka->eatM(
         function () {
             if (!isset($_GET['log'], $_GET['key']))
             {
