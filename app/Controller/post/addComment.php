@@ -10,17 +10,17 @@ class addComment extends Patronus
 {
     public function trap(array $c)
     {
-        $commentManager = $c['comment']($c);
         $id = $_POST['id'];
-
-        $commentManager->addComment();
         $user = $c['user']($c)->getUserByImgId($id);
+
         if (empty($user))
         {
             $this->code = 404;
         }
         else
         {
+            $commentManager = $c['comment']($c);
+            $commentManager->addComment();
             if ($user['alert'])
             {
                 $c['mail']()->sendCommentMail($user);

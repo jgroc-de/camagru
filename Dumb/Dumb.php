@@ -132,7 +132,7 @@ class Dumb
 
     public function eatG($function, array $routes)
     {
-        if (isset($routes[$this->uri]))
+        if (empty($routes) || in_array($this->uri, $routes))
         {
             $this->ghosts[] = $function;
         }

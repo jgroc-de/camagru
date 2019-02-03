@@ -23,7 +23,7 @@ shield($baka);
 trollBumper($baka);
 
 //require '../app/ghosts.php';
-hack($baka);
+incept($baka);
 
 /**
  * initialisation de variable pour app/view/template.php.

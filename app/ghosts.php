@@ -1,10 +1,10 @@
 <?php
 
-function hack($baka)
+function incept($baka)
 {
     $baka->eatG(
         function (array $c) {
-            if (!($c['picture']->picInDb($_POST['id'])))
+            if (!($c['picture']($c)->picInDb($_POST['id'])))
             {
                 return 404;
             }
@@ -19,11 +19,11 @@ function hack($baka)
 
     $baka->eatG(
         function (array $c) {
-            $pic = $c['picture']->getPicByUrl($_POST['url']);
+            $pic = $c['picture']($c)->getPicByUrl($_POST['url']);
 
             if (empty($pic) || $_SESSION['id'] !== $pic['id_author'])
             {
-                return 404;
+                return 403;
             }
             $_POST['id'] = $pic['id'];
 
@@ -31,6 +31,22 @@ function hack($baka)
         },
         [
             '/deletePic',
+        ]
+    );
+
+    $baka->eatG(
+        function (array $c) {
+            $pic = $c['picture']($c)->getPic($_POST['id']);
+
+            if (empty($pic) || $_SESSION['pseudo'] !== $pic['pseudo'])
+            {
+                return 403;
+            }
+
+            return 0;
+        },
+        [
+            '/changeTitle',
         ]
     );
 }

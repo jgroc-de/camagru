@@ -5242,7 +5242,7 @@ commentContent	vendor/friendsofphp/php-cs-fixer/src/Fixer/Comment/SingleLineComm
 commentDivFactory	public/js/common.js	/^function commentDivFactory(json)$/;"	f
 commentIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/Basic/BracesFixer.php	/^            $commentIndex = $tokens->getNextNonWhitespace($prevIndex);$/;"	v
 commentIndices	vendor/friendsofphp/php-cs-fixer/src/Fixer/Comment/CommentToPhpdocFixer.php	/^            $commentIndices = $commentsAnalyzer->getCommentBlockIndices($tokens, $index);$/;"	v
-commentManager	app/Controller/post/addComment.php	/^        $commentManager = $c['comment']($c);$/;"	v
+commentManager	app/Controller/post/addComment.php	/^        	$commentManager = $c['comment']($c);$/;"	v
 commentPosition	vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/NoBreakCommentFixer.php	/^                        $commentPosition = null;$/;"	v
 commentPosition	vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/NoBreakCommentFixer.php	/^                $commentPosition = $i;$/;"	v
 commentPosition	vendor/friendsofphp/php-cs-fixer/src/Fixer/ControlStructure/NoBreakCommentFixer.php	/^        $commentPosition = null;$/;"	v
@@ -5601,9 +5601,9 @@ consts	vendor/nikic/php-parser/lib/PhpParser/Node/Stmt/Const_.php	/^        $thi
 consts	vendor/nikic/php-parser/lib/PhpParser/Node/Stmt/Const_.php	/^    public $consts;$/;"	v
 consumeTokenType	vendor/phpstan/phpdoc-parser/src/Parser/TokenIterator.php	/^	public function consumeTokenType(int $tokenType)$/;"	f
 contact	app/Controller/post/contact.php	/^class contact extends Patronus$/;"	c
-container	Dumb/Dumb.php	/^	public $container;$/;"	v
 container	Dumb/Dumb.php	/^        $this->container = $functions;$/;"	v
 container	Dumb/Dumb.php	/^        $this->container = array_merge($this->container, $functions);$/;"	v
+container	Dumb/Dumb.php	/^    public $container;$/;"	v
 container	app/Model/SqlManager.php	/^        $this->container = $container;$/;"	v
 container	app/Model/SqlManager.php	/^    protected $container;$/;"	v
 container	vendor/nette/bootstrap/src/Bootstrap/Configurator.php	/^		$container = new $class($this->dynamicParameters);$/;"	v
@@ -7182,8 +7182,8 @@ earlyTerminatingMethodCalls	vendor/phpstan/phpstan/src/Analyser/NodeScopeResolve
 earlyTerminatingMethodCalls	vendor/phpstan/phpstan/src/Analyser/NodeScopeResolver.php	/^	private $earlyTerminatingMethodCalls;$/;"	v
 earlyTerminationStatement	vendor/phpstan/phpstan/src/Analyser/NodeScopeResolver.php	/^				$earlyTerminationStatement = $this->findStatementEarlyTermination($statement, $branchScope);$/;"	v
 earlyTerminationStatement	vendor/phpstan/phpstan/src/Analyser/NodeScopeResolver.php	/^			$earlyTerminationStatement = null;$/;"	v
-eatF	Dumb/Dumb.php	/^	public function eatF($function, array $routes)$/;"	f
-eatG	Dumb/Dumb.php	/^	public function eatG($function, array $routes)$/;"	f
+eatF	Dumb/Dumb.php	/^    public function eatF($function, array $routes)$/;"	f
+eatG	Dumb/Dumb.php	/^    public function eatG($function, array $routes)$/;"	f
 eatM	Dumb/Dumb.php	/^    public function eatM($function, array $routes)$/;"	f
 echo	vendor/nikic/php-parser/test/PhpParser/ParserTest.php	/^        $echo = $fn->stmts[0];$/;"	v
 echoNode	vendor/nikic/php-parser/test/PhpParser/NodeTraverserTest.php	/^        $echoNode = new Node\\Stmt\\Echo_([$str1Node, $str2Node]);$/;"	v
@@ -7541,10 +7541,10 @@ erasedContent	vendor/symfony/console/Output/ConsoleSectionOutput.php	/^        $
 erasedContent	vendor/symfony/console/Output/ConsoleSectionOutput.php	/^        $erasedContent = array();$/;"	v
 err	vendor/symfony/process/Process.php	/^                $err = stream_get_contents($this->stderr, -1, $this->incrementalErrorOutputOffset);$/;"	v
 err	vendor/symfony/process/Tests/PipeStdinInStdoutStdErrStreamSelect.php	/^        $err = (string) substr($err, $written);$/;"	v
-error	Dumb/Dumb.php	/^			$this->error = 404;$/;"	v
 error	Dumb/Dumb.php	/^                    $this->error = $error;$/;"	v
 error	Dumb/Dumb.php	/^                $this->error = $error;$/;"	v
 error	Dumb/Dumb.php	/^                $this->error = 405;$/;"	v
+error	Dumb/Dumb.php	/^            $this->error = 404;$/;"	v
 error	Dumb/Dumb.php	/^    protected $error = 0;$/;"	v
 error	app/Controller/error.php	/^class error extends Patronus$/;"	c
 error	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^                $error = 'Unable to read ini: '.$file;$/;"	v
@@ -11724,7 +11724,6 @@ h	vendor/friendsofphp/php-cs-fixer/src/Fixer/Operator/BinaryOperatorSpacesFixer.
 h	vendor/symfony/process/Tests/ProcessTest.php	/^        $h = $h->getValue($p);$/;"	v
 h	vendor/symfony/process/Tests/ProcessTest.php	/^        $h = fopen($lock, 'w');$/;"	v
 h	vendor/symfony/process/Tests/ProcessTest.php	/^        $h = new \\ReflectionProperty($p, 'process');$/;"	v
-hack	app/ghosts.php	/^function hack($baka)$/;"	f
 handle	vendor/nette/di/src/DI/ContainerLoader.php	/^		$handle = @fopen("$file.lock", 'c+'); \/\/ @ is escalated to exception$/;"	v
 handle	vendor/nette/robot-loader/src/RobotLoader/RobotLoader.php	/^		$handle = fopen("$file.lock", 'c+');$/;"	v
 handle	vendor/phpstan/phpstan/src/Type/VerbosityLevel.php	/^	public function handle($/;"	f
@@ -12357,6 +12356,7 @@ inOld	vendor/php-cs-fixer/diff/src/v1_4/Differ.php	/^                $inOld = fa
 inOld	vendor/php-cs-fixer/diff/src/v1_4/Differ.php	/^        $inOld = false;$/;"	v
 inProcess	vendor/phpstan/phpstan/src/Type/FileTypeMapper.php	/^	private $inProcess = [];$/;"	v
 inRestart	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^    private static $inRestart;$/;"	v
+incept	app/ghosts.php	/^function incept($baka)$/;"	f
 inceptionResult	vendor/phpstan/phpstan/src/Command/AnalyseCommand.php	/^			$inceptionResult = CommandHelper::begin($/;"	v
 inceptionResult	vendor/phpstan/phpstan/src/Command/DumpDependenciesCommand.php	/^			$inceptionResult = CommandHelper::begin($/;"	v
 include	vendor/friendsofphp/php-cs-fixer/src/Fixer/FunctionNotation/NativeFunctionInvocationFixer.php	/^            $include = $this->getAllCompilerOptimizedFunctionsNormalized(); \/\/ if `@internal` is set all compiler optimized function are already loaded$/;"	v
@@ -18000,7 +18000,8 @@ phpVersion	vendor/friendsofphp/php-cs-fixer/src/Cache/Signature.php	/^    privat
 php_os_family	vendor/symfony/polyfill-php72/Php72.php	/^    public static function php_os_family()$/;"	f
 phprc	vendor/composer/xdebug-handler/src/XdebugHandler.php	/^        $phprc = getenv('PHPRC');$/;"	v
 phpunitPositions	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/OrderedClassElementsFixer.php	/^        static $phpunitPositions = [$/;"	v
-pic	app/ghosts.php	/^        	$pic = $c['picture']->getPicByUrl($_POST['url']);$/;"	v
+pic	app/ghosts.php	/^            $pic = $c['picture']($c)->getPic($_POST['id']);$/;"	v
+pic	app/ghosts.php	/^            $pic = $c['picture']($c)->getPicByUrl($_POST['url']);$/;"	v
 picDivFactory	public/js/common.js	/^function picDivFactory(json)$/;"	f
 picInDb	app/Model/PicManager.php	/^    public function picInDb(int $id)$/;"	f
 pick	vendor/nette/utils/src/Utils/Arrays.php	/^	public static function pick(array &$arr, $key, $default = null)$/;"	f
@@ -19861,7 +19862,7 @@ rootDirectory	vendor/phpstan/phpstan/src/DependencyInjection/ContainerFactory.ph
 rootPackage	vendor/ocramius/package-versions/src/PackageVersions/Installer.php	/^        $rootPackage = $composer->getPackage();$/;"	v
 rootPath	vendor/symfony/finder/Iterator/RecursiveDirectoryIterator.php	/^        $this->rootPath = $path;$/;"	v
 rootPath	vendor/symfony/finder/Iterator/RecursiveDirectoryIterator.php	/^    private $rootPath;$/;"	v
-routes	Dumb/Dumb.php	/^	protected function routes()$/;"	f
+routes	Dumb/Dumb.php	/^    protected function routes()$/;"	f
 row	vendor/nette/utils/src/Utils/Arrays.php	/^						$row = is_object($rowOrig) ? $rowOrig : (object) $row;$/;"	v
 row	vendor/nette/utils/src/Utils/Arrays.php	/^						$row = null;$/;"	v
 row	vendor/nette/utils/src/Utils/Arrays.php	/^			$row = (array) $rowOrig;$/;"	v
@@ -20926,7 +20927,7 @@ setComment	vendor/nette/php-generator/src/PhpGenerator/Traits/CommentAware.php	/
 setCompiler	vendor/nette/di/src/DI/CompilerExtension.php	/^	public function setCompiler(Compiler $compiler, $name)$/;"	f
 setConfig	vendor/nette/di/src/DI/CompilerExtension.php	/^	public function setConfig(array $config)$/;"	f
 setConstants	vendor/nette/php-generator/src/PhpGenerator/ClassType.php	/^	public function setConstants(array $consts): self$/;"	f
-setContainer	Dumb/Dumb.php	/^	public function setContainer(array $functions)$/;"	f
+setContainer	Dumb/Dumb.php	/^    public function setContainer(array $functions)$/;"	f
 setContainer	vendor/symfony/contracts/Service/ServiceSubscriberTrait.php	/^    public function setContainer(ContainerInterface $container)$/;"	f
 setContainer	vendor/symfony/contracts/Tests/Service/ServiceSubscriberTraitTest.php	/^    public function setContainer(ContainerInterface $container)$/;"	f
 setContent	vendor/friendsofphp/php-cs-fixer/src/DocBlock/Line.php	/^    public function setContent($content)$/;"	f
