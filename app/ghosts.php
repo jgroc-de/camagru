@@ -25,7 +25,7 @@ function incept($baka)
             {
                 return 403;
             }
-            $_POST['id'] = $pic['id'];
+            $_POST['id'] = (int)$pic['id'];
 
             return 0;
         },

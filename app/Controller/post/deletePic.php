@@ -11,7 +11,7 @@ class deletePic extends Patronus
     public function trap(array $c)
     {
         $this->response['url'] = $_POST['url'];
-        $c['picture']($c)->deletePic($_POST['id'], $_SESSION['id']);
+        $c['picture']($c)->deletePic($_POST['id'], (int)$_SESSION['id']);
         unlink($_POST['url']);
         $this->response['flash'] = 'Picture successfully deleted!';
     }
