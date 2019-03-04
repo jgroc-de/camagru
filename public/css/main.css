@@ -6,24 +6,38 @@
 	background-size: contain;
 }
 
+.gg-page-nav {
+	position: fixed;
+	top: 56px;
+  	right: 16px;
+  	width: 160px;
+	z-index: 2;
+	background-color: white;
+}
+
 @media only screen and (max-width: 480px) {
 	.gg-header {
 		height: 250px;
-		margin-top: 40px;
+		margin-top: 56px;
 	}
 }
 
 @media only screen and (min-width: 480px) and (max-width: 800px) {
 	.gg-header {
-		height: 600px;
-		margin-top: 55px;
+		height: 350px;
+		margin-top: 56px;
 	}
 }
 
 @media only screen and (min-width: 800px) {
 	.gg-header {
-		height: 800px;
-		margin-top: 55px;
+		height: 500px;
+		margin-top: 56px;
+	}
+
+	.gg-book {
+		height: 700px;
+		overflow: auto;
 	}
 }
 
@@ -35,4 +49,24 @@
 .gg-post-it {
 	position: relative;
 	left: -8px;
+}
+
+.bar1, .bar2, .bar3 {
+  width: 22px;
+  height: 4px;
+  background-color: #333;
+  margin: 3px 0;
+  transition: 0.4s;
+}
+
+.change .bar1 {
+  -webkit-transform: rotate(-45deg) translate(-6px, 6px);
+  transform: rotate(-45deg) translate(-6px, 6px);
+}
+
+.change .bar2 {opacity: 0;}
+
+.change .bar3 {
+  -webkit-transform: rotate(45deg) translate(-4px, -4px);
+  transform: rotate(45deg) translate(-4px, -4px);
 }

@@ -96,6 +96,7 @@ class Dumb
             $letter = new $class();
         }
         $letter->trap($this->container);
+		header("Cache-Control: max-age=360");
         header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
         if ($letter->code >= 400 && 'GET' === $_SERVER['REQUEST_METHOD'])
         {

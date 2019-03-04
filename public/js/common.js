@@ -1,8 +1,17 @@
 "use strict";
 
+function pageNav(burger)
+{
+	var pageNav = document.getElementById("pageNav");
+
+	pageNav.hidden = pageNav.hidden ? false : true;
+	burger.classList.toggle("change");
+}
+
 function ggForm(button, url, callback = null)
 {
 	var data = '';
+
 	if (button)
 	{
 		var input = button.parentNode.parentNode;

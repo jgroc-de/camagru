@@ -17373,6 +17373,7 @@ paddingChar	vendor/symfony/console/Helper/TableStyle.php	/^        $this->paddin
 paddingChar	vendor/symfony/console/Helper/TableStyle.php	/^    private $paddingChar = ' ';$/;"	v
 page	vendor/nette/utils/src/Utils/Paginator.php	/^		$this->page = (int) $page;$/;"	v
 page	vendor/nette/utils/src/Utils/Paginator.php	/^	private $page;$/;"	v
+pageNav	public/js/common.js	/^function pageNav(burger)$/;"	f
 pair	vendor/nette/di/src/DI/ContainerBuilder.php	/^					$pair = explode('::', $val, 2);$/;"	v
 pair	vendor/nette/utils/src/Utils/Reflection.php	/^			$pair = explode('::', $const);$/;"	v
 param	Dumb/Dumb.php	/^            $param = $form[0];$/;"	v

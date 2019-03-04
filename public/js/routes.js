@@ -69,7 +69,7 @@ function login(status, json)
 	var settings = document.getElementById("btnSettings");
 
 	form.style.display = 'none';
-	settings.style.display = 'block';
+	settings.hidden = false;
 	logout.className = "w3-bar-item w3-black w3-button";
 	logout.removeAttribute('onclick');
 	camagru.removeAttribute('onclick');

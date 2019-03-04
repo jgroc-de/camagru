@@ -1,6 +1,6 @@
 <div class="w3-container w3-padding-64">
-	<div class="w3-col l6">
-		<h2 class="w3-border-bottom w3-border-light-grey w3-padding-16">
+	<div class="w3-col l6 w3-card-4 gg-book">
+		<h2 class="w3-border-bottom w3-border-light-grey w3-padding">
 			<form>
 				<div>
 					<?= htmlspecialchars($elem['title']) ?>
@@ -9,19 +9,19 @@
 				</div>
 			</form>
 		</h2>
-		<div class="w3-padding-16">
+		<div class="w3-padding">
 			<img width="100%" src="<?= '/'.htmlspecialchars($elem['url']) ?>" alt="<?= htmlspecialchars($elem['title'])?>">
 		</div>
-		<div class="w3-right w3-margin-right">
+		<div class="w3-right w3-margin-right w3-margin-bottom">
 		   <span id="like">
 			   <?= htmlspecialchars($elem['nb_like']); ?> likes
 		   </span>
 		   <button type="button" class="w3-button w3-black <?php if (!isset($_SESSION['pseudo'])): ?>w3-hide<?php endif; ?>" onclick="ggAjax(<?php echo '\'id='.$id.'\'' ?>, '/addLike', addLike)" id="likeButton">Like this</button>
 	   </div>
 	</div>
-	<div class="w3-col l6">
-		<h2 class="w3-border-bottom w3-border-light-grey w3-padding-16">Comments</h2>
-		<form method="post" action="#" id="trollInput" class="w3-container w3-padding-16 w3-border-bottom <?php if (!isset($_SESSION['pseudo'])): ?>w3-hide<?php endif;?>">
+	<div class="w3-col l6 w3-card gg-book">
+		<h2 class="w3-border-bottom w3-border-light-grey w3-padding">Comments</h2>
+		<form method="post" action="#" id="trollInput" class="w3-container w3-padding w3-border-bottom <?php if (!isset($_SESSION['pseudo'])): ?>w3-hide<?php endif;?>">
 			<div class="w3-hide">
 				<input name="id" type="number" value=<?= $id ?> disabled required>
 			</div>
@@ -29,13 +29,13 @@
 				<textarea name="comment" width="100%" class="w3-input w3-border" rows="3" placeholder="Troll this!" required spellcheck="true"></textarea>
 			</div>
 			<div class="submit">
-				<button type="button" class="w3-right w3-button w3-black" onclick="ggForm(this, '/addComment', addComment)">
+				<button type="button" class="w3-right w3-button w3-black w3-margin-top" onclick="ggForm(this, '/addComment', addComment)">
 					<i class="fa fa-paper-plane"></i>
 					Troll this
 				</button>
 			</div>
 		</form>
-		<div id="comments" class="w3-container w3-padding-16">	
+		<div id="comments" class="w3-container w3-padding">	
 			<?php foreach ($comments as $comment) { ?>
 			<div class="w3-row w3-margin-bottom">
 				<h3><?= htmlspecialchars($comment['pseudo']) ?> <span class="w3-opacity w3-medium">on <?php echo date('d F Y, h:i A', (strtotime($comment['date2']))) ?></span></span></h3>
