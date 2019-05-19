@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\get;
+namespace App\Controller\Get;
 
 use Dumb\Patronus;
 
+/**
+ * camagru
+ * give the view to creates pics
+ */
 class camagru extends Patronus
 {
     private $pics;
@@ -32,6 +36,6 @@ class camagru extends Patronus
         $main = '/camagruView.html';
         $components = $options['components'];
 
-        require __DIR__.'/../../view/template.html';
+        require __DIR__.'/../../View/template.html';
     }
 }

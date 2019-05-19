@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\post;
+namespace App\Controller\Post;
 
 use Dumb\Patronus;
 

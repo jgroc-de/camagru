@@ -11,18 +11,23 @@ require '../Dumb/Dumb.php';
 $baka = new Dumb\Dumb();
 
 //require '../app/container.php';
+//set container
 equip($baka);
 
 //require '../app/routes.php';
-bakaDo($baka);
+//set routes
+bakado($baka);
 
 //require '../app/middlewares.php';
-shield($baka);
+//set url validator
+//shield($baka);
 
 //require '../app/forms.php';
-trollBumper($baka);
+//set form validator
+//trollBumper($baka);
 
 //require '../app/ghosts.php';
+//set specific validators
 incept($baka);
 
 /**

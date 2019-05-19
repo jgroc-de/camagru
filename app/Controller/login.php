@@ -2,13 +2,18 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\post;
+namespace App\Controller;
 
 use Dumb\Patronus;
 
 class login extends Patronus
 {
     public function trap(array $c)
+    {
+        $this->{$this->method}($c);
+    }
+
+    private function post(array $c)
     {
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
@@ -28,5 +33,11 @@ class login extends Patronus
             $this->code = 401;
             $this->response['flash'] = 'Bad password or login';
         }
+    }
+
+    private function delete(array $c)
+    {
+        session_unset();
+        session_destroy();
     }
 }

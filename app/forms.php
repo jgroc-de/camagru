@@ -1,9 +1,18 @@
 <?php
 
-function trollBumper($baka)
+use \Dumb\Dumb;
+
+/**
+ * troolBumper.
+ * validation of forms for each routes
+ *
+ * @param Dumb $baka
+ */
+function trollBumper(Dumb $baka)
 {
     $baka->eatF(
-        function ($key, $type) {
+        function ($key, $type): int {
+                    var_dump($_REQUEST);exit;
             if (!isset($_POST[$key]) || !$_POST[$key])
             {
                 return 401;

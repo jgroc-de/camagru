@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\get;
+namespace App\Controller\Get;
 
 use Dumb\Patronus;
 
+/**
+ * picture.
+ * provide view to comments and pictures
+ */
 class picture extends Patronus
 {
     private $elem;
@@ -38,6 +42,6 @@ class picture extends Patronus
         $main = '/picView.html';
         $options['components'] = [];
 
-        require __DIR__.'/../../view/template.html';
+        require __DIR__.'/../../View/template.html';
     }
 }

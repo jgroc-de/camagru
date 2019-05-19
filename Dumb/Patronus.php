@@ -10,9 +10,12 @@ class Patronus
 
     protected $response = [];
 
-    public function __construct(int $code = 200)
+    protected $method;
+
+    public function __construct(string $method, int $code = 200)
     {
         $this->code = $code;
+        $this->method = $method;
     }
 
     public function trap(array $c)

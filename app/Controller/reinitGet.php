@@ -2,10 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Controller\get;
+namespace App\Controller\Get;
 
 use Dumb\Patronus;
 
+/**
+ * reinitGet.
+ * init DB and redirect to home or error if error
+ */
 class reinitGet extends Patronus
 {
     public function trap(array $c)

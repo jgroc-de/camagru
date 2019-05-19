@@ -2,27 +2,21 @@
 
 namespace App\Model;
 
-class ConfigManager extends SqlManager
+class ConfigManager
 {
-    public function createDB(string $DBName)
+    protected $db;
+
+    public function __construct(array $container = [])
     {
-        $this->dbconnect();
-        $this->db->exec('DROP DATABASE IF EXISTS '.$DBName);
-        $this->db->exec('CREATE DATABASE '.$DBName);
+        $this->db = $container['env']();
     }
 
-    public function exec(string $file)
+    public function createDB(string $file)
     {
-        $this->db->exec($file);
-    }
-
-    protected function dbconnect()
-    {
-        $db = $this->container['env'];
-        $db_dsn = $db['driver'].':host='.$db['host'].';port='.$db['port'];
-
-        $this->db = new \PDO($db_dsn, $db['user'], $db['password'], [
+        $db_dsn = $this->db['driver'].':host='.$this->db['host'].';port='.$this->db['port'];
+        $conn = new \PDO($db_dsn, $this->db['user'], $this->db['password'], [
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
         ]);
+        $conn->exec($file);
     }
 }

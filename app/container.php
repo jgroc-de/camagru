@@ -6,11 +6,18 @@ use App\Model\ConfigManager;
 use App\Model\MailManager;
 use App\Model\PicManager;
 use App\Model\UserManager;
+use Dumb\Dumb;
 
-function equip($baka)
+/**
+ * equip.
+ * equip everything u need into the container of dumb
+ *
+ * @param Dumb $baka
+ */
+function equip(Dumb $baka)
 {
     $baka->setContainer([
-        'env' => function () {
+        'env' => function (): array {
             //$dbopts = parse_url(getenv('DATABASE_URL'));
             return [
                 /*'driver' => 'pgsql',
@@ -24,11 +31,11 @@ function equip($baka)
                 'password' => 'root@GG93',
                 'host' => 'localhost',
                 'name' => 'camagru',
-                'export' => __DIR__.'/../config/camagru.sql',
+                'export' => __DIR__.'/DB/camagru.sql',
                 'port' => '3306',
             ];
         },
-        'db' => function ($DB) {
+        'db' => function ($DB): \PDO {
             $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';
 
             return new \PDO($DB_DSN, $DB['user'], $DB['password'], [
