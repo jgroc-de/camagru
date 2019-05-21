@@ -8,7 +8,7 @@ use Dumb\Patronus;
 
 class setup extends Patronus
 {
-    public function trap(array $c)
+    public function get(array $c)
     {
         $configManager = $c['config']($c);
         $configManager->createDB(file_get_contents($c['env']()['export']));

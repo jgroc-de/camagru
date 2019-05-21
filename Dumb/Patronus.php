@@ -20,6 +20,7 @@ class Patronus
 
     public function trap(array $c)
     {
+        $this->{$this->method}($c);
     }
 
     public function bomb(array $options)

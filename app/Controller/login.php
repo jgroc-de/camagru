@@ -8,11 +8,6 @@ use Dumb\Patronus;
 
 class login extends Patronus
 {
-    public function trap(array $c)
-    {
-        $this->{$this->method}($c);
-    }
-
     private function post(array $c)
     {
         $pseudo = $_POST['pseudo'];

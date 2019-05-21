@@ -8,7 +8,7 @@ use Dumb\Patronus;
 
 class contact extends Patronus
 {
-    public function trap(array $c)
+    public function post(array $c)
     {
         $c['mail']()->sendContactMail();
         $this->response['flash'] = 'Thx!';

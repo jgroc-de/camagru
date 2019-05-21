@@ -12,6 +12,10 @@ use Dumb\Patronus;
  */
 class home extends Patronus
 {
+    public function trap(array $c)
+    {
+    }
+
     public function bomb(array $options)
     {
         $this->{$this->method}($options);

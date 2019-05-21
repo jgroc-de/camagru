@@ -17,6 +17,10 @@ class error extends Patronus
         500 => 'Server Internal Error',
     ];
 
+    public function trap(array $c)
+    {
+    }
+
     public function bomb(array $options)
     {
         $this->{$this->method}($options);

@@ -16,7 +16,7 @@ class camagru extends Patronus
 
     private $listFilter;
 
-    public function trap(array $c)
+    public function get(array $c)
     {
         $this->pics = $c['picture']($c)->getPicsByLogin($_SESSION['id']);
         $this->listFilter = $c['camagru']($c)->getFilters();

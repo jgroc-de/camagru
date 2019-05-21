@@ -17,7 +17,7 @@ class PicManager extends SqlManager
         return $this->sqlRequestFetch($request, [$id]);
     }
 
-    public function getPics(int $start)
+    public function getPicsByDate(int $start)
     {
         $request = $this->db->prepare('
 			SELECT img.id, img.title, img.url as path

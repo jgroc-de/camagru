@@ -6,9 +6,9 @@ namespace App\Controller\Post;
 
 use Dumb\Patronus;
 
-class addComment extends Patronus
+class comment extends Patronus
 {
-    public function trap(array $c)
+    public function post(array $c)
     {
         $id = $_POST['id'];
         $user = $c['user']($c)->getUserByImgId($id);
