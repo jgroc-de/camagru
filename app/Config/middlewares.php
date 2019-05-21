@@ -20,9 +20,9 @@ function shield(Dumb $baka)
             return 0;
         },
         [
-            '/login',
+            '/loginpost',
             '/signup',
-            '/reinit',
+            '/passwordpost and get',
         ]
     );
 
@@ -36,15 +36,15 @@ function shield(Dumb $baka)
             return 0;
         },
         [
-            '/logout',
+            '/logindelete',
             '/camagru',
-            '/addComment',
-            '/addLike',
-            '/changeTitle',
-            '/createPic',
+            '/comment',
+            '/like',
+            '/patchpic',
+            '/postPic',
             '/deletePic',
-            '/getSettings',
-            '/settings',
+            '/userget',
+            '/userpost',
             '/password',
         ]
     );
@@ -76,7 +76,7 @@ function shield(Dumb $baka)
             return 0;
         },
         [
-            '/reinitGet',
+            '/passwordGet',
         ]
     );
 

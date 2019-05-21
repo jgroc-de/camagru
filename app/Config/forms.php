@@ -84,8 +84,8 @@ function trollBumper(Dumb $baka)
             '/picturepatch' => ['id' => 'numeric', 'title' => 'pseudo'],
             '/picturedelete' => ['url' => ''],
             '/picturepost' => ['data' => 'data'],
-            '/reinitpost' => ['pseudo' => 'pseudo'],
-            '/userpatch' => ['password' => 'password'],
+            '/passwordpost' => ['pseudo' => 'pseudo'],
+            '/passwordpatch' => ['password' => 'password'],
             '/userpost' => ['password' => 'password', 'pseudo' => 'pseudo', 'email' => 'email'],
             '/userget' => ['pseudo' => 'pseudo', 'email' => 'email'],
         ]

@@ -17,12 +17,6 @@ class user extends Patronus
         ];
     }
 
-    public function patch(array $c)
-    {
-        $c['user']($c)->updatePassword($_POST['password']);
-        $this->response['flash'] = 'Password Succesfully updated';
-    }
-
     public function put(array $c)
     {
         $pseudo = $_POST['pseudo'];

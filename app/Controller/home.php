@@ -18,11 +18,6 @@ class home extends Patronus
 
     public function bomb(array $options)
     {
-        $this->{$this->method}($options);
-    }
-
-    private function get(array $options)
-    {
         $onLoad = "ggDestroy(document.getElementById('launch'), 'carroussel', '/listPicsByDate');";
         $components = $options['components'];
         $components['body'] = $onLoad;
