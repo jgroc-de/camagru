@@ -21,7 +21,7 @@ class picture extends Patronus
         $id = $_GET['id'];
 
         $this->elem = $c['picture']($c)->getPic($id);
-        if (!$this->elem || empty($this->elem))
+        if (empty($this->elem))
         {
             $this->code = 404;
         }
@@ -46,16 +46,23 @@ class picture extends Patronus
 
     public function bomb(array $options)
     {
-        $id = $_GET['id'];
-        $elem = $this->elem;
-        $comments = $this->comments;
-        array_shift($options['header']);
-        $options['title2'] = htmlspecialchars($elem['title']);
-        $view = 'Picture';
-        $main = '/picView.html';
-        $options['components'] = [];
+        if ($this->method == 'get')
+        {
+            $id = $_GET['id'];
+            $elem = $this->elem;
+            $comments = $this->comments;
+            array_shift($options['header']);
+            $options['title2'] = htmlspecialchars($elem['title']);
+            $view = 'Picture';
+            $main = '/picView.html';
+            $options['components'] = [];
 
-        require __DIR__.'/../../View/template.html';
+            require __DIR__.'/../../View/template.html';
+        }
+        else
+        {
+            parent::bomb($options);
+        }
     }
 
     public function post(array $c)

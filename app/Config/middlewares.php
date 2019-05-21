@@ -22,8 +22,7 @@ function shield(Dumb $baka)
         [
             '/login',
             '/signup',
-            '/reinitPost',
-            '/reinitGet',
+            '/reinit',
         ]
     );
 

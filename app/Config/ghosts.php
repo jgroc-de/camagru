@@ -20,8 +20,8 @@ function incept($baka)
             return 0;
         },
         [
-            '/addLike',
-            '/changeTitle',
+            '/like',
+            '/picturepatch',
         ]
     );
 
@@ -38,7 +38,7 @@ function incept($baka)
             return 0;
         },
         [
-            '/deletePic',
+            '/picturedelete',
         ]
     );
 
@@ -54,7 +54,7 @@ function incept($baka)
             return 0;
         },
         [
-            '/changeTitle',
+            '/picturepatch',
         ]
     );
 }

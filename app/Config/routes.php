@@ -14,14 +14,15 @@ function bakado(Dumb $baka)
     $baka->bakado([
         '/camagru' => '/b',
         '/camagru',
+        '/contact',
         '/error',
         '/home' => '/',
         '/home',
-        '/pic',
-        '/user',
-        '/contact',
+        '/pics',
+        '/picture',
+        '/reinit' => ['/validation'],
+        '/reinit',
         '/setup',
-        '/reinit' => ['/reinitGet', '/validation'],
-        '/reinitPost',
+        '/user',
     ]);
 }

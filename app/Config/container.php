@@ -31,7 +31,7 @@ function equip(Dumb $baka)
                 'password' => 'root@GG93',
                 'host' => 'localhost',
                 'name' => 'camagru',
-                'export' => __DIR__.'/DB/camagru.sql',
+                'export' => __DIR__.'/../DB/camagru.sql',
                 'port' => '3306',
             ];
         },

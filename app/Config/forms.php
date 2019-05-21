@@ -76,19 +76,18 @@ function trollBumper(Dumb $baka)
             return 0;
         },
         [
-            '/login' => ['password' => 'password', 'pseudo' => 'pseudo'],
-            '/password' => ['password' => 'password'],
-            '/signup' => ['password' => 'password', 'pseudo' => 'pseudo', 'email' => 'email'],
+            '/comment' => ['id' => 'numeric', 'comment' => ''],
             '/contact' => ['name' => 'pseudo', 'subject' => '', 'email' => 'email', 'message' => ''],
-            '/settings' => ['pseudo' => 'pseudo', 'email' => 'email'],
-            '/addLike' => ['id' => 'numeric'],
-            '/listPicsByLike' => ['start' => 'numeric'],
-            '/listPicsByDate' => ['start' => 'numeric'],
-            '/addComment' => ['id' => 'numeric', 'comment' => ''],
-            '/changeTitle' => ['id' => 'numeric', 'title' => 'pseudo'],
-            '/deletePic' => ['url' => ''],
-            '/createPic' => ['data' => 'data'],
-            '/reinitPost' => ['pseudo' => 'pseudo'],
+            '/login' => ['password' => 'password', 'pseudo' => 'pseudo'],
+            '/like' => ['id' => 'numeric'],
+            '/pics' => ['start' => 'numeric', 'by' => ''],
+            '/picturepatch' => ['id' => 'numeric', 'title' => 'pseudo'],
+            '/picturedelete' => ['url' => ''],
+            '/picturepost' => ['data' => 'data'],
+            '/reinitpost' => ['pseudo' => 'pseudo'],
+            '/userpatch' => ['password' => 'password'],
+            '/userpost' => ['password' => 'password', 'pseudo' => 'pseudo', 'email' => 'email'],
+            '/userget' => ['pseudo' => 'pseudo', 'email' => 'email'],
         ]
     );
 }
