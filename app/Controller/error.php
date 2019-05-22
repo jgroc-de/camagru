@@ -43,6 +43,6 @@ class error extends Patronus
 
     public function __call(string $method, array $options)
     {
-        $this->json();
+        parent::bomb($options);
     }
 }

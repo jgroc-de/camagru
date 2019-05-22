@@ -76,18 +76,34 @@ function trollBumper(Dumb $baka)
             return 0;
         },
         [
-            '/comment' => ['id' => 'numeric', 'comment' => ''],
-            '/contact' => ['name' => 'pseudo', 'subject' => '', 'email' => 'email', 'message' => ''],
-            '/login' => ['password' => 'password', 'pseudo' => 'pseudo'],
-            '/like' => ['id' => 'numeric'],
-            '/pics' => ['start' => 'numeric', 'by' => ''],
-            '/picturepatch' => ['id' => 'numeric', 'title' => 'pseudo'],
-            '/picturedelete' => ['url' => ''],
-            '/picturepost' => ['data' => 'data'],
-            '/passwordpost' => ['pseudo' => 'pseudo'],
-            '/passwordpatch' => ['password' => 'password'],
-            '/userpost' => ['password' => 'password', 'pseudo' => 'pseudo', 'email' => 'email'],
-            '/userget' => ['pseudo' => 'pseudo', 'email' => 'email'],
+            '/comment' => [
+                'post' => ['id' => 'numeric', 'comment' => '']
+            ],
+            '/contact' => [
+                'post' => ['name' => 'pseudo', 'subject' => '', 'email' => 'email', 'message' => '']
+            ],
+            '/login' => [
+                'post' => ['password' => 'password', 'pseudo' => 'pseudo']
+            ],
+            '/like' => [
+                'post' => ['id' => 'numeric']
+            ],
+            '/pics' => [
+                'get' => ['start' => 'numeric', 'by' => '']
+            ],
+            '/picture' => [
+                'delete' => ['url' => ''],
+                'patch' => ['id' => 'numeric', 'title' => 'pseudo'],
+                'post' => ['data' => 'data'],
+            ],
+            '/password' => [
+                'patch' => ['password' => 'password'],
+                'post' => ['pseudo' => 'pseudo'],
+            ],
+            '/user' => [
+                'get' => ['pseudo' => 'pseudo', 'email' => 'email'],
+                'post' => ['password' => 'password', 'pseudo' => 'pseudo', 'email' => 'email'],
+            ],
         ]
     );
 }

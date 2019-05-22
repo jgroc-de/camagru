@@ -20,9 +20,10 @@ function shield(Dumb $baka)
             return 0;
         },
         [
-            '/loginpost',
-            '/signup',
-            '/passwordpost and get',
+            '/login' => 'post',
+            '/signup' => 'post',
+            '/password' => 'post',
+            '/password' => 'get',
         ]
     );
 
@@ -36,16 +37,16 @@ function shield(Dumb $baka)
             return 0;
         },
         [
-            '/logindelete',
-            '/camagru',
-            '/comment',
-            '/like',
-            '/patchpic',
-            '/postPic',
-            '/deletePic',
-            '/userget',
-            '/userpost',
-            '/password',
+            '/login' => 'delete',
+            '/camagru' => 'get',
+            '/comment' => 'post',
+            '/like' => 'post',
+            '/pic' => 'post',
+            '/pic' => 'patch',
+            '/pic' => 'delete',
+            '/user' => 'get',
+            '/user' => 'post',
+            '/password' => 'patch',
         ]
     );
 

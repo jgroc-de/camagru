@@ -20,16 +20,20 @@ function incept($baka)
             return 0;
         },
         [
-            '/like',
-            '/picturepatch',
+            '/like' => 'post',
         ]
     );
 
+    //à modifier pour ne pas etre dépendant de l'url
     $baka->eatG(
         function (array $c): int {
             $pic = $c['picture']($c)->getPicByUrl($_POST['url']);
 
-            if (empty($pic) || $_SESSION['id'] !== $pic['id_author'])
+            if (empty($pic))
+            {
+                return 404;
+            }
+            if ($_SESSION['id'] !== $pic['id_author'])
             {
                 return 403;
             }
@@ -38,7 +42,7 @@ function incept($baka)
             return 0;
         },
         [
-            '/picturedelete',
+            '/picture' => 'delete',
         ]
     );
 
@@ -46,7 +50,11 @@ function incept($baka)
         function (array $c): int {
             $pic = $c['picture']($c)->getPic($_POST['id']);
 
-            if (empty($pic) || $_SESSION['pseudo'] !== $pic['pseudo'])
+            if (empty($pic))
+            {
+                return 404;
+            }
+            if ($_SESSION['pseudo'] !== $pic['pseudo'])
             {
                 return 403;
             }
@@ -54,7 +62,7 @@ function incept($baka)
             return 0;
         },
         [
-            '/picturepatch',
+            '/picture' => 'patch',
         ]
     );
 }
