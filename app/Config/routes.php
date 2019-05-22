@@ -18,6 +18,7 @@ function bakado(Dumb $baka)
         '/error',
         '/home' => '/',
         '/home',
+        '/login',
         '/pics',
         '/picture',
         '/reinit' => ['/validation'],

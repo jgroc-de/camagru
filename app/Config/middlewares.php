@@ -20,10 +20,16 @@ function shield(Dumb $baka)
             return 0;
         },
         [
-            '/login' => 'post',
-            '/signup' => 'post',
-            '/password' => 'post',
-            '/password' => 'get',
+            '/login' => [
+                'post'
+            ],
+            '/signup' => [
+                'post'
+            ],
+            '/password' => [
+                'post',
+                'get',
+            ],
         ]
     );
 
@@ -37,16 +43,30 @@ function shield(Dumb $baka)
             return 0;
         },
         [
-            '/login' => 'delete',
-            '/camagru' => 'get',
-            '/comment' => 'post',
-            '/like' => 'post',
-            '/pic' => 'post',
-            '/pic' => 'patch',
-            '/pic' => 'delete',
-            '/user' => 'get',
-            '/user' => 'post',
-            '/password' => 'patch',
+            '/login' => [
+                'delete'
+            ],
+            '/camagru' => [
+                'get'
+            ],
+            '/comment' => [
+                'post'
+            ],
+            '/like' => [
+                'post'
+            ],
+            '/picture' => [
+                'post',
+                'patch',
+                'delete',
+            ],
+            '/user' => [
+                'get',
+                'post',
+            ],
+            '/password' => [
+                'patch'
+            ],
         ]
     );
 
@@ -63,7 +83,7 @@ function shield(Dumb $baka)
             return 0;
         },
         [
-            '/picture',
+            '/picture' => [],
         ]
     );
 
@@ -77,7 +97,9 @@ function shield(Dumb $baka)
             return 0;
         },
         [
-            '/passwordGet',
+            '/password' => [
+                'get',
+            ],
         ]
     );
 
@@ -91,7 +113,7 @@ function shield(Dumb $baka)
             return 0;
         },
         [
-            '/setup',
+            '/setup' => [],
         ]
     );
 }

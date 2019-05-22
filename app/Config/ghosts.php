@@ -20,7 +20,9 @@ function incept($baka)
             return 0;
         },
         [
-            '/like' => 'post',
+            '/like' => [
+                'post',
+            ],
         ]
     );
 
@@ -42,7 +44,9 @@ function incept($baka)
             return 0;
         },
         [
-            '/picture' => 'delete',
+            '/picture' => [
+                'delete',
+            ],
         ]
     );
 
@@ -62,7 +66,9 @@ function incept($baka)
             return 0;
         },
         [
-            '/picture' => 'patch',
+            '/picture' => [
+                'patch',
+            ],
         ]
     );
 }

@@ -20,11 +20,11 @@ bakado($baka);
 
 //require '../app/middlewares.php';
 //set url validator
-//shield($baka);
+shield($baka);
 
 //require '../app/forms.php';
 //set form validator
-//trollBumper($baka);
+trollBumper($baka);
 
 //require '../app/ghosts.php';
 //set specific validators

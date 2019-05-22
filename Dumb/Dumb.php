@@ -35,11 +35,6 @@ class Dumb
 
     private $ghosts = [];
 
-    /**
-     * __construct.
-     *
-     * @param mixed $functions
-     */
     public function __construct($functions = [])
     {
         /*spl_autoload_register(function ($class) {
@@ -55,12 +50,6 @@ class Dumb
         $this->container = $functions;
     }
 
-    /**
-     * __set.
-     *
-     * @param string $method
-     * @param array  $routes
-     */
     public function bakado(array $routes)
     {
         $this->routes = $routes;
@@ -71,11 +60,6 @@ class Dumb
         $this->container = array_merge($this->container, $functions);
     }
 
-    /**
-     * dumb.
-     *
-     * @param mixed $args
-     */
     public function kamehameha($args = null)
     {
         if ($this->routes() || $this->middleware() || $this->form() || $this->ghost())
@@ -101,28 +85,37 @@ class Dumb
      */
     public function eatM($function, array $routes)
     {
-        if (empty($routes) || in_array($this->uri, $routes))
-        {
+        //if routes is empty, we apply the function for all routes
+        if (
+            empty($routes)
+            || (
+                array_key_exists($this->uri, $routes)
+                && (
+                    in_array($this->method, $routes[$this->uri])
+                    || $routes[$this->uri] === []
+                )
+            )
+        ) {
             $this->middlewares[] = $function;
-        }
-        if (isset($routes[$this->uri]))
-        {
-            $this->forms[] = [$function, $routes[$this->uri]];
         }
     }
 
     public function eatF($function, array $routes)
     {
-        if (isset($routes[$this->uri]))
+        if (isset($routes[$this->uri][$this->method]))
         {
-            $this->forms[] = [$function, $routes[$this->uri]];
+            $this->forms[] = [
+                $function,
+                $routes[$this->uri][$this->method]
+            ];
         }
     }
 
     public function eatG($function, array $routes)
     {
-        if (empty($routes) || in_array($this->uri, $routes))
-        {
+        if (isset($routes[$this->uri])
+            && in_array($this->method, $routes[$this->uri])
+        ) {
             $this->ghosts[] = $function;
         }
     }
@@ -131,8 +124,11 @@ class Dumb
     {
         if (false !== ($key = array_search($this->uri, $this->routes)))
         {
-            $this->uri = $key;
-            $class = '\App\Controller\\'.(ltrim($key, '/'));
+            if (!is_int($key))
+            {
+                $this->uri = $key;
+            }
+            $class = '\App\Controller\\'.(ltrim($this->uri, '/'));
             $this->controller = new $class($this->method);
             if (method_exists($this->controller, $this->method))
             {

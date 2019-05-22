@@ -8,7 +8,7 @@ use Dumb\Patronus;
 
 class login extends Patronus
 {
-    private function post(array $c)
+    protected function post(array $c)
     {
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
@@ -30,7 +30,7 @@ class login extends Patronus
         }
     }
 
-    private function delete(array $c)
+    protected function delete(array $c)
     {
         session_unset();
         session_destroy();

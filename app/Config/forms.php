@@ -12,7 +12,6 @@ function trollBumper(Dumb $baka)
 {
     $baka->eatF(
         function ($key, $type): int {
-                    var_dump($_REQUEST);exit;
             if (!isset($_POST[$key]) || !$_POST[$key])
             {
                 return 401;
@@ -77,32 +76,66 @@ function trollBumper(Dumb $baka)
         },
         [
             '/comment' => [
-                'post' => ['id' => 'numeric', 'comment' => '']
+                'post' => [
+                    'id' => 'numeric',
+                    'comment' => ''
+                ]
             ],
             '/contact' => [
-                'post' => ['name' => 'pseudo', 'subject' => '', 'email' => 'email', 'message' => '']
+                'post' => [
+                    'name' => 'pseudo',
+                    'subject' => '',
+                    'email' => 'email',
+                    'message' => ''
+                ]
             ],
             '/login' => [
-                'post' => ['password' => 'password', 'pseudo' => 'pseudo']
+                'post' => [
+                    'password' => 'password',
+                    'pseudo' => 'pseudo'
+                ]
             ],
             '/like' => [
-                'post' => ['id' => 'numeric']
+                'post' => [
+                    'id' => 'numeric'
+                ]
             ],
             '/pics' => [
-                'get' => ['start' => 'numeric', 'by' => '']
+                'get' => [
+                    'start' => 'numeric',
+                    'by' => ''
+                ]
             ],
             '/picture' => [
-                'delete' => ['url' => ''],
-                'patch' => ['id' => 'numeric', 'title' => 'pseudo'],
-                'post' => ['data' => 'data'],
+                'delete' => [
+                    'url' => ''
+                ],
+                'patch' => [
+                    'id' => 'numeric',
+                    'title' => 'pseudo'
+                ],
+                'post' => [
+                    'data' => 'data'
+                ],
             ],
             '/password' => [
-                'patch' => ['password' => 'password'],
-                'post' => ['pseudo' => 'pseudo'],
+                'patch' => [
+                    'password' => 'password'
+                ],
+                'post' => [
+                    'pseudo' => 'pseudo'
+                ],
             ],
             '/user' => [
-                'get' => ['pseudo' => 'pseudo', 'email' => 'email'],
-                'post' => ['password' => 'password', 'pseudo' => 'pseudo', 'email' => 'email'],
+                'get' => [
+                    'pseudo' => 'pseudo',
+                    'email' => 'email'
+                ],
+                'post' => [
+                    'password' => 'password',
+                    'pseudo' => 'pseudo',
+                    'email' => 'email'
+                ],
             ],
         ]
     );
