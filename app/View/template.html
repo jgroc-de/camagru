@@ -11,6 +11,7 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" async>
 		<link rel="stylesheet" href="/css/main.css" async>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" async>
+		<script src="/js/Components/navbar.js" async></script>
 		<script src="/js/app.js" async></script>
 	</head>
 
@@ -20,8 +21,8 @@
     <?php
     require __DIR__.'/components/navbar.html';
     require __DIR__.'/components/header.html';
-    require __DIR__.'/form/login.html';
-    require __DIR__.'/components/header.html';
+    require __DIR__.'/form/authForm.html';
+    require __DIR__.'/form/settings.html';
     ?>
 
     <!-- notif -->
@@ -31,14 +32,14 @@
     <div id="main" class="w3-content w3-padding gg-template" style="max-width:1564px">
       <h3 id="mainBtn" class="w3-border-bottom w3-border-light-grey w3-padding">Tmp</h3>
       <div>
-        <button id="launch" type="button" class="w3-button w3-grey" onclick="ggDestroy(this, 'carroussel', 'listPicsByDate');">Last</button>
-        <button type="button" class="w3-button w3-grey" onclick="ggDestroy(this, 'carroussel', 'listPicsByLike');">Popular</button>
+        <button id="launch" type="button" class="w3-button w3-grey">Last</button>
+        <button type="button" class="w3-button w3-grey">Popular</button>
         <div class="w3-row-padding">
           <section id="carroussel" class="w3-row-padding gg-wall">
           </section>
           <div>
             <button type="button" class="w3-button w3-grey" disabled><</button>
-            <button id="carrousselBtn" type="button" class="w3-button w3-grey" onload="ggAjax('&start=1', '/listPicsByDate', listPics);" disabled>></button>
+            <button id="carrousselBtn" type="button" class="w3-button w3-grey" disabled>></button>
           </div>
         </div>
       </div>

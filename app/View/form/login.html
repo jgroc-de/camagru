@@ -1,72 +1,23 @@
-<div id="form" class="w3-modal">
-	<div class="w3-modal-content">
-		<div class="w3-border-bottom">
-		<button class="w3-margin-right w3-right w3-button w3-red w3-section" onclick="document.getElementById('form').style.display='none'" type="button">
-			<i class="fas fa-times"></i>
-		</button>
-		<a href="#login" class="w3-button w3-section w3-grey gg-post-it"
-	onclick="document.getElementById('signup').style.display='none';
- 			document.getElementById('login').style.display='block';
- 			this.classList = 'w3-button w3-section w3-grey gg-post-it';
- 			this.nextElementSibling.classList = 'w3-button w3-section gg-post-it';
-			">Log in</a>
-		<a href="#signup" class="w3-button w3-section gg-post-it"
-	onclick="document.getElementById('login').style.display='none';
- 			document.getElementById('signup').style.display='block';
- 			this.classList = 'w3-button w3-section w3-grey gg-post-it';
- 			this.previousElementSibling.classList = 'w3-button w3-section gg-post-it';
-			">Sign up</a>
-		</div>
-		<section class="w3-container w3-padding-32" id="login">
-			<form method="post" action="#">
-				<div>
-					<label>pseudo</label>
-					<input type="text" class="w3-input w3-border" name="pseudo" maxlength="30" required>
-   <br>
-				</div>
-				<div>
-					<label>password</label>
-					<input type="password" class="w3-input w3-border" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,256}" title="6 characteres minimum dont au moins un chiffre, une majuscule et une minuscule" required>
-   <br>
-				</div>
-				<div class="submit">
-					<button type="button" class="w3-button w3-black w3-section" onclick="ggForm(this, '/login', login)">
-						<i class="fa fa-paper-plane"></i>
-						Send
-					</button>
-				</div>
-			</form>
-			<div>Forgot your password? 
-				<a href="#reinit" type="button" class="w3-button w3-black"
-						  onclick="
-		document.getElementById('login').style.display='none';
-		document.getElementById('signup').style.display='none';
-		document.getElementById('reinitForm').style.display='block'">recover your password</a>
-			</div>
-		</section>
-		<section class="w3-container w3-padding-32" style="display: none" id="signup">
-			<form method="post" action="#">
-				<div>
-					<label>pseudo</label>
-					<input type="text" name="pseudo" class="w3-input w3-border" maxlength="30" required>
-					<br>
-				</div>
-				<div>
-					<label>password</label>
-					<input type="password" name="password" class="w3-input w3-border" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" title="6 characteres minimum dont au moins un chiffre, une majuscule et une minuscule" required><br>
-				</div>
-				<div>
-					<label>email</label>
-					<input type="email" name="email" class="w3-input w3-border" required>
-					<br>
-				</div>
-				<div class="submit">
-					<button type="button" class="w3-button w3-black w3-section" onclick="ggForm(this, '/signup')">
-						<i class="fa fa-paper-plane"></i>
-						Send
-					</button>
-				</div>
-			</form>
-		</section>
-	</div>
-</div>
+<section class="w3-container w3-padding-32" id="login">
+  <form method="post" action="#">
+    <div>
+      <label>pseudo</label>
+      <input type="text" class="w3-input w3-border" name="pseudo" maxlength="30" required>
+      <br>
+    </div>
+    <div>
+      <label>password</label>
+      <input type="password" class="w3-input w3-border" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,256}" title="6 characteres minimum dont au moins un chiffre, une majuscule et une minuscule" required>
+      <br>
+    </div>
+    <div class="submit">
+      <button type="button" class="w3-button w3-black w3-section" onclick="">
+        <i class="fa fa-paper-plane"></i>
+        Send
+      </button>
+    </div>
+  </form>
+  <div>Forgot your password? 
+    <a id="reinitBtn" href="#reinit" type="button" class="w3-button w3-black">recover your password</a>
+  </div>
+</section>

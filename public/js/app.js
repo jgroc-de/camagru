@@ -14,13 +14,9 @@ function ggHide() {
   }
 }
 
-function ggNavbar() {
-}
-
 function launch() {
   ggHide()
   ggNavbar()
-  ggHome()
 }
 
 launch()

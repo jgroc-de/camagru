@@ -1,0 +1,17 @@
+<div id="form" class="w3-modal">
+  <div class="w3-modal-content">
+    <div class="w3-border-bottom">
+      <button id="closeBtn" class="w3-margin-right w3-right w3-button w3-red w3-section" type="button">
+        <i class="fas fa-times"></i>
+      </button>
+      <a id="loginBtn" href="#login" class="w3-button w3-section w3-grey gg-post-it">Log in</a>
+      <a id="signupBtn" href="#signup" class="w3-button w3-section gg-post-it">Sign up</a>
+      <a id="reinitBtn2" href="#reinit" class="w3-button w3-section gg-post-it">Reinit password</a>
+    </div>
+    <?php
+      require __DIR__.'/login.html';
+      require __DIR__.'/signup.html';
+      require __DIR__.'/reinit.html';
+      ?>
+  </div>
+</div>

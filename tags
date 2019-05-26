@@ -5236,6 +5236,7 @@ comment	vendor/phpstan/phpstan/src/Analyser/NodeScopeResolver.php	/^		$comment =
 comment	vendor/symfony/console/Style/SymfonyStyle.php	/^    public function comment($message)$/;"	f
 commentContent	vendor/friendsofphp/php-cs-fixer/src/Fixer/Comment/SingleLineCommentStyleFixer.php	/^            $commentContent = substr($content, 2, -2) ?: '';$/;"	v
 commentDivFactory	public/js/common.js	/^function commentDivFactory(json)$/;"	f
+commentDivFactory	public/js/old/common.js	/^function commentDivFactory(json)$/;"	f
 commentIndex	vendor/friendsofphp/php-cs-fixer/src/Fixer/Basic/BracesFixer.php	/^            $commentIndex = $tokens->getNextNonWhitespace($prevIndex);$/;"	v
 commentIndices	vendor/friendsofphp/php-cs-fixer/src/Fixer/Comment/CommentToPhpdocFixer.php	/^            $commentIndices = $commentsAnalyzer->getCommentBlockIndices($tokens, $index);$/;"	v
 commentManager	app/Controller/comment.php	/^            $commentManager = $this->container['comment']($this->container);$/;"	v
@@ -6059,6 +6060,7 @@ createNamespaceBuilder	vendor/nikic/php-parser/test/PhpParser/Builder/NamespaceT
 createNo	vendor/phpstan/phpstan/src/Reflection/PassedByReference.php	/^	public static function createNo(): self$/;"	f
 createNo	vendor/phpstan/phpstan/src/TrinaryLogic.php	/^	public static function createNo(): self$/;"	f
 createNode	public/js/common.js	/^function createNode(type, attributes)$/;"	f
+createNode	public/js/old/common.js	/^function createNode(type, attributes)$/;"	f
 createNotFoundException	vendor/symfony/contracts/Service/ServiceLocatorTrait.php	/^    private function createNotFoundException(string $id): NotFoundExceptionInterface$/;"	f
 createNull	vendor/phpstan/phpstan/src/Analyser/TypeSpecifierContext.php	/^	public static function createNull(): self$/;"	f
 createObject	vendor/nette/php-generator/src/PhpGenerator/Helpers.php	/^	public static function createObject(string $class, array $props)$/;"	f
@@ -11664,10 +11666,13 @@ getWrapperMethodSequence	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotatio
 get_a_sup	app/Controller/camagru.php	/^    public function get_a_sup()$/;"	f
 getterClosureType	vendor/phpstan/phpstan/src/Internal/UnionTypeGetInternalDynamicReturnTypeExtension.php	/^		$getterClosureType = $scope->getType($methodCall->args[1]->value);$/;"	v
 ggAjax	public/js/common.js	/^function ggAjax(data, url, callback)$/;"	f
+ggAjax	public/js/old/common.js	/^function ggAjax(data, url, callback)$/;"	f
 ggCarroussel	public/js/common.js	/^function ggCarroussel(button, start, url)$/;"	f
+ggCarroussel	public/js/old/common.js	/^function ggCarroussel(button, start, url)$/;"	f
 ggDestroy	public/js/common.js	/^function ggDestroy(button, id, url)$/;"	f
+ggDestroy	public/js/old/common.js	/^function ggDestroy(button, id, url)$/;"	f
 ggForm	public/js/common.js	/^function ggForm(button, url, callback = null)$/;"	f
-ggNavbar	public/js/app.js	/^function ggNavbar() {$/;"	f	function:ggHide
+ggForm	public/js/old/common.js	/^function ggForm(button, url, callback = null)$/;"	f
 ghost	Dumb/Dumb.php	/^    protected function ghost()$/;"	f
 ghosts	Dumb/Dumb.php	/^    private $ghosts = [];$/;"	v
 githubClient	vendor/friendsofphp/php-cs-fixer/src/Console/SelfUpdate/NewVersionChecker.php	/^        $this->githubClient = $githubClient;$/;"	v
@@ -17383,6 +17388,7 @@ paddingChar	vendor/symfony/console/Helper/TableStyle.php	/^        $this->paddin
 paddingChar	vendor/symfony/console/Helper/TableStyle.php	/^    private $paddingChar = ' ';$/;"	v
 page	vendor/nette/utils/src/Utils/Paginator.php	/^		$this->page = (int) $page;$/;"	v
 page	vendor/nette/utils/src/Utils/Paginator.php	/^	private $page;$/;"	v
+pageNav	public/js/Components/navbar.js	/^function pageNav(burger)$/;"	f
 pageNav	public/js/common.js	/^function pageNav(burger)$/;"	f
 pair	vendor/nette/di/src/DI/ContainerBuilder.php	/^					$pair = explode('::', $val, 2);$/;"	v
 pair	vendor/nette/utils/src/Utils/Reflection.php	/^			$pair = explode('::', $const);$/;"	v
@@ -18017,6 +18023,7 @@ phpunitPositions	vendor/friendsofphp/php-cs-fixer/src/Fixer/ClassNotation/Ordere
 pic	app/Config/ghosts.php	/^            $pic = $c['picture']($c)->getPic($_POST['id']);$/;"	v
 pic	app/Config/ghosts.php	/^            $pic = $c['picture']($c)->getPicByUrl($_POST['url']);$/;"	v
 picDivFactory	public/js/common.js	/^function picDivFactory(json)$/;"	f
+picDivFactory	public/js/old/common.js	/^function picDivFactory(json)$/;"	f
 picInDb	app/Model/PicManager.php	/^    public function picInDb(int $id)$/;"	f
 pick	vendor/nette/utils/src/Utils/Arrays.php	/^	public static function pick(array &$arr, $key, $default = null)$/;"	f
 pickArrays	vendor/phpstan/phpstan/src/Type/Php/ArraySearchFunctionDynamicReturnTypeExtension.php	/^	private function pickArrays(Type $type): array$/;"	f
@@ -18441,6 +18448,7 @@ printNode	vendor/nikic/php-parser/test/PhpParser/NodeTraverserTest.php	/^       
 printNode	vendor/nikic/php-parser/test/PhpParser/NodeTraverserTest.php	/^        $printNode = new Expr\\Print_($strNode);$/;"	v
 printNode	vendor/nikic/php-parser/test/PhpParser/NodeTraverserTest.php	/^        $printNode = new Expr\\Print_($varNode3);$/;"	v
 printNotif	public/js/common.js	/^function printNotif(str, status)$/;"	f
+printNotif	public/js/old/common.js	/^function printNotif(str, status)$/;"	f
 printParameters	vendor/nette/php-generator/src/PhpGenerator/Printer.php	/^	protected function printParameters($function, ?PhpNamespace $namespace): string$/;"	f
 printReturnType	vendor/nette/php-generator/src/PhpGenerator/Printer.php	/^	protected function printReturnType($function, ?PhpNamespace $namespace): string$/;"	f
 printableAllowedValues	vendor/symfony/options-resolver/OptionsResolver.php	/^            $printableAllowedValues = array();$/;"	v
@@ -25885,6 +25893,7 @@ xdebug	vendor/friendsofphp/php-cs-fixer/php-cs-fixer	/^$xdebug = new XdebugHandl
 xdebug	vendor/phpstan/phpstan/bin/phpstan	/^$xdebug = new XdebugHandler('phpstan', '--ansi');$/;"	v
 xhtml	vendor/nette/utils/src/Utils/Html.php	/^	public static $xhtml = false;$/;"	v
 xmlhttp.onreadystatechange	public/js/common.js	/^    xmlhttp.open("POST", url, true);$/;"	f
+xmlhttp.onreadystatechange	public/js/old/common.js	/^    xmlhttp.open("POST", url, true);$/;"	f
 xyz	vendor/friendsofphp/php-cs-fixer/src/Fixer/ReturnNotation/SimplifiedNullReturnFixer.php	/^function xyz(): void { return null; }$/;"	f
 y	vendor/nikic/php-parser/lib/PhpParser/Internal/Differ.php	/^                $y = $x - $k;$/;"	v
 yes	vendor/phpstan/phpstan/src/Reflection/PassedByReference.php	/^	public function yes(): bool$/;"	f
