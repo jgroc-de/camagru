@@ -12,18 +12,20 @@ use Dumb\Dumb;
 function bakado(Dumb $baka)
 {
     $baka->bakado([
-        '/contact',
-        '/home' => '/',
-        '/home' => '/b',
-        '/home' => '/camagru',
-        '/home' => '/error',
-        '/home' => '/picture',
-        '/home',
-        '/login',
-        '/password',
-        '/pics',
-        '/picture',
-        '/setup',
-        '/user',
+        'contact',
+        'home' => [
+            '',
+            'b',
+            'camagru',
+            'error',
+            'home',
+            'picture'
+        ],
+        'login',
+        'password',
+        'pics',
+        'picture',
+        'setup',
+        'user',
     ]);
 }

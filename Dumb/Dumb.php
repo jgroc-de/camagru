@@ -76,7 +76,7 @@ class Dumb
         header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
         if ($letter->code >= 400 && 'GET' === $_SERVER['REQUEST_METHOD'])
         {
-            $letter = new \App\Controller\error($this->method, $letter->code);
+            $letter = new \App\Controller\error($this->container, $this->method, $letter->code);
         }
         $letter->bomb($args);
     }
@@ -126,13 +126,9 @@ class Dumb
 
     protected function routes()
     {
-        if (false !== ($key = array_search($this->uri, $this->routes)))
+        if ($this->isSetRoute())
         {
-            if (!is_int($key))
-            {
-                $this->uri = $key;
-            }
-            $class = '\App\Controller\\'.(ltrim($this->uri, '/'));
+            $class = '\App\Controller\\'.($this->uri);
             $this->controller = new $class($this->container, $this->method);
             if (method_exists($this->controller, $this->method))
             {
@@ -146,6 +142,28 @@ class Dumb
         }
 
         return 1;
+    }
+
+    public function isSetRoute(): bool
+    {
+        foreach ($this->routes as $key => $route)
+        {
+            if (is_array($route))
+            {
+                if (in_array($this->uri, $route))
+                {
+                    $this->uri = $key;
+
+                    return true;
+                }
+            }
+            else if ($this->uri === $this->routes)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -210,7 +228,7 @@ class Dumb
     private function setUri()
     {
         $uri = explode('/', $_SERVER['REQUEST_URI']);
-        $this->uri = '/'.$uri[1];
+        $this->uri = $uri[1];
         if (isset($uri[2]))
         {
             $_GET['id'] = $uri[2];

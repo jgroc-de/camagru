@@ -1,9 +1,10 @@
 .gg-header {
+    margin-top: 56px;
 	width: 100%;
   	background-image: url("../img/2_1709494041.png");
 	background-repeat: no-repeat;
-	background-position: center;
-	background-size: contain;
+	background-position: bottom;
+    height: 125px;
 }
 
 .gg-page-nav {
@@ -17,22 +18,16 @@
 
 @media only screen and (max-width: 480px) {
 	.gg-header {
-		height: 250px;
-		margin-top: 56px;
 	}
 }
 
 @media only screen and (min-width: 480px) and (max-width: 800px) {
 	.gg-header {
-		height: 350px;
-		margin-top: 56px;
 	}
 }
 
 @media only screen and (min-width: 800px) {
 	.gg-header {
-		height: 500px;
-		margin-top: 56px;
 	}
 
 	.gg-book {
@@ -69,4 +64,26 @@
 .change .bar3 {
   -webkit-transform: rotate(45deg) translate(-4px, -4px);
   transform: rotate(45deg) translate(-4px, -4px);
+}
+
+.gg-resize {
+  animation-name: intro;
+  animation-duration: 0.7s;
+  animation-delay: 0.3s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+  -webkit-transition: height 1s; /* Safari */
+  transition: height 1s;
+  -webkit-transition-delay: 0.1s; /* Safari */
+  transition-delay: 0.1s
+  transition-timing-function: ease-in;
+}
+
+.gg-resize:hover {
+    height: 400px;
+}
+
+@keyframes intro {
+  from {height: 500px;}
+  to {height: 125px;}
 }

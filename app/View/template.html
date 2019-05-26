@@ -11,44 +11,53 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" async>
 		<link rel="stylesheet" href="/css/main.css" async>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" async>
-		<script src="/js/common.js" async></script>
-		<script src="/js/routes.js" async></script>
-		<?php if (isset($options['script'])) { ?><script src="<?php echo $options['script']; ?>" async></script><?php } ?>
+		<script src="/js/app.js" async></script>
 	</head>
 
-	<body <?php if (isset($components['body']))
-{
-    echo 'onload="'.$components['body'].'"';
-} ?>>
-	<?php
-		require __DIR__.'/common/navbar.php';
-        foreach ($options['header'] as $value)
-        {
-            require __DIR__.$value;
-        }
-	?>
+  <body 
 
-	<!-- notif -->
-	<div id="notif" style="position:fixed;bottom:10px;right:10px;z-index:20"></div>
-
-	<div id="main" class="w3-content w3-padding" style="max-width:1564px">
-
-	<!-- Project Section -->
-	<?php
-        if (isset($main))
-        {
-            require __DIR__.$main;
-        }
-        foreach ($options['components'] as $value)
-        {
-            require __DIR__.$value;
-        }
+    <!-- header -->
+    <?php
+    require __DIR__.'/components/navbar.html';
+    require __DIR__.'/components/header.html';
+    require __DIR__.'/form/login.html';
+    require __DIR__.'/components/header.html';
     ?>
-	</div>
+
+    <!-- notif -->
+    <div id="notif" style="position:fixed;bottom:10px;right:10px;z-index:20"></div>
+
+    <!-- Project Section -->
+    <div id="main" class="w3-content w3-padding gg-template" style="max-width:1564px">
+      <h3 id="mainBtn" class="w3-border-bottom w3-border-light-grey w3-padding">Tmp</h3>
+      <div>
+        <button id="launch" type="button" class="w3-button w3-grey" onclick="ggDestroy(this, 'carroussel', 'listPicsByDate');">Last</button>
+        <button type="button" class="w3-button w3-grey" onclick="ggDestroy(this, 'carroussel', 'listPicsByLike');">Popular</button>
+        <div class="w3-row-padding">
+          <section id="carroussel" class="w3-row-padding gg-wall">
+          </section>
+          <div>
+            <button type="button" class="w3-button w3-grey" disabled><</button>
+            <button id="carrousselBtn" type="button" class="w3-button w3-grey" onload="ggAjax('&start=1', '/listPicsByDate', listPics);" disabled>></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- commons -->
+    <?php
+    require __DIR__.'/components/about.html';
+    require __DIR__.'/components/contact.html';
+    ?>
+
 	<footer class="w3-container w3-black w3-padding-16">
 		<hr>
-		<a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right" title="To the top"></i><span class="w3-hide-small">To the top</span></a>
-		<a href="https://jgroc-de.github.io/" class="w3-button w3-black w3-padding-large w3-margin-bottom w3-right"><em class="">© jgroc-de 2018</em></a>
+		<a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom">
+      <i class="fa fa-arrow-up w3-margin-right" title="To the top"></i><span class="w3-hide-small">To the top</span>
+    </a>
+		<a href="https://jgroc-de.github.io/" class="w3-button w3-black w3-padding-large w3-margin-bottom w3-right">
+      <em class="">© jgroc-de 2018</em>
+    </a>
 	</footer>
 	</body>
 </html>
