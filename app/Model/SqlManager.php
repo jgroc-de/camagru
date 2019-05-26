@@ -19,7 +19,7 @@ class SqlManager
         return $this->container->{$name};
     }
 
-    protected function sqlRequest($request, array $array = [], bool $bool = false)
+    public function sqlRequest($request, array $array = [], bool $bool = false)
     {
         $obj = $this->db->prepare($request);
         $success = $obj->execute($array);
@@ -31,7 +31,7 @@ class SqlManager
         return $obj;
     }
 
-    protected function sqlRequestFetch($request, array $array = [])
+    public function sqlRequestFetch($request, array $array = [])
     {
         return $this->sqlRequest($request, $array)->fetch();
     }

@@ -8,7 +8,7 @@ use Dumb\Patronus;
 
 class user extends Patronus
 {
-    public function get(array $c)
+    public function get()
     {
         $this->response['settings'] = [
             'pseudo' => $_SESSION['pseudo'],
@@ -17,13 +17,13 @@ class user extends Patronus
         ];
     }
 
-    public function put(array $c)
+    public function patch()
     {
         $pseudo = $_POST['pseudo'];
         $email = $_POST['email'];
         $alert = isset($_POST['alert']) ? true : false;
 
-        if ($c['user']($c)->updateUser($pseudo, $email, $alert))
+        if ($this->container['user']($this->container)->updateUser($pseudo, $email, $alert))
         {
             $_SESSION['pseudo'] = $pseudo;
             $_SESSION['alert'] = $alert;
@@ -37,16 +37,16 @@ class user extends Patronus
         }
     }
 
-    public function post(array $c)
+    public function post()
     {
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
         $email = $_POST['email'];
-        $userManager = $c['user']($c);
+        $userManager = $this->container['user']($this->container);
 
         if ($userManager->addUser($pseudo, password_hash($password, PASSWORD_DEFAULT), $email))
         {
-            $c['mail']()->sendValidationMail($userManager->getUser($pseudo));
+            $this->container['mail']()->sendValidationMail($userManager->getUser($pseudo));
             if (isset($_SESSION['flash']['success']))
             {
                 $this->response['flash'] = $_SESSION['flash']['success'];
@@ -64,5 +64,12 @@ class user extends Patronus
             $this->response['flash'] = $_SESSION['flash']['fail'];
             unset($_SESSION['flash']);
         }
+    }
+
+    public function delete()
+    {
+        $userManager = $this->container['user']($this->container)->deleteUser();
+        session_unset();
+        session_destroy();
     }
 }

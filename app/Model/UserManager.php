@@ -119,6 +119,12 @@ class UserManager extends SqlManager
         return false;
     }
 
+    public function deleteUser()
+    {
+        $request = 'DELETE FROM users WHERE id = ?';
+        $this->sqlRequestFetch($request, [(int)$_SESSION['id']]);
+    }
+
     public function getUser(string $pseudo)
     {
         $request = '

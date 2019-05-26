@@ -26,7 +26,7 @@ class Dumb
     //routes available
     private $routes = [];
 
-    //http verbs
+    //http verb
     private $method;
 
     private $middlewares = [];
@@ -40,13 +40,9 @@ class Dumb
         /*spl_autoload_register(function ($class) {
             require '../app/Model/'.$class.'.php';
         });*/
-        $request = explode('/', $_SERVER['REQUEST_URI']);
-        $this->uri = '/'.$request[1];
+        $this->setUri();
         $this->method = strtolower($_SERVER['REQUEST_METHOD']);
-        if (isset($request[2]))
-        {
-            $_GET['id'] = $request[2];
-        }
+        $_POST += (array)json_decode(file_get_contents('php://input'));
         $this->container = $functions;
     }
 
@@ -64,10 +60,18 @@ class Dumb
     {
         if ($this->routes() || $this->middleware() || $this->form() || $this->ghost())
         {
-            $this->controller = new \App\Controller\error($this->method, $this->error);
+            $this->controller = new \App\Controller\error($this->container, $this->method, $this->error);
         }
         $letter = $this->controller;
-        $letter->trap($this->container);
+        try
+        {
+            $letter->trap();
+        }
+        catch (\Exception $e)
+        {
+            $letter->code = 500;
+            var_dump($e);
+        }
 		header("Cache-Control: max-age=360");
         header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
         if ($letter->code >= 400 && 'GET' === $_SERVER['REQUEST_METHOD'])
@@ -129,7 +133,7 @@ class Dumb
                 $this->uri = $key;
             }
             $class = '\App\Controller\\'.(ltrim($this->uri, '/'));
-            $this->controller = new $class($this->method);
+            $this->controller = new $class($this->container, $this->method);
             if (method_exists($this->controller, $this->method))
             {
                 return 0;
@@ -201,5 +205,15 @@ class Dumb
         }
 
         return 0;
+    }
+
+    private function setUri()
+    {
+        $uri = explode('/', $_SERVER['REQUEST_URI']);
+        $this->uri = '/'.$uri[1];
+        if (isset($uri[2]))
+        {
+            $_GET['id'] = $uri[2];
+        }
     }
 }

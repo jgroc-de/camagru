@@ -62,7 +62,9 @@ function shield(Dumb $baka)
             ],
             '/user' => [
                 'get',
-                'post',
+                'put',
+                'patch',
+                'delete',
             ],
             '/password' => [
                 'patch'
@@ -72,8 +74,6 @@ function shield(Dumb $baka)
 
     $baka->eatM(
         function (): int {
-                    var_dump($GLOBAL);exit;
-                    var_dump($_REQUEST);exit;
             if (!isset($_GET['id']) || !is_numeric($_GET['id']))
             {
                 return 404;

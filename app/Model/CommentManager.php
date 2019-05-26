@@ -41,4 +41,20 @@ class CommentManager extends SqlManager
             ';
         $this->sqlRequest($request, [$_POST['id'], $_SESSION['id'], $_POST['comment']], true);
     }
+
+    public function deleteComment($id)
+    {
+        $request = 'DELETE FROM comments WHERE id = ?';
+        $this->sqlRequest($request, [$id]);
+    }
+
+    public function updateComment($id, $comment)
+    {
+        $request = '
+                UPDATE comments
+                SET date = NOW(), content = ?
+                WHERE id = ?
+            ';
+        $this->sqlRequest($request, [$comment, $id]);
+    }
 }

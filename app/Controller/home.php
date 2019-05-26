@@ -12,7 +12,7 @@ use Dumb\Patronus;
  */
 class home extends Patronus
 {
-    public function get(array $c)
+    public function get()
     {
     }
 

@@ -8,9 +8,9 @@ use Dumb\Patronus;
 
 class contact extends Patronus
 {
-    public function post(array $c)
+    public function post()
     {
-        $c['mail']()->sendContactMail();
+        $this->container['mail']()->sendContactMail();
         $this->response['flash'] = 'Thx!';
     }
 }

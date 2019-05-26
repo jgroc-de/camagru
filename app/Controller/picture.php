@@ -16,58 +16,51 @@ class picture extends Patronus
 
     private $comments;
 
-    public function get(array $c)
+    public function get()
     {
         $id = $_GET['id'];
 
-        $this->elem = $c['picture']($c)->getPic($id);
+        $this->elem = $this->container['picture']($this->container)->getPic($id);
         if (empty($this->elem))
         {
             $this->code = 404;
         }
         else
         {
-            $this->comments = $c['comment']($c)->getComments($id)->fetchAll();
+            $this->comments = $this->container['comment']($this->container)->getComments($id)->fetchAll();
         }
     }
 
-    public function patch(array $c)
+    public function patch()
     {
-        $this->response = $c['picture']($c)->changeTitle($_POST['id'], $_POST['title']);
+        $this->response = $this->container['picture']($this->container)->changeTitle($_POST['id'], $_POST['title']);
     }
 
-    public function delete(array $c)
+    public function delete()
     {
         $this->response['url'] = $_POST['url'];
-        $c['picture']($c)->deletePic($_POST['id'], (int)$_SESSION['id']);
+        $this->container['picture']($this->container)->deletePic($_POST['id'], (int)$_SESSION['id']);
         unlink($_POST['url']);
         $this->response['flash'] = 'Picture successfully deleted!';
     }
 
-    public function bomb(array $options)
+    public function bomb_a_sup(array $options)
     {
-        if ($this->method == 'get')
-        {
-            $id = $_GET['id'];
-            $elem = $this->elem;
-            $comments = $this->comments;
-            array_shift($options['header']);
-            $options['title2'] = htmlspecialchars($elem['title']);
-            $view = 'Picture';
-            $main = '/picView.html';
-            $options['components'] = [];
+        $id = $_GET['id'];
+        $elem = $this->elem;
+        $this->containeromments = $this->comments;
+        array_shift($options['header']);
+        $options['title2'] = htmlspecialchars($elem['title']);
+        $view = 'Picture';
+        $main = '/picView.html';
+        $options['components'] = [];
 
-            require __DIR__.'/../../View/template.html';
-        }
-        else
-        {
-            parent::bomb($options);
-        }
+        require __DIR__.'/../../View/template.html';
     }
 
-    public function post(array $c)
+    public function post()
     {
-        $filter = $c['camagru']($c)->getFilters();
+        $filter = $this->container['camagru']($this->container)->getFilters();
         $url = $this->parsePost($_POST, $filter);
         $name = 'img/pics/'.$_SESSION['pseudo'].'_'.rand().'.png';
 
@@ -116,7 +109,7 @@ class picture extends Patronus
         imagesavealpha($dest, true);
         imagepng($dest, $name);
         imagedestroy($dest);
-        $c['picture']($c)->addPic($name);
+        $this->container['picture']($this->container)->addPic($name);
         $this->response['path'] = $name;
         if (isset($_SESSION['flash']))
         {

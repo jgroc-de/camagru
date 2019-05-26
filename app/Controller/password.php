@@ -8,9 +8,9 @@ use Dumb\Patronus;
 
 class password extends Patronus
 {
-    public function get(array $c)
+    public function get()
     {
-        $userManager = $c['user']($c);
+        $userManager = $this->container['user']($this->container);
         $pseudo = $_GET['log'];
         if ($userManager->pseudoInDb($pseudo) && $userManager->checkValidationMail($pseudo, $_GET['key']))
         {
@@ -26,20 +26,20 @@ class password extends Patronus
         }
     }
 
-    public function patch(array $c)
+    public function patch()
     {
-        $c['user']($c)->updatePassword($_POST['password']);
+        $this->container['user']($this->container)->updatePassword($_POST['password']);
         $this->response['flash'] = 'Password Succesfully updated';
     }
 
-    public function post(array $c)
+    public function post()
     {
-        $userManager = $c['user']($c);
+        $userManager = $this->container['user']($this->container);
         $pseudo = $_POST['pseudo'];
         $user = $userManager->getUser($pseudo);
         if (!empty($user) && $userManager->resetValidkey($pseudo))
         {
-            $c['mail']($c)->sendReinitMail($user);
+            $this->container['mail']($this->container)->sendReinitMail($user);
         }
         else
         {

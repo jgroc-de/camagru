@@ -8,12 +8,20 @@ use Dumb\Patronus;
 
 class like extends Patronus
 {
-    public function post(array $c)
+    public function post()
     {
-        $this->response['likes_counter'] = $c['picture']($c)->addlike($_POST['id']);
+        $this->response['likes_counter'] = $this->container['picture']($this->container)->addlike($_POST['id']);
         if ($this->response['likes_counter'] < 0)
         {
             $this->response['flash'] = 'Already liked!';
         }
+    }
+
+    public function delete()
+    {
+    }
+
+    public function patch()
+    {
     }
 }

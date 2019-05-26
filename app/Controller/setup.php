@@ -8,10 +8,10 @@ use Dumb\Patronus;
 
 class setup extends Patronus
 {
-    public function post(array $c)
+    public function post()
     {
-        $configManager = $c['config']($c);
-        $configManager->createDB(file_get_contents($c['env']()['export']));
+        $configManager = $this->container['config']($this->container);
+        $configManager->createDB(file_get_contents($this->container['env']()['export']));
     }
 
     public function bomb(array $options)

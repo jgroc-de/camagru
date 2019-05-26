@@ -8,11 +8,11 @@ use Dumb\Patronus;
 
 class login extends Patronus
 {
-    protected function post(array $c)
+    protected function post()
     {
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
-        $userManager = $c['user']($c);
+        $userManager = $this->container['user']($this->container);
 
         if ($userManager->checkLogin($pseudo, $password))
         {
@@ -30,7 +30,7 @@ class login extends Patronus
         }
     }
 
-    protected function delete(array $c)
+    protected function delete()
     {
         session_unset();
         session_destroy();

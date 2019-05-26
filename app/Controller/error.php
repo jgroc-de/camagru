@@ -17,16 +17,11 @@ class error extends Patronus
         500 => 'Server Internal Error',
     ];
 
-    public function trap(array $c)
+    public function trap()
     {
     }
 
-    public function bomb(array $options)
-    {
-        $this->{$this->method}($options);
-    }
-
-    private function get(array $options)
+    private function a_sup(array $options)
     {
         $options['code'] = $this->code;
         $options['message'] = self::HTTP_CODE[$this->code];
@@ -39,10 +34,5 @@ class error extends Patronus
         ];
 
         require __DIR__.'/../View/template.html';
-    }
-
-    public function __call(string $method, array $options)
-    {
-        parent::bomb($options);
     }
 }

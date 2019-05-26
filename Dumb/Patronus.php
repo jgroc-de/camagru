@@ -8,19 +8,43 @@ class Patronus
 {
     public $code;
 
+    protected $container;
+    
+    protected $request;
+
     protected $response = [];
 
     protected $method;
 
-    public function __construct(string $method, int $code = 200)
+    public function __construct(array $container, string $method, int $code = 200)
     {
         $this->code = $code;
         $this->method = $method;
+        $this->container = $container;
     }
 
-    public function trap(array $c)
+    public function trap()
     {
-        $this->{$this->method}($c);
+        switch($this->method)
+        {
+        case 'get':
+            $this->get();
+            break;
+        case 'post':
+            $this->post();
+            break;
+        case 'put':
+            $this->put();
+            break;
+        case 'patch':
+            $this->patch();
+            break;
+        case 'delete':
+            $this->delete();
+            break;
+        default:
+            $this->{$this->method}();
+        }
     }
 
     public function bomb(array $options)

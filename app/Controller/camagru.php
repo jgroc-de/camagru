@@ -16,13 +16,13 @@ class camagru extends Patronus
 
     private $listFilter;
 
-    public function get(array $c)
+    public function get_a_sup()
     {
-        $this->pics = $c['picture']($c)->getPicsByLogin($_SESSION['id']);
-        $this->listFilter = $c['camagru']($c)->getFilters();
+        $this->pics = $this->container['picture']($this->container)->getPicsByLogin($_SESSION['id']);
+        $this->listFilter = $this->container['camagru']($this->container)->getFilters();
     }
 
-    public function bomb(array $options)
+    public function bomb_a_sup(array $options)
     {
         array_shift($options['header']);
         $listFilter = $this->listFilter;

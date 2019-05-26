@@ -79,6 +79,10 @@ function trollBumper(Dumb $baka)
                 'post' => [
                     'id' => 'numeric',
                     'comment' => ''
+                ],
+                'patch' => [
+                    'id' => 'numeric',
+                    'comment' => ''
                 ]
             ],
             '/contact' => [
@@ -127,7 +131,7 @@ function trollBumper(Dumb $baka)
                 ],
             ],
             '/user' => [
-                'get' => [
+                'patch' => [
                     'pseudo' => 'pseudo',
                     'email' => 'email'
                 ],

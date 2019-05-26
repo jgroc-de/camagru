@@ -12,17 +12,17 @@ use Dumb\Dumb;
 function bakado(Dumb $baka)
 {
     $baka->bakado([
-        '/camagru' => '/b',
-        '/camagru',
         '/contact',
-        '/error',
         '/home' => '/',
+        '/home' => '/b',
+        '/home' => '/camagru',
+        '/home' => '/error',
+        '/home' => '/picture',
         '/home',
         '/login',
+        '/password',
         '/pics',
         '/picture',
-        '/reinit' => ['/validation'],
-        '/reinit',
         '/setup',
         '/user',
     ]);
