@@ -1,6 +1,44 @@
 # Camagru
+## Description: (nouvelle version)
 
-## Description:
+Petit site type instagram en php/js brut.
+
+## Installation
+
+cloner le projet
+dans le repertoire créé:
+``` composer install ```
+pour initialiser l autoloader
+``` php -S localhost:8000 -t public ```
+pour lancer un serveur de test
+le site est accessible a l'adresse http:\\localhost:8000
+
+## details technique
+
+le site utilise une sorte de microframework php naif pour fonctionner.
+Le code de celui-ci se trouve dans le dossier Dumb.
+Il est composé de deux fichiers:
+- dumb.php qui est le corps du framework
+- patronus.php qui est le controller parent
+
+Ce framework permet de definir:
+-un middleware dans app/config/middleware.php
+-un validateur de formulaire dans app/config/form.php
+-une troisieme couche de securité dans app/config/ghost.php
+-les routes possibles dans app/config/routes.php (avec de l url rewriting tres basique)
+-un systeme de container dans app/container.php
+
+le point d'entrée se trouve de manière classique dans public/index.php
+enfin, une organisation pseudo rest est proposée avec l'utilisation des verbs http comme methodes des controller.
+le site est ainsi une sorte d'api qui livre le front sur la route /.
+le front se charge ensuite de remplir le site en tapant sur les autres routes.
+
+## evolution en cours
+
+creation d'un microframework js
+en faire une pwa
+
+## Description: (ancienne version)
 
   Vous allez devoir réaliser, en PHP, un petit site Instagram-like permettant à des utilisateurs de réaliser et partager des photo-montages. Vous allez ainsi implémenter, à mains nues (les frameworks sont interdits), les fonctionnalités de base rencontrées sur la majorité des sites possédant une base utilisateur
 ![screenshot](/assets/camagru2.png)
