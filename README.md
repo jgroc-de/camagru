@@ -22,11 +22,11 @@ Il est composé de deux fichiers:
 - patronus.php qui est le controller parent
 
 Ce framework permet de definir:
--un middleware dans app/config/middleware.php
--un validateur de formulaire dans app/config/form.php
--une troisieme couche de securité dans app/config/ghost.php
--les routes possibles dans app/config/routes.php (avec de l url rewriting tres basique)
--un systeme de container dans app/container.php
+- un middleware dans app/config/middleware.php
+- un validateur de formulaire dans app/config/form.php
+- une troisieme couche de securité dans app/config/ghost.php
+- les routes possibles dans app/config/routes.php (avec de l url rewriting tres basique)
+- un systeme de container dans app/container.php
 
 le point d'entrée se trouve de manière classique dans public/index.php
 enfin, une organisation pseudo rest est proposée avec l'utilisation des verbs http comme methodes des controller.
@@ -35,8 +35,8 @@ le front se charge ensuite de remplir le site en tapant sur les autres routes.
 
 ## evolution en cours
 
-creation d'un microframework js
-en faire une pwa
+- faire du js propre
+- en faire une pwa
 
 ## Description: (ancienne version)
 
