@@ -9,7 +9,7 @@ class Patronus
     public $code;
 
     protected $container;
-    
+
     protected $request;
 
     protected $response = [];
@@ -23,24 +23,33 @@ class Patronus
         $this->container = $container;
     }
 
+    public function __call(string $string, array $args)
+    {
+        $this->code = 405;
+    }
+
     public function trap()
     {
-        switch($this->method)
-        {
+        switch ($this->method) {
         case 'get':
             $this->get();
+
             break;
         case 'post':
             $this->post();
+
             break;
         case 'put':
             $this->put();
+
             break;
         case 'patch':
             $this->patch();
+
             break;
         case 'delete':
             $this->delete();
+
             break;
         default:
             $this->{$this->method}();

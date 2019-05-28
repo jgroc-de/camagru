@@ -11,8 +11,7 @@ class like extends Patronus
     public function post()
     {
         $this->response['likes_counter'] = $this->container['picture']($this->container)->addlike($_POST['id']);
-        if ($this->response['likes_counter'] < 0)
-        {
+        if ($this->response['likes_counter'] < 0) {
             $this->response['flash'] = 'Already liked!';
         }
     }

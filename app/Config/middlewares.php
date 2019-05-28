@@ -1,10 +1,10 @@
 <?php
 
-use \Dumb\Dumb;
+use Dumb\Dumb;
 
 /**
  * shield.
- * restrict access to some Routes depending on some conditions
+ * restrict access to some Routes depending on some conditions.
  *
  * @param Dumb $baka
  */
@@ -12,8 +12,7 @@ function shield(Dumb $baka)
 {
     $baka->eatM(
         function (): int {
-            if (isset($_SESSION['pseudo']))
-            {
+            if (isset($_SESSION['pseudo'])) {
                 return 400;
             }
 
@@ -21,10 +20,10 @@ function shield(Dumb $baka)
         },
         [
             '/login' => [
-                'post'
+                'post',
             ],
             '/signup' => [
-                'post'
+                'post',
             ],
             '/password' => [
                 'post',
@@ -35,8 +34,7 @@ function shield(Dumb $baka)
 
     $baka->eatM(
         function (): int {
-            if (!isset($_SESSION['pseudo']))
-            {
+            if (!isset($_SESSION['pseudo'])) {
                 return 403;
             }
 
@@ -44,16 +42,16 @@ function shield(Dumb $baka)
         },
         [
             '/login' => [
-                'delete'
+                'delete',
             ],
             '/camagru' => [
-                'get'
+                'get',
             ],
             '/comment' => [
-                'post'
+                'post',
             ],
             '/like' => [
-                'post'
+                'post',
             ],
             '/picture' => [
                 'post',
@@ -67,15 +65,14 @@ function shield(Dumb $baka)
                 'delete',
             ],
             '/password' => [
-                'patch'
+                'patch',
             ],
         ]
     );
 
     $baka->eatM(
         function (): int {
-            if (!isset($_GET['id']) || !is_numeric($_GET['id']))
-            {
+            if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
                 return 404;
             }
             $_GET['id'] = (int) $_GET['id'];
@@ -89,8 +86,7 @@ function shield(Dumb $baka)
 
     $baka->eatM(
         function (): int {
-            if (!isset($_GET['log'], $_GET['key']))
-            {
+            if (!isset($_GET['log'], $_GET['key'])) {
                 return 404;
             }
 
@@ -105,8 +101,7 @@ function shield(Dumb $baka)
 
     $baka->eatM(
         function (): int {
-            if ($_SESSION['pseudo'] !== 'troll2')
-            {
+            if ('troll2' !== $_SESSION['pseudo']) {
                 return 403;
             }
 

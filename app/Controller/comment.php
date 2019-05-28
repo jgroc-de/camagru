@@ -13,16 +13,12 @@ class comment extends Patronus
         $id = $_POST['id'];
         $user = $this->container['user']($this->container)->getUserByImgId($id);
 
-        if (empty($user))
-        {
+        if (empty($user)) {
             $this->code = 404;
-        }
-        else
-        {
+        } else {
             $commentManager = $this->container['comment']($this->container);
             $commentManager->addComment();
-            if ($user['alert'])
-            {
+            if ($user['alert']) {
                 $this->container['mail']()->sendCommentMail($user);
             }
             $this->response = $commentManager->getCommentByImgId($id);

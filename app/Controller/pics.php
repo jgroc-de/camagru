@@ -11,20 +11,14 @@ class pics extends Patronus
     public function get()
     {
         $picsManager = $this->container['picture']($this->container);
-        if ($_GET['by'] == 'date')
-        {
+        if ('date' == $_GET['by']) {
             $pics = $picsManager->getPicsByDate(($_GET['start'] - 1) * 8);
-        }
-        else if ($_GET['by'] == 'like')
-        {
+        } elseif ('like' == $_GET['by']) {
             $pics = $picsManager->getPicsByLike(($_GET['start'] - 1) * 8);
         }
-        if (empty($pics))
-        {
+        if (empty($pics)) {
             $this->code = 404;
-        }
-        else
-        {
+        } else {
             $this->response = [
                 'pics' => $pics,
                 'start' => $_POST['start'] + 1,

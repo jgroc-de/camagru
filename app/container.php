@@ -10,7 +10,7 @@ use Dumb\Dumb;
 
 /**
  * equip.
- * equip everything u need into the container of dumb
+ * equip everything u need into the container of dumb.
  *
  * @param Dumb $baka
  */
@@ -35,7 +35,7 @@ function equip(Dumb $baka)
                 'port' => '3306',
             ];
         },
-        'db' => function ($DB): \PDO {
+        'db' => function ($DB): PDO {
             $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';
 
             return new \PDO($DB_DSN, $DB['user'], $DB['password'], [

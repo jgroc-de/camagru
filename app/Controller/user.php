@@ -23,15 +23,12 @@ class user extends Patronus
         $email = $_POST['email'];
         $alert = isset($_POST['alert']) ? true : false;
 
-        if ($this->container['user']($this->container)->updateUser($pseudo, $email, $alert))
-        {
+        if ($this->container['user']($this->container)->updateUser($pseudo, $email, $alert)) {
             $_SESSION['pseudo'] = $pseudo;
             $_SESSION['alert'] = $alert;
             $_SESSION['email'] = $email;
             $this->response['flash'] = 'Profil Succesfully updated';
-        }
-        else
-        {
+        } else {
             $response['code'] = 400;
             $response['flash'] = 'Pseudo unavailable!';
         }
@@ -44,22 +41,16 @@ class user extends Patronus
         $email = $_POST['email'];
         $userManager = $this->container['user']($this->container);
 
-        if ($userManager->addUser($pseudo, password_hash($password, PASSWORD_DEFAULT), $email))
-        {
+        if ($userManager->addUser($pseudo, password_hash($password, PASSWORD_DEFAULT), $email)) {
             $this->container['mail']()->sendValidationMail($userManager->getUser($pseudo));
-            if (isset($_SESSION['flash']['success']))
-            {
+            if (isset($_SESSION['flash']['success'])) {
                 $this->response['flash'] = $_SESSION['flash']['success'];
-            }
-            elseif (isset($_SESSION['flash']['fail']))
-            {
+            } elseif (isset($_SESSION['flash']['fail'])) {
                 $this->response['code'] = 500;
                 $this->response['flash'] = $_SESSION['flash']['fail'];
             }
             unset($_SESSION['flash']);
-        }
-        else
-        {
+        } else {
             $this->code = 401;
             $this->response['flash'] = $_SESSION['flash']['fail'];
             unset($_SESSION['flash']);

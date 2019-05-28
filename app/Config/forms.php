@@ -1,10 +1,10 @@
 <?php
 
-use \Dumb\Dumb;
+use Dumb\Dumb;
 
 /**
  * troolBumper.
- * validation of forms for each routes
+ * validation of forms for each routes.
  *
  * @param Dumb $baka
  */
@@ -12,55 +12,44 @@ function trollBumper(Dumb $baka)
 {
     $baka->eatF(
         function ($key, $type): int {
-            if (!isset($_POST[$key]) || !$_POST[$key])
-            {
+            if (!isset($_POST[$key]) || !$_POST[$key]) {
                 return 401;
             }
-            if ('data' != $key)
-            {
+            if ('data' != $key) {
                 $_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
             }
             switch ($type) {
             case 'numeric':
-                if (!is_numeric($_POST[$key]) || $_POST[$key] <= 0)
-                {
+                if (!is_numeric($_POST[$key]) || $_POST[$key] <= 0) {
                     return 401;
                 }
                 $_POST[$key] = (int) $_POST[$key];
 
                 break;
             case 'password':
-                if (!preg_match('#(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,256}#', $_POST[$key]))
-                {
+                if (!preg_match('#(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,256}#', $_POST[$key])) {
                     return 401;
                 }
 
                 break;
             case 'email':
-                if (!preg_match('#^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,63})$#', $_POST[$key]))
-                {
+                if (!preg_match('#^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,63})$#', $_POST[$key])) {
                     return 401;
                 }
 
                 break;
             case 'pseudo':
-                if (mb_strlen($_POST[$key]) > 30)
-                {
+                if (mb_strlen($_POST[$key]) > 30) {
                     return 401;
                 }
 
                 break;
             case 'data':
-                if (0 === strpos($_POST['data'], 'data:image/png;base64,'))
-                {
+                if (0 === strpos($_POST['data'], 'data:image/png;base64,')) {
                     $_POST['type'] = 'png';
-                }
-                elseif (0 === strpos($_POST['data'], 'data:image/jpeg;base64,'))
-                {
+                } elseif (0 === strpos($_POST['data'], 'data:image/jpeg;base64,')) {
                     $_POST['type'] = 'jpeg';
-                }
-                else
-                {
+                } else {
                     return 401;
                 }
                 $_POST['data'] = str_replace(
@@ -78,67 +67,67 @@ function trollBumper(Dumb $baka)
             '/comment' => [
                 'post' => [
                     'id' => 'numeric',
-                    'comment' => ''
+                    'comment' => '',
                 ],
                 'patch' => [
                     'id' => 'numeric',
-                    'comment' => ''
-                ]
+                    'comment' => '',
+                ],
             ],
             '/contact' => [
                 'post' => [
                     'name' => 'pseudo',
                     'subject' => '',
                     'email' => 'email',
-                    'message' => ''
-                ]
+                    'message' => '',
+                ],
             ],
             '/login' => [
                 'post' => [
                     'password' => 'password',
-                    'pseudo' => 'pseudo'
-                ]
+                    'pseudo' => 'pseudo',
+                ],
             ],
             '/like' => [
                 'post' => [
-                    'id' => 'numeric'
-                ]
+                    'id' => 'numeric',
+                ],
             ],
             '/pics' => [
                 'get' => [
                     'start' => 'numeric',
-                    'by' => ''
-                ]
+                    'by' => '',
+                ],
             ],
             '/picture' => [
                 'delete' => [
-                    'url' => ''
+                    'url' => '',
                 ],
                 'patch' => [
                     'id' => 'numeric',
-                    'title' => 'pseudo'
+                    'title' => 'pseudo',
                 ],
                 'post' => [
-                    'data' => 'data'
+                    'data' => 'data',
                 ],
             ],
             '/password' => [
                 'patch' => [
-                    'password' => 'password'
+                    'password' => 'password',
                 ],
                 'post' => [
-                    'pseudo' => 'pseudo'
+                    'pseudo' => 'pseudo',
                 ],
             ],
             '/user' => [
                 'patch' => [
                     'pseudo' => 'pseudo',
-                    'email' => 'email'
+                    'email' => 'email',
                 ],
                 'post' => [
                     'password' => 'password',
                     'pseudo' => 'pseudo',
-                    'email' => 'email'
+                    'email' => 'email',
                 ],
             ],
         ]

@@ -42,7 +42,9 @@ class Dumb
         });*/
         $this->setUri();
         $this->method = strtolower($_SERVER['REQUEST_METHOD']);
-        $_POST += (array)json_decode(file_get_contents('php://input'));
+        if ($input = file_get_contents('php://input')) {
+            $_POST += (array) json_decode($input);
+        }
         $this->container = $functions;
     }
 
@@ -58,24 +60,20 @@ class Dumb
 
     public function kamehameha($args = null)
     {
-        if ($this->routes() || $this->middleware() || $this->form() || $this->ghost())
-        {
+        if ($this->routes() || $this->middleware() || $this->form() || $this->ghost()) {
             $this->controller = new \App\Controller\error($this->container, $this->method, $this->error);
         }
         $letter = $this->controller;
-        try
-        {
+
+        try {
             $letter->trap();
-        }
-        catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             $letter->code = 500;
             var_dump($e);
         }
-		header("Cache-Control: max-age=360");
+        header('Cache-Control: max-age=360');
         header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
-        if ($letter->code >= 400 && 'GET' === $_SERVER['REQUEST_METHOD'])
-        {
+        if ($letter->code >= 400 && 'GET' === $_SERVER['REQUEST_METHOD']) {
             $letter = new \App\Controller\error($this->container, $this->method, $letter->code);
         }
         $letter->bomb($args);
@@ -106,11 +104,10 @@ class Dumb
 
     public function eatF($function, array $routes)
     {
-        if (isset($routes[$this->uri][$this->method]))
-        {
+        if (isset($routes[$this->uri][$this->method])) {
             $this->forms[] = [
                 $function,
-                $routes[$this->uri][$this->method]
+                $routes[$this->uri][$this->method],
             ];
         }
     }
@@ -124,41 +121,16 @@ class Dumb
         }
     }
 
-    protected function routes()
-    {
-        if ($this->isSetRoute())
-        {
-            $class = '\App\Controller\\'.($this->uri);
-            $this->controller = new $class($this->container, $this->method);
-            if (method_exists($this->controller, $this->method))
-            {
-                return 0;
-            }
-            $this->error = 405;
-        }
-        else
-        {
-            $this->error = 404;
-        }
-
-        return 1;
-    }
-
     public function isSetRoute(): bool
     {
-        foreach ($this->routes as $key => $route)
-        {
-            if (is_array($route))
-            {
-                if (in_array($this->uri, $route))
-                {
+        foreach ($this->routes as $key => $route) {
+            if (is_array($route)) {
+                if (in_array($this->uri, $route)) {
                     $this->uri = $key;
 
                     return true;
                 }
-            }
-            else if ($this->uri === $this->routes)
-            {
+            } elseif ($this->uri === $this->routes) {
                 return true;
             }
         }
@@ -166,15 +138,29 @@ class Dumb
         return false;
     }
 
+    protected function routes()
+    {
+        if ($this->isSetRoute()) {
+            $class = '\App\Controller\\'.($this->uri);
+            $this->controller = new $class($this->container, $this->method);
+            if (method_exists($this->controller, $this->method)) {
+                return 0;
+            }
+            $this->error = 405;
+        } else {
+            $this->error = 404;
+        }
+
+        return 1;
+    }
+
     /**
      * middleware.
      */
     protected function middleware()
     {
-        foreach ($this->middlewares as $middleware)
-        {
-            if (($error = $middleware()) >= 400)
-            {
+        foreach ($this->middlewares as $middleware) {
+            if (($error = $middleware()) >= 400) {
                 $this->error = $error;
 
                 return 1;
@@ -189,14 +175,11 @@ class Dumb
      */
     protected function form()
     {
-        foreach ($this->forms as $form)
-        {
+        foreach ($this->forms as $form) {
             $action = array_shift($form);
             $param = $form[0];
-            foreach ($param as $key => $type)
-            {
-                if (($error = $action($key, $type)) >= 400)
-                {
+            foreach ($param as $key => $type) {
+                if (($error = $action($key, $type)) >= 400) {
                     $this->error = $error;
 
                     return 1;
@@ -212,10 +195,8 @@ class Dumb
      */
     protected function ghost()
     {
-        foreach ($this->ghosts as $ghost)
-        {
-            if (($error = $ghost($this->container)) >= 400)
-            {
+        foreach ($this->ghosts as $ghost) {
+            if (($error = $ghost($this->container)) >= 400) {
                 $this->error = $error;
 
                 return 1;
@@ -229,8 +210,7 @@ class Dumb
     {
         $uri = explode('/', $_SERVER['REQUEST_URI']);
         $this->uri = $uri[1];
-        if (isset($uri[2]))
-        {
+        if (isset($uri[2])) {
             $_GET['id'] = $uri[2];
         }
     }

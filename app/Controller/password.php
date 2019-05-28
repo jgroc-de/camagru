@@ -12,16 +12,13 @@ class password extends Patronus
     {
         $userManager = $this->container['user']($this->container);
         $pseudo = $_GET['log'];
-        if ($userManager->pseudoInDb($pseudo) && $userManager->checkValidationMail($pseudo, $_GET['key']))
-        {
+        if ($userManager->pseudoInDb($pseudo) && $userManager->checkValidationMail($pseudo, $_GET['key'])) {
             $user = $userManager->getUser($pseudo);
             $_SESSION['pseudo'] = $user['pseudo'];
             $_SESSION['id'] = $user['id'];
             $_SESSION['alert'] = $user['alert'];
             $_SESSION['email'] = $user['email'];
-        }
-        else
-        {
+        } else {
             $this->code = 400;
         }
     }
@@ -37,35 +34,25 @@ class password extends Patronus
         $userManager = $this->container['user']($this->container);
         $pseudo = $_POST['pseudo'];
         $user = $userManager->getUser($pseudo);
-        if (!empty($user) && $userManager->resetValidkey($pseudo))
-        {
+        if (!empty($user) && $userManager->resetValidkey($pseudo)) {
             $this->container['mail']($this->container)->sendReinitMail($user);
-        }
-        else
-        {
+        } else {
             $this->code = 404;
         }
-        if (isset($_SESSION['flash']))
-        {
+        if (isset($_SESSION['flash'])) {
             $this->response['flash'] = $_SESSION['flash'];
         }
     }
 
     public function bomb(array $options)
     {
-        if ($this->method == 'get')
-        {
-            if ($this->code >= 400)
-            {
+        if ('get' == $this->method) {
+            if ($this->code >= 400) {
                 header('Location: /error');
-            }
-            else
-            {
+            } else {
                 header('Location: /');
             }
-        }
-        else
-        {
+        } else {
             parent::bomb($options);
         }
     }

@@ -8,7 +8,7 @@ use Dumb\Patronus;
 
 /**
  * picture.
- * provide view to comments and pictures
+ * provide view to comments and pictures.
  */
 class picture extends Patronus
 {
@@ -21,12 +21,9 @@ class picture extends Patronus
         $id = $_GET['id'];
 
         $this->elem = $this->container['picture']($this->container)->getPic($id);
-        if (empty($this->elem))
-        {
+        if (empty($this->elem)) {
             $this->code = 404;
-        }
-        else
-        {
+        } else {
             $this->comments = $this->container['comment']($this->container)->getComments($id)->fetchAll();
         }
     }
@@ -39,7 +36,7 @@ class picture extends Patronus
     public function delete()
     {
         $this->response['url'] = $_POST['url'];
-        $this->container['picture']($this->container)->deletePic($_POST['id'], (int)$_SESSION['id']);
+        $this->container['picture']($this->container)->deletePic($_POST['id'], (int) $_SESSION['id']);
         unlink($_POST['url']);
         $this->response['flash'] = 'Picture successfully deleted!';
     }
@@ -48,7 +45,7 @@ class picture extends Patronus
     {
         $id = $_GET['id'];
         $elem = $this->elem;
-        $this->containeromments = $this->comments;
+        $comments = $this->comments;
         array_shift($options['header']);
         $options['title2'] = htmlspecialchars($elem['title']);
         $view = 'Picture';
@@ -66,25 +63,20 @@ class picture extends Patronus
 
         $d_size = getimagesizefromstring($_POST['data']);
         $dest = imagecreatefromstring($_POST['data']);
-        if (!$dest)
-        {
+        if (!$dest) {
             $this->code = 500;
 
             return;
         }
-        if (640 != $d_size[0] || 480 != $d_size[1])
-        {
-            if (!($dest = $this->resampled($dest, $d_size)))
-            {
+        if (640 != $d_size[0] || 480 != $d_size[1]) {
+            if (!($dest = $this->resampled($dest, $d_size))) {
                 return;
             }
         }
-        foreach ($url as $value)
-        {
+        foreach ($url as $value) {
             $src = $value['url'];
             $s_size = getimagesize($src);
-            if (!($src = imagecreatefrompng($src)))
-            {
+            if (!($src = imagecreatefrompng($src))) {
                 $this->code = 500;
 
                 return;
@@ -111,8 +103,7 @@ class picture extends Patronus
         imagedestroy($dest);
         $this->container['picture']($this->container)->addPic($name);
         $this->response['path'] = $name;
-        if (isset($_SESSION['flash']))
-        {
+        if (isset($_SESSION['flash'])) {
             $this->response['flash'] = $_SESSION['flash'];
             unset($_SESSION['flash']);
         }
@@ -127,19 +118,15 @@ class picture extends Patronus
     private function resampled($src, &$d_size)
     {
         $dest = imagecreatetruecolor(640, 480);
-        if (!$dest)
-        {
+        if (!$dest) {
             $this->code = 500;
 
             return false;
         }
-        if ($d_size[0] > $d_size[1])
-        {
+        if ($d_size[0] > $d_size[1]) {
             $width = 640;
             $height = (int) (640 * $d_size[1] / $d_size[0]);
-        }
-        else
-        {
+        } else {
             $width = (int) (480 * $d_size[0] / $d_size[1]);
             $height = 480;
         }
@@ -162,14 +149,11 @@ class picture extends Patronus
         $url = [];
         $i = 0;
 
-        while (isset($post['title'.$i]))
-        {
+        while (isset($post['title'.$i])) {
             $title[] = $post['title'.$i++];
         }
-        foreach ($filter as $elemt)
-        {
-            if (in_array($elemt['title'], $title))
-            {
+        foreach ($filter as $elemt) {
+            if (in_array($elemt['title'], $title)) {
                 $url[] = $elemt;
             }
         }

@@ -23,8 +23,7 @@ class SqlManager
     {
         $obj = $this->db->prepare($request);
         $success = $obj->execute($array);
-        if ($bool)
-        {
+        if ($bool) {
             return $success;
         }
 

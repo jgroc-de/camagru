@@ -1,10 +1,10 @@
 <?php
 
-use \Dumb\Dumb;
+use Dumb\Dumb;
 
 /**
  * incept.
- * restrict access to some routes if datas does not exist in DB
+ * restrict access to some routes if datas does not exist in DB.
  *
  * @param Dumb $baka
  */
@@ -12,8 +12,7 @@ function incept($baka)
 {
     $baka->eatG(
         function (array $c): int {
-            if (!($c['picture']($c)->picInDb($_POST['id'])))
-            {
+            if (!($c['picture']($c)->picInDb($_POST['id']))) {
                 return 404;
             }
 
@@ -31,15 +30,13 @@ function incept($baka)
         function (array $c): int {
             $pic = $c['picture']($c)->getPicByUrl($_POST['url']);
 
-            if (empty($pic))
-            {
+            if (empty($pic)) {
                 return 404;
             }
-            if ($_SESSION['id'] !== $pic['id_author'])
-            {
+            if ($_SESSION['id'] !== $pic['id_author']) {
                 return 403;
             }
-            $_POST['id'] = (int)$pic['id'];
+            $_POST['id'] = (int) $pic['id'];
 
             return 0;
         },
@@ -54,12 +51,10 @@ function incept($baka)
         function (array $c): int {
             $pic = $c['picture']($c)->getPic($_POST['id']);
 
-            if (empty($pic))
-            {
+            if (empty($pic)) {
                 return 404;
             }
-            if ($_SESSION['pseudo'] !== $pic['pseudo'])
-            {
+            if ($_SESSION['pseudo'] !== $pic['pseudo']) {
                 return 403;
             }
 

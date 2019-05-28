@@ -60,8 +60,7 @@ class PicManager extends SqlManager
 			ORDER BY id DESC
 		';
         $value = $this->sqlRequest($request, [$pseudo]);
-        while ($elemt = $value->fetch())
-        {
+        while ($elemt = $value->fetch()) {
             $tab[] = $elemt;
         }
 
@@ -95,8 +94,7 @@ class PicManager extends SqlManager
             DELETE FROM img
             WHERE id = ? AND id_author = ?
         ';
-        if ($this->sqlRequest($request, [$img_id, $author_id], true))
-        {
+        if ($this->sqlRequest($request, [$img_id, $author_id], true)) {
             $request = '
             DELETE FROM comments
             WHERE img_id = ?
@@ -123,8 +121,7 @@ class PicManager extends SqlManager
 			WHERE id = ?
 		';
         $value = $this->sqlRequest($request, [$id]);
-        if ($value->fetch())
-        {
+        if ($value->fetch()) {
             $value->closecursor();
 
             return true;
@@ -142,8 +139,7 @@ class PicManager extends SqlManager
             WHERE id_img = ? AND id_author = ?
         ';
         $id = $this->sqlRequestFetch($request, [$id_img, $id_author]);
-        if (!isset($id['id']))
-        {
+        if (!isset($id['id'])) {
             $request = '
                 UPDATE img 
                 SET nb_like = nb_like + 1 
@@ -156,9 +152,7 @@ class PicManager extends SqlManager
                 VALUES (?, ?)
                 ';
             $this->sqlRequest($request, [$id_img, $id_author], true);
-        }
-        else
-        {
+        } else {
             return -1;
         }
         $request = '

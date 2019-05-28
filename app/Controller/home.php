@@ -8,7 +8,7 @@ use Dumb\Patronus;
 
 /**
  * home
- * provide home view
+ * provide home view.
  */
 class home extends Patronus
 {

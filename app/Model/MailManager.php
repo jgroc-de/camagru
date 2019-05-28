@@ -65,12 +65,9 @@ ou copier/coller dans votre navigateur internet.
 Ceci est un mail automatique, Merci de ne pas y répondre.';
 
         $headers = 'From: lol@camagru.fr'."\r\n".'Reply-To: jgroc2s@free.fr'."\r\n".'X-Mailer: PHP/'.phpversion();
-        if ($this->sendMail($user['email'], $subject, $message, $headers))
-        {
+        if ($this->sendMail($user['email'], $subject, $message, $headers)) {
             $_SESSION['flash'] = ['success' => 'Bienvenu! Un mail vous a été envoyé'];
-        }
-        else
-        {
+        } else {
             $_SESSION['flash'] = ['success' => 'Bienvenu! Pas de mail pour vous par contre…'];
         }
 
@@ -88,12 +85,9 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
     public function sendContactMail()
     {
         $headers = 'From: '.$_POST['email']."\r\n".'Reply-To: '.self::EMAIL."\r\n".'X-Mailer: PHP/'.phpversion();
-        if ($this->sendMail(self::EMAIL, $_POST['subject'], $_POST['message'], $headers))
-        {
+        if ($this->sendMail(self::EMAIL, $_POST['subject'], $_POST['message'], $headers)) {
             $_SESSION['flash'] = ['success' => 'Bienvenu! Un mail vous a été envoyé'];
-        }
-        else
-        {
+        } else {
             $_SESSION['flash'] = ['success' => 'Bienvenu! Pas de mail pour vous par contre…'];
         }
 

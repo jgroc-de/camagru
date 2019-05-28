@@ -14,17 +14,14 @@ class login extends Patronus
         $password = $_POST['password'];
         $userManager = $this->container['user']($this->container);
 
-        if ($userManager->checkLogin($pseudo, $password))
-        {
+        if ($userManager->checkLogin($pseudo, $password)) {
             $user = $userManager->getUser($pseudo);
             $_SESSION['pseudo'] = $user['pseudo'];
             $_SESSION['id'] = $user['id'];
             $_SESSION['alert'] = $user['alert'];
             $_SESSION['email'] = $user['email'];
             $this->response['flash'] = 'Welcome back '.$pseudo;
-        }
-        else
-        {
+        } else {
             $this->code = 401;
             $this->response['flash'] = 'Bad password or login';
         }

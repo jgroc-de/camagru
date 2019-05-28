@@ -19,7 +19,7 @@ function bakado(Dumb $baka)
             'camagru',
             'error',
             'home',
-            'picture'
+            'picture',
         ],
         'login',
         'password',

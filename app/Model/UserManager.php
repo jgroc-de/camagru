@@ -25,33 +25,24 @@ class UserManager extends SqlManager
 			WHERE pseudo = ?
 		';
         $keyBd = '';
-        if ($row = $this->sqlRequestFetch($request, [$login]))
-        {
+        if ($row = $this->sqlRequestFetch($request, [$login])) {
             $actif = $row['actif'];
             $keyBd = $row['validkey'];
         }
-        if ($actif)
-        {
+        if ($actif) {
             $_SESSION['flash'] = ['success' => 'Votre compte est déja actif'];
-        }
-        elseif (!strcmp($key, $keyBd))
-        {
+        } elseif (!strcmp($key, $keyBd)) {
             $request = '
 				UPDATE users
 				SET actif = true 
 				WHERE pseudo = ?
 			';
-            if ($this->sqlRequest($request, [$login], true))
-            {
+            if ($this->sqlRequest($request, [$login], true)) {
                 $_SESSION['flash'] = ['success' => 'Votre compte a bien été activé'];
-            }
-            else
-            {
+            } else {
                 $_SESSION['flash'] = ['fail' => 'Proudly Fail!'];
             }
-        }
-        else
-        {
+        } else {
             $_SESSION['flash'] = ['fail' => 'Votre compte ne peut, malheureusement, pas etre activé'];
         }
 
@@ -62,29 +53,22 @@ class UserManager extends SqlManager
 
     public function checklogin(string $pseudo, string $pass)
     {
-        if ($this->pseudoInDb($pseudo))
-        {
+        if ($this->pseudoInDb($pseudo)) {
             $request = '
 				SELECT * 
 				FROM users
 				WHERE pseudo = ?
 			';
             $elmt = $this->sqlRequestFetch($request, [$pseudo]);
-            if ($elmt['actif'] && password_verify($pass, $elmt['passwd']))
-            {
+            if ($elmt['actif'] && password_verify($pass, $elmt['passwd'])) {
                 return true;
             }
-            if (!$elmt['actif'])
-            {
+            if (!$elmt['actif']) {
                 $_SESSION['flash'] = ['fail' => 'compte inactif'];
-            }
-            else
-            {
+            } else {
                 $_SESSION['flash'] = ['fail' => 'mauvais mot de passe'];
             }
-        }
-        else
-        {
+        } else {
             $_SESSION['flash'] = ['fail' => 'compte inexistant ou mauvais mot de passe'];
         }
 
@@ -102,8 +86,7 @@ class UserManager extends SqlManager
 
     public function addUser(string $pseudo, string $pass, string $mail)
     {
-        if (!($this->pseudoInDb($pseudo)))
-        {
+        if (!($this->pseudoInDb($pseudo))) {
             $key = md5((string) ((int) microtime(true) * 100000));
             $request = '
 				INSERT INTO users
@@ -122,7 +105,7 @@ class UserManager extends SqlManager
     public function deleteUser()
     {
         $request = 'DELETE FROM users WHERE id = ?';
-        $this->sqlRequestFetch($request, [(int)$_SESSION['id']]);
+        $this->sqlRequestFetch($request, [(int) $_SESSION['id']]);
     }
 
     public function getUser(string $pseudo)
@@ -174,8 +157,7 @@ class UserManager extends SqlManager
     public function updateUser(string $pseudo, string $email, bool $alert): bool
     {
         $oldPseudo = $_SESSION['pseudo'];
-        if ($pseudo != $oldPseudo && $this->pseudoInDb($pseudo))
-        {
+        if ($pseudo != $oldPseudo && $this->pseudoInDb($pseudo)) {
             return false;
         }
         $request = $this->db->prepare('

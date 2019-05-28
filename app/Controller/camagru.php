@@ -8,7 +8,7 @@ use Dumb\Patronus;
 
 /**
  * camagru
- * give the view to creates pics
+ * give the view to creates pics.
  */
 class camagru extends Patronus
 {
@@ -27,8 +27,7 @@ class camagru extends Patronus
         array_shift($options['header']);
         $listFilter = $this->listFilter;
         $pics = $this->pics;
-        if (!empty($listFilter))
-        {
+        if (!empty($listFilter)) {
             $count = (int) (12 / count($listFilter));
         }
         $options['script'] = 'js/camagruView.js';
