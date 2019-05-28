@@ -5,17 +5,15 @@ Petit site type instagram en php/js brut.
 
 ## Installation
 
-cloner le projet
-dans le repertoire créé:
-``` composer install ```
-pour initialiser l autoloader
-``` php -S localhost:8000 -t public ```
-pour lancer un serveur de test
-le site est accessible a l'adresse http:\\localhost:8000
+Pour installer le projet:
+```
+git clone git@github.com:jgroc-de/camagru.git && composer install && php -S localhost:8000 -t public
+```
+composer sert ici à initialiser l autoloader. Le site est accessible a l'adresse http:\\localhost:8000
 
 ## details technique
 
-le site utilise une sorte de microframework php naif pour fonctionner.
+Le site utilise une sorte de microframework php naif pour fonctionner.
 Le code de celui-ci se trouve dans le dossier Dumb.
 Il est composé de deux fichiers:
 - dumb.php qui est le corps du framework
@@ -25,11 +23,11 @@ Ce framework permet de definir:
 - un middleware dans app/config/middleware.php
 - un validateur de formulaire dans app/config/form.php
 - une troisieme couche de securité dans app/config/ghost.php
-- les routes possibles dans app/config/routes.php (avec de l url rewriting tres basique)
+- les routes possibles dans app/config/routes.php (avec de l'url rewriting tres basique)
 - un systeme de container dans app/container.php
 
 le point d'entrée se trouve de manière classique dans public/index.php
-enfin, une organisation pseudo rest est proposée avec l'utilisation des verbs http comme methodes des controller.
+enfin, une organisation pseudo REST est proposée avec l'utilisation des verbs HTTP comme methodes des controller.
 le site est ainsi une sorte d'api qui livre le front sur la route /.
 le front se charge ensuite de remplir le site en tapant sur les autres routes.
 
