@@ -1,71 +1,90 @@
 'use strict';
 
-function pageNav(burger)
-{
-	var pageNav = document.getElementById("pageNav");
-
-	pageNav.hidden = pageNav.hidden ? false : true;
-	burger.classList.toggle("change");
-}
-
-function ggOpenForm() {
-  form.style.display = "block"
-}
-
-function ggDeactive() {
-  let reinitBtn = document.getElementById('reinitBtn2')
-  let aBtns = reinitBtn.parentElement.getElementsByTagName('a')
-
- 	for (let btn of aBtns) {
- 	  btn.classList = 'w3-button w3-section gg-post-it'
-  }
-}
-
-function ggActivate(element) {
-  element.classList = 'w3-button w3-section w3-grey gg-post-it'
-}
-
-function ggSignupBtn() {
-	login.style.display = 'none'
-  reinit.style.display = 'none'
-	signup.style.display = 'block'
-  ggDeactive(this)
-  ggActivate(this)
-}
-
-function ggLoginBtn() {
-	signup.style.display = 'none'
-  reinit.style.display = 'none'
-	login.style.display = 'block'
-  ggDeactive(this)
-  ggActivate(this)
-}
-
-function ggReinitBtn() {
-  let reinitBtn = document.getElementById('reinitBtn2')
-
-	signup.style.display = 'none'
-	login.style.display = 'none'
-  reinit.style.display = 'block'
-  ggDeactive(this)
-  ggActivate(reinitBtn)
-}
-
-function ggCloseForm() {
-  form.style.display='none'
-}
-
 function ggNavbar() {
-  let form = document.getElementById('form')
-  let login = document.getElementById('login')
-  let signup = document.getElementById('signup')
-  let reinit = document.getElementById('reinit')
-  let reinitBtn = document.getElementById('reinitBtn2')
+	let authForm = document.getElementById('form')
+	let views
+	let btns
 
-	document.getElementById('loginBtn').addEventListener('click', ggLoginBtn)
-	document.getElementById('signupBtn').addEventListener('click', ggSignupBtn)
-  document.getElementById('logBtn').addEventListener('click', ggOpenForm)
-  document.getElementById('closeBtn').addEventListener('click', ggCloseForm)
-  document.getElementById('reinitBtn').addEventListener('click', ggReinitBtn)
-  reinitBtn2.addEventListener('click', ggReinitBtn)
+	init()
+
+	function init() {
+		views = getFormViews()
+		btns = getFormBtns()
+
+		document.getElementById('logBtn').addEventListener('click', openForm)
+		document.getElementById('closeBtn').addEventListener('click', closeForm)
+	}
+
+	function pageNav(burger)
+	{
+		var pageNav = document.getElementById("pageNav");
+
+		pageNav.hidden = pageNav.hidden ? false : true;
+		burger.classList.toggle("change");
+	}
+
+	function openForm() {
+		authForm.style.display = "block"
+	}
+
+	function closeForm() {
+		authForm.style.display = "none"
+	}
+
+	function deactive() {
+		for (let btn of btns) {
+			btn.classList = 'w3-button w3-section gg-post-it'
+		}
+	}
+
+	function activate(element) {
+		element.classList = 'w3-button w3-section w3-grey gg-post-it'
+	}
+
+	function hide() {
+		for (let view of views) {
+			view.style.display = 'none'
+		}
+	}
+
+	function switchForm(element, view) {
+		hide()
+		deactive()
+		activate(element)
+		view.style.display = 'block'
+	}
+
+	function loginForm() {
+		switchForm(this, views[0])
+	}
+
+	function signupForm() {
+		switchForm(this, views[1])
+	}
+
+	function reinitForm() {
+		switchForm(this, views[2])
+	}
+
+	function getFormViews() {
+		let login = document.getElementById('login')
+		let signup = document.getElementById('signup')
+		let reinit = document.getElementById('reinit')
+
+		return [login, signup, reinit]
+	}
+
+	function getFormBtns() {
+		let reinitBtn = document.getElementById('reinitBtn')
+		let signupBtn = document.getElementById('signupBtn')
+		let loginBtn = document.getElementById('loginBtn')
+		let reinitBtnAlt = document.getElementById('reinitBtnAlt')
+
+		loginBtn.addEventListener('click', loginForm)
+		signupBtn.addEventListener('click', signupForm)
+		reinitBtn.addEventListener('click', reinitForm)
+		reinitBtnAlt.addEventListener('click', reinitForm)
+
+		return [loginBtn, signupBtn, reinitBtn, reinitBtnAlt]
+	}
 }
