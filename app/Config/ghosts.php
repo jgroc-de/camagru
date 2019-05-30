@@ -10,58 +10,52 @@ use Dumb\Dumb;
  */
 function incept($baka)
 {
-    $baka->eatG(
-        function (array $c): int {
+    $baka->setGhostShield(
+        function (array $c) {
             if (!($c['picture']($c)->picInDb($_POST['id']))) {
-                return 404;
+                throw new \Exception("ghost", 404);
             }
-
-            return 0;
         },
         [
-            '/like' => [
+            'like' => [
                 'post',
             ],
         ]
     );
 
     //à modifier pour ne pas etre dépendant de l'url
-    $baka->eatG(
-        function (array $c): int {
+    $baka->setGhostShield(
+        function (array $c) {
             $pic = $c['picture']($c)->getPicByUrl($_POST['url']);
 
             if (empty($pic)) {
-                return 404;
+                throw new \Exception("ghost", 404);
             }
             if ($_SESSION['id'] !== $pic['id_author']) {
-                return 403;
+                throw new \Exception("ghost", 403);
             }
             $_POST['id'] = (int) $pic['id'];
-
-            return 0;
         },
         [
-            '/picture' => [
+            'picture' => [
                 'delete',
             ],
         ]
     );
 
-    $baka->eatG(
-        function (array $c): int {
+    $baka->setGhostShield(
+        function (array $c) {
             $pic = $c['picture']($c)->getPic($_POST['id']);
 
             if (empty($pic)) {
-                return 404;
+                throw new \Exception("ghost", 404);
             }
             if ($_SESSION['pseudo'] !== $pic['pseudo']) {
-                return 403;
+                throw new \Exception("ghost", 403);
             }
-
-            return 0;
         },
         [
-            '/picture' => [
+            'picture' => [
                 'patch',
             ],
         ]

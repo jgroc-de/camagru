@@ -1,34 +1,26 @@
-'use strict';
+'use strict'
 
-function ggNavbar() {
+function loginForms() {
 	let authForm = document.getElementById('form')
 	let views
 	let btns
 
-	init()
-
-	function init() {
+  function init() {
 		views = getFormViews()
 		btns = getFormBtns()
 
-		document.getElementById('logBtn').addEventListener('click', openForm)
+    setBtnsEvent(btns)
+		document.getElementById('logBtn').addEventListener('click', toggleForm)
 		document.getElementById('closeBtn').addEventListener('click', closeForm)
+    views[0].toggleAttribute('hidden')
 	}
 
-	function pageNav(burger)
-	{
-		var pageNav = document.getElementById("pageNav");
-
-		pageNav.hidden = pageNav.hidden ? false : true;
-		burger.classList.toggle("change");
-	}
-
-	function openForm() {
-		authForm.style.display = "block"
+	function toggleForm() {
+    authForm.style.display = "block"
 	}
 
 	function closeForm() {
-		authForm.style.display = "none"
+    authForm.style.display = "none"
 	}
 
 	function deactive() {
@@ -43,7 +35,7 @@ function ggNavbar() {
 
 	function hide() {
 		for (let view of views) {
-			view.style.display = 'none'
+			view.setAttribute('hidden', '');
 		}
 	}
 
@@ -51,20 +43,21 @@ function ggNavbar() {
 		hide()
 		deactive()
 		activate(element)
-		view.style.display = 'block'
+	  view.toggleAttribute('hidden');
 	}
 
-	function loginForm() {
-		switchForm(this, views[0])
-	}
+  function setBtnsEvent(btns) {
+		let reinitBtnAlt = document.getElementById('reinitBtnAlt')
 
-	function signupForm() {
-		switchForm(this, views[1])
-	}
-
-	function reinitForm() {
-		switchForm(this, views[2])
-	}
+    for (let i = 0; i < btns.length; i++) {
+		  btns[i].addEventListener('click', () => {
+		    switchForm(btns[i], views[i])
+      })
+    }
+		reinitBtnAlt.addEventListener('click', () => {
+		  switchForm(btns[2], views[2])
+    })
+  }
 
 	function getFormViews() {
 		let login = document.getElementById('login')
@@ -78,13 +71,9 @@ function ggNavbar() {
 		let reinitBtn = document.getElementById('reinitBtn')
 		let signupBtn = document.getElementById('signupBtn')
 		let loginBtn = document.getElementById('loginBtn')
-		let reinitBtnAlt = document.getElementById('reinitBtnAlt')
 
-		loginBtn.addEventListener('click', loginForm)
-		signupBtn.addEventListener('click', signupForm)
-		reinitBtn.addEventListener('click', reinitForm)
-		reinitBtnAlt.addEventListener('click', reinitForm)
-
-		return [loginBtn, signupBtn, reinitBtn, reinitBtnAlt]
+    return [loginBtn, signupBtn, reinitBtn]
 	}
+
+  init()
 }

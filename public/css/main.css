@@ -1,82 +1,82 @@
 .gg-header {
     margin-top: 56px;
-	width: 100%;
-  	background-image: url("../img/2_1709494041.png");
-	background-repeat: no-repeat;
-	background-position: bottom;
+    width: 100%;
+    background-image: url("../img/2_1709494041.png");
+    background-repeat: no-repeat;
+    background-position: bottom;
     height: 125px;
 }
 
 .gg-page-nav {
-	position: fixed;
-	top: 56px;
-  	right: 16px;
-  	width: 160px;
-	z-index: 2;
-	background-color: white;
+    position: fixed;
+    top: 56px;
+    right: 16px;
+    width: 160px;
+    z-index: 2;
+    background-color: white;
 }
 
 @media only screen and (max-width: 480px) {
-	.gg-header {
-	}
+    .gg-header {
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 800px) {
-	.gg-header {
-	}
+    .gg-header {
+    }
 }
 
 @media only screen and (min-width: 800px) {
-	.gg-header {
-	}
+    .gg-header {
+    }
 
-	.gg-book {
-		height: 700px;
-		overflow: auto;
-	}
+    .gg-book {
+        height: 700px;
+        overflow: auto;
+    }
 }
 
 .gg-wall {
-	height: 600px;
-	overflow: scroll;
+    height: 600px;
+    overflow: scroll;
 }
 
 .gg-post-it {
-	position: relative;
-	left: -8px;
+    position: relative;
+    left: -8px;
 }
 
 .bar1, .bar2, .bar3 {
-  width: 22px;
-  height: 4px;
-  background-color: #333;
-  margin: 3px 0;
-  transition: 0.4s;
+    width: 22px;
+    height: 4px;
+    background-color: #333;
+    margin: 3px 0;
+    transition: 0.4s;
 }
 
 .change .bar1 {
-  -webkit-transform: rotate(-45deg) translate(-6px, 6px);
-  transform: rotate(-45deg) translate(-6px, 6px);
+    -webkit-transform: rotate(-45deg) translate(-6px, 6px);
+    transform: rotate(-45deg) translate(-6px, 6px);
 }
 
 .change .bar2 {opacity: 0;}
 
 .change .bar3 {
-  -webkit-transform: rotate(45deg) translate(-4px, -4px);
-  transform: rotate(45deg) translate(-4px, -4px);
+    -webkit-transform: rotate(45deg) translate(-4px, -4px);
+    transform: rotate(45deg) translate(-4px, -4px);
 }
 
 .gg-resize {
-  animation-name: intro;
-  animation-duration: 0.7s;
-  animation-delay: 0.3s;
-  animation-timing-function: ease-in;
-  animation-iteration-count: 1;
-  -webkit-transition: height 1s; /* Safari */
-  transition: height 1s;
-  -webkit-transition-delay: 0.1s; /* Safari */
-  transition-delay: 0.1s
-  transition-timing-function: ease-in;
+    animation-name: intro;
+    animation-duration: 0.7s;
+    animation-delay: 0.3s;
+    animation-timing-function: ease-in;
+    animation-iteration-count: 1;
+    -webkit-transition: height 1s; /* Safari */
+    transition: height 1s;
+    -webkit-transition-delay: 0.1s; /* Safari */
+    transition-delay: 0.1s
+    transition-timing-function: ease-in;
 }
 
 .gg-resize:hover {
@@ -84,6 +84,14 @@
 }
 
 @keyframes intro {
-  from {height: 500px;}
-  to {height: 125px;}
+    from {height: 500px;}
+    to {height: 125px;}
+}
+
+.gg-width {
+    max-width:1564px;
+}
+
+.gg-width100 {
+    width:100%;
 }

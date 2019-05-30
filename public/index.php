@@ -30,20 +30,4 @@ trollBumper($baka);
 //set specific validators
 incept($baka);
 
-/**
- * initialisation de variable pour app/view/template.php.
- */
-$args = [
-    'header' => [
-        '/common/header.php',
-        '/form/loginView.html',
-        '/form/reinitView.html',
-        '/form/settingsView.html',
-    ],
-    'components' => [
-        '/common/about.php',
-        '/common/contact.php',
-    ],
-];
-
-$baka->kamehameha($args);
+$baka->kamehameha();

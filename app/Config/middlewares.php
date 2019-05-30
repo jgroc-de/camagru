@@ -10,105 +10,95 @@ use Dumb\Dumb;
  */
 function shield(Dumb $baka)
 {
-    $baka->eatM(
-        function (): int {
+    $baka->setMiddlewares(
+        function () {
             if (isset($_SESSION['pseudo'])) {
-                return 400;
+                throw new \Exception("middle", 400);
             }
-
-            return 0;
         },
         [
-            '/login' => [
+            'login' => [
                 'post',
             ],
-            '/signup' => [
+            'signup' => [
                 'post',
             ],
-            '/password' => [
+            'password' => [
                 'post',
                 'get',
             ],
         ]
     );
 
-    $baka->eatM(
-        function (): int {
+    $baka->setMiddlewares(
+        function () {
             if (!isset($_SESSION['pseudo'])) {
-                return 403;
+                throw new \Exception("middle", 403);
             }
-
-            return 0;
         },
         [
-            '/login' => [
+            'login' => [
                 'delete',
             ],
-            '/camagru' => [
+            'camagru' => [
                 'get',
             ],
-            '/comment' => [
+            'comment' => [
                 'post',
             ],
-            '/like' => [
+            'like' => [
                 'post',
             ],
-            '/picture' => [
+            'picture' => [
                 'post',
                 'patch',
                 'delete',
             ],
-            '/user' => [
+            'user' => [
                 'get',
                 'put',
                 'patch',
                 'delete',
             ],
-            '/password' => [
+            'password' => [
                 'patch',
             ],
         ]
     );
 
-    $baka->eatM(
-        function (): int {
+    $baka->setMiddlewares(
+        function () {
             if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-                return 404;
+                throw new \Exception("middle", 404);
             }
             $_GET['id'] = (int) $_GET['id'];
-
-            return 0;
         },
         [
-            '/picture' => [],
+            'picture' => [],
         ]
     );
 
-    $baka->eatM(
-        function (): int {
+    $baka->setMiddlewares(
+        function () {
             if (!isset($_GET['log'], $_GET['key'])) {
-                return 404;
+                throw new \Exception("middle", 404);
             }
-
-            return 0;
         },
         [
-            '/password' => [
+            'password' => [
                 'get',
             ],
         ]
     );
 
-    $baka->eatM(
-        function (): int {
+    $baka->setMiddlewares(
+        function () {
             if ('troll2' !== $_SESSION['pseudo']) {
-                return 403;
+                throw new \Exception("middle", 403);
             }
-
-            return 0;
         },
         [
-            '/setup' => [],
+            'setup' => [],
         ]
     );
 }

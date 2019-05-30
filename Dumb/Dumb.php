@@ -8,7 +8,8 @@ class Dumb
 {
     const HTTP_CODE = [
         200 => 'OK',
-        401 => 'Bad Request',
+        400 => 'Bad Request',
+        401 => 'Unauthorized',
         403 => 'Forbidden',
         404 => 'Not Found',
         405 => 'Method Not Allowed',
@@ -60,23 +61,22 @@ class Dumb
 
     public function kamehameha($args = null)
     {
-        if ($this->routes() || $this->middleware() || $this->form() || $this->ghost()) {
-            $this->controller = new \App\Controller\error($this->container, $this->method, $this->error);
-        }
-        $letter = $this->controller;
-
         try {
+            $this->routes();
+            $this->middleware();
+            $this->form();
+            $this->ghost();
+            $letter = $this->controller;
             $letter->trap();
+            header('Cache-Control: max-age=360');
+            header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
+            $letter->bomb($args);
         } catch (\Exception $e) {
-            $letter->code = 500;
-            var_dump($e);
+            $letter->code = $e->getCode();
+            header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
+            $this->controller = new \App\Controller\error($this->container, $this->method, $e->getCode());
+            echo $e->getMessage();
         }
-        header('Cache-Control: max-age=360');
-        header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
-        if ($letter->code >= 400 && 'GET' === $_SERVER['REQUEST_METHOD']) {
-            $letter = new \App\Controller\error($this->container, $this->method, $letter->code);
-        }
-        $letter->bomb($args);
     }
 
     /**
@@ -85,7 +85,7 @@ class Dumb
      * @param mixed $function
      * @param array $routes
      */
-    public function eatM($function, array $routes)
+    public function setMiddlewares($function, array $routes)
     {
         //if routes is empty, we apply the function for all routes
         if (
@@ -102,7 +102,7 @@ class Dumb
         }
     }
 
-    public function eatF($function, array $routes)
+    public function setFormValidator($function, array $routes)
     {
         if (isset($routes[$this->uri][$this->method])) {
             $this->forms[] = [
@@ -112,7 +112,7 @@ class Dumb
         }
     }
 
-    public function eatG($function, array $routes)
+    public function setGhostShield($function, array $routes)
     {
         if (isset($routes[$this->uri])
             && in_array($this->method, $routes[$this->uri])
@@ -130,7 +130,7 @@ class Dumb
 
                     return true;
                 }
-            } elseif ($this->uri === $this->routes) {
+            } elseif ($this->uri === $route) {
                 return true;
             }
         }
@@ -144,14 +144,12 @@ class Dumb
             $class = '\App\Controller\\'.($this->uri);
             $this->controller = new $class($this->container, $this->method);
             if (method_exists($this->controller, $this->method)) {
-                return 0;
+                return ;
             }
-            $this->error = 405;
+            throw new \Exception("routes", 405);
         } else {
-            $this->error = 404;
+            throw new \Exception("routes", 404);
         }
-
-        return 1;
     }
 
     /**
@@ -160,14 +158,8 @@ class Dumb
     protected function middleware()
     {
         foreach ($this->middlewares as $middleware) {
-            if (($error = $middleware()) >= 400) {
-                $this->error = $error;
-
-                return 1;
-            }
+            $error = $middleware();
         }
-
-        return 0;
     }
 
     /**
@@ -179,15 +171,9 @@ class Dumb
             $action = array_shift($form);
             $param = $form[0];
             foreach ($param as $key => $type) {
-                if (($error = $action($key, $type)) >= 400) {
-                    $this->error = $error;
-
-                    return 1;
-                }
+                $error = $action($key, $type);
             }
         }
-
-        return 0;
     }
 
     /**
@@ -196,14 +182,8 @@ class Dumb
     protected function ghost()
     {
         foreach ($this->ghosts as $ghost) {
-            if (($error = $ghost($this->container)) >= 400) {
-                $this->error = $error;
-
-                return 1;
-            }
+            $error = $ghost($this->container);
         }
-
-        return 0;
     }
 
     private function setUri()

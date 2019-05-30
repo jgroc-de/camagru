@@ -25,7 +25,7 @@ class Patronus
 
     public function __call(string $string, array $args)
     {
-        $this->code = 405;
+        throw new \Exception("controller", 405);
     }
 
     public function trap()
@@ -56,7 +56,7 @@ class Patronus
         }
     }
 
-    public function bomb(array $options)
+    public function bomb(array $options = null)
     {
         echo json_encode($this->response);
     }
