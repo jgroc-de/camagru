@@ -18,9 +18,9 @@ class Patronus
 
     public function __construct(array $container, string $method, int $code = 200)
     {
-        $this->code = $code;
-        $this->method = $method;
         $this->container = $container;
+        $this->method = $method;
+        $this->code = $code;
     }
 
     public function __call(string $string, array $args)

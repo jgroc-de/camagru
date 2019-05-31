@@ -13,7 +13,9 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if (isset($_SESSION['pseudo'])) {
-                throw new \Exception('middle', 400);
+                session_unset();
+                session_destroy();
+                throw new \Exception('you were logged in', 400);
             }
         },
         [

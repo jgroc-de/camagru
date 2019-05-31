@@ -80,7 +80,7 @@ class Dumb
             $this->controller = new \App\Controller\error($this->container, $this->method, $e->getCode());
             $letter = $this->controller;
             header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
-            echo $e->getMessage();
+            $letter->bomb(['flash' => $e->getMessage()]);
         }
     }
 

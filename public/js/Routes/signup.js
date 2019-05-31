@@ -1,11 +1,11 @@
-class LoginRoute {
+class SignUpRoute {
   constructor() {
-    this.logBtnG = document.getElementById('logBtnG')
-    this.section = document.getElementById('login')
+    this.section = document.getElementById('signup')
     this.form = this.section.getElementsByTagName('form')[0]
     this.data = {
       pseudo:'',
-      password:''
+      password:'',
+      email:'',
     }
     let buttons = form.getElementsByTagName('button')
 
@@ -20,14 +20,10 @@ class LoginRoute {
   setData() {
     this.data.pseudo = this.form[0].value
     this.data.password = this.form[1].value
+    this.data.email = this.form[2].value
   }
 
   sendData() {
-    ggAjax(JSON.stringify(this.data), this.form, this)
-  }
-
-  callback(response) {
-    logBtnG.toggleAttribute('hidden')
-    logBtnB.toggleAttribute('hidden')
+    ggAjax(JSON.stringify(this.data), this.form)
   }
 }

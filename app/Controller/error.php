@@ -11,4 +11,9 @@ class error extends Patronus
     public function trap()
     {
     }
+
+    public function bomb(array $response = null)
+    {
+        echo json_encode($response);
+    }
 }

@@ -1,7 +1,6 @@
 'use strict'
 
 function loginForms() {
-	let authForm = document.getElementById('form')
 	let views
 	let btns
 
@@ -10,17 +9,7 @@ function loginForms() {
 		btns = getFormBtns()
 
     setBtnsEvent(btns)
-		document.getElementById('logBtn').addEventListener('click', toggleForm)
-		document.getElementById('closeBtn').addEventListener('click', closeForm)
     views[0].toggleAttribute('hidden')
-	}
-
-	function toggleForm() {
-    authForm.style.display = "block"
-	}
-
-	function closeForm() {
-    authForm.style.display = "none"
 	}
 
 	function deactive() {
