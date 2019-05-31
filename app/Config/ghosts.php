@@ -13,7 +13,7 @@ function incept($baka)
     $baka->setGhostShield(
         function (array $c) {
             if (!($c['picture']($c)->picInDb($_POST['id']))) {
-                throw new \Exception("ghost", 404);
+                throw new \Exception('ghost', 404);
             }
         },
         [
@@ -29,10 +29,10 @@ function incept($baka)
             $pic = $c['picture']($c)->getPicByUrl($_POST['url']);
 
             if (empty($pic)) {
-                throw new \Exception("ghost", 404);
+                throw new \Exception('ghost', 404);
             }
             if ($_SESSION['id'] !== $pic['id_author']) {
-                throw new \Exception("ghost", 403);
+                throw new \Exception('ghost', 403);
             }
             $_POST['id'] = (int) $pic['id'];
         },
@@ -48,10 +48,10 @@ function incept($baka)
             $pic = $c['picture']($c)->getPic($_POST['id']);
 
             if (empty($pic)) {
-                throw new \Exception("ghost", 404);
+                throw new \Exception('ghost', 404);
             }
             if ($_SESSION['pseudo'] !== $pic['pseudo']) {
-                throw new \Exception("ghost", 403);
+                throw new \Exception('ghost', 403);
             }
         },
         [

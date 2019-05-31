@@ -14,7 +14,7 @@ class setup extends Patronus
         $configManager->createDB(file_get_contents($this->container['env']()['export']));
     }
 
-    public function bomb(array $options)
+    public function bomb(array $options = null)
     {
         header('Location: /');
     }

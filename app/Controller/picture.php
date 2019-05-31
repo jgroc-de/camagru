@@ -22,10 +22,9 @@ class picture extends Patronus
 
         $this->elem = $this->container['picture']($this->container)->getPic($id);
         if (empty($this->elem)) {
-            $this->code = 404;
-        } else {
-            $this->comments = $this->container['comment']($this->container)->getComments($id)->fetchAll();
+            throw new \Exception('picture', 404);
         }
+        $this->comments = $this->container['comment']($this->container)->getComments($id)->fetchAll();
     }
 
     public function patch()
@@ -64,9 +63,7 @@ class picture extends Patronus
         $d_size = getimagesizefromstring($_POST['data']);
         $dest = imagecreatefromstring($_POST['data']);
         if (!$dest) {
-            $this->code = 500;
-
-            return;
+            throw new \Exception('picture', 500);
         }
         if (640 != $d_size[0] || 480 != $d_size[1]) {
             if (!($dest = $this->resampled($dest, $d_size))) {
@@ -77,9 +74,7 @@ class picture extends Patronus
             $src = $value['url'];
             $s_size = getimagesize($src);
             if (!($src = imagecreatefrompng($src))) {
-                $this->code = 500;
-
-                return;
+                throw new \Exception('picture', 500);
             }
             imagealphablending($dest, true);
             imagesavealpha($dest, true);
@@ -119,9 +114,7 @@ class picture extends Patronus
     {
         $dest = imagecreatetruecolor(640, 480);
         if (!$dest) {
-            $this->code = 500;
-
-            return false;
+            throw new \Exception('picture', 500);
         }
         if ($d_size[0] > $d_size[1]) {
             $width = 640;

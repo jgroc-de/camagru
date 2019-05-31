@@ -29,8 +29,7 @@ class user extends Patronus
             $_SESSION['email'] = $email;
             $this->response['flash'] = 'Profil Succesfully updated';
         } else {
-            $response['code'] = 400;
-            $response['flash'] = 'Pseudo unavailable!';
+            throw new \Exception('pseudo unavailable!', 400);
         }
     }
 
@@ -46,14 +45,11 @@ class user extends Patronus
             if (isset($_SESSION['flash']['success'])) {
                 $this->response['flash'] = $_SESSION['flash']['success'];
             } elseif (isset($_SESSION['flash']['fail'])) {
-                $this->response['code'] = 500;
-                $this->response['flash'] = $_SESSION['flash']['fail'];
+                throw new \Exception($_SESSION['flash']['fail'], 500);
             }
             unset($_SESSION['flash']);
         } else {
-            $this->code = 401;
-            $this->response['flash'] = $_SESSION['flash']['fail'];
-            unset($_SESSION['flash']);
+            throw new \Exception($_SESSION['flash']['fail'], 401);
         }
     }
 

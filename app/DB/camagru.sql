@@ -98,4 +98,4 @@ INSERT INTO filter (id, title, url, x, y) VALUES
 (5, 'flamme', 'img/filter/flamme.png', 2, 185);
 
 INSERT INTO users (pseudo, passwd, validkey, email) VALUES
-('troll2', 'gg@Camagru19', 'aiue', 'jerome.gds@free.fr');
+('troll2', 'test', 'aiue', 'jerome.gds@free.fr');

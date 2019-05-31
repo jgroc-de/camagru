@@ -17,12 +17,11 @@ class pics extends Patronus
             $pics = $picsManager->getPicsByLike(($_GET['start'] - 1) * 8);
         }
         if (empty($pics)) {
-            $this->code = 404;
-        } else {
-            $this->response = [
-                'pics' => $pics,
-                'start' => $_POST['start'] + 1,
-            ];
+            throw new \Exception('pics', 404);
         }
+        $this->response = [
+            'pics' => $pics,
+            'start' => $_POST['start'] + 1,
+        ];
     }
 }

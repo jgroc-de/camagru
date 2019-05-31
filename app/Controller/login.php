@@ -22,8 +22,9 @@ class login extends Patronus
             $_SESSION['email'] = $user['email'];
             $this->response['flash'] = 'Welcome back '.$pseudo;
         } else {
-            $this->code = 401;
             $this->response['flash'] = 'Bad password or login';
+
+            throw new \Exception($this->response['flash'], 401);
         }
     }
 

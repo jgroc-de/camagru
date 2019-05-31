@@ -13,7 +13,7 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if (isset($_SESSION['pseudo'])) {
-                throw new \Exception("middle", 400);
+                throw new \Exception('middle', 400);
             }
         },
         [
@@ -33,7 +33,7 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if (!isset($_SESSION['pseudo'])) {
-                throw new \Exception("middle", 403);
+                throw new \Exception('middle', 403);
             }
         },
         [
@@ -69,7 +69,7 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-                throw new \Exception("middle", 404);
+                throw new \Exception('middle', 404);
             }
             $_GET['id'] = (int) $_GET['id'];
         },
@@ -81,7 +81,7 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if (!isset($_GET['log'], $_GET['key'])) {
-                throw new \Exception("middle", 404);
+                throw new \Exception('middle', 404);
             }
         },
         [
@@ -94,11 +94,13 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if ('troll2' !== $_SESSION['pseudo']) {
-                throw new \Exception("middle", 403);
+                throw new \Exception('middle', 403);
             }
         },
         [
-            'setup' => [],
+            'setup' => [
+                'get',
+            ],
         ]
     );
 }

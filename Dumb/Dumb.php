@@ -14,6 +14,7 @@ class Dumb
         404 => 'Not Found',
         405 => 'Method Not Allowed',
         500 => 'Server Internal Error',
+        2002 => 'DB error',
     ];
 
     public $container;
@@ -44,7 +45,7 @@ class Dumb
         $this->setUri();
         $this->method = strtolower($_SERVER['REQUEST_METHOD']);
         if ($input = file_get_contents('php://input')) {
-            $_POST += (array) json_decode($input);
+            $_POST += (array) \json_decode($input);
         }
         $this->container = $functions;
     }
@@ -70,11 +71,15 @@ class Dumb
             $letter->trap();
             header('Cache-Control: max-age=360');
             header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
-            $letter->bomb($args);
+            if ($args) {
+                $letter->bomb($args);
+            } else {
+                $letter->bomb();
+            }
         } catch (\Exception $e) {
-            $letter->code = $e->getCode();
-            header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
             $this->controller = new \App\Controller\error($this->container, $this->method, $e->getCode());
+            $letter = $this->controller;
+            header('HTTP/1.1 '.$letter->code.' '.self::HTTP_CODE[$letter->code]);
             echo $e->getMessage();
         }
     }
@@ -144,12 +149,13 @@ class Dumb
             $class = '\App\Controller\\'.($this->uri);
             $this->controller = new $class($this->container, $this->method);
             if (method_exists($this->controller, $this->method)) {
-                return ;
+                return;
             }
-            throw new \Exception("routes", 405);
-        } else {
-            throw new \Exception("routes", 404);
+
+            throw new \Exception('routes', 405);
         }
+
+        throw new \Exception('routes', 404);
     }
 
     /**

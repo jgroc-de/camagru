@@ -25,7 +25,7 @@ class Patronus
 
     public function __call(string $string, array $args)
     {
-        throw new \Exception("controller", 405);
+        throw new \Exception('controller', 405);
     }
 
     public function trap()

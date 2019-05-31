@@ -16,7 +16,7 @@ class home extends Patronus
     {
     }
 
-    public function bomb(array $options)
+    public function bomb(array $options = null)
     {
         require __DIR__.'/../View/template.html';
     }

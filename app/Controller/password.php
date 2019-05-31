@@ -19,7 +19,7 @@ class password extends Patronus
             $_SESSION['alert'] = $user['alert'];
             $_SESSION['email'] = $user['email'];
         } else {
-            $this->code = 400;
+            throw new \Exception('password', 400);
         }
     }
 
@@ -37,14 +37,14 @@ class password extends Patronus
         if (!empty($user) && $userManager->resetValidkey($pseudo)) {
             $this->container['mail']($this->container)->sendReinitMail($user);
         } else {
-            $this->code = 404;
+            throw new \Exception('password', 404);
         }
         if (isset($_SESSION['flash'])) {
             $this->response['flash'] = $_SESSION['flash'];
         }
     }
 
-    public function bomb(array $options)
+    public function bomb(array $options = null)
     {
         if ('get' == $this->method) {
             if ($this->code >= 400) {

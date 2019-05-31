@@ -1,45 +1,27 @@
-"use strict";
+"use strict"
 
-function formManager()
-{
-	let forms = document.getElementsByTagName('form');
+function formManager(object) {
+  let form = object.form
 
   function init() {
-    setValidator()
-  }
+    let buttons = form.getElementsByTagName('button')
 
-  function setValidator() {
-    for (let form of forms) {
-      let buttons = form.getElementsByTagName('button')
-
-      for (let button of buttons) {
-        if (button.type === 'submit') {
-          button.addEventListener('click', submit)
-          break
-        }
+    for (let button of buttons) {
+      if (button.type === 'submit') {
+        button.addEventListener('click', submit)
+        break
       }
     }
   }
 
   function submit(event) {
-    event.preventDefault()
-    event.stopPropagation()
-    validation(this)
-  }
-
-  function validation(button) {
-    let form = button.parentNode.parentNode
-    let data = {}
-
-    for (let i = 0; i < form.length - 1; i++) {
-      if (form[i].type !== 'checkbox' || form[i].checked === true) {
-        data.pseudo = form[0].value
-        data.password = form[1].value
-        //data += form[i].name + "=" + form[i].value
-      }
+    if (form.checkValidity()) {
+      event.preventDefault()
+      event.stopPropagation()
+      console.log(object)
+      object.setData()
+      object.sendData()
     }
-    console.log(data)
-    ggAjax(JSON.stringify(data), form)
   }
 
   init()
@@ -61,7 +43,7 @@ function ggAjax(data, form, callback) {
       }
     }
   }
-  xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+  xmlhttp.setRequestHeader("Content-type", "application/json")
   xmlhttp.send(data)
 }
 

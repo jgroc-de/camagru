@@ -14,15 +14,14 @@ class comment extends Patronus
         $user = $this->container['user']($this->container)->getUserByImgId($id);
 
         if (empty($user)) {
-            $this->code = 404;
-        } else {
-            $commentManager = $this->container['comment']($this->container);
-            $commentManager->addComment();
-            if ($user['alert']) {
-                $this->container['mail']()->sendCommentMail($user);
-            }
-            $this->response = $commentManager->getCommentByImgId($id);
+            throw new \Exception('comments', 404);
         }
+        $commentManager = $this->container['comment']($this->container);
+        $commentManager->addComment();
+        if ($user['alert']) {
+            $this->container['mail']()->sendCommentMail($user);
+        }
+        $this->response = $commentManager->getCommentByImgId($id);
     }
 
     public function delete()
