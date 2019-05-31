@@ -7,12 +7,15 @@ class SignUpRoute {
       password:'',
       email:'',
     }
+    this.button = this.setButton()
+  }
+
+  setButton() {
     let buttons = form.getElementsByTagName('button')
 
     for (let button of buttons) {
       if (button.type === 'submit') {
-        this.button = button
-        break
+        return button
       }
     }
   }

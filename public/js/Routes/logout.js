@@ -5,7 +5,7 @@ class LogoutRoute {
     this.logBtnB = this.button
     this.form = {
       method:'delete',
-      action:'localhost:8888/logout',
+      action:'http://localhost:8888/logout',
       checkValidity() {return true}
     }
   }
@@ -18,8 +18,8 @@ class LogoutRoute {
   }
 
   callback(response) {
-    logBtnG.toggleAttribute('hidden')
-    logBtnB.toggleAttribute('hidden')
+    this.logBtnG.toggleAttribute('hidden')
+    this.logBtnB.toggleAttribute('hidden')
   }
 }
 

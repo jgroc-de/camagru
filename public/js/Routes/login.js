@@ -1,18 +1,22 @@
 class LoginRoute {
   constructor() {
     this.logBtnG = document.getElementById('logBtnG')
+    this.logBtnB = document.getElementById('logBtnB')
     this.section = document.getElementById('login')
     this.form = this.section.getElementsByTagName('form')[0]
     this.data = {
       pseudo:'',
       password:''
     }
+    this.button = this.setButton()
+  }
+
+  setButton() {
     let buttons = form.getElementsByTagName('button')
 
     for (let button of buttons) {
       if (button.type === 'submit') {
-        this.button = button
-        break
+        return button
       }
     }
   }
@@ -27,7 +31,7 @@ class LoginRoute {
   }
 
   callback(response) {
-    logBtnG.toggleAttribute('hidden')
-    logBtnB.toggleAttribute('hidden')
+    this.logBtnG.toggleAttribute('hidden')
+    this.logBtnB.toggleAttribute('hidden')
   }
 }
