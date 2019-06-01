@@ -10,7 +10,12 @@ class contact extends Patronus
 {
     public function post()
     {
-        $this->container['mail']()->sendContactMail();
         $this->response['flash'] = 'Thx!';
+    }
+
+    public function bomb(array $response = null)
+    {
+        echo json_encode($this->response);
+        $this->container['mail']()->sendContactMail();
     }
 }

@@ -1,7 +1,7 @@
 import { ggAjax } from '../Library/ggAjax.js'
 
-export class LogoutRoute {
-  constructor () {
+export class Logout {
+  constructor (login) {
     this.button = document.getElementById('logBtnB')
     this.logBtnG = document.getElementById('logBtnG')
     this.settings = document.getElementById('btnSettings')
@@ -11,6 +11,7 @@ export class LogoutRoute {
       action: 'http://localhost:8080/login',
       checkValidity () { return true }
     }
+    this.login = login
   }
 
   setData () {
@@ -21,8 +22,7 @@ export class LogoutRoute {
   }
 
   callback (response) {
-    this.logBtnG.style.display = 'block'
-    this.logBtnB.style.display = 'none'
+    this.login.login()
     this.settings.toggleAttribute('hidden')
   }
 }

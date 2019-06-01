@@ -1,6 +1,6 @@
 import { ggAjax } from '../Library/ggAjax.js'
 
-export class SignUpRoute {
+export class SignUp {
   constructor () {
     this.section = document.getElementById('signup')
     this.form = this.section.getElementsByTagName('form')[0]

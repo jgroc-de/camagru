@@ -100,7 +100,7 @@ function shield(Dumb $baka)
         },
         [
             'setup' => [
-                'get',
+                'post',
             ],
         ]
     );

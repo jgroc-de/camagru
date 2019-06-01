@@ -5,6 +5,8 @@ use Dumb\Dumb;
 /**
  * incept.
  * restrict access to some routes if datas does not exist in DB.
+ *
+ * @param mixed $baka
  */
 function incept($baka)
 {

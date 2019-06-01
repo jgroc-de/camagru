@@ -5,35 +5,33 @@ import { navbar } from './Components/navbar/navbar.js'
 import * as Login from './Routes/login.js'
 import * as Logout from './Routes/logout.js'
 import * as Signup from './Routes/signup.js'
+import * as Contact from './Routes/contact.js'
 import { formManager } from './Library/formManager.js'
 
 function app () {
   function init () {
+    router()
     components()
-    routes()
   }
 
   function navbarBtns () {
     burger()
     loginForms()
     navbar()
-    /* logout () {
-      let logoutForm = {
-        method:'delete',
-        action:'localhost:8888/logout'
-      }
-      ggAjax('', logoutForm, this)
-    } */
   }
 
-  function routes () {
-    const login = new Login.LoginRoute()
-    const logout = new Logout.LogoutRoute()
-    const signup = new Signup.SignUpRoute()
+  function router () {
+    const login = new Login.Login()
+    const routes = [
+      login,
+      new Logout.Logout(login),
+      new Signup.SignUp(),
+      new Contact.Contact()
+    ]
 
-    formManager(login)
-    formManager(logout)
-    formManager(signup)
+    for (let route of routes) {
+      formManager(route)
+    }
   }
 
   function components () {
