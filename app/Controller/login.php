@@ -32,5 +32,6 @@ class login extends Patronus
     {
         session_unset();
         session_destroy();
+        $this->response['flash'] = 'See u soon!!';
     }
 }

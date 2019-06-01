@@ -2,10 +2,11 @@ class LogoutRoute {
   constructor() {
     this.button = document.getElementById('logBtnB')
     this.logBtnG = document.getElementById('logBtnG')
+    this.settings = document.getElementById('btnSettings')
     this.logBtnB = this.button
     this.form = {
       method:'delete',
-      action:'http://localhost:8888/logout',
+      action:'http://localhost:8001/login',
       checkValidity() {return true}
     }
   }
@@ -18,8 +19,8 @@ class LogoutRoute {
   }
 
   callback(response) {
-    this.logBtnG.toggleAttribute('hidden')
-    this.logBtnB.toggleAttribute('hidden')
+    this.logBtnG.style.display = 'block'
+    this.logBtnB.style.display = 'none'
+    this.settings.toggleAttribute('hidden')
   }
 }
-
