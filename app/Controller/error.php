@@ -8,7 +8,7 @@ use Dumb\Patronus;
 
 class error extends Patronus
 {
-    public function trap()
+    public function __call(string $method, $args)
     {
     }
 

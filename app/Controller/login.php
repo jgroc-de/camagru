@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Dumb\Dumb;
 use Dumb\Patronus;
 
 class login extends Patronus
@@ -24,12 +25,13 @@ class login extends Patronus
         } else {
             $this->response['flash'] = 'Bad password or login';
 
-            throw new \Exception($this->response['flash'], 401);
+            throw new \Exception($this->response['flash'], Dumb::UNAUTHORIZED);
         }
     }
 
     protected function delete()
     {
+        $this->response['flash'] = 'See u soon!!';
         session_unset();
         session_destroy();
     }

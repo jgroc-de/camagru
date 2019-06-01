@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Dumb\Dumb;
 use Dumb\Patronus;
 
 class user extends Patronus
@@ -29,7 +30,7 @@ class user extends Patronus
             $_SESSION['email'] = $email;
             $this->response['flash'] = 'Profil Succesfully updated';
         } else {
-            throw new \Exception('pseudo unavailable!', 400);
+            throw new \Exception('pseudo unavailable!', Dumb::BAD_REQUEST);
         }
     }
 
@@ -45,11 +46,11 @@ class user extends Patronus
             if (isset($_SESSION['flash']['success'])) {
                 $this->response['flash'] = $_SESSION['flash']['success'];
             } elseif (isset($_SESSION['flash']['fail'])) {
-                throw new \Exception($_SESSION['flash']['fail'], 500);
+                throw new \Exception($_SESSION['flash']['fail'], Dumb::INTERNAL_SERVER_ERROR);
             }
             unset($_SESSION['flash']);
         } else {
-            throw new \Exception($_SESSION['flash']['fail'], 401);
+            throw new \Exception($_SESSION['flash']['fail'], Dumb::UNAUTHORIZED);
         }
     }
 

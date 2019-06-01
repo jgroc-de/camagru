@@ -25,7 +25,7 @@ class Patronus
 
     public function __call(string $string, array $args)
     {
-        throw new \Exception('controller', 405);
+        throw new \Exception('controller', Dumb::METHOD_NOT_ALLOWED);
     }
 
     public function trap()

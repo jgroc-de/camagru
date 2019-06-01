@@ -1,19 +1,19 @@
-function navbar() {
+export function navbar () {
   let logBtnG = document.getElementById('logBtnG')
   let authForm = document.getElementById('form')
   let closeBtn = document.getElementById('closeBtn')
 
-  function init() {
+  function init () {
     logBtnG.addEventListener('click', openForm)
     closeBtn.addEventListener('click', closeForm)
   }
 
-  function openForm() {
-    authForm.style.display = "block"
+  function openForm () {
+    authForm.style.display = 'block'
   }
 
-  function closeForm() {
-    authForm.style.display = "none"
+  function closeForm () {
+    authForm.style.display = 'none'
   }
 
   init()

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Dumb\Dumb;
 use Dumb\Patronus;
 
 class password extends Patronus
@@ -19,7 +20,7 @@ class password extends Patronus
             $_SESSION['alert'] = $user['alert'];
             $_SESSION['email'] = $user['email'];
         } else {
-            throw new \Exception('password', 400);
+            throw new \Exception('password', Dumb::BAD_REQUEST);
         }
     }
 
@@ -37,7 +38,7 @@ class password extends Patronus
         if (!empty($user) && $userManager->resetValidkey($pseudo)) {
             $this->container['mail']($this->container)->sendReinitMail($user);
         } else {
-            throw new \Exception('password', 404);
+            throw new \Exception('password', Dumb::NOT_FOUND);
         }
         if (isset($_SESSION['flash'])) {
             $this->response['flash'] = $_SESSION['flash'];

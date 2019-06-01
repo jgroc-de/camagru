@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Dumb\Dumb;
 use Dumb\Patronus;
 
 /**
@@ -22,7 +23,7 @@ class picture extends Patronus
 
         $this->elem = $this->container['picture']($this->container)->getPic($id);
         if (empty($this->elem)) {
-            throw new \Exception('picture', 404);
+            throw new \Exception('picture', Dumb::NOT_FOUND);
         }
         $this->comments = $this->container['comment']($this->container)->getComments($id)->fetchAll();
     }
@@ -63,7 +64,7 @@ class picture extends Patronus
         $d_size = getimagesizefromstring($_POST['data']);
         $dest = imagecreatefromstring($_POST['data']);
         if (!$dest) {
-            throw new \Exception('picture', 500);
+            throw new \Exception('picture', Dumb::INTERNAL_SERVER_ERROR);
         }
         if (640 != $d_size[0] || 480 != $d_size[1]) {
             if (!($dest = $this->resampled($dest, $d_size))) {
@@ -74,7 +75,7 @@ class picture extends Patronus
             $src = $value['url'];
             $s_size = getimagesize($src);
             if (!($src = imagecreatefrompng($src))) {
-                throw new \Exception('picture', 500);
+                throw new \Exception('picture', Dumb::INTERNAL_SERVER_ERROR);
             }
             imagealphablending($dest, true);
             imagesavealpha($dest, true);
@@ -114,7 +115,7 @@ class picture extends Patronus
     {
         $dest = imagecreatetruecolor(640, 480);
         if (!$dest) {
-            throw new \Exception('picture', 500);
+            throw new \Exception('picture', Dumb::INTERNAL_SERVER_ERROR);
         }
         if ($d_size[0] > $d_size[1]) {
             $width = 640;

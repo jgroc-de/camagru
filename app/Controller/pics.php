@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Dumb\Dumb;
 use Dumb\Patronus;
 
 class pics extends Patronus
@@ -17,7 +18,7 @@ class pics extends Patronus
             $pics = $picsManager->getPicsByLike(($_GET['start'] - 1) * 8);
         }
         if (empty($pics)) {
-            throw new \Exception('pics', 404);
+            throw new \Exception('pics', Dumb::NOT_FOUND);
         }
         $this->response = [
             'pics' => $pics,

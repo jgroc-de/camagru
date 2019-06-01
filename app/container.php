@@ -11,8 +11,6 @@ use Dumb\Dumb;
 /**
  * equip.
  * equip everything u need into the container of dumb.
- *
- * @param Dumb $baka
  */
 function equip(Dumb $baka)
 {
@@ -38,6 +36,7 @@ function equip(Dumb $baka)
         'db' => function ($DB): PDO {
             $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';
             $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';port='.$DB['port'];
+			//à remplacer par mysqli pour profiter des async pour les creations upadte delete
 
             return new \PDO($DB_DSN, $DB['user'], $DB['password'], [
                 \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,

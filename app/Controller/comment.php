@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Dumb\Dumb;
 use Dumb\Patronus;
 
 class comment extends Patronus
@@ -14,7 +15,7 @@ class comment extends Patronus
         $user = $this->container['user']($this->container)->getUserByImgId($id);
 
         if (empty($user)) {
-            throw new \Exception('comments', 404);
+            throw new \Exception('comments', Dumb::NOT_FOUND);
         }
         $commentManager = $this->container['comment']($this->container);
         $commentManager->addComment();

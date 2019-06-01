@@ -5,8 +5,6 @@ use Dumb\Dumb;
 /**
  * shield.
  * restrict access to some Routes depending on some conditions.
- *
- * @param Dumb $baka
  */
 function shield(Dumb $baka)
 {
@@ -15,7 +13,8 @@ function shield(Dumb $baka)
             if (isset($_SESSION['pseudo'])) {
                 session_unset();
                 session_destroy();
-                throw new \Exception('you were logged in', 400);
+
+                throw new \Exception('you were logged in', Dumb::BAD_REQUEST);
             }
         },
         [
@@ -35,7 +34,7 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if (!isset($_SESSION['pseudo'])) {
-                throw new \Exception('middle', 403);
+                throw new \Exception('You must login to access this ressource', Dumb::FORBIDDEN);
             }
         },
         [
@@ -71,7 +70,7 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-                throw new \Exception('middle', 404);
+                throw new \Exception('bad request', Dumb::BAD_REQUEST);
             }
             $_GET['id'] = (int) $_GET['id'];
         },
@@ -83,7 +82,7 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if (!isset($_GET['log'], $_GET['key'])) {
-                throw new \Exception('middle', 404);
+                throw new \Exception('bad request', Dumb::BAD_REQUEST);
             }
         },
         [
@@ -96,7 +95,7 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if ('troll2' !== $_SESSION['pseudo']) {
-                throw new \Exception('middle', 403);
+                throw new \Exception('', Dumb::FORBIDDEN);
             }
         },
         [

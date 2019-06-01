@@ -1,16 +1,14 @@
-'use strict'
-
-function burger() {
+export function burger () {
   let h3 = document.getElementsByTagName('h3')
-	let nav = document.getElementById("pageNav")
+  let nav = document.getElementById('pageNav')
 
-  function init() {
+  function init () {
     hide()
-		document.getElementById('burger').addEventListener('click', pageNav)
+    document.getElementById('burger').addEventListener('click', pageNav)
     setBurger()
-	}
+  }
 
-  function hide() {
+  function hide () {
     for (let element of h3) {
       let nextSibling = element.nextElementSibling
 
@@ -20,12 +18,12 @@ function burger() {
     }
   }
 
-	function pageNav() {
-		nav.hidden = nav.hidden ? false : true
-		this.classList.toggle("change")
-	}
+  function pageNav () {
+    nav.hidden = !nav.hidden
+    this.classList.toggle('change')
+  }
 
-  function setBurger() {
+  function setBurger () {
     for (let i = 0; i < h3.length; i++) {
       nav.children[i].children[0].innerText = h3[i].innerText.toLowerCase()
       nav.children[i].addEventListener('click', () => {
