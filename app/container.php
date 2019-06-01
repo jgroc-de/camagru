@@ -26,7 +26,7 @@ function equip(Dumb $baka)
                     'name' => ltrim($dbopts['path'], '/'),*/
                 'driver' => 'mysql',
                 'user' => 'root',
-                'password' => '',
+                'password' => 'root@GG93',
                 'host' => 'localhost',
                 'name' => 'camagru',
                 'export' => __DIR__.'/DB/camagru.sql',

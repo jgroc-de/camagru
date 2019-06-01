@@ -5,6 +5,8 @@ export class LoginRoute {
     this.logBtnG = document.getElementById('logBtnG')
     this.logBtnB = document.getElementById('logBtnB')
     this.section = document.getElementById('login')
+    this.authForm = document.getElementById('form')
+    this.settings = document.getElementById('btnSettings')
     this.form = this.section.getElementsByTagName('form')[0]
     this.data = {
       pseudo: '',
@@ -32,8 +34,10 @@ export class LoginRoute {
     ggAjax(JSON.stringify(this.data), this.form, this)
   }
 
-  callback (response) {
-    this.logBtnG.toggleAttribute('hidden')
-    this.logBtnB.toggleAttribute('hidden')
+  callback(response) {
+    this.logBtnG.style.display = 'none'
+    this.logBtnB.style.display = 'block'
+    this.authForm.style.display = 'none'
+    this.settings.toggleAttribute('hidden')
   }
 }
