@@ -1,5 +1,3 @@
-'use strict'
-
 export function loginForms () {
   let views
   let btns

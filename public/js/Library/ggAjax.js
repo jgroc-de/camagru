@@ -1,5 +1,3 @@
-'use strict'
-
 import { printNotif } from './printnotif.js'
 
 export function ggAjax (data, form, objet) {

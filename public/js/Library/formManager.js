@@ -1,5 +1,3 @@
-'use strict'
-
 export function formManager (object) {
   let form = object.form
 

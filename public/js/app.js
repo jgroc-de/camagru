@@ -9,36 +9,12 @@ import * as Contact from './Routes/contact.js'
 import { formManager } from './Library/formManager.js'
 
 function app () {
-  function init () {
-    router()
-    components()
-  }
+  let hash = window.location.hash
 
-  function navbarBtns () {
-    burger()
-    loginForms()
-    navbar()
-  }
-
-  function router () {
-    const login = new Login.Login()
-    const routes = [
-      login,
-      new Logout.Logout(login),
-      new Signup.SignUp(),
-      new Contact.Contact()
-    ]
-
-    for (let route of routes) {
-      formManager(route)
-    }
-  }
-
-  function components () {
-    navbarBtns()
-  }
-
-  init()
+  console.log(hash)
 }
 
 app()
+window.onhashchange = function () {
+  app()
+}

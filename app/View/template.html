@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-?>
 	<head>
 		<meta charset="utf-8"/>
 		<meta name="description" content="Bienvenue sur ce petit site type image-board/instagram. Vous pouvez vous prendre en photo dans l'onglet /b et faire un petit montage avec les filtres proposés.">
@@ -11,11 +9,12 @@
 		<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" async>
 		<link rel="stylesheet" href="/css/main.css" async>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" async>
-		<script type="module" src="/js/app.js" async></script>
+    <link rel="modulepreload" href="/js/app.js">
+		<script type="module" src="/js/app.js"></script>
 		<link rel="manifest" href="/manifest.json">
 	</head>
 
-  <body 
+  <body>
 
     <!-- header -->
     <?php
@@ -61,14 +60,15 @@
     </a>
 	</footer>
 	<script>
-	if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('/service-worker.js')
-        .then((reg) => {
-          console.log('Service worker registered.', reg);
-        });
-  });
-}
+    /**
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((reg) => {
+            console.log('Service worker registered.', reg)
+          })
+      });
+    }*/
 	</script>
 	</body>
 </html>
