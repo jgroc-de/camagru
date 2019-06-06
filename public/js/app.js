@@ -1,20 +1,46 @@
-'use strict'
-import { burger } from './Components/navbar/burger.js'
-import { loginForms } from './Components/navbar/loginForms.js'
-import { navbar } from './Components/navbar/navbar.js'
-import * as Login from './Routes/login.js'
-import * as Logout from './Routes/logout.js'
-import * as Signup from './Routes/signup.js'
-import * as Contact from './Routes/contact.js'
-import { formManager } from './Library/formManager.js'
+import * as Contact from './Controller/contact.js'
+import { router } from './router.js'
 
-function app () {
-  let hash = window.location.hash
-
-  console.log(hash)
+let state = {
+  route:[]
 }
 
-app()
+function kamehameha(route, controller, actions) {
+  let i = 0
+
+  while (i < actions.length) {
+    actions[i++](controller)
+  }
+  controller.view()
+}
+
+function app (state) {
+  let route = window.location.hash.replace("#", "")
+  let actions = router(route)
+
+  if (route !== "") {
+    const controller = './Controller/' + route + '.js'
+
+    import(controller)
+      .then((module) => {
+        let key = Object.keys(module)[0]
+        let context = new module[key]()
+
+        state.route.push(context)
+        kamehameha(route, context, actions)
+      })
+  } else {
+    while (state.route.length) {
+      state.route.shift().view()
+    }
+  }
+}
+
+window.onload = function () {
+  app(state)
+}
+
 window.onhashchange = function () {
-  app()
+  app(state)
+  console.log(state)
 }
