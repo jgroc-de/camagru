@@ -1,9 +1,13 @@
+import { router } from './router.js'
+import { middleware } from './middleware.js'
+
 let state = {
-  components : {},
-  url:window.location.origin,
-  login : {
-    name:"",
-    isLogin:false
+  components: {},
+  url: window.location.origin,
+  route: "index",
+  login: {
+    name: "",
+    isLogin: false
   },
   isLogin () {
     return this.login.isLogin
@@ -15,11 +19,12 @@ let state = {
   setLogin (name) {
     this.login.isLogin = true
     this.login.name = name
-  }
+  },
+  httpStatus: 200
 }
 
 function app (state) {
-  let route = window.location.hash.replace("#", "")
+  let route = middleware(router(state))
 
   if (route) {
     const controller = './Controller/' + route + '.js'
@@ -32,10 +37,6 @@ function app (state) {
         }
         state.components[key].wakeUp()
       })
-  } else {
-    for (let i in state.components) {
-      state.components[i].shutDown()
-    }
   }
 }
 

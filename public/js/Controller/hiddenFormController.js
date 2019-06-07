@@ -53,6 +53,10 @@ export class hiddenFormController extends hiddenController {
       i++
     }
 
-    ggAjax(JSON.stringify(this.data), form, this)
+    if (this.form.checkValidity()) {
+      ggAjax(JSON.stringify(this.data), form, this)
+    } else {
+      console.log(this.form.checkValidity())
+    }
   }
 }

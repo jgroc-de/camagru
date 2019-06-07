@@ -1,22 +1,3 @@
-export function formManager (object) {
-  let form = object.form
-
-  function init () {
-    object.button.addEventListener('click', submit)
-  }
-
-  function submit (event) {
-    event.preventDefault()
-    event.stopPropagation()
-    if (form.checkValidity()) {
-      object.setData()
-      object.sendData()
-    }
-  }
-
-  init()
-}
-
 export function picDivFactory (json) {
   var path = json['path']
   var first = createNode('div', {

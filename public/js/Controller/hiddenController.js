@@ -3,6 +3,7 @@ import { ggAjax } from '../Library/ggAjax.js'
 export class hiddenController {
   constructor (state, name) {
     this.state = state
+    this.data = {}
     this.name = name
     this.section = document.getElementById(this.name)
     this.link = this.section.children[0].children[0]
@@ -58,16 +59,22 @@ export class hiddenController {
   }
 
   submit (event) {
-      event.preventDefault()
-      event.stopPropagation()
-    while (i < form.length) {
+    let i = 0
 
-      if (form[i].name !== "") {
-        data[form[i].name] = form[i].value
+    event.preventDefault()
+    event.stopPropagation()
+    while (i < this.form.length) {
+
+      if (this.form[i].name !== "") {
+        this.data[this.form[i].name] = this.form[i].value
       }
       i++
     }
 
-    ggAjax(JSON.stringify(data), form)
+    if (this.form.checkValidity()) {
+      ggAjax(JSON.stringify(this.data), this.form)
+    } else {
+      console.log(this.form.checkValidity())
+    }
   }
 }
