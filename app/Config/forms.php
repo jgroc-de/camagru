@@ -112,7 +112,7 @@ function trollBumper(Dumb $baka)
                     'password' => 'password',
                 ],
                 'post' => [
-                    'pseudo' => 'pseudo',
+                    'email' => 'email',
                 ],
             ],
             'user' => [

@@ -22,5 +22,6 @@ export class Logout {
     this.state.destroyLogin()
     this.logBtnG.href = '#login'
     this.logBtnG.className = "w3-bar-item w3-green w3-button"
+    window.location.assign('#')
   }
 }

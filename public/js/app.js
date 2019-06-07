@@ -6,7 +6,7 @@ let state = {
     isLogin:false
   },
   isLogin () {
-    return this.login.isLogin = false
+    return this.login.isLogin
   },
   destroyLogin () {
     this.login.isLogin = false
@@ -27,16 +27,13 @@ function app (state) {
     import(controller)
       .then((module) => {
         let key = Object.keys(module)[0]
-        let component = new module[key](state)
-
         if (!state.components[key]) {
-          state.components[key] = component
+          state.components[key] = new module[key](state)
         }
-        component.wakeUp()
+        state.components[key].wakeUp()
       })
   } else {
     for (let i in state.components) {
-      console.log(state.components[i])
       state.components[i].shutDown()
     }
   }

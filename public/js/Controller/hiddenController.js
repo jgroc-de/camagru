@@ -35,19 +35,15 @@ export class hiddenController {
         this.link.href = "#"
       }
     }
+
+    return false
   }
 
   wakeUp () {
-    if (this.button) {
-      this.button.addEventListener(this.eventType, this, false)
-    }
-    this.view()
+    return this.view()
   }
 
   shutDown () {
-    if (this.button) {
-      this.button.removeEventListener(this.eventType, this, false)
-    }
     this.view(true)
   }
 
@@ -62,6 +58,8 @@ export class hiddenController {
   }
 
   submit (event) {
+      event.preventDefault()
+      event.stopPropagation()
     while (i < form.length) {
 
       if (form[i].name !== "") {

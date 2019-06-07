@@ -7,5 +7,6 @@ export class Contact extends hiddenController {
     this.eventType = 'click'
     this.listener = this.submit
     this.button = this.setButton()
+    this.button.addEventListener(this.eventType, this, false)
   }
 }

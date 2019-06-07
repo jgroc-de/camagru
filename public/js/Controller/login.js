@@ -3,6 +3,7 @@ import { hiddenFormController } from './hiddenFormController.js'
 export class Login extends hiddenFormController {
   constructor (state) {
     super(state, "login")
+    this.button.addEventListener(this.eventType, this, false)
   }
 
   callback (response, objet) {
