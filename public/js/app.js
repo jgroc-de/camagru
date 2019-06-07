@@ -1,37 +1,43 @@
-import * as Contact from './Controller/contact.js'
-import { router } from './router.js'
-
 let state = {
-  route:[]
-}
-
-function kamehameha(route, controller, actions) {
-  let i = 0
-
-  while (i < actions.length) {
-    actions[i++](controller)
+  components : {},
+  url:window.location.origin,
+  login : {
+    name:"",
+    isLogin:false
+  },
+  isLogin () {
+    return this.login.isLogin = false
+  },
+  destroyLogin () {
+    this.login.isLogin = false
+    this.login.name = ""
+  },
+  setLogin (name) {
+    this.login.isLogin = true
+    this.login.name = name
   }
-  controller.view()
 }
 
 function app (state) {
   let route = window.location.hash.replace("#", "")
-  let actions = router(route)
 
-  if (route !== "") {
+  if (route) {
     const controller = './Controller/' + route + '.js'
 
     import(controller)
       .then((module) => {
         let key = Object.keys(module)[0]
-        let context = new module[key]()
+        let component = new module[key](state)
 
-        state.route.push(context)
-        kamehameha(route, context, actions)
+        if (!state.components[key]) {
+          state.components[key] = component
+        }
+        component.wakeUp()
       })
   } else {
-    while (state.route.length) {
-      state.route.shift().view()
+    for (let i in state.components) {
+      console.log(state.components[i])
+      state.components[i].shutDown()
     }
   }
 }

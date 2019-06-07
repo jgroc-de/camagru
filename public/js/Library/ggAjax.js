@@ -2,6 +2,7 @@ import { printNotif } from './printnotif.js'
 
 export function ggAjax (data, form, objet) {
   let request = new XMLHttpRequest()
+  console.log(objet)
 
   request.open(form.method, form.action, true)
   request.onreadystatechange = function () {
@@ -12,7 +13,7 @@ export function ggAjax (data, form, objet) {
         printNotif(json['flash'], this.status)
       }
       if (objet && this.status === 200) {
-        objet.callback(json)
+        objet.callback(json, objet)
       }
     }
   }

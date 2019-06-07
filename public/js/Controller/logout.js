@@ -1,28 +1,26 @@
 import { ggAjax } from '../Library/ggAjax.js'
 
 export class Logout {
-  constructor (login) {
-    this.button = document.getElementById('logBtnB')
+  constructor (state) {
+    this.state = state
     this.logBtnG = document.getElementById('logBtnG')
-    this.settings = document.getElementById('btnSettings')
-    this.logBtnB = this.button
     this.form = {
       method: 'delete',
-      action: 'http://localhost:8080/login',
+      action: state.url + '/login',
       checkValidity () { return true }
     }
-    this.login = login
   }
 
-  setData () {
-  }
-
-  sendData () {
+  wakeUp () {
     ggAjax('', this.form, this)
   }
 
+  shutDown () {
+  }
+
   callback (response) {
-    this.login.login()
-    this.settings.toggleAttribute('hidden')
+    this.state.destroyLogin()
+    this.logBtnG.href = '#login'
+    this.logBtnG.className = "w3-bar-item w3-green w3-button"
   }
 }
