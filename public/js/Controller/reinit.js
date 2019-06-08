@@ -6,7 +6,6 @@ export class Reinit extends hiddenFormController {
     this.button.addEventListener(this.eventType, this, false)
   }
 
-  callback (response, objet) {
+  callback (response) {
   }
 }
-

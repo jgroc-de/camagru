@@ -6,13 +6,14 @@ export class Logout {
     this.logBtnG = document.getElementById('logBtnG')
     this.form = {
       method: 'delete',
-      action: state.url + '/login',
-      checkValidity () { return true }
+      url: state.url + '/login',
+      body: {},
+      checkValidity () { return true },
     }
   }
 
   wakeUp () {
-    ggAjax('', this.form, this)
+    ggAjax(this.form, this)
   }
 
   shutDown () {

@@ -1,24 +1,22 @@
 import { router } from './router.js'
 import { middlewares } from './middleware.js'
+import { ggAjax } from './Library/ggAjax.js'
 
 let state = {
   components: {},
   url: window.location.origin,
   route: "index",
   login: {
-    name: "",
-    isLogin: false
+    pseudo: "",
   },
   isLogin () {
-    return this.login.isLogin
+    return (this.login.pseudo !== "")
   },
   destroyLogin () {
-    this.login.isLogin = false
-    this.login.name = ""
+    this.login.pseudo = ""
   },
   setLogin (name) {
-    this.login.isLogin = true
-    this.login.name = name
+    this.login.pseudo = name
   },
   httpStatus: 200
 }
@@ -41,6 +39,18 @@ function app (state) {
 }
 
 window.onload = function () {
+  const controller = './Controller/login.js'
+
+  import(controller).then((module) => {
+    let form = {
+      method: "Get",
+      url: "/user",
+      body: {},
+    }
+
+    state.components['Login'] = new module['Login'](state)
+    ggAjax(form, state.components['Login'])
+  })
   app(state)
 }
 

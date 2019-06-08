@@ -5,7 +5,7 @@ export class hiddenFormController extends hiddenController {
   constructor (state, name, formName = false) {
     super(state, name)
     if (formName) {
-      this.authForm = document.getElementById(formName)
+      this.formContainer = document.getElementById(formName)
     }
     this.eventType = 'click'
     this.buttons = []
@@ -35,9 +35,9 @@ export class hiddenFormController extends hiddenController {
 
   view (defaultView = false) {
     if (defaultView) {
-      this.authForm.style.display = 'none'
+      this.formContainer.style.display = 'none'
     } else {
-      let sections = this.authForm.getElementsByTagName('section')
+      let sections = this.formContainer.getElementsByTagName('section')
       let j = 0
 
       while (j < sections.length) {
@@ -48,7 +48,7 @@ export class hiddenFormController extends hiddenController {
         }
         j++
       }
-      this.authForm.style.display = 'block'
+      this.formContainer.style.display = 'block'
     }
 
     return true
@@ -70,19 +70,23 @@ export class hiddenFormController extends hiddenController {
   }
 
   submit (event) {
-    let form = event.target.form
+    let inputs = event.target.form
     let i = 0
+    this.request.body = {}
 
-    while (i < form.length) {
+    while (i < inputs.length) {
 
-      if (form[i].name !== "") {
-        this.request[form[i].name] = form[i].value
+      if (inputs[i].name !== "") {
+        this.request.body[inputs[i].name] = inputs[i].value
       }
       i++
     }
+    this.request.url = inputs.action
+    this.request.method = inputs.attributes ? inputs.attributes["method"].value : inputs.method
+    console.log(this.request)
 
-    if (form.checkValidity()) {
-      ggAjax(JSON.stringify(this.request), form, this)
+    if (inputs.checkValidity()) {
+      ggAjax(this.request, this)
     } else {
       console.log(form.checkValidity())
     }

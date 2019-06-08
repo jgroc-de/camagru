@@ -1,10 +1,11 @@
 import { printNotif } from './printnotif.js'
 
-export function ggAjax (data, form, objet) {
-  let request = new XMLHttpRequest()
+export function ggAjax (request, objet) {
+  let XHR = new XMLHttpRequest()
 
-  request.open(form.method, form.action, true)
-  request.onreadystatechange = function () {
+  console.log(request)
+  XHR.open(request.method.toUpperCase(), request.url, true)
+  XHR.onreadystatechange = function () {
     if (this.readyState === 4) {
       let json = JSON.parse(this.responseText)
 
@@ -16,6 +17,6 @@ export function ggAjax (data, form, objet) {
       }
     }
   }
-  request.setRequestHeader('Content-type', 'application/json')
-  request.send(data)
+  XHR.setRequestHeader('Content-type', 'application/json')
+  XHR.send(JSON.stringify(request.body))
 }
