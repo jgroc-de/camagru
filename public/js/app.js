@@ -1,5 +1,5 @@
 import { router } from './router.js'
-import { middleware } from './middleware.js'
+import { middlewares } from './middleware.js'
 
 let state = {
   components: {},
@@ -24,7 +24,7 @@ let state = {
 }
 
 function app (state) {
-  let route = middleware(router(state))
+  let route = middlewares(router(state))
 
   if (route) {
     const controller = './Controller/' + route + '.js'

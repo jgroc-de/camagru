@@ -1,5 +1,3 @@
-'use strict'
-
 export function printNotif (str, status) {
   let p = document.createElement('p')
   let div = createNode('div', { class: 'w3-panel w3-round' })

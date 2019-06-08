@@ -2,16 +2,35 @@ import { hiddenController } from './hiddenController.js'
 import { ggAjax } from '../Library/ggAjax.js'
 
 export class hiddenFormController extends hiddenController {
-  constructor (state, name) {
+  constructor (state, name, formName = false) {
     super(state, name)
-    this.logBtnG = document.getElementById('logBtnG')
-    this.authForm = document.getElementById('form')
-    this.section = document.getElementById(name)
-    this.form = this.section.getElementsByTagName('form')[0]
+    if (formName) {
+      this.authForm = document.getElementById(formName)
+    }
     this.eventType = 'click'
-    this.listener = this.submit
-    this.button = this.setButton()
-    this.data = {}
+    this.buttons = []
+    this.handleEvent = function ggEvent (event) {
+      console.log(this.name)
+      event.preventDefault()
+      event.stopPropagation()
+
+      switch(event.type) {
+        case 'click':
+          this.submit(event)
+          break;
+        default:
+      }
+    }
+    this.setButtons()
+    this.setEventListener()
+  }
+
+  setEventListener() {
+    let j = 0
+
+    while (j < this.buttons.length) {
+      this.buttons[j++].addEventListener(this.eventType, this, false)
+    }
   }
 
   view (defaultView = false) {
@@ -29,34 +48,43 @@ export class hiddenFormController extends hiddenController {
         }
         j++
       }
-      if (this.state.isLogin()) {
-        this.authForm.style.display = 'none'
-      } else {
-        this.authForm.style.display = 'block'
-      }
+      this.authForm.style.display = 'block'
     }
 
     return true
+  }
+
+  setButtons () {
+    let forms = this.section.getElementsByTagName('form')
+    let i = 0
+
+    while (i < forms.length) {
+      let buttons = forms[i++].getElementsByTagName('button')
+
+      for (let button of buttons) {
+        if (button.type === 'submit') {
+          this.buttons.push(button)
+        }
+      }
+    }
   }
 
   submit (event) {
     let form = event.target.form
     let i = 0
 
-    event.preventDefault()
-    event.stopPropagation()
     while (i < form.length) {
 
       if (form[i].name !== "") {
-        this.data[form[i].name] = form[i].value
+        this.request[form[i].name] = form[i].value
       }
       i++
     }
 
-    if (this.form.checkValidity()) {
-      ggAjax(JSON.stringify(this.data), form, this)
+    if (form.checkValidity()) {
+      ggAjax(JSON.stringify(this.request), form, this)
     } else {
-      console.log(this.form.checkValidity())
+      console.log(form.checkValidity())
     }
   }
 }

@@ -2,15 +2,15 @@ import { hiddenFormController } from './hiddenFormController.js'
 
 export class Login extends hiddenFormController {
   constructor (state) {
-    super(state, "login")
-    this.button.addEventListener(this.eventType, this, false)
+    super(state, "login", "authForm")
+    this.logBtnG = document.getElementById('logBtnG')
   }
 
-  callback (response, objet) {
-    objet.logBtnG.href = '#logout'
-    objet.logBtnG.className = "w3-bar-item w3-black w3-button"
-    objet.state.setLogin(this.data.pseudo)
-    this.data = {}
+  callback (response) {
+    this.logBtnG.href = '#logout'
+    this.logBtnG.className = "w3-bar-item w3-black w3-button"
+    this.state.setLogin(this.request.pseudo)
+    this.request = {}
     window.location.assign('#')
   }
 }

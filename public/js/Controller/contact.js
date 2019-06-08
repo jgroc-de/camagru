@@ -1,12 +1,26 @@
-import { hiddenController } from './hiddenController.js'
+import { hiddenFormController } from './hiddenFormController.js'
 
-export class Contact extends hiddenController {
+export class Contact extends hiddenFormController {
   constructor (state) {
     super(state, "contact")
-    this.form = this.section.getElementsByTagName('form')[0]
-    this.eventType = 'click'
-    this.listener = this.submit
-    this.button = this.setButton()
-    this.button.addEventListener(this.eventType, this, false)
+  }
+
+  //dirty: duplicate of hiddenController
+  view(defaultView = false) {
+    let link = this.link.href.split("#").pop()
+
+    if (defaultView) {
+        this.link.href = "#" + this.name
+        this.section.children[1].setAttribute('hidden', true)
+    } else {
+      this.section.children[1].toggleAttribute('hidden')
+      if (link === "") {
+        this.link.href = "#" + this.name
+      } else {
+        this.link.href = "#"
+      }
+    }
+
+    return false
   }
 }

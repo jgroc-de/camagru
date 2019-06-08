@@ -11,12 +11,11 @@ export function ggAjax (data, form, objet) {
       if (json['flash']) {
         printNotif(json['flash'], this.status)
       }
-      if (objet && this.status === 200) {
-        objet.callback(json, objet)
+      if (objet && objet.callback && this.status === 200) {
+        objet.callback(json)
       }
     }
   }
-  // Make the request
   request.setRequestHeader('Content-type', 'application/json')
   request.send(data)
 }

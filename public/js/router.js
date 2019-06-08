@@ -3,13 +3,14 @@ export function router(state) {
   let routes = [
     "about",
     "burger",
+    "camagru",
     "contact",
     "error",
     "login",
     "logout",
     "reinit",
     "signup",
-    "camagru"
+    "settings",
   ]
   let index = routes.indexOf(hash)
 

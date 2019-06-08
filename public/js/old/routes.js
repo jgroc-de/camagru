@@ -39,7 +39,6 @@ function addPic (status, json) {
   var first = picDivFactory(json)
   var path = json['path']
 
-  first.setAttribute('onclick', "if (confirm('Do you really want to delete this pictures?')){ggAjax('url=" + path + "', '/deletePic', deletePic)}")
   main.insertBefore(first, main.firstChild)
 }
 
