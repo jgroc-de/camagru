@@ -22,7 +22,6 @@ play();
 
 function display(btn, filter)
 {
-	console.log(btn);
     var preview = document.getElementById(filter);
 
     if (filter === undefined)

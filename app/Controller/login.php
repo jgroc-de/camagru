@@ -22,6 +22,7 @@ class login extends Patronus
             $_SESSION['alert'] = $user['alert'];
             $_SESSION['email'] = $user['email'];
             $this->response['flash'] = 'Welcome back '.$pseudo;
+            $this->response['settings'] = ['pseudo' => $pseudo];
         } else {
             $this->response['flash'] = 'Bad password or login';
 
@@ -31,7 +32,6 @@ class login extends Patronus
 
     protected function delete()
     {
-        $this->response['flash'] = 'See u soon!!';
         session_unset();
         session_destroy();
         $this->response['flash'] = 'See u soon!!';

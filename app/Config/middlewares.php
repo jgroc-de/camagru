@@ -34,7 +34,7 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if (!isset($_SESSION['pseudo'])) {
-                throw new \Exception('You must login to access this ressource', Dumb::FORBIDDEN);
+                throw new \Exception('', Dumb::FORBIDDEN);
             }
         },
         [

@@ -3,7 +3,6 @@ import { printNotif } from './printnotif.js'
 export function ggAjax (request, objet) {
   let XHR = new XMLHttpRequest()
 
-  console.log(request)
   XHR.open(request.method.toUpperCase(), request.url, true)
   XHR.onreadystatechange = function () {
     if (this.readyState === 4) {

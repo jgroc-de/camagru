@@ -1,9 +1,8 @@
-import { hiddenFormController } from './hiddenFormController.js'
+import { hiddenFormController } from '../Abstract/hiddenFormController.js'
 
 export class Reinit extends hiddenFormController {
   constructor (state) {
     super(state, "reinit", "authForm")
-    this.button.addEventListener(this.eventType, this, false)
   }
 
   callback (response) {

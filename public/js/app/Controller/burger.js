@@ -11,15 +11,14 @@ export class Burger {
     let link = this.link.href.split("#").pop()
 
     if (defaultView) {
-        this.link.href = "#" + this.name
-        this.nav.setAttribute('hidden', true)
+      this.link.href = "#" + this.name
+      this.nav.setAttribute('hidden', true)
     } else {
       this.nav.toggleAttribute('hidden')
-      console.log(this.state.login)
       if (this.state.isLogin()) {
         this.settings.removeAttribute('hidden')
       } else {
-        this.settings.setAttribute('hidden', true)
+        this.settings.setAttribute('hidden', '')
       }
       if (link === "") {
         this.link.href = "#" + this.name

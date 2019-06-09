@@ -1,4 +1,4 @@
-import { hiddenController } from './hiddenController.js'
+import { hiddenController } from '../Abstract/hiddenController.js'
 
 export class About extends hiddenController {
   constructor (state) {

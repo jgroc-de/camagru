@@ -1,4 +1,4 @@
-import { ggAjax } from '../Library/ggAjax.js'
+import { ggAjax } from '../../Library/ggAjax.js'
 
 export class Logout {
   constructor (state) {

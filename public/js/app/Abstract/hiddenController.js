@@ -1,8 +1,8 @@
-export class hiddenController {
+import { Controller } from  './controller.js'
+
+export class hiddenController extends Controller {
   constructor (state, name) {
-    this.state = state
-    this.request = {}
-    this.name = name
+    super(state, name)
     this.section = document.getElementById(this.name)
     this.link = this.section.children[0].children[0]
   }

@@ -1,4 +1,4 @@
-import { hiddenFormController } from './hiddenFormController.js'
+import { hiddenFormController } from '../Abstract/hiddenFormController.js'
 
 export class Contact extends hiddenFormController {
   constructor (state) {
