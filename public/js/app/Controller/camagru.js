@@ -14,20 +14,21 @@ export class Camagru extends hiddenViewController {
 		console.log(this.link)
 		this.filters = []
 		this.getFilters()
+		this.webcam()
+	}
 
-		/*
+	webcam() {
 		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia)
 		{
 			navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream)
 				{
 					let video = document.getElementById('video');
 					let button = document.getElementById('snap');
-					snap(button);
+					//snap(button);
 					video.srcObject = stream;
 					video.play();
 				});
 		}
-		*/
 	}
 
 	getFilters() {
@@ -35,10 +36,10 @@ export class Camagru extends hiddenViewController {
 			method: "Get",
 			url: "/filter",
 			body: {},
-    }
+		}
 
-    ggAjax(request, this)
-  }
+		ggAjax(request, this)
+	}
 
 	snap (button) {
 		alert('lol');
