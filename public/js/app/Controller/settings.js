@@ -2,24 +2,24 @@ import { hiddenFormController } from '../Abstract/hiddenFormController.js'
 import { ggAjax } from '../../Library/ggAjax.js'
 
 export class Settings extends hiddenFormController {
-  constructor (state) {
-    super(state, "settings", "settingsForm")
-    this.getUser()
-    this.setFormsMethod()
-  }
+	constructor (state) {
+		super(state, "settings", "settingsForm")
+		this.getUser()
+		this.setFormsMethod()
+	}
 
-  setFormsMethod() {
-    let forms = this.formContainer.getElementsByTagName('form')
+	setFormsMethod() {
+		let forms = this.formContainer.getElementsByTagName('form')
 
-    forms[0].method = "patch"
-    forms[1].method = "patch"
-  }
+		forms[0].method = "patch"
+		forms[1].method = "patch"
+	}
 
-  getUser() {
-    let form = {
-      method: "Get",
-      url: "/user",
-      body: {},
+	getUser() {
+		let form = {
+			method: "Get",
+			url: "/user",
+			body: {},
     }
 
     ggAjax(form, this)

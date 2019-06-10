@@ -18,6 +18,8 @@ class home extends Patronus
 
     public function bomb(array $options = null)
     {
+        ob_start();
         require __DIR__.'/../View/template.html';
+        ob_end_flush();
     }
 }

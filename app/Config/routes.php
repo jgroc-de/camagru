@@ -25,5 +25,6 @@ function bakado(Dumb $baka)
         'picture',
         'setup',
         'user',
+        'minimifier',
     ]);
 }

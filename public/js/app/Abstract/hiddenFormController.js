@@ -3,23 +3,23 @@ import { request } from './request.js'
 import { ggAjax } from '../../Library/ggAjax.js'
 
 export class hiddenFormController extends hiddenController {
-  constructor (state, name, formName = false) {
-    super(state, name)
-    if (formName) {
-      this.formContainer = document.getElementById(formName)
-    }
-    this.eventType = 'click'
-    this.buttons = []
-    this.handleEvent = function (event) {
-      this.eventDispatcher(event)
-    }
-    this.setButtons()
-    this.setEventListener()
-  }
+	constructor (state, name, formName = false) {
+		super(state, name)
+		if (formName) {
+			this.formContainer = document.getElementById(formName)
+		}
+		this.eventType = 'click'
+		this.buttons = []
+		this.handleEvent = function (event) {
+			this.eventDispatcher(event)
+		}
+		this.setButtons()
+		this.setEventListener()
+	}
 
-  eventDispatcher(event) {
-    event.preventDefault()
-    event.stopPropagation()
+	eventDispatcher(event) {
+		event.preventDefault()
+		event.stopPropagation()
 
     switch(event.type) {
       case 'click':

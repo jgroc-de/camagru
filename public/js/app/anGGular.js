@@ -3,43 +3,43 @@ import { middlewares } from './middleware.js'
 import { ggAjax } from '../Library/ggAjax.js'
 
 export class anGGularJS {
-  constructor (state) {
-    this.state = state
-  }
+	constructor (state) {
+		this.state = state
+	}
 
-  launch () {
-    let route = middlewares(router(this.state))
+	launch () {
+		let route = middlewares(router(this.state))
 
-    if (route) {
-      const controller = './Controller/' + route + '.js'
+		if (route) {
+			const controller = './Controller/' + route + '.js'
 
-      import(controller)
-        .then((module) => {
-          let key = Object.keys(module)[0]
-          if (!this.state.components[key]) {
-            this.state.components[key] = new module[key](this.state)
-          }
-          this.state.components[key].wakeUp()
-          console.log(this.state)
-        })
-    }
-  }
+			import(controller)
+				.then((module) => {
+					let key = Object.keys(module)[0]
+					if (!this.state.components[key]) {
+						this.state.components[key] = new module[key](this.state)
+					}
+					this.state.components[key].wakeUp()
+					console.log(this.state)
+				})
+		}
+	}
 
-  checkLogin () {
-    //check if is logged on server
-    const controller = './Controller/login.js'
+	checkLogin () {
+		//check if is logged on server
+		const controller = './Controller/login.js'
 
-    import(controller).then((module) => {
-      let request = {
-        method: "Get",
-        url: "/user",
-        body: {},
-      }
+		import(controller).then((module) => {
+			let request = {
+				method: "Get",
+				url: "/user",
+				body: {},
+			}
 
-      this.state.components.Login = new module.Login(this.state)
-      ggAjax(request, this.state.components.Login)
-      //access requested resoources
-      this.launch()
-    })
-  }
+			this.state.components.Login = new module.Login(this.state)
+			ggAjax(request, this.state.components.Login)
+			//access requested resoources
+			this.launch()
+		})
+	}
 }

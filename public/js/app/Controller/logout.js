@@ -1,25 +1,25 @@
 import { ggAjax } from '../../Library/ggAjax.js'
 
 export class Logout {
-  constructor (state) {
-    this.state = state
-    this.logBtnG = document.getElementById('logBtnG')
-    this.form = {
-      method: 'delete',
-      url: state.url + '/login',
-      body: {},
-      checkValidity () { return true },
-    }
-  }
+	constructor (state) {
+		this.state = state
+		this.logBtnG = document.getElementById('logBtnG')
+		this.form = {
+			method: 'delete',
+			url: state.url + '/login',
+			body: {},
+			checkValidity () { return true },
+		}
+	}
 
-  wakeUp () {
-    ggAjax(this.form, this)
-  }
+	wakeUp () {
+		ggAjax(this.form, this)
+	}
 
-  shutDown () {
-  }
+	shutDown () {
+	}
 
-  callback (response) {
+	callback (response) {
     this.state.destroyLogin()
     this.logBtnG.href = '#login'
     this.logBtnG.className = "w3-bar-item w3-green w3-button"

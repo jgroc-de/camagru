@@ -159,10 +159,10 @@ class Dumb
                 return;
             }
 
-            throw new \Exception('routes', self::METHOD_NOT_ALLOWED);
+            throw new \Exception('method forbidden for this routes', self::METHOD_NOT_ALLOWED);
         }
 
-        throw new \Exception('routes', self::NOT_FOUND);
+        throw new \Exception('routes not found', self::NOT_FOUND);
     }
 
     /**
@@ -202,7 +202,7 @@ class Dumb
     private function setUri()
     {
         $uri = explode('/', $_SERVER['REQUEST_URI']);
-        $this->uri = $uri[1];
+        $this->uri = explode('?', $uri[1])[0];
         if (isset($uri[2])) {
             $_GET['id'] = $uri[2];
         }

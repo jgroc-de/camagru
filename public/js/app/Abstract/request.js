@@ -1,25 +1,25 @@
 export class request {
-  constructor (inputs) {
-    this.body = {}
-    this.url = ''
-    this.method = 'GET'
-    this.setBody(inputs)
-    this.setUrl(inputs)
-    this.setMethod(inputs)
-  }
+	constructor (inputs) {
+		this.body = {}
+		this.url = ''
+		this.method = 'GET'
+		this.setBody(inputs)
+		this.setUrl(inputs)
+		this.setMethod(inputs)
+	}
 
-  setBodyParam(input) {
-    console.log(input)
-    switch (input.type) {
-      case 'checkbox':
-        if (input.checked) {
-          this.body[input.name] = 'true'
-        }
-        break
-      case 'submit':
-        break
-      default:
-        this.body[input.name] = input.value
+	setBodyParam(input) {
+		console.log(input)
+		switch (input.type) {
+			case 'checkbox':
+				if (input.checked) {
+					this.body[input.name] = 'true'
+				}
+				break
+			case 'submit':
+				break
+			default:
+				this.body[input.name] = input.value
     }
   }
 
