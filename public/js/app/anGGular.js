@@ -38,7 +38,7 @@ export class anGGularJS {
 
 			this.state.components.Login = new module.Login(this.state)
 			ggAjax(request, this.state.components.Login)
-			//access requested resoources
+			//try to access the requested (hash)url
 			this.launch()
 		})
 	}

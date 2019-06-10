@@ -49,7 +49,7 @@ export class Settings extends hiddenFormController {
   }
 
   updateForm (response) {
-    let form = this.section.children[1]
+    let form = this.card.children[1]
     let i = 0
     let name = ''
     let input

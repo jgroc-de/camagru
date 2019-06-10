@@ -42,7 +42,7 @@ export class hiddenFormController extends hiddenController {
     let i = 0
 
     while (i < sections.length) {
-      if (sections[i].id !== this.section.id) {
+      if (sections[i].id !== this.card.id) {
         sections[i].setAttribute('hidden', '')
       } else {
         sections[i].removeAttribute('hidden')
@@ -73,7 +73,7 @@ export class hiddenFormController extends hiddenController {
   }
 
   setButtons () {
-    let forms = this.section.getElementsByTagName('form')
+    let forms = this.card.getElementsByTagName('form')
     let i = 0
 
     while (i < forms.length) {

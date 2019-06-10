@@ -49,7 +49,7 @@ class PicManager extends SqlManager
         return $request->fetchAll();
     }
 
-    public function getPicsByLogin(string $pseudo)
+    public function getPicsByUser(string $pseudo)
     {
         $tab = [];
 

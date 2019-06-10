@@ -11,9 +11,9 @@ export class Contact extends hiddenFormController {
 
 		if (defaultView) {
 			this.link.href = "#" + this.name
-			this.section.children[1].setAttribute('hidden', true)
+			this.card.children[1].setAttribute('hidden', true)
 		} else {
-			this.section.children[1].toggleAttribute('hidden')
+			this.card.children[1].toggleAttribute('hidden')
 			if (link === "") {
 				this.link.href = "#" + this.name
 			} else {

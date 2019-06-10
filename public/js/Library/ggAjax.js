@@ -1,9 +1,9 @@
 import { printNotif } from './printnotif.js'
 
-export function ggAjax (request, objet) {
+export function ggAjax (request, objet, async = true) {
 	let XHR = new XMLHttpRequest()
 
-	XHR.open(request.method.toUpperCase(), request.url, true)
+	XHR.open(request.method.toUpperCase(), request.url, async)
 	XHR.onreadystatechange = function () {
 		if (this.readyState === 4) {
 			let json = JSON.parse(this.responseText)

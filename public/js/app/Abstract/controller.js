@@ -1,5 +1,5 @@
 export class Controller {
-	constructor (state, name) {
+	constructor (state, name = '') {
 		this.state = state
 		this.name = name
 	}

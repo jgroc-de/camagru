@@ -19,6 +19,7 @@ function bakado(Dumb $baka)
             'home',
             'picture',
         ],
+		'filter',
         'login',
         'password',
         'pics',

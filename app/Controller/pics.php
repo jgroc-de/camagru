@@ -16,7 +16,9 @@ class pics extends Patronus
             $pics = $picsManager->getPicsByDate(($_GET['start'] - 1) * 8);
         } elseif ('like' == $_GET['by']) {
             $pics = $picsManager->getPicsByLike(($_GET['start'] - 1) * 8);
-        }
+		} elseif ('user' == $_GET['by']) {
+        	$pics = $picsManager->getPicsByUser($_SESSION['id']);
+		}
         if (empty($pics)) {
             throw new \Exception('pics', Dumb::NOT_FOUND);
         }

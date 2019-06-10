@@ -1,10 +1,12 @@
 import { Controller } from  './controller.js'
 
 export class hiddenController extends Controller {
-	constructor (state, name) {
+	constructor (state, name = '') {
 		super(state, name)
-		this.section = document.getElementById(this.name)
-		this.link = this.section.children[0].children[0]
+		if (name) {
+			this.card = document.getElementById(this.name)
+			this.link = this.card.children[0].children[0]
+		}
 	}
 
 	view(defaultView = false) {
@@ -12,9 +14,9 @@ export class hiddenController extends Controller {
 
 		if (defaultView) {
 			this.link.href = "#" + this.name
-			this.section.children[1].setAttribute('hidden', true)
+			this.card.children[1].setAttribute('hidden', true)
 		} else {
-			this.section.children[1].toggleAttribute('hidden')
+			this.card.children[1].toggleAttribute('hidden')
 			if (link === "") {
 				this.link.href = "#" + this.name
 			} else {
