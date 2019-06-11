@@ -6,58 +6,54 @@ namespace App\Controller;
 
 use Dumb\Dumb;
 use Dumb\Patronus;
+use App\Library\Session;
 
 class user extends Patronus
 {
+	private $userManager;
+
     public function get()
     {
-        $this->response['settings'] = [
-            'pseudo' => $_SESSION['pseudo'],
-            'email' => $_SESSION['email'],
-            'alert' => $_SESSION['alert'],
-        ];
+        $this->response['settings'] = Session::getUser(); 
     }
 
     public function patch()
     {
-        $pseudo = $_POST['pseudo'];
-        $email = $_POST['email'];
-        $alert = isset($_POST['alert']) ? true : false;
+		$user = new Session();
+		$user->setFromPostData();
 
-        if ($this->container['user']($this->container)->updateUser($pseudo, $email, $alert)) {
-            $_SESSION['pseudo'] = $pseudo;
-            $_SESSION['alert'] = $alert;
-            $_SESSION['email'] = $email;
-            $this->response['flash'] = 'Profil Succesfully updated';
-        } else {
-            throw new \Exception('pseudo unavailable!', Dumb::BAD_REQUEST);
-        }
-    }
+        if (!$this->userManager->updateUser($user)) {
+			throw new \Exception('pseudo unavailable!', Dumb::BAD_REQUEST);
+		}
+		$user->setSession($user);
+		$this->response['flash'] = 'Profil Succesfully updated';
+	}
 
     public function post()
     {
-        $pseudo = $_POST['pseudo'];
+		$user = new Session();
+		$user->setFromPostData();
         $password = $_POST['password'];
-        $email = $_POST['email'];
-        $userManager = $this->container['user']($this->container);
 
-        if ($userManager->addUser($pseudo, password_hash($password, PASSWORD_DEFAULT), $email)) {
-            $this->container['mail']()->sendValidationMail($userManager->getUser($pseudo));
-            if (isset($_SESSION['flash']['success'])) {
-                $this->response['flash'] = $_SESSION['flash']['success'];
-            } elseif (isset($_SESSION['flash']['fail'])) {
-                throw new \Exception($_SESSION['flash']['fail'], Dumb::INTERNAL_SERVER_ERROR);
-            }
-            unset($_SESSION['flash']);
-        } else {
-            throw new \Exception($_SESSION['flash']['fail'], Dumb::UNAUTHORIZED);
-        }
-    }
+		if (!$this->userManager->addUser($user, password_hash($password, PASSWORD_DEFAULT))) {
+			throw new \Exception($_SESSION['flash']['fail'], Dumb::UNAUTHORIZED);
+		}
+		$this->container['mail']()->sendValidationMail($this->userManager->getUser($user));
+		if (isset($_SESSION['flash']['success'])) {
+			$this->response['flash'] = $_SESSION['flash']['success'];
+		}
+		unset($_SESSION['flash']);
+	}
 
     public function delete()
     {
-        $userManager = $this->container['user']($this->container)->deleteUser();
+    	$this->userManager->deleteUser();
         session_unset();
         session_destroy();
     }
+
+	protected function setup()
+	{
+        $this->userManager = $this->container['user']($this->container)->deleteUser();
+	}
 }

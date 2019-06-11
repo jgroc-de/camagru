@@ -8,14 +8,17 @@ use Dumb\Patronus;
 
 class like extends Patronus
 {
+	protected $pictureManager;
+
     public function post()
     {
-        $this->response['likes_counter'] = $this->container['picture']($this->container)->addlike($_POST['id']);
+        $this->response['likes_counter'] = $this->pictureManager->addlike($_POST['id']);
         if ($this->response['likes_counter'] < 0) {
             $this->response['flash'] = 'Already liked!';
         }
     }
 
+	/**
     public function delete()
     {
     }
@@ -23,4 +26,10 @@ class like extends Patronus
     public function patch()
     {
     }
+ 	*/
+
+	protected function setup()
+	{
+        $this->pictureManager = $this->container['picture']($this->container);
+	}
 }

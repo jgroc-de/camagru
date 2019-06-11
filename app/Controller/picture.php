@@ -17,11 +17,12 @@ class picture extends Patronus
 
     private $comments;
 
+	private $pictureManager;
+
     public function get()
     {
         $id = $_GET['id'];
-
-        $this->elem = $this->container['picture']($this->container)->getPic($id);
+        $this->elem = $this->pictureManager->getPic($id);
         if (empty($this->elem)) {
             throw new \Exception('picture', Dumb::NOT_FOUND);
         }
@@ -30,13 +31,13 @@ class picture extends Patronus
 
     public function patch()
     {
-        $this->response = $this->container['picture']($this->container)->changeTitle($_POST['id'], $_POST['title']);
+        $this->response = $this->pictureManager->changeTitle($_POST['id'], $_POST['title']);
     }
 
     public function delete()
     {
         $this->response['url'] = $_POST['url'];
-        $this->container['picture']($this->container)->deletePic($_POST['id'], (int) $_SESSION['id']);
+        $this->pictureManager->deletePic($_POST['id'], (int) $_SESSION['id']);
         unlink($_POST['url']);
         $this->response['flash'] = 'Picture successfully deleted!';
     }
@@ -97,7 +98,7 @@ class picture extends Patronus
         imagesavealpha($dest, true);
         imagepng($dest, $name);
         imagedestroy($dest);
-        $this->container['picture']($this->container)->addPic($name);
+        $this->pictureManager->addPic($name);
         $this->response['path'] = $name;
         if (isset($_SESSION['flash'])) {
             $this->response['flash'] = $_SESSION['flash'];
@@ -154,4 +155,9 @@ class picture extends Patronus
 
         return $url;
     }
+
+	protected function setup()
+	{
+        $this->pictureManager = $this->container['picture']($this->container);
+	}
 }

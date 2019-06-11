@@ -40,10 +40,10 @@ class UserManager extends SqlManager
             if ($this->sqlRequest($request, [$login], true)) {
                 $_SESSION['flash'] = ['success' => 'Votre compte a bien été activé'];
             } else {
-                $_SESSION['flash'] = ['fail' => 'Proudly Fail!'];
+				throw new \Exception('Proudly Fail!', Dumb::INTERNAL_SERVER_ERROR);
             }
         } else {
-            $_SESSION['flash'] = ['fail' => 'Votre compte ne peut, malheureusement, pas etre activé'];
+			throw new \Exception('Votre compte ne peut, malheureusement, pas etre activé', Dumb::INTERNAL_SERVER_ERROR);
         }
 
         return true;
@@ -55,30 +55,27 @@ class UserManager extends SqlManager
     {
         if ($this->pseudoInDb($pseudo)) {
             $request = '
-				SELECT * 
+				SELECT *
 				FROM users
 				WHERE pseudo = ?
 			';
-            $elmt = $this->sqlRequestFetch($request, [$pseudo]);
-            if ($elmt['actif'] && password_verify($pass, $elmt['passwd'])) {
+            $user = $this->sqlRequestFetch($request, [$pseudo]);
+            if ($user['actif'] && password_verify($pass, $elmt['passwd'])) {
                 return true;
             }
-            if (!$elmt['actif']) {
-                $_SESSION['flash'] = ['fail' => 'compte inactif'];
+            if (!$user['actif']) {
+				throw new \Exception('Compte inactif!', Dumb::INTERNAL_SERVER_ERROR);
             } else {
-                $_SESSION['flash'] = ['fail' => 'mauvais mot de passe'];
+				throw new \Exception('Mauvais mot de passe!', Dumb::INTERNAL_SERVER_ERROR);
             }
         } else {
-            $_SESSION['flash'] = ['fail' => 'compte inexistant ou mauvais mot de passe'];
+			throw new \Exception('compte inexistant ou mauvais mot de passe', Dumb::INTERNAL_SERVER_ERROR);
         }
-
-        return false;
     }
 
     public function resetValidkey(string $login)
     {
         $key = md5((string) ((int) microtime(true) * 100000));
-
         $request = $this->db->prepare('UPDATE users SET validkey = ? WHERE pseudo = ?');
 
         return $request->execute([$key, $login]);
@@ -86,21 +83,18 @@ class UserManager extends SqlManager
 
     public function addUser(string $pseudo, string $pass, string $mail)
     {
-        if (!($this->pseudoInDb($pseudo))) {
-            $key = md5((string) ((int) microtime(true) * 100000));
-            $request = '
+        if ($this->pseudoInDb($pseudo)) {
+			throw new \Exception('Pseudo déjà pris, desl…!', Dumb::INTERNAL_SERVER_ERROR);
+		}
+		$key = md5((string) ((int) microtime(true) * 100000));
+		$request = '
 				INSERT INTO users
 				(pseudo, passwd, email, validkey)
 				VALUES (?, ?, ?, ?)'
-            ;
+			;
 
-            return $this->sqlRequest($request, [$pseudo, $pass, $mail, $key], true);
-        }
-
-        $_SESSION['flash'] = ['fail' => 'Pseudo déja pris, dsl…'];
-
-        return false;
-    }
+		return $this->sqlRequest($request, [$pseudo, $pass, $mail, $key], true);
+	}
 
     public function deleteUser()
     {

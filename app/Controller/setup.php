@@ -10,12 +10,16 @@ class setup extends Patronus
 {
     public function post()
     {
-        $configManager = $this->container['config']($this->container);
-        $configManager->createDB(file_get_contents($this->container['env']()['export']));
+        $this->configManager->createDB(file_get_contents($this->container['env']()['export']));
     }
 
     public function bomb(array $options = null)
     {
         header('Location: /');
     }
+
+	protected function setup()
+	{
+        $this->configManager = $this->container['config']($this->container);
+	}
 }

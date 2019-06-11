@@ -9,6 +9,8 @@ use Dumb\Patronus;
 
 class comment extends Patronus
 {
+	private $commentManager;
+
     public function post()
     {
         $id = $_POST['id'];
@@ -17,21 +19,25 @@ class comment extends Patronus
         if (empty($user)) {
             throw new \Exception('comments', Dumb::NOT_FOUND);
         }
-        $commentManager = $this->container['comment']($this->container);
-        $commentManager->addComment();
+        $this->commentManager->addComment();
         if ($user['alert']) {
             $this->container['mail']()->sendCommentMail($user);
         }
-        $this->response = $commentManager->getCommentByImgId($id);
+        $this->response = $this->commentManager->getCommentByImgId($id);
     }
 
     public function delete()
     {
-        $commentManager = $this->container['comment']($this->container)->deleteComment($_GET['id']);
+        $this->commentManager->deleteComment($_GET['id']);
     }
 
     public function patch()
     {
-        $commentManager = $this->container['comment']($this->container)->updateComment($_GET['id'], $_POST['comment']);
+        $this->commentManager->updateComment($_GET['id'], $_POST['comment']);
     }
+
+	protected function setup()
+	{
+        $this->commentManager = $this->container['comment']($this->container);
+	}
 }

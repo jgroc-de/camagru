@@ -12,9 +12,16 @@ use Dumb\Patronus;
  */
 class filter extends Patronus
 {
+	private $filterManager;
+
     public function get()
     {
-        $filters = $this->container['camagru']($this->container)->getFilters();
+        $filters = $this->filterManager->getFilters();
 		$this->response['filters'] = $filters;
     }
+
+	protected function setup()
+	{
+        $this->filterManager = $this->container['camagru']($this->container);
+	}
 }

@@ -14,36 +14,37 @@ class minimifier extends Patronus
 {
     private $view;
 
+	private $content = '';
+
     public function get()
     {
     }
 
     public function bomb(array $options = null)
     {
-		$content = '';
         $template = $_GET['template'];
 		if ($template !== 'main') {
-			$destFile = $this->js($template, $content);
+			$destFile = $this->toJS($template);
 		} else {
-			$destFile = $this->index($template, $content);
+			$destFile = $this->toIndex($template);
 		}
-        $content = str_replace(["\t", "\n"], "", $content);
-        echo (file_put_contents($destFile, $content));
+        $this->content = str_replace(["\t", "\n"], "", $this->content);
+        echo (file_put_contents($destFile, $this->content));
     }
 
-	private function js ($template, &$content): string {
+	private function toJS ($template): string {
 		$htmlName = __DIR__."/../View/components/". $template . ".html";
 		$destFile =  __DIR__."/../../public/js/app/View/". $template . ".js";
-		$content = 'export let template = \'' . file_get_contents($htmlName) . '\'';
+		$this->content = 'export let template = \'' . file_get_contents($htmlName) . '\'';
 
 		return $destFile;
 	}
 
-	private function index ($template, &$content): string {
+	private function toIndex ($template): string {
 		$destFile = __DIR__ . '/../../public/index.html';
 		ob_start();
 		require __DIR__.'/../View/template.html';
-		$content = ob_get_contents(); 
+		$this->content = ob_get_contents(); 
 		ob_end_clean();
 
 		return $destFile;
