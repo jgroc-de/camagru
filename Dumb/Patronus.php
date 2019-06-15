@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Dumb;
 
+/**
+ * this is the parent class for controller
+ */
 class Patronus
 {
     public $code;

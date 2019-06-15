@@ -1,5 +1,6 @@
 <?php
 
+use Dumb\Response;
 use Dumb\Dumb;
 
 /**
@@ -8,14 +9,12 @@ use Dumb\Dumb;
  *
  * @param mixed $baka
  */
-function incept($baka)
+function incept(Dumb $baka)
 {
     $baka->setGhostShield(
         function (array $c) {
             if (!($c['picture']($c)->picInDb($_POST['id']))) {
-                throw new \Exception('Picture not found', Dumb::NOT_FOUND);
-
-                throw new \Exception('ghost', 404);
+                throw new \Exception('Picture not found', Response::NOT_FOUND);
             }
         },
         [
@@ -31,10 +30,10 @@ function incept($baka)
             $pic = $c['picture']($c)->getPicByUrl($_POST['url']);
 
             if (empty($pic)) {
-                throw new \Exception('Picture not found', Dumb::NOT_FOUND);
+                throw new \Exception('Picture not found', Response::NOT_FOUND);
             }
             if ($_SESSION['id'] !== $pic['id_author']) {
-                throw new \Exception('Picture not yours', Dumb::FORBIDDEN);
+                throw new \Exception('Picture not yours', Response::FORBIDDEN);
             }
             $_POST['id'] = (int) $pic['id'];
         },
@@ -50,10 +49,10 @@ function incept($baka)
             $pic = $c['picture']($c)->getPic($_POST['id']);
 
             if (empty($pic)) {
-                throw new \Exception('Picture not found', Dumb::NOT_FOUND);
+                throw new \Exception('Picture not found', Response::NOT_FOUND);
             }
             if ($_SESSION['pseudo'] !== $pic['pseudo']) {
-                throw new \Exception('Picture not yours', Dumb::FORBIDDEN);
+                throw new \Exception('Picture not yours', Response::FORBIDDEN);
             }
         },
         [

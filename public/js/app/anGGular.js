@@ -35,11 +35,11 @@ export class anGGularJS {
 				url: "/user",
 				body: {},
 			}
+			let hash = window.location.hash;
 
 			this.state.components.Login = new module.Login(this.state)
+			this.state.components.Login.redirect = hash;
 			ggAjax(request, this.state.components.Login)
-			//try to access the requested (hash)url
-			this.launch()
 		})
 	}
 }

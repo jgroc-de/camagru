@@ -9,7 +9,7 @@ use Dumb\Dumb;
  */
 function bakado(Dumb $baka)
 {
-    $baka->bakado([
+    $baka->setRoutes([
         'contact',
         'home' => [
             '',
@@ -17,7 +17,6 @@ function bakado(Dumb $baka)
             'camagru',
             'error',
             'home',
-            'picture',
         ],
 		'filter',
         'login',

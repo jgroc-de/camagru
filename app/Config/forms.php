@@ -1,5 +1,6 @@
 <?php
 
+use Dumb\Response;
 use Dumb\Dumb;
 
 function escapeString($key)
@@ -12,7 +13,7 @@ function escapeString($key)
 function numericType($key)
 {
     if (!is_numeric($_POST[$key]) || $_POST[$key] <= 0) {
-        throw new \Exception('bad params', Dumb::BAD_REQUEST);
+        throw new \Exception('bad params', Response::BAD_REQUEST);
     }
     $_POST[$key] = (int) $_POST[$key];
 }
@@ -20,21 +21,21 @@ function numericType($key)
 function passwordType($key)
 {
     if (!preg_match('#(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,256}#', $_POST[$key])) {
-        throw new \Exception('bad params', Dumb::BAD_REQUEST);
+        throw new \Exception('bad params', Response::BAD_REQUEST);
     }
 }
 
 function emailType($key)
 {
     if (!preg_match('#^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,63})$#', $_POST[$key])) {
-        throw new \Exception('bad params', Dumb::BAD_REQUEST);
+        throw new \Exception('bad params', Response::BAD_REQUEST);
     }
 }
 
 function pseudoType($key)
 {
     if (mb_strlen($_POST[$key]) > 30) {
-        throw new \Exception('bad params', Dumb::BAD_REQUEST);
+        throw new \Exception('bad params', Response::BAD_REQUEST);
     }
 }
 
@@ -45,7 +46,7 @@ function imageType($key)
     } elseif (0 === strpos($_POST['data'], 'data:image/jpeg;base64,')) {
         $_POST['type'] = 'jpeg';
     } else {
-        throw new \Exception('bad params', Dumb::BAD_REQUEST);
+        throw new \Exception('bad params', Response::BAD_REQUEST);
     }
     $_POST['data'] = str_replace(
         [' ', 'data:image/png;base64,'],
@@ -104,7 +105,7 @@ function trollBumper(Dumb $baka)
                 'title' => 'pseudo',
             ],
             'post' => [
-                'data' => 'data',
+                'picture' => 'data',
             ],
         ],
         'password' => [
@@ -130,7 +131,7 @@ function trollBumper(Dumb $baka)
     $baka->setFormValidator(
         function ($key, $type) {
             if (empty($_POST[$key])) {
-                throw new \Exception("key {$key} is missing", Dumb::BAD_REQUEST);
+                throw new \Exception("key {$key} is missing", Response::BAD_REQUEST);
             }
             escapeString($key);
             switch ($type) {

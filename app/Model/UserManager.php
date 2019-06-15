@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use Dumb\Response;
+
 class UserManager extends SqlManager
 {
     public function pseudoInDb(string $pseudo)
@@ -40,10 +42,10 @@ class UserManager extends SqlManager
             if ($this->sqlRequest($request, [$login], true)) {
                 $_SESSION['flash'] = ['success' => 'Votre compte a bien été activé'];
             } else {
-				throw new \Exception('Proudly Fail!', Dumb::INTERNAL_SERVER_ERROR);
+				throw new \Exception('Proudly Fail!', Response::INTERNAL_SERVER_ERROR);
             }
         } else {
-			throw new \Exception('Votre compte ne peut, malheureusement, pas etre activé', Dumb::INTERNAL_SERVER_ERROR);
+			throw new \Exception('Votre compte ne peut, malheureusement, pas etre activé', Response::INTERNAL_SERVER_ERROR);
         }
 
         return true;
@@ -60,16 +62,16 @@ class UserManager extends SqlManager
 				WHERE pseudo = ?
 			';
             $user = $this->sqlRequestFetch($request, [$pseudo]);
-            if ($user['actif'] && password_verify($pass, $elmt['passwd'])) {
+            if ($user['actif'] && password_verify($pass, $user['passwd'])) {
                 return true;
             }
             if (!$user['actif']) {
-				throw new \Exception('Compte inactif!', Dumb::INTERNAL_SERVER_ERROR);
+				throw new \Exception('Compte inactif!', Response::INTERNAL_SERVER_ERROR);
             } else {
-				throw new \Exception('Mauvais mot de passe!', Dumb::INTERNAL_SERVER_ERROR);
+				throw new \Exception('Mauvais mot de passe!', Response::INTERNAL_SERVER_ERROR);
             }
         } else {
-			throw new \Exception('compte inexistant ou mauvais mot de passe', Dumb::INTERNAL_SERVER_ERROR);
+			throw new \Exception('compte inexistant ou mauvais mot de passe', Response::INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -84,7 +86,7 @@ class UserManager extends SqlManager
     public function addUser(string $pseudo, string $pass, string $mail)
     {
         if ($this->pseudoInDb($pseudo)) {
-			throw new \Exception('Pseudo déjà pris, desl…!', Dumb::INTERNAL_SERVER_ERROR);
+			throw new \Exception('Pseudo déjà pris, desl…!', Response::INTERNAL_SERVER_ERROR);
 		}
 		$key = md5((string) ((int) microtime(true) * 100000));
 		$request = '

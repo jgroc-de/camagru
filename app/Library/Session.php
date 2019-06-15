@@ -20,6 +20,7 @@ class Session
 
 	public function setSession($user)
 	{
+		$_SESSION['id'] = $user['id'];
 		$_SESSION['user'] = [
 			'pseudo' => $user['pseudo'],
 			'id' => $user['id'],
@@ -28,9 +29,13 @@ class Session
 		];
 	}
 
-	public function getSession($user)
+	public function getSession()
 	{
-		return $_SESSION['user'];
+		if (isset($_SESSION['user'])) {
+			return $_SESSION['user'];
+		}
+
+		return null;
 	}
 
 	public function setUserFromPostData()

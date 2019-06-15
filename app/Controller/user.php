@@ -14,7 +14,7 @@ class user extends Patronus
 
     public function get()
     {
-        $this->response['settings'] = Session::getUser(); 
+        $this->response['settings'] = Session::getSession(); 
     }
 
     public function patch()
@@ -54,6 +54,6 @@ class user extends Patronus
 
 	protected function setup()
 	{
-        $this->userManager = $this->container['user']($this->container)->deleteUser();
+        $this->userManager = $this->container['user']($this->container);
 	}
 }
