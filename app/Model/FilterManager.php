@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class CamagruManager extends SqlManager
+class FilterManager extends SqlManager
 {
     public function getFilters()
     {

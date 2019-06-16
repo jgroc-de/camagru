@@ -1,7 +1,7 @@
 <?php
 
-use Dumb\Response;
 use Dumb\Dumb;
+use Dumb\Response;
 
 /**
  * shield.
@@ -11,7 +11,7 @@ function shield(Dumb $baka)
 {
     $baka->setMiddlewares(
         function () {
-            if (isset($_SESSION['pseudo'])) {
+            if (isset($_SESSION['user'])) {
                 session_unset();
                 session_destroy();
 
@@ -34,8 +34,8 @@ function shield(Dumb $baka)
 
     $baka->setMiddlewares(
         function () {
-            if (!isset($_SESSION['pseudo'])) {
-                throw new \Exception('', Response::FORBIDDEN);
+            if (!isset($_SESSION['user'])) {
+                throw new \Exception('You are logged out', Response::FORBIDDEN);
             }
         },
         [
@@ -76,7 +76,11 @@ function shield(Dumb $baka)
             $_GET['id'] = (int) $_GET['id'];
         },
         [
-            'picture' => [],
+            'picture' => [
+                'get',
+                'delete',
+                'patch',
+            ],
         ]
     );
 

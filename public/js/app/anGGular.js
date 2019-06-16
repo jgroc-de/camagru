@@ -35,7 +35,7 @@ export class anGGularJS {
 				url: "/user",
 				body: {},
 			}
-			let hash = window.location.hash;
+			let hash = window.location.hash.replace("#", "")
 
 			this.state.components.Login = new module.Login(this.state)
 			this.state.components.Login.redirect = hash;

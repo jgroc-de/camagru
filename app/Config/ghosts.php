@@ -1,13 +1,13 @@
 <?php
 
-use Dumb\Response;
 use Dumb\Dumb;
+use Dumb\Response;
 
 /**
  * incept.
  * restrict access to some routes if datas does not exist in DB.
  *
- * @param mixed $baka
+ * @param Dumb $baka
  */
 function incept(Dumb $baka)
 {

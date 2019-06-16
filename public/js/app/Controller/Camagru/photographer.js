@@ -40,7 +40,7 @@ export class Photographer {
 	submit() {
 		let dataUrl = this.getDataUrl()
 		let titles = this.getTitles()
-		let str = this.createRequest(dataUrl, titles)
+		let str = this.imageToString(dataUrl, titles)
 
 		this.createPic(str)
 		//printNotif('On fait chauffer les hamsters, votre photo arrive!', 200)
@@ -72,15 +72,14 @@ export class Photographer {
 		return upload.src
 	}
 
-	createRequest(data, filters) {
-		let str = 'data=' + data
+	imageToString(data, filters) {
 		let i = 0
 
 		while (i < filters.length) {
-			str += '&title' + i + '=' + filters[i]
+			data += '&title' + i + '=' + filters[i]
 			i++
 		}
-		return str
+		return data
 	}
 
 	createPic(str) {

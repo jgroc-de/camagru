@@ -8,7 +8,21 @@ use Dumb\Patronus;
 
 class like extends Patronus
 {
-	protected $pictureManager;
+    private $pictureManager;
+
+    /**
+     * public function delete()
+     * {
+     * }.
+     *
+     * public function patch()
+     * {
+     * }
+     */
+    protected function setup()
+    {
+        $this->pictureManager = $this->container['picture']($this->container);
+    }
 
     public function post()
     {
@@ -17,19 +31,4 @@ class like extends Patronus
             $this->response['flash'] = 'Already liked!';
         }
     }
-
-	/**
-    public function delete()
-    {
-    }
-
-    public function patch()
-    {
-    }
- 	*/
-
-	protected function setup()
-	{
-        $this->pictureManager = $this->container['picture']($this->container);
-	}
 }

@@ -19,6 +19,7 @@ export class Login extends hiddenFormController {
 	callback (response) {
 		if (response.settings) {
 			let redirection = '#' + this.redirect
+			console.log("redirection : " + redirection)
 
       this.state.setLogin(response.settings.pseudo)
       this.toggleLoginButton()

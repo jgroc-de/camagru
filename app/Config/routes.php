@@ -18,7 +18,7 @@ function bakado(Dumb $baka)
             'error',
             'home',
         ],
-		'filter',
+        'filter',
         'login',
         'password',
         'pics',

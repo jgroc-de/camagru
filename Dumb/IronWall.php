@@ -5,24 +5,25 @@ declare(strict_types=1);
 namespace Dumb;
 
 /**
- * this is the midleware system
+ * this is the midleware system.
  */
 class IronWall
 {
     private $functions = [];
 
-	public function __construct() {
-	}
+    public function __construct()
+    {
+    }
 
-	public function add($function)
-	{
-		$functions[] = $function;
-	}
+    public function add($function)
+    {
+        $this->functions[] = $function;
+    }
 
-	public function check()
-	{
+    public function check()
+    {
         foreach ($this->functions as $function) {
             $function();
         }
-	}
+    }
 }

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Dumb;
 
 /**
- * this is the parent class for controller
+ * this is the parent class for controller.
  */
 class Patronus
 {
@@ -24,39 +24,43 @@ class Patronus
         $this->container = $container;
         $this->method = $method;
         $this->code = $code;
-		$this->setup();
+        $this->setup();
     }
 
     public function __call(string $string, array $args)
     {
-        throw new \Exception('controller', Dumb::METHOD_NOT_ALLOWED);
+        throw new \Exception('controller', Response::METHOD_NOT_ALLOWED);
+    }
+
+    protected function setup()
+    {
     }
 
     public function trap()
     {
         switch ($this->method) {
-        	case 'get':
-            	$this->get();
+            case 'get':
+                $this->get();
 
-            	break;
-        	case 'post':
-            	$this->post();
+                break;
+            case 'post':
+                $this->post();
 
-            	break;
-        	case 'put':
-            	$this->put();
+                break;
+            case 'put':
+                $this->put();
 
-            	break;
-        	case 'patch':
-            	$this->patch();
+                break;
+            case 'patch':
+                $this->patch();
 
-            	break;
-        	case 'delete':
-            	$this->delete();
+                break;
+            case 'delete':
+                $this->delete();
 
-            	break;
-        	default:
-            	$this->{$this->method}();
+                break;
+            default:
+                $this->{$this->method}();
         }
     }
 
@@ -64,8 +68,4 @@ class Patronus
     {
         echo json_encode($this->response);
     }
-
-	protected function setup()
-	{
-	}
 }

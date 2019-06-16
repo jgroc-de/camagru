@@ -4,12 +4,17 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Dumb\Dumb;
 use Dumb\Patronus;
+use Dumb\Response;
 
 class comment extends Patronus
 {
-	private $commentManager;
+    private $commentManager;
+
+    protected function setup()
+    {
+        $this->commentManager = $this->container['comment']($this->container);
+    }
 
     public function post()
     {
@@ -17,7 +22,7 @@ class comment extends Patronus
         $user = $this->container['user']($this->container)->getUserByImgId($id);
 
         if (empty($user)) {
-            throw new \Exception('comments', Dumb::NOT_FOUND);
+            throw new \Exception('comments', Response::NOT_FOUND);
         }
         $this->commentManager->addComment();
         if ($user['alert']) {
@@ -35,9 +40,4 @@ class comment extends Patronus
     {
         $this->commentManager->updateComment($_GET['id'], $_POST['comment']);
     }
-
-	protected function setup()
-	{
-        $this->commentManager = $this->container['comment']($this->container);
-	}
 }

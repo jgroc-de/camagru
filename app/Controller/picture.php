@@ -4,26 +4,31 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use Dumb\Response;
 use Dumb\Patronus;
+use Dumb\Response;
+use App\Library\Image;
 
 /**
  * picture.
- * provide view to comments and pictures.
  */
 class picture extends Patronus
 {
-    private $elem;
+    private $picture;
 
     private $comments;
 
-	private $pictureManager;
+    private $pictureManager;
+
+    protected function setup()
+    {
+        $this->pictureManager = $this->container['picture']($this->container);
+    }
 
     public function get()
     {
         $id = $_GET['id'];
-        $this->elem = $this->pictureManager->getPic($id);
-        if (empty($this->elem)) {
+        $this->picture = $this->pictureManager->getPic($id);
+        if (empty($this->picture)) {
             throw new \Exception('picture', Response::NOT_FOUND);
         }
         $this->comments = $this->container['comment']($this->container)->getComments($id)->fetchAll();
@@ -42,123 +47,35 @@ class picture extends Patronus
         $this->response['flash'] = 'Picture successfully deleted!';
     }
 
-    public function bomb_a_sup(array $options)
-    {
-        $id = $_GET['id'];
-        $elem = $this->elem;
-        $comments = $this->comments;
-        array_shift($options['header']);
-        $options['title2'] = htmlspecialchars($elem['title']);
-        $view = 'Picture';
-        $main = '/picView.html';
-        $options['components'] = [];
-
-        require __DIR__.'/../../View/template.html';
-    }
-
     public function post()
     {
-        $filter = $this->container['camagru']($this->container)->getFilters();
-        $url = $this->parsePost($_POST, $filter);
-		$user = $_SESSION['user'];
-        $name = 'img/pics/'.$user['pseudo'].'_'.rand().'.png';
-
-        $d_size = getimagesizefromstring($_POST['picture']);
-        $dest = imagecreatefromstring($_POST['picture']);
-        if (!$dest) {
-            throw new \Exception('picture', Response::INTERNAL_SERVER_ERROR);
+		$image = new Image();
+        $filters = $this->getUserDefineFilters();
+        foreach ($filters as $filter) {
+			$image->add($filter);
         }
-        if (640 != $d_size[0] || 480 != $d_size[1]) {
-            if (!($dest = $this->resampled($dest, $d_size))) {
-                return;
-            }
-        }
-        foreach ($url as $value) {
-            $src = $value['url'];
-            $s_size = getimagesize($src);
-            if (!($src = imagecreatefrompng($src))) {
-                throw new \Exception('picture', Response::INTERNAL_SERVER_ERROR);
-            }
-            imagealphablending($dest, true);
-            imagesavealpha($dest, true);
-            imagecopyresized(
-                $dest,
-                $src,
-                $value['x'],
-                $value['y'],
-                0,
-                0,
-                $d_size[0],
-                $d_size[0] * $s_size[1] / $s_size[0],
-                $s_size[0],
-                $s_size[1]
-            );
-            imagedestroy($src);
-        }
-        imagealphablending($dest, true);
-        imagesavealpha($dest, true);
-        imagepng($dest, $name);
-        imagedestroy($dest);
+		$image->save();
+		$name = $image->getFileName();
         $this->pictureManager->addPic($name);
         $this->response['path'] = $name;
-        if (isset($_SESSION['flash'])) {
-            $this->response['flash'] = $_SESSION['flash'];
-            unset($_SESSION['flash']);
-        }
     }
 
-    /**
-     * resampled.
-     *
-     * @param mixed $src
-     * @param mixed $d_size
-     */
-    private function resampled($src, &$d_size)
+    private function getUserDefineFilters(): array
     {
-        $dest = imagecreatetruecolor(640, 480);
-        if (!$dest) {
-            throw new \Exception('picture', Response::INTERNAL_SERVER_ERROR);
-        }
-        if ($d_size[0] > $d_size[1]) {
-            $width = 640;
-            $height = (int) (640 * $d_size[1] / $d_size[0]);
-        } else {
-            $width = (int) (480 * $d_size[0] / $d_size[1]);
-            $height = 480;
-        }
-        imagecopyresampled($dest, $src, 0, 0, 0, 0, $width, $height, (int) $d_size[0], (int) $d_size[1]);
-        $d_size[0] = 640;
-        $d_size[1] = 480;
-
-        return $dest;
-    }
-
-    /**
-     * parsePost.
-     *
-     * @param mixed $post
-     * @param mixed $filter
-     */
-    private function parsePost($post, $filter)
-    {
-        $title = [];
-        $url = [];
+        $filters = $this->container['filter']($this->container)->getFilters();
+        $titles = [];
+        $urls = [];
         $i = 0;
 
-        while (isset($post['title'.$i])) {
-            $title[] = $post['title'.$i++];
+        while (isset($_POST['title'.$i])) {
+            $titles[] = $_POST['title'.$i++];
         }
-        foreach ($filter as $elemt) {
-            if (in_array($elemt['title'], $title)) {
-                $url[] = $elemt;
+        foreach ($filters as $filter) {
+            if (in_array($filter['title'], $titles)) {
+                $urls[] = $filter;
             }
         }
 
-        return $url;
+        return $urls;
     }
-
-	protected function setup()
-	{
-        $this->pictureManager = $this->container['picture']($this->container);
-	}
 }

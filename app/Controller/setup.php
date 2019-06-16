@@ -8,6 +8,13 @@ use Dumb\Patronus;
 
 class setup extends Patronus
 {
+    private $configManager;
+
+    protected function setup()
+    {
+        $this->configManager = $this->container['config']($this->container);
+    }
+
     public function post()
     {
         $this->configManager->createDB(file_get_contents($this->container['env']()['export']));
@@ -17,9 +24,4 @@ class setup extends Patronus
     {
         header('Location: /');
     }
-
-	protected function setup()
-	{
-        $this->configManager = $this->container['config']($this->container);
-	}
 }

@@ -42,10 +42,10 @@ class UserManager extends SqlManager
             if ($this->sqlRequest($request, [$login], true)) {
                 $_SESSION['flash'] = ['success' => 'Votre compte a bien été activé'];
             } else {
-				throw new \Exception('Proudly Fail!', Response::INTERNAL_SERVER_ERROR);
+                throw new \Exception('Proudly Fail!', Response::INTERNAL_SERVER_ERROR);
             }
         } else {
-			throw new \Exception('Votre compte ne peut, malheureusement, pas etre activé', Response::INTERNAL_SERVER_ERROR);
+            throw new \Exception('Votre compte ne peut, malheureusement, pas etre activé', Response::INTERNAL_SERVER_ERROR);
         }
 
         return true;
@@ -66,13 +66,13 @@ class UserManager extends SqlManager
                 return true;
             }
             if (!$user['actif']) {
-				throw new \Exception('Compte inactif!', Response::INTERNAL_SERVER_ERROR);
-            } else {
-				throw new \Exception('Mauvais mot de passe!', Response::INTERNAL_SERVER_ERROR);
+                throw new \Exception('Compte inactif!', Response::INTERNAL_SERVER_ERROR);
             }
-        } else {
-			throw new \Exception('compte inexistant ou mauvais mot de passe', Response::INTERNAL_SERVER_ERROR);
+
+            throw new \Exception('Mauvais mot de passe!', Response::INTERNAL_SERVER_ERROR);
         }
+
+        throw new \Exception('compte inexistant ou mauvais mot de passe', Response::INTERNAL_SERVER_ERROR);
     }
 
     public function resetValidkey(string $login)
@@ -86,17 +86,17 @@ class UserManager extends SqlManager
     public function addUser(string $pseudo, string $pass, string $mail)
     {
         if ($this->pseudoInDb($pseudo)) {
-			throw new \Exception('Pseudo déjà pris, desl…!', Response::INTERNAL_SERVER_ERROR);
-		}
-		$key = md5((string) ((int) microtime(true) * 100000));
-		$request = '
+            throw new \Exception('Pseudo déjà pris, desl…!', Response::INTERNAL_SERVER_ERROR);
+        }
+        $key = md5((string) ((int) microtime(true) * 100000));
+        $request = '
 				INSERT INTO users
 				(pseudo, passwd, email, validkey)
 				VALUES (?, ?, ?, ?)'
-			;
+            ;
 
-		return $this->sqlRequest($request, [$pseudo, $pass, $mail, $key], true);
-	}
+        return $this->sqlRequest($request, [$pseudo, $pass, $mail, $key], true);
+    }
 
     public function deleteUser()
     {

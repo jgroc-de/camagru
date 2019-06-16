@@ -10,7 +10,7 @@ class PicManager extends SqlManager
 			SELECT img.id, img.title, img.url, img.date as date2, img.nb_like, users.pseudo
 			FROM img
             INNER JOIN users
-            ON img.id_author = users.id
+            ON img.author_id = users.id
 			WHERE img.id = ?
 		';
 
@@ -23,7 +23,7 @@ class PicManager extends SqlManager
 			SELECT img.id, img.title, img.url as path
             FROM img
             INNER JOIN users
-            ON img.id_author = users.id
+            ON img.author_id = users.id
 			ORDER BY img.id DESC
 			LIMIT 8 OFFSET :start
 		');
@@ -39,7 +39,7 @@ class PicManager extends SqlManager
 			SELECT img.id, img.title, img.url as path
             FROM img
             INNER JOIN users
-            ON img.id_author = users.id
+            ON img.author_id = users.id
 			ORDER BY img.nb_like DESC
 			LIMIT 8 OFFSET :start
 		');
@@ -56,7 +56,7 @@ class PicManager extends SqlManager
         $request = '
 			SELECT url, title
             FROM img
-            WHERE id_author = ?
+            WHERE author_id = ?
 			ORDER BY id DESC
 		';
         $value = $this->sqlRequest($request, [$pseudo]);
@@ -70,7 +70,7 @@ class PicManager extends SqlManager
     public function getPicByUrl(string $url)
     {
         $request = '
-            SELECT id, id_author
+            SELECT id, author_id
             FROM img
             WHERE url = ?
         ';
@@ -82,7 +82,7 @@ class PicManager extends SqlManager
     {
         $request = '
 			INSERT INTO img
-			(title, id_author, url, date)
+			(title, author_id, url, date)
 			VALUES (?, ?, ?, NOW())
 		';
         $this->sqlRequest($request, [$_SESSION['pseudo'].'_'.rand(), $_SESSION['id'], $path], true);
@@ -92,7 +92,7 @@ class PicManager extends SqlManager
     {
         $request = '
             DELETE FROM img
-            WHERE id = ? AND id_author = ?
+            WHERE id = ? AND author_id = ?
         ';
         if ($this->sqlRequest($request, [$img_id, $author_id], true)) {
             $request = '
@@ -132,13 +132,13 @@ class PicManager extends SqlManager
 
     public function addLike(int $id_img)
     {
-        $id_author = $_SESSION['id'];
+        $author_id = $_SESSION['id'];
         $request = '
             SELECT id
             FROM likes
-            WHERE id_img = ? AND id_author = ?
+            WHERE id_img = ? AND author_id = ?
         ';
-        $id = $this->sqlRequestFetch($request, [$id_img, $id_author]);
+        $id = $this->sqlRequestFetch($request, [$id_img, $author_id]);
         if (!isset($id['id'])) {
             $request = '
                 UPDATE img 
@@ -148,10 +148,10 @@ class PicManager extends SqlManager
             $this->sqlRequest($request, [$id_img], true);
             $request = '
                 INSERT INTO likes
-                (id_img, id_author)
+                (id_img, author_id)
                 VALUES (?, ?)
                 ';
-            $this->sqlRequest($request, [$id_img, $id_author], true);
+            $this->sqlRequest($request, [$id_img, $author_id], true);
         } else {
             return -1;
         }
@@ -171,7 +171,7 @@ class PicManager extends SqlManager
             UPDATE img
             SET title = ?
             WHERE id = ?
-            AND id_author = ?
+            AND author_id = ?
         ';
         $this->sqlRequest($request, [$title, $id, $_SESSION['id']], true);
         $request = '

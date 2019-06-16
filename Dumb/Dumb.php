@@ -5,14 +5,14 @@ declare(strict_types=1);
 namespace Dumb;
 
 /**
- * this is the "main" of the framework
+ * this is the "main" of the framework.
  */
 class Dumb
 {
     public $container;
 
-	private $router;
-	private $middleware;
+    private $router;
+    private $middleware;
     private $formValidator;
     private $ghost;
 
@@ -25,40 +25,40 @@ class Dumb
             $_POST += (array) \json_decode($input);
         }
         $this->container = $functions;
-		$this->middleware = new IronWall();
-		$this->formValidator = new KGB();
+        $this->middleware = new IronWall();
+        $this->formValidator = new KGB();
     }
 
     public function setContainer(array $functions)
     {
         $this->container = array_merge($this->container, $functions);
-		//side effect…
-		$this->ghost = new Shell($this->container);
+        //side effect…
+        $this->ghost = new Shell();
     }
 
-	public function setRoutes(array $routes)
-	{
-		$this->router = new Bakado($routes);
-	}
+    public function setRoutes(array $routes)
+    {
+        $this->router = new BakaDo($routes);
+    }
 
-	public function setMiddlewares($function, array $routes)
-	{
-		if ($this->router->isMiddleWareMatch($routes)) {
-			$this->middleware->add($function);
-		}
-	}
+    public function setMiddlewares($function, array $routes)
+    {
+        if ($this->router->isMiddleWareMatch($routes)) {
+            $this->middleware->add($function);
+        }
+    }
 
     public function setFormValidator($function, array $routes)
     {
-		$formParams = $this->router->getFormParameters($routes);
-		$this->formValidator->add($function, $formParams);
-	}
+        $formParams = $this->router->getFormParameters($routes);
+        $this->formValidator->add($function, $formParams);
+    }
 
     public function setGhostShield($function, array $routes)
     {
-		if ($this->router->isGhostMatch($routes)) {
+        if ($this->router->isGhostMatch($routes)) {
             $this->ghost->add($function);
-		}
+        }
     }
 
     public function kamehameha($args = null)
@@ -68,25 +68,24 @@ class Dumb
             $this->middleware->check();
             $this->formValidator->check();
             $this->ghost->check($this->container);
-			$this->run($controller, $args);
+            $this->run($controller, $args);
         } catch (\Exception $e) {
-			$this->error($e);
+            $this->error($e);
         }
     }
 
-	private function run($letter, $args)
-	{
-		$letter->trap();
-		header('Cache-Control: max-age=360');
-		header('HTTP/1.1 '.$letter->code.' '. Response::HTTP_CODE[$letter->code]);
-		$letter->bomb($args);
-	}
+    private function run($letter, $args)
+    {
+        $letter->trap();
+        header('Cache-Control: max-age=360');
+        header('HTTP/1.1 '.$letter->code.' '.Response::HTTP_CODE[$letter->code]);
+        $letter->bomb($args);
+    }
 
-	private function error($e)
-	{
-		$this->controller = new \App\Controller\error($this->container, 'get', (int) $e->getCode());
-		$letter = $this->controller;
-		header('HTTP/1.1 '.$letter->code.' '.Response::HTTP_CODE[$letter->code]);
-		$letter->bomb(['flash' => $e->getMessage()]);
-	}
+    private function error($e)
+    {
+        $letter = new \App\Controller\error($this->container, 'get', (int) $e->getCode());
+        header('HTTP/1.1 '.$letter->code.' '.Response::HTTP_CODE[$letter->code]);
+        $letter->bomb(['flash' => $e->getMessage()]);
+    }
 }

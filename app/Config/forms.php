@@ -1,7 +1,7 @@
 <?php
 
-use Dumb\Response;
 use Dumb\Dumb;
+use Dumb\Response;
 
 function escapeString($key)
 {
@@ -41,19 +41,20 @@ function pseudoType($key)
 
 function imageType($key)
 {
-    if (0 === strpos($_POST['data'], 'data:image/png;base64,')) {
+    if (0 === strpos($_POST[$key], 'data:image/png;base64,')) {
         $_POST['type'] = 'png';
-    } elseif (0 === strpos($_POST['data'], 'data:image/jpeg;base64,')) {
+    } elseif (0 === strpos($_POST[$key], 'data:image/jpeg;base64,')) {
         $_POST['type'] = 'jpeg';
     } else {
         throw new \Exception('bad params', Response::BAD_REQUEST);
     }
-    $_POST['data'] = str_replace(
+    $_POST[$key] = base64_decode(str_replace(
         [' ', 'data:image/png;base64,'],
         ['+', ''],
-        $_POST['data']
-    );
+        $_POST[$key]
+    ));
 }
+
 /**
  * troolBumper.
  * validation of forms for each routes.
@@ -105,7 +106,7 @@ function trollBumper(Dumb $baka)
                 'title' => 'pseudo',
             ],
             'post' => [
-                'picture' => 'data',
+                'picture' => 'image',
             ],
         ],
         'password' => [
@@ -151,7 +152,7 @@ function trollBumper(Dumb $baka)
                 pseudoType($key);
 
                 break;
-            case 'data':
+            case 'image':
                 imageType($key);
 
                 break;

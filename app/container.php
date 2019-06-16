@@ -1,6 +1,6 @@
 <?php
 
-use App\Model\CamagruManager;
+use App\Model\FilterManager;
 use App\Model\CommentManager;
 use App\Model\ConfigManager;
 use App\Model\MailManager;
@@ -42,8 +42,8 @@ function equip(Dumb $baka)
                 \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
             ]);
         },
-        'camagru' => function ($c) {
-            return new CamagruManager($c);
+        'filter' => function ($c) {
+            return new FilterManager($c);
         },
         'comment' => function ($c) {
             return new CommentManager($c);
