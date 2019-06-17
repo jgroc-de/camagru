@@ -29,7 +29,7 @@ class Patronus
 
     public function __call(string $string, array $args)
     {
-        throw new \Exception('controller', Response::METHOD_NOT_ALLOWED);
+        throw new \Exception("$string controller error", Response::METHOD_NOT_ALLOWED);
     }
 
     protected function setup()

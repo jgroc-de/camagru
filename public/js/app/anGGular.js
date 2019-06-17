@@ -36,10 +36,12 @@ export class anGGularJS {
 				body: {},
 			}
 			let hash = window.location.hash.replace("#", "")
+			console.log(hash)
 
 			this.state.components.Login = new module.Login(this.state)
 			this.state.components.Login.redirect = hash;
 			ggAjax(request, this.state.components.Login)
+      window.location.assign('#' + hash)
 		})
 	}
 }

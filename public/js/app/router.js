@@ -8,6 +8,7 @@ export function router(state) {
 		"error",
 		"login",
 		"logout",
+		"pictures",
 		"reinit",
 		"signup",
 		"settings",

@@ -1,4 +1,5 @@
 import { Controller } from  '../Abstract/controller.js'
+import * as pictures from '../View/pictures.js'
 
 export class Index extends Controller {
 	constructor (state, name) {
@@ -7,7 +8,9 @@ export class Index extends Controller {
 
 	wakeUp () {
 		for (let i in this.state.components) {
-			this.state.components[i].shutDown()
+			let component = this.state.components[i]
+
+			component.shutDown()
 		}
 	}
 

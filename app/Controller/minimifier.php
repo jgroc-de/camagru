@@ -16,21 +16,29 @@ class minimifier extends Patronus
 
     private $content = '';
 
+	private $templates = [
+		'camagru',
+		'myPictures',
+		'pictures',
+	];
+
     public function get()
     {
     }
 
     public function bomb(array $options = null)
     {
-        $template = $_GET['template'];
-        if ('main' !== $template) {
-            $destFile = $this->toJS($template);
-        } else {
-            $destFile = $this->toIndex($template);
-        }
-        $this->content = str_replace(["\t", "\n"], '', $this->content);
-        echo file_put_contents($destFile, $this->content);
+		foreach ($this->templates as $template) {
+			$this->minimifyHtml($this->toJS($template));
+		}
+		$this->minimifyHtml($this->toIndex());
     }
+
+	private function minimifyHtml($destFile)
+	{
+		$this->content = str_replace(["\t", "\n"], '', $this->content);
+		echo file_put_contents($destFile, $this->content).';';
+	}
 
     private function toJS($template): string
     {
@@ -41,7 +49,7 @@ class minimifier extends Patronus
         return $destFile;
     }
 
-    private function toIndex($template): string
+    private function toIndex(): string
     {
         $destFile = __DIR__.'/../../public/index.html';
         ob_start();
