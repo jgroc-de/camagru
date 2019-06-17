@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Library\Image;
 use Dumb\Patronus;
 use Dumb\Response;
-use App\Library\Image;
 
 /**
  * picture.
@@ -49,13 +49,13 @@ class picture extends Patronus
 
     public function post()
     {
-		$image = new Image();
+        $image = new Image();
         $filters = $this->getUserDefineFilters();
         foreach ($filters as $filter) {
-			$image->add($filter);
+            $image->add($filter);
         }
-		$image->save();
-		$name = $image->getFileName();
+        $image->save();
+        $name = $image->getFileName();
         $this->pictureManager->addPic($name);
         $this->response['path'] = $name;
     }

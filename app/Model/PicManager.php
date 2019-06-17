@@ -85,7 +85,7 @@ class PicManager extends SqlManager
 			(title, author_id, url, date)
 			VALUES (?, ?, ?, NOW())
 		';
-        $this->sqlRequest($request, [$_SESSION['pseudo'].'_'.rand(), $_SESSION['id'], $path], true);
+        $this->sqlRequest($request, [$_SESSION['user']['pseudo'].'_'.rand(), $_SESSION['id'], $path], true);
     }
 
     public function deletePic(int $img_id, int $author_id)

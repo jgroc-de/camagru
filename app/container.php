@@ -1,8 +1,8 @@
 <?php
 
-use App\Model\FilterManager;
 use App\Model\CommentManager;
 use App\Model\ConfigManager;
+use App\Model\FilterManager;
 use App\Model\MailManager;
 use App\Model\PicManager;
 use App\Model\UserManager;

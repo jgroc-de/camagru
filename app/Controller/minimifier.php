@@ -16,11 +16,11 @@ class minimifier extends Patronus
 
     private $content = '';
 
-	private $templates = [
-		'camagru',
-		'myPictures',
-		'pictures',
-	];
+    private $templates = [
+        'camagru',
+        'myPictures',
+        'pictures',
+    ];
 
     public function get()
     {
@@ -28,17 +28,17 @@ class minimifier extends Patronus
 
     public function bomb(array $options = null)
     {
-		foreach ($this->templates as $template) {
-			$this->minimifyHtml($this->toJS($template));
-		}
-		$this->minimifyHtml($this->toIndex());
+        foreach ($this->templates as $template) {
+            $this->minimifyHtml($this->toJS($template));
+        }
+        $this->minimifyHtml($this->toIndex());
     }
 
-	private function minimifyHtml($destFile)
-	{
-		$this->content = str_replace(["\t", "\n"], '', $this->content);
-		echo file_put_contents($destFile, $this->content).';';
-	}
+    private function minimifyHtml($destFile)
+    {
+        $this->content = str_replace(["\t", "\n"], '', $this->content);
+        echo file_put_contents($destFile, $this->content).';';
+    }
 
     private function toJS($template): string
     {
