@@ -91,12 +91,6 @@ function trollBumper(Dumb $baka)
                 'id' => 'numeric',
             ],
         ],
-        'pics' => [
-            'get' => [
-                'start' => 'numeric',
-                'by' => '',
-            ],
-        ],
         'picture' => [
             'delete' => [
                 'url' => '',

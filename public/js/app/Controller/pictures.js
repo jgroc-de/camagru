@@ -1,5 +1,6 @@
 import { hiddenController } from  '../Abstract/hiddenController.js'
 import * as pictures from '../View/pictures.js'
+import { PicturesManager } from './Pictures/picturesManager.js'
 
 export class Pictures extends hiddenController {
 	constructor (state, name) {
@@ -9,6 +10,7 @@ export class Pictures extends hiddenController {
 			this.card = document.getElementById('pictures')
 			this.link = this.card.children[0].children[0]
 		}
+		this.PicturesManager = new PicturesManager(this.section)
 	}
 
 	buildView () {

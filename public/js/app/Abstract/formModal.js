@@ -1,10 +1,11 @@
-import { hiddenController } from './hiddenController.js'
+import { ModalController } from './ModalController.js'
 import { ggAjax } from '../../Library/ggAjax.js'
 import { request } from './request.js'
 
-export class Form extends hiddenController {
-	constructor (state, name) {
-		super(state, name)
+export class FormModal extends ModalController {
+	constructor (state, name, formName) {
+		super(state, formName)
+		this.name = name
 		this.formContainer = document.getElementById(name)
 		this.eventType = 'click'
 		this.buttons = []

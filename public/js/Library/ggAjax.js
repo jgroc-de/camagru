@@ -1,5 +1,6 @@
 export function ggAjax (request, objet, async = true) {
 	let XHR = new XMLHttpRequest()
+	let json = JSON.stringify(request.body)
 
 	XHR.open(request.method.toUpperCase(), request.url, async)
 	XHR.onreadystatechange = function () {
@@ -12,5 +13,6 @@ export function ggAjax (request, objet, async = true) {
 		}
 	}
 	XHR.setRequestHeader('Content-type', 'application/json')
-	XHR.send(JSON.stringify(request.body))
+	//if method is get, no json will be send
+	XHR.send(json)
 }

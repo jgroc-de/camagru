@@ -21,7 +21,11 @@ function bakado(Dumb $baka)
         'filter',
         'login',
         'password',
-        'pics',
+		'pics' => [
+			'picturesByDate',
+			'picturesByPopularity',
+			'picturesByUser',
+		],
         'picture',
         'setup',
         'user',

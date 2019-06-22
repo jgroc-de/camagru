@@ -30,15 +30,18 @@ class pics extends Patronus
 
     private function getPics(): array
     {
-        switch ($_GET['by']) {
-            case 'date':
-                return $this->picsManager->getPicsByDate(($_GET['start'] - 1) * 8);
-               case 'like':
-                return $this->picsManager->getPicsByLike(($_GET['start'] - 1) * 8);
-            case 'user':
+        $uri = explode('/', $_SERVER['REQUEST_URI'])[1];
+        $sort = explode('By', $uri)[1];
+
+        switch ($sort) {
+            case 'Date':
+                return $this->picsManager->getPicsByDate($_GET['id'] * 8);
+            case 'Like':
+                return $this->picsManager->getPicsByLike($_GET['id'] * 8);
+            case 'User':
                 return $this->picsManager->getPicsByUser($_SESSION['id']);
             default:
-                throw new \Exception('method not allowed', Response::BAD_REQUEST);
+                throw new \Exception("$sort: method not allowed", Response::BAD_REQUEST);
         }
     }
 }

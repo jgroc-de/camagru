@@ -1,9 +1,7 @@
-import { hiddenController } from '../Abstract/hiddenController.js'
-import { Form } from '../../Library/form.js'
+import { Form } from '../Abstract/form.js'
 
-export class Contact extends hiddenController {
+export class Contact extends Form {
 	constructor (state) {
 		super(state, "contact")
-		this.form = new Form(this.name, this.card)
 	}
 }
