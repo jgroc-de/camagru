@@ -1,13 +1,12 @@
-import { hiddenController } from './hiddenController.js'
-import { request } from './request.js'
+import { ModalController } from './ModalController.js'
 import { ggAjax } from '../../Library/ggAjax.js'
+import { request } from './request.js'
 
-export class hiddenFormController extends hiddenController {
-	constructor (state, name, formName = false) {
-		super(state, name)
-		if (formName) {
-			this.formContainer = document.getElementById(formName)
-		}
+export class FormModal extends ModalController {
+	constructor (state, name, formName) {
+		super(state, formName)
+		this.name = name
+		this.formContainer = document.getElementById(name)
 		this.eventType = 'click'
 		this.buttons = []
 		this.handleEvent = function (event) {
@@ -37,31 +36,6 @@ export class hiddenFormController extends hiddenController {
     }
   }
 
-  hideOtherSections () {
-    let sections = this.formContainer.getElementsByTagName('section')
-    let i = 0
-
-    while (i < sections.length) {
-      if (sections[i].id !== this.card.id) {
-        sections[i].setAttribute('hidden', '')
-      } else {
-        sections[i].removeAttribute('hidden')
-      }
-      i++
-    }
-  }
-
-  view (defaultView = false) {
-    if (defaultView) {
-      this.formContainer.style.display = 'none'
-    } else {
-      this.hideOtherSections()
-      this.formContainer.style.display = 'block'
-    }
-
-    return true
-  }
-
   addButtons (form) {
     let buttons = form.getElementsByTagName('button')
 
@@ -83,6 +57,7 @@ export class hiddenFormController extends hiddenController {
 
   submit (event) {
     let inputs = event.target.form
+		console.log("form event target: ")
 		console.log(event.target)
 
     if (inputs.checkValidity()) {
@@ -91,4 +66,10 @@ export class hiddenFormController extends hiddenController {
       console.log("valid: "+ inputs.checkValidity())
     }
   }
+
+	callback (response) {
+		if (this.redirect && response['flash']) {
+			printNotif(response['flash'], this.status)
+		}
+	}
 }

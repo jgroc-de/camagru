@@ -9,10 +9,10 @@ export class anGGularJS {
 
 	launch () {
 		let route = middlewares(router(this.state))
+		const controller = './Controller/' + route + '.js'
+		console.log("route: " + route)
 
 		if (route) {
-			const controller = './Controller/' + route + '.js'
-
 			import(controller)
 				.then((module) => {
 					let key = Object.keys(module)[0]
@@ -20,6 +20,7 @@ export class anGGularJS {
 						this.state.components[key] = new module[key](this.state)
 					}
 					this.state.components[key].wakeUp()
+					console.log("state:")
 					console.log(this.state)
 				})
 		}
@@ -28,6 +29,7 @@ export class anGGularJS {
 	checkLogin () {
 		//check if is logged on server
 		const controller = './Controller/login.js'
+		console.log("login")
 
 		import(controller).then((module) => {
 			let request = {
@@ -35,13 +37,9 @@ export class anGGularJS {
 				url: "/user",
 				body: {},
 			}
-			let hash = window.location.hash.replace("#", "")
-			console.log(hash)
-
 			this.state.components.Login = new module.Login(this.state)
-			this.state.components.Login.redirect = hash;
 			ggAjax(request, this.state.components.Login)
-      window.location.assign('#' + hash)
 		})
+		this.launch()
 	}
 }

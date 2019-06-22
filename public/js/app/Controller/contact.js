@@ -1,26 +1,9 @@
-import { hiddenFormController } from '../Abstract/hiddenFormController.js'
+import { hiddenController } from '../Abstract/hiddenController.js'
+import { Form } from '../../Library/form.js'
 
-export class Contact extends hiddenFormController {
+export class Contact extends hiddenController {
 	constructor (state) {
 		super(state, "contact")
+		this.form = new Form(this.name, this.card)
 	}
-
-	//dirty: duplicate of hiddenController
-	view(defaultView = false) {
-		let link = this.link.href.split("#").pop()
-
-		if (defaultView) {
-			this.link.href = "#" + this.name
-			this.card.children[1].setAttribute('hidden', true)
-		} else {
-			this.card.children[1].toggleAttribute('hidden')
-			if (link === "") {
-				this.link.href = "#" + this.name
-			} else {
-				this.link.href = "#"
-			}
-		}
-
-    return false
-  }
 }

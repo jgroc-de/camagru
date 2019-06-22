@@ -62,7 +62,7 @@ export class Photographer {
 		let upload = document.getElementById('upload')
 
 		if (!upload) {
-			console.log(this.canvas)
+			console.log("canvas" + this.canvas)
 			let context = this.canvas.getContext('2d')
 
 			context.drawImage(this.video, 0, 0, 640, 480)
@@ -95,7 +95,7 @@ export class Photographer {
 	}
 
 	callback(response) {
-		console.log(response)
+		console.log("callback photo " + response)
 		var main = document.getElementById('new')
 		var first = picDivFactory(json)
 		var path = json['path']

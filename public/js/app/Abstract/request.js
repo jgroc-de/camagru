@@ -9,6 +9,7 @@ export class request {
 	}
 
 	setBodyParam(input) {
+		console.log("input: ")
 		console.log(input)
 		switch (input.type) {
 			case 'checkbox':

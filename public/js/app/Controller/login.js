@@ -1,6 +1,7 @@
-import { hiddenFormController } from '../Abstract/hiddenFormController.js'
+import { FormModal } from '../Abstract/form.js'
+import { printNotif } from '../../Library/printnotif.js'
 
-export class Login extends hiddenFormController {
+export class Login extends FormModal {
 	constructor (state) {
 		super(state, "login", "authForm")
 		this.logBtnG = document.getElementById('logBtnG')
@@ -17,15 +18,18 @@ export class Login extends hiddenFormController {
 	}
 
 	callback (response) {
+		if (this.redirect && response['flash']) {
+			printNotif(response['flash'], this.status)
+		}
 		if (response.settings) {
 			let redirection = '#' + this.redirect
 			console.log("redirection : " + redirection)
 
-      this.state.setLogin(response.settings.pseudo)
-      this.toggleLoginButton()
-      this.reset()
-      this.shutDown()
-      window.location.assign(redirection)
-    }
-  }
+			this.state.setLogin(response.settings.pseudo)
+			this.toggleLoginButton()
+			this.reset()
+			this.shutDown()
+			window.location.assign(redirection)
+		}
+	}
 }

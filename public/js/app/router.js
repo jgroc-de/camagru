@@ -1,5 +1,5 @@
 export function router(state) {
-	let hash = window.location.hash.replace("#", "")
+	let hash = window.location.hash.replace("#", "").replace("!", "")
 	let routes = [
 		"about",
 		"burger",
@@ -13,6 +13,7 @@ export function router(state) {
 		"signup",
 		"settings",
 	]
+	hash = hash.replace("!", "")
 	let index = routes.indexOf(hash)
 
 	if (index !== -1) {
@@ -22,7 +23,6 @@ export function router(state) {
 	} else {
 		state.httpStatus = 404
 		window.location.assign("#error")
-		return false
 	}
 
 	return state

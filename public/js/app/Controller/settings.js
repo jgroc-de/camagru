@@ -1,7 +1,9 @@
-import { hiddenFormController } from '../Abstract/hiddenFormController.js'
+import { FormModal } from '../Abstract/form.js'
+import { printNotif } from '../../Library/printnotif.js'
 import { ggAjax } from '../../Library/ggAjax.js'
 
-export class Settings extends hiddenFormController {
+
+export class Settings extends FormModal {
 	constructor (state) {
 		super(state, "settings", "settingsForm")
 		this.getUser()
@@ -26,7 +28,7 @@ export class Settings extends hiddenFormController {
   }
 
   checkboxManager (response, checkbox) {
-    let isChecked = response.settings.alert ? true : false;
+    let isChecked = response.settings.alert ? true : false
 
     if (checkbox.checked !== isChecked) {
       checkbox.click()

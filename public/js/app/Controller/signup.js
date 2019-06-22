@@ -1,10 +1,9 @@
-import { hiddenFormController } from '../Abstract/hiddenFormController.js'
+import { FormModal } from '../Abstract/form.js'
+import { printNotif } from '../../Library/printnotif.js'
 
-export class Signup extends hiddenFormController {
+
+export class Signup extends FormModal {
 	constructor (state) {
 		super(state, 'signup', "authForm")
-	}
-
-	callback (response, objet) {
 	}
 }

@@ -17,10 +17,10 @@ export class hiddenController extends Controller {
 			this.card.children[1].setAttribute('hidden', true)
 		} else {
 			this.card.children[1].toggleAttribute('hidden')
-			if (link === "") {
-				this.link.href = "#" + this.name
+			if (link === this.name) {
+				this.link.href = "#!" + this.name
 			} else {
-				this.link.href = "#"
+				this.link.href = "#" + this.name
 			}
     }
 
@@ -28,7 +28,7 @@ export class hiddenController extends Controller {
   }
 
   wakeUp () {
-    return this.view()
+    return this.view(false)
   }
 
   shutDown () {
