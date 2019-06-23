@@ -18,7 +18,18 @@ class Session
         }
     }
 
-    public function setSession($user)
+    public function updateSession()
+    {
+        $_SESSION['id'] = $this->id;
+        $_SESSION['user'] = [
+            'pseudo' => $this->pseudo,
+            'id' => $this->id,
+            'alert' => $this->alert,
+            'email' => $this->email,
+        ];
+    }
+
+    public function setSession(array $user)
     {
         $_SESSION['id'] = $user['id'];
         $_SESSION['user'] = [
@@ -43,6 +54,26 @@ class Session
         $this->pseudo = $_POST['pseudo'];
         $this->email = $_POST['email'];
         $this->alert = isset($_POST['alert']) ? true : false;
-        $this->id = $_SESSION['id'];
+        $this->id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
     }
+
+	public function getPseudo()
+	{
+		return $this->pseudo;
+	}
+
+	public function getEmail()
+	{
+		return $this->email;
+	}
+
+	public function getAlert()
+	{
+		return $this->alert;
+	}
+
+	public function setAlert(bool $alert)
+	{
+		$this->alert = $alert;
+	}
 }

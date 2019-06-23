@@ -1,10 +1,14 @@
-export class Burger {
+import { Controller } from '../Abstract/controller.js'
+
+export class Burger extends Controller {
 	constructor (state) {
-		this.state = state
-		this.name = 'burger'
+		super(state, 'burger')
 		this.link = document.getElementById(this.name)
 		this.nav = document.getElementById('pageNav')
-		this.settings = document.getElementById('btnSettings')
+		this.hiddenBtns = [
+			document.getElementById('btnSettings'),
+			document.getElementById('btnPictures'),
+		]
 	}
 
 	view(defaultView = false) {
@@ -15,26 +19,26 @@ export class Burger {
 			this.nav.setAttribute('hidden', true)
 		} else {
 			this.nav.toggleAttribute('hidden')
-			if (this.state.isLogin()) {
-				this.settings.removeAttribute('hidden')
+			this.toggleHiddenButtons()
+			if (link === this.name) {
+				this.link.href = "#!" + this.name
 			} else {
-				this.settings.setAttribute('hidden', '')
-			}
-			if (link === "") {
 				this.link.href = "#" + this.name
-			} else {
-				this.link.href = "#"
 			}
 		}
 
 		return false
 	}
 
-	wakeUp () {
-		return this.view()
-	}
-
-	shutDown () {
-		return this.view(true)
+	toggleHiddenButtons () {
+			if (this.state.isLogin()) {
+				for (let btn of this.hiddenBtns) {
+					btn.removeAttribute('hidden')
+				}
+			} else {
+				for (let btn of this.hiddenBtns) {
+					btn.setAttribute('hidden', '')
+				}
+			}
 	}
 }

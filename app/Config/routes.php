@@ -23,7 +23,7 @@ function bakado(Dumb $baka)
         'password',
 		'pics' => [
 			'picturesByDate',
-			'picturesByPopularity',
+			'picturesByLike',
 			'picturesByUser',
 		],
         'picture',

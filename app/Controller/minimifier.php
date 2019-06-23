@@ -20,6 +20,7 @@ class minimifier extends Patronus
         'camagru',
         'myPictures',
         'pictures',
+		'picture',
     ];
 
     public function get()

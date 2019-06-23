@@ -17,9 +17,9 @@ export class Login extends FormModal {
 		this.logBtnG.className = "w3-bar-item w3-black w3-button"
 	}
 
-	callback (response) {
+	callback (response, httpStatus) {
 		if (this.redirect && response['flash']) {
-			printNotif(response['flash'], this.status)
+			printNotif(response['flash'], httpStatus)
 		}
 		if (response.settings) {
 			let redirection = '#' + this.redirect

@@ -1,6 +1,6 @@
 import { hiddenViewController } from  '../Abstract/hiddenViewController.js'
 import { ggAjax } from '../../Library/ggAjax.js'
-import * as photo from '../View/camagru.js'
+import * as view from '../View/camagru.js'
 import { Photographer } from './Camagru/photographer.js'
 import { FilterManager } from './Camagru/filterManager.js'
 
@@ -8,6 +8,7 @@ export class Camagru extends hiddenViewController {
 	constructor (state) {
 		super(state)
 		this.name = 'camagru'
+		this.resetView()
 		this.buildView()
 		this.card = document.getElementById(this.name)
 		this.section = this.card.getElementsByTagName('section')[0]
@@ -18,13 +19,32 @@ export class Camagru extends hiddenViewController {
 
 	buildView () {
 		let anchor = document.getElementById('notif')
-		let view = (new DOMParser()).parseFromString(photo.template, 'text/html')
+		let template = (new DOMParser()).parseFromString(view.template, 'text/html')
 
 		anchor.parentNode.insertBefore(
-			view.body,
+			template.body,
 			anchor.nextElementSibling
 		)
 
-		return view
+		return template
+	}
+
+	resetView () {
+		let components = [
+			'Pictures'
+		]
+
+		for (let name of components) {
+			this.remove(name)
+		}
+	}
+
+	remove (name) {
+		if (this.state['components'][name]) {
+			let card = this.state['components'][name].card
+
+			card.parentNode.removeChild(card)
+			delete this.state['components'][name]
+		}
 	}
 }

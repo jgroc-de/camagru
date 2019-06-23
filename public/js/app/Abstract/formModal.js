@@ -1,6 +1,7 @@
 import { ModalController } from './ModalController.js'
 import { ggAjax } from '../../Library/ggAjax.js'
 import { request } from './request.js'
+import { printNotif } from '../../Library/printnotif.js'
 
 export class FormModal extends ModalController {
 	constructor (state, name, formName) {
@@ -47,19 +48,15 @@ export class FormModal extends ModalController {
   }
 
   setButtons () {
-    let forms = this.card.getElementsByTagName('form')
-    let i = 0
+    let forms = this.formContainer.getElementsByTagName('form')
 
-    while (i < forms.length) {
-      this.addButtons(forms[i++])
-    }
+    this.addButtons(forms[0])
   }
 
   submit (event) {
     let inputs = event.target.form
-		console.log("form event target: ")
-		console.log(event.target)
 
+		console.log(event.target)
     if (inputs.checkValidity()) {
       ggAjax(new request(inputs), this)
     } else {
@@ -67,9 +64,9 @@ export class FormModal extends ModalController {
     }
   }
 
-	callback (response) {
+	callback (response, httpStatus) {
 		if (response['flash']) {
-			printNotif(response['flash'], this.status)
+			printNotif(response['flash'], httpStatus)
 		}
 	}
 }

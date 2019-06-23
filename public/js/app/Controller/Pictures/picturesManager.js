@@ -1,15 +1,24 @@
 import { ggAjax } from '../../../Library/ggAjax.js'
-//import { Picture } from './picture.js'
+import { Picture } from './picture.js'
+import * as view from '../../View/picture.js'
 
 export class PicturesManager {
 	constructor (section) {
 		this.section = section
 		this.pictures = []
+		this.max = 1
+		this.page = 0
 		this.getPictures()
-		console.log('pictures')
+		this.view = this.getView()
+	}
+
+	getView() {
+		return (new DOMParser()).parseFromString(view.template, 'text/html')
 	}
 
 	getPictures(sort = 'Date', page = 0) {
+		this.sortOption = sort
+
 		let request = {
 			method: "Get",
 			url: "/picturesBy" + sort + "/" + page,
@@ -19,31 +28,41 @@ export class PicturesManager {
 		ggAjax(request, this)
 	}
 
-/*	addPicture (pictures, template, div) {
+	setPictures (pictures) {
 		let i = 0
 		let node
 
-		while (i < pictures.length) {
-			node = template.cloneNode(true)
-			this.pictures.push(new Picture(node, pictures[i]))
-			div.insertBefore(this.pictures[i].node, template)
-			i++
+		for (let picture of pictures) {
+			node = this.view.cloneNode(true)
+			this.pictures.push(new Picture(node, picture))
 		}
-	}*/
+	}
 
-	setPictures (pictures) {
-		let div = this.section.getElementsByClassName('gg-filter')[0]
-		let template = div.children[0]
+	destroyView() {
+		let child
 
-		this.addPicture(pictures, template, div)
-		div.removeChild(template)
+		while (child = this.section.firstChild) {
+			this.section.removeChild(child)
+		}
+		this.pictures = []
+	}
+
+	buildView () {
+		for (let picture of this.pictures) {
+			this.section.appendChild(picture.node.cloneNode(true))
+		}
 	}
 
 	callback (response) {
-		console.log(response)
+		if (response.max) {
+			this.max = response.max
+		}
+		if (response.page) {
+			this.page = response.page
+		}
 		if (response.pictures) {
-			//this.setPictures(response.pictures)
+			this.setPictures(response.pictures)
+			this.buildView()
 		}
 	}
 }
-

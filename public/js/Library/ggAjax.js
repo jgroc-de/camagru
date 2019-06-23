@@ -7,7 +7,7 @@ export function ggAjax (request, objet, async = true) {
 		if (this.readyState === 4) {
 			let json = JSON.parse(this.responseText)
 
-			if (objet && objet.callback && this.status === 200) {
+			if (objet && objet.callback) {
 				objet.callback(json, this.status)
 			}
 		}

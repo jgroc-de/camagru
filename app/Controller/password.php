@@ -37,9 +37,9 @@ class password extends Patronus
 
     public function post()
     {
-        $pseudo = $_POST['pseudo'];
-        $user = $this->userManager->getUser($pseudo);
-        if (empty($user) || !$this->userManager->resetValidkey($pseudo)) {
+        $email = $_POST['email'];
+        $user = $this->userManager->getUserByEmail($email);
+        if (empty($user) || !$this->userManager->resetValidkey($user['pseudo'])) {
             throw new \Exception('password', Response::NOT_FOUND);
         }
         $this->container['mail']($this->container)->sendReinitMail($user);

@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Dumb\Response;
+use App\Library\Session;
 
 class UserManager extends SqlManager
 {
@@ -11,7 +12,7 @@ class UserManager extends SqlManager
         $request = '
 			SELECT id 
 			FROM users 
-			WHERE pseudo= ?
+			WHERE pseudo = ?
 		';
 
         return $this->sqlRequestFetch($request, [$pseudo]);
@@ -42,10 +43,10 @@ class UserManager extends SqlManager
             if ($this->sqlRequest($request, [$login], true)) {
                 $_SESSION['flash'] = ['success' => 'Votre compte a bien été activé'];
             } else {
-                throw new \Exception('Proudly Fail!', Response::INTERNAL_SERVER_ERROR);
+                throw new \Exception('Proudly Fail!', Response::BAD_REQUEST);
             }
         } else {
-            throw new \Exception('Votre compte ne peut, malheureusement, pas etre activé', Response::INTERNAL_SERVER_ERROR);
+            throw new \Exception('Votre compte ne peut, malheureusement, pas etre activé', Response::BAD_REQUEST);
         }
 
         return true;
@@ -66,27 +67,27 @@ class UserManager extends SqlManager
                 return true;
             }
             if (!$user['actif']) {
-                throw new \Exception('Compte inactif!', Response::INTERNAL_SERVER_ERROR);
+                throw new \Exception('Compte inactif!', Response::BAD_REQUEST);
             }
 
-            throw new \Exception('Mauvais mot de passe!', Response::INTERNAL_SERVER_ERROR);
+            throw new \Exception('Mauvais mot de passe!', Response::BAD_REQUEST);
         }
 
-        throw new \Exception('compte inexistant ou mauvais mot de passe', Response::INTERNAL_SERVER_ERROR);
+        throw new \Exception('compte inexistant ou mauvais mot de passe', Response::BAD_REQUEST);
     }
 
-    public function resetValidkey(string $login)
+    public function resetValidkey(string $pseudo)
     {
         $key = md5((string) ((int) microtime(true) * 100000));
         $request = $this->db->prepare('UPDATE users SET validkey = ? WHERE pseudo = ?');
 
-        return $request->execute([$key, $login]);
+        return $request->execute([$key, $pseudo]);
     }
 
-    public function addUser(string $pseudo, string $pass, string $mail)
+    public function addUser(Session $user, string $pass)
     {
-        if ($this->pseudoInDb($pseudo)) {
-            throw new \Exception('Pseudo déjà pris, desl…!', Response::INTERNAL_SERVER_ERROR);
+        if ($this->pseudoInDb($user->getPseudo())) {
+            throw new \Exception('Pseudo déjà pris, desl…!', Response::BAD_REQUEST);
         }
         $key = md5((string) ((int) microtime(true) * 100000));
         $request = '
@@ -95,7 +96,7 @@ class UserManager extends SqlManager
 				VALUES (?, ?, ?, ?)'
             ;
 
-        return $this->sqlRequest($request, [$pseudo, $pass, $mail, $key], true);
+        return $this->sqlRequest($request, [$user->getPseudo(), $pass, $user->getEmail(), $key], true);
     }
 
     public function deleteUser()
@@ -113,6 +114,17 @@ class UserManager extends SqlManager
 		';
 
         return $this->sqlRequestFetch($request, [$pseudo]);
+    }
+
+    public function getUserByEmail(string $email)
+    {
+        $request = '
+			SELECT *
+			FROM users
+			WHERE email = ?
+		';
+
+        return $this->sqlRequestFetch($request, [$email]);
     }
 
     public function getUserSettings(string $pseudo)
@@ -150,9 +162,10 @@ class UserManager extends SqlManager
         return $this->sqlRequestFetch($request, [$id]);
     }
 
-    public function updateUser(string $pseudo, string $email, bool $alert): bool
+    public function updateUser(Session $user): bool
     {
-        $oldPseudo = $_SESSION['pseudo'];
+        $oldPseudo = $_SESSION['user']['pseudo'];
+		$pseudo = $user->getPseudo();
         if ($pseudo != $oldPseudo && $this->pseudoInDb($pseudo)) {
             return false;
         }
@@ -160,6 +173,8 @@ class UserManager extends SqlManager
                     UPDATE users
                     SET pseudo = :pseudo, email = :email, alert = :alert
                     WHERE pseudo = :login');
+		$alert = $user->getAlert();
+		$email = $user->getEmail();	
         $request->bindParam(':alert', $alert, \PDO::PARAM_BOOL);
         $request->bindParam(':email', $email, \PDO::PARAM_STR);
         $request->bindParam(':pseudo', $pseudo, \PDO::PARAM_STR);

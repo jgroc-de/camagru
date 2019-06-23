@@ -19,12 +19,14 @@ class pics extends Patronus
     public function get()
     {
         $pics = $this->getPics();
+		$max = $this->picsManager->countPics()[0];
         if (empty($pics)) {
             throw new \Exception('pics', Response::NOT_FOUND);
         }
         $this->response = [
-            'pics' => $pics,
-            'start' => $_POST['start'] + 1,
+            'pictures' => $pics,
+            'page' => $_GET['id'],
+            'max' => $max,
         ];
     }
 

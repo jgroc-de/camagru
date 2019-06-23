@@ -51,17 +51,22 @@ export class Settings extends FormModal {
   }
 
   updateForm (response) {
-    let form = this.card.children[1]
+    let inputs = this.formContainer.children[1].getElementsByTagName('input')
     let i = 0
     let name = ''
     let input
 
-    while (i < form.length) {
-      this.setInput(response, form[i++])
+		console.log('inputs')
+		console.log(inputs)
+    while (i < inputs.length) {
+      this.setInput(response, inputs[i++])
     }
   }
 
-  callback (response) {
+  callback (response, httpStatus) {
+		if (response['flash']) {
+			printNotif(response['flash'], httpStatus)
+		}
     if (!response.settings) {
       return
     }

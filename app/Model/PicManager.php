@@ -20,7 +20,7 @@ class PicManager extends SqlManager
     public function getPicsByDate(int $start)
     {
         $request = $this->db->prepare('
-			SELECT img.id, img.title, img.url as path
+			SELECT img.id, img.title, img.url
             FROM img
             INNER JOIN users
             ON img.author_id = users.id
@@ -36,7 +36,7 @@ class PicManager extends SqlManager
     public function getPicsByLike(int $start)
     {
         $request = $this->db->prepare('
-			SELECT img.id, img.title, img.url as path
+			SELECT img.id, img.title, img.url
             FROM img
             INNER JOIN users
             ON img.author_id = users.id
@@ -106,7 +106,7 @@ class PicManager extends SqlManager
     public function countPics()
     {
         $request = '
-			SELECT count(*)
+			SELECT COUNT(*)
 			FROM img
 		';
 

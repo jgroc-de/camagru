@@ -37,7 +37,7 @@
 }
 
 .gg-wall {
-    height: 600px;
+    max-height: 600px;
     overflow: scroll;
 }
 
@@ -94,4 +94,10 @@
 
 .gg-width100 {
     width:100%;
+}
+
+@font-face {
+  font-family: 'fa-solid-900';
+  font-display: auto;
+  src: local('fa-solid-900'), url(https://use.fontawesome.com/releases/v5.6.3/webfonts/fa-solid-900.woff2) format('woff2');
 }

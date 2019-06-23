@@ -30,7 +30,7 @@ class user extends Patronus
         if (!$this->userManager->updateUser($user)) {
             throw new \Exception('pseudo unavailable!', Response::BAD_REQUEST);
         }
-        $user->setSession($user);
+        $user->updateSession();
         $this->response['flash'] = 'Profil Succesfully updated';
     }
 
@@ -43,7 +43,7 @@ class user extends Patronus
         if (!$this->userManager->addUser($user, password_hash($password, PASSWORD_DEFAULT))) {
             throw new \Exception($_SESSION['flash']['fail'], Response::UNAUTHORIZED);
         }
-        $this->container['mail']()->sendValidationMail($this->userManager->getUser($user));
+        $this->container['mail']()->sendValidationMail($this->userManager->getUser($user->getPseudo()));
         if (isset($_SESSION['flash']['success'])) {
             $this->response['flash'] = $_SESSION['flash']['success'];
         }
