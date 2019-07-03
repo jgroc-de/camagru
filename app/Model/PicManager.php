@@ -130,28 +130,28 @@ class PicManager extends SqlManager
         return false;
     }
 
-    public function addLike(int $id_img)
+    public function addLike(int $img_id)
     {
         $author_id = $_SESSION['id'];
         $request = '
             SELECT id
             FROM likes
-            WHERE id_img = ? AND author_id = ?
+            WHERE img_id = ? AND author_id = ?
         ';
-        $id = $this->sqlRequestFetch($request, [$id_img, $author_id]);
+        $id = $this->sqlRequestFetch($request, [$img_id, $author_id]);
         if (!isset($id['id'])) {
             $request = '
                 UPDATE img 
                 SET nb_like = nb_like + 1 
                 WHERE id = ?
                 ';
-            $this->sqlRequest($request, [$id_img], true);
+            $this->sqlRequest($request, [$img_id], true);
             $request = '
                 INSERT INTO likes
-                (id_img, author_id)
+                (img_id, author_id)
                 VALUES (?, ?)
                 ';
-            $this->sqlRequest($request, [$id_img, $author_id], true);
+            $this->sqlRequest($request, [$img_id, $author_id], true);
         } else {
             return -1;
         }
@@ -160,7 +160,7 @@ class PicManager extends SqlManager
 			FROM img 
 			WHERE id = ?
 		';
-        $count = $this->sqlRequestFetch($request, [$id_img]);
+        $count = $this->sqlRequestFetch($request, [$img_id]);
 
         return $count[0];
     }

@@ -7,6 +7,7 @@ namespace Dumb;
 class Response
 {
     const HTTP_CODE = [
+        42 => 'OK',
         200 => 'OK',
         400 => 'Bad Request',
         401 => 'Unauthorized',

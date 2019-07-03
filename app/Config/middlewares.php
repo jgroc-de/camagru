@@ -65,6 +65,9 @@ function shield(Dumb $baka)
             'password' => [
                 'patch',
             ],
+            'picturesByUser' => [
+                'get',
+            ],
         ]
     );
 

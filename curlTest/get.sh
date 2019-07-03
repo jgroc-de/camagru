@@ -1,30 +1,36 @@
 #!/bin/bash
 
-pseudo="test"
-password="Test00"
+pseudo="testRoot"
+mdp="testRoot0"
+json='{"pseudo":"testRoot","password":"testRoot0"}'
 
-#manque listbylike ,et reinitget et validation
-testa="/camagru/aieuaieaiue;a;404"
-testb="/aieaueaue;a;404"
-testc="//lol;a;404"
-test0="/home;a;200"
-test1="/camagru;a;403"
-test2="/;a;200"
-test3="/picture;a;401"
-test4="/picture/1;a;200"
-test5="/picture/0;a;404"
-test6="/picture/20000;a;404"
-test7="/login;&pseudo=test&password=$password;200"
-test8="/home;a;200"
-test9="/camagru;a;200"
-test10="/;a;200"
-test11="/picture;a;401"
-test12="/picture/1;a;200"
-test13="/picture/0;a;404"
-test14="/picture/20000;a;404"
-test15="/logout;&;200"
-
-tests=( $testa $testb $testc $test1 $test1a $test1b $test2 $test3 $test3a $test4 $test5 $test6 $test7 $test8 $test9 $test10 $test11 $test12 $test13 $test14 $test15 )
+tests=(\
+	"/;200"
+	"/home;200"
+	"/filter;200"
+	"//lol;200"
+	"/filter;200"
+	"//lol;200"
+	"/picturesByDate;200"
+	"/picturesByLike;200"
+	"/home;200"
+	"/picture/1;200"
+	"/minimifier;200"
+	"/picture;400"
+	"/password;400"
+	"/camagru;403"
+	"/picturesByUser;403"
+	"/user;403"
+	"/aieaueaue;404"
+	"/picture/0;404"
+	"/picture/20000;404"
+	"/login;200;POST"
+	"/;200"
+	"/user;200"
+	"/camagru;200"
+	"/picturesByUser;200"
+	"/login;200;DELETE"
+	)
 j=0
 
 printf "*** \033[32mtests\033[0m *** \n"
@@ -33,36 +39,31 @@ total=${#tests[@]}
 bool=0
 for i in ${tests[@]}; do
 	array=(${i//;/ })
-	if [ "${array[0]}" == "/login" ] || [ "${array[0]}" == "/logout" ]; then
-		response=$(curl -w "%{http_code}\n"\
-			-o /dev/null\
-			-c cookieMonster\
-			-b cookieMonster\
-			-s "http://localhost:8080${array[0]}"\
-			-H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0'\
-			-H 'Accept: */*'\
-			-H 'Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3'\
-			--compressed\
-			-H 'Referer: http://localhost:8080/'\
-			-H 'Content-type: application/x-www-form-urlencoded'\
-			-H 'DNT: 1' -H 'Connection: keep-alive'\
-			--data ${array[1]})
+	method="GET"
+	if [ -z ${array[2]} ]; then
+		method="GET"
 	else
-		response=$(curl -w "%{http_code}\n"\
-			-o /dev/null\
-			-c cookieMonster\
-			-b cookieMonster\
-			-s "http://localhost:8080${array[0]}"\
-			-H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0'\
-			-H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'\
-			-H 'Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3'\
-			--compressed\
-			-H 'Referer: http://localhost:8080/'\
-			-H 'DNT: 1' -H 'Connection: keep-alive'\
-			-H 'Upgrade-Insecure-Requests: 1')
+		method=${array[2]}
 	fi
+	response=$(
+	curl -w "%{http_code}\n"\
+		-o /dev/null\
+		-c cookieMonster\
+		-b cookieMonster\
+		-s "http://localhost:8080${array[0]}"\
+		-H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0'\
+		-H 'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8'\
+		-H 'Accept-Language: fr,fr-FR;q=0.8,en-US;q=0.5,en;q=0.3'\
+		--compressed\
+		-H 'Content-type: application/json' \
+		-H 'Referer: http://localhost:8080/'\
+		-H 'DNT: 1' -H 'Connection: keep-alive'\
+		-H 'Upgrade-Insecure-Requests: 1'\
+		-X $method \
+		-d $json\
+		)
 	printf "test $j: ";
-	if [ $response -eq ${array[2]} ]; then
+	if [ $response -eq ${array[1]} ]; then
 		out="32mOK"
 		((success++))
 	else

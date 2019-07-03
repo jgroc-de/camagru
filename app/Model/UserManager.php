@@ -155,7 +155,7 @@ class UserManager extends SqlManager
             SELECT *
             FROM img
             INNER JOIN users
-            ON img.id_author = users.id
+            ON img.author_id = users.id
 			WHERE img.id = ?
 		';
 
