@@ -78,7 +78,7 @@ for i in ${tests[@]}; do
 	((j++))
 done
 printf "\n*** \033[32mend\033[0m *** \n"
-rm cookieMonster;
+rm cookieMonster
 printf "\n\033[42mtests succeed\033[0m : $success/$total\n"
 if [ $success -ne $total ]; then
 	printf "\n\033[41mtests failed\033[0m : $((total-success))/$total\n"
