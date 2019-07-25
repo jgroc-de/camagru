@@ -7,4 +7,4 @@ else
 		bash $file
 	done
 fi
-return 0
+exit 0
