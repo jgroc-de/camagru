@@ -81,10 +81,12 @@ for i in ${tests[@]}; do
 	fi
 	((j++))
 done
-printf "\n\033[42mtests succeed\033[0m : $success/$total\n"
-if [ $success -ne $total ]; then
-	printf "\n\033[41mtests failed\033[0m : $((total-success))/$total\n"
-fi
 printf "\n*** \033[32mend\033[0m *** \n"
 rm cookieMonster;
 printf "*** \033[32mtests\033[0m *** \n"
+printf "\n\033[42mtests succeed\033[0m : $success/$total\n"
+if [ $success -ne $total ]; then
+	printf "\n\033[41mtests failed\033[0m : $((total-success))/$total\n"
+    exit 1
+fi
+exit 0
