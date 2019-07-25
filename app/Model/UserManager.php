@@ -2,8 +2,8 @@
 
 namespace App\Model;
 
-use Dumb\Response;
 use App\Library\Session;
+use Dumb\Response;
 
 class UserManager extends SqlManager
 {
@@ -165,7 +165,7 @@ class UserManager extends SqlManager
     public function updateUser(Session $user): bool
     {
         $oldPseudo = $_SESSION['user']['pseudo'];
-		$pseudo = $user->getPseudo();
+        $pseudo = $user->getPseudo();
         if ($pseudo != $oldPseudo && $this->pseudoInDb($pseudo)) {
             return false;
         }
@@ -173,8 +173,8 @@ class UserManager extends SqlManager
                     UPDATE users
                     SET pseudo = :pseudo, email = :email, alert = :alert
                     WHERE pseudo = :login');
-		$alert = $user->getAlert();
-		$email = $user->getEmail();	
+        $alert = $user->getAlert();
+        $email = $user->getEmail();
         $request->bindParam(':alert', $alert, \PDO::PARAM_BOOL);
         $request->bindParam(':email', $email, \PDO::PARAM_STR);
         $request->bindParam(':pseudo', $pseudo, \PDO::PARAM_STR);

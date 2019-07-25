@@ -19,7 +19,7 @@ class pics extends Patronus
     public function get()
     {
         $pics = $this->getPics();
-		$max = $this->picsManager->countPics()[0];
+        $max = $this->picsManager->countPics()[0];
         if (empty($pics)) {
             throw new \Exception('pics', Response::NOT_FOUND);
         }
@@ -43,7 +43,7 @@ class pics extends Patronus
             case 'User':
                 return $this->picsManager->getPicsByUser($_SESSION['id']);
             default:
-                throw new \Exception("$sort: method not allowed", Response::BAD_REQUEST);
+                throw new \Exception("{$sort}: method not allowed", Response::BAD_REQUEST);
         }
     }
 }

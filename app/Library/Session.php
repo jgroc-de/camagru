@@ -57,23 +57,23 @@ class Session
         $this->id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
     }
 
-	public function getPseudo()
-	{
-		return $this->pseudo;
-	}
+    public function getPseudo()
+    {
+        return $this->pseudo;
+    }
 
-	public function getEmail()
-	{
-		return $this->email;
-	}
+    public function getEmail()
+    {
+        return $this->email;
+    }
 
-	public function getAlert()
-	{
-		return $this->alert;
-	}
+    public function getAlert()
+    {
+        return $this->alert;
+    }
 
-	public function setAlert(bool $alert)
-	{
-		$this->alert = $alert;
-	}
+    public function setAlert(bool $alert)
+    {
+        $this->alert = $alert;
+    }
 }
