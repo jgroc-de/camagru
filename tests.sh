@@ -6,7 +6,6 @@ else
 		printf "\n*** \033[32mbegin $file\033[0m ***\n"
 		./$file
         TEST=$?
-        echo $TEST
         if [ $TEST -ne 0 ]
         then
             exit 1
