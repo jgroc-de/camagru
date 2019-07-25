@@ -15,7 +15,7 @@ class setup extends Patronus
         $this->configManager = $this->container['config']($this->container);
     }
 
-    public function post()
+    public function get()
     {
         $this->configManager->createDB(file_get_contents($this->container['env']()['export']));
     }

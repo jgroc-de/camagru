@@ -102,7 +102,7 @@ function shield(Dumb $baka)
 
     $baka->setMiddlewares(
         function () {
-            if ('troll2' !== $_SESSION['pseudo']) {
+            if ('troll2' === $_SESSION['pseudo']) {
                 throw new \Exception('', Response::FORBIDDEN);
             }
         },
