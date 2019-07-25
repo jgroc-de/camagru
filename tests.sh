@@ -7,3 +7,4 @@ else
 		bash $file
 	done
 fi
+return 0
