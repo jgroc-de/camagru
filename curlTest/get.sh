@@ -67,7 +67,7 @@ for i in ${tests[@]}; do
 		out="32mOK"
 		((success++))
 	else
-		out="31mFAIL!!!"
+		out="31mFAIL with status $response !!!"
 		bool=1
 	fi
 	printf "$i:[\033[%s\033[0m]\n" $out;
