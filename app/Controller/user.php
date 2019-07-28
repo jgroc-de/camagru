@@ -48,6 +48,7 @@ class user extends Patronus
             $this->response['flash'] = $_SESSION['flash']['success'];
         }
         unset($_SESSION['flash']);
+        $this->code = Response::CREATED;
     }
 
     public function delete()

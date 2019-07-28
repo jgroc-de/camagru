@@ -36,25 +36,27 @@ class Image
 
     public function add($filter)
     {
-        $src = $filter['url'];
-        $s_size = getimagesize($src);
-        if (!($src = imagecreatefrompng($src))) {
-            throw new \Exception('picture', Response::INTERNAL_SERVER_ERROR);
+        $tmp = $filter['url'];
+        $s_size = getimagesize($tmp);
+        if (!($src = imagecreatefrompng($tmp))) {
+            throw new \Exception('filter loading error', Response::INTERNAL_SERVER_ERROR);
         }
         imagealphablending($this->image, true);
         imagesavealpha($this->image, true);
-        imagecopyresized(
+        if (!imagecopyresized(
             $this->image,
             $src,
-            $filter['x'],
-            $filter['y'],
+            (int) $filter['x'],
+            (int) $filter['y'],
             0,
             0,
             $this->imageSize[0],
-            $this->imageSize[0] * $s_size[1] / $s_size[0],
+            (int)floor($this->imageSize[0] * $s_size[1] / $s_size[0]),
             $s_size[0],
             $s_size[1]
-        );
+        )) {
+            throw new \Exception('filter addition error', Response::INTERNAL_SERVER_ERROR);
+        }
         imagedestroy($src);
     }
 

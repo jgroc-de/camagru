@@ -34,6 +34,9 @@ class pics extends Patronus
     {
         $uri = explode('/', $_SERVER['REQUEST_URI'])[1];
         $sort = explode('By', $uri)[1];
+        if (!isset($_GET['id'])) {
+            $_GET['id'] = 0;
+        }
 
         switch ($sort) {
             case 'Date':

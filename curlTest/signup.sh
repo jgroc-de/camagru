@@ -1,34 +1,35 @@
 #!/bin/bash
 
 url="/user"
-pseudo="test42"
-pseudolong="test43aaaaaaaaaaaaaaaaaaaaiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
-password="Test00"
-passwordshort="Tes00"
-passwordbad1="TestGG"
-passwordbad2="test00"
-email="lol@lol.com"
-emailbad="lol@lol.a"
+pseudo="testRoot"
+pass="testRoot0"
+mail="lol@lol.com"
+badPseudo="testRoot1"
+badPass="lolLOLOLOL89"
 
 data=(
-	'{}'
-	'{"pseudo":"$pseudo","password":"lol","email":"lol@lol.com"}'
-	'{"pseudo":"tauiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiuiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii,"password":"lolLoll89","email":"lol@lol.com"}'
-	'{"pseudo":"testRoot","email":"lol@lol.com"}'
-	'{"pseudo":"testRoot","password":"lolLOLOL89","email":"lol@lol.com"}'
-	'{"password":"testRoot0"}'
-	'{"pseudo":"","password":"lolLOLOL89","email":"lol@lol.com"}'
-	'{"pseudo":"testRoot1","password":"","email":"lol@lol.com"}'
-	'{"pseudo":"testRoot1","password":"lolLOLOL89","email":""}'
-	'{"pseudo":"testRoot","password":"testRoot0","email":"lol@lol.com"}'
-	'{"pseudo":"testRoot1","password":"lolLOLOL89"}'
-	'{}'
-	'{"pseudo":"testRoot1","password":"lolLOLOL89","email":"lol@lol.com"}'
-	'{"pseudo":"testRoot1","password":"lolLOLOL89"}'
-	'{}'
+	"{\"pseudo\":\"$pseudo\",\"password\":\"$pass\"}"
+	"{}"
+	"{}"
+	"{\"pseudo\":\"$pseudo\",\"password\":\"lol\",\"email\":\"$mail\"}"
+	"{\"pseudo\":\"tauiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiuiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii,\"password\":\"lolLoll89\",\"email\":\"$mail\"}"
+	"{\"pseudo\":\"$pseudo\",\"email\":\"$mail\"}"
+	"{\"pseudo\":\"$pseudo\",\"password\":\"$badPass\",\"email\":\"lol@lol.a\"}"
+	"{\"password\":\"$pass\"}"
+	"{\"pseudo\":\"\",\"password\":\"$badPass\",\"email\":\"$mail\"}"
+	"{\"pseudo\":\"$badPseudo\",\"password\":\"\",\"email\":\"$mail\"}"
+	"{\"pseudo\":\"$badPseudo\",\"password\":\"$badPass\",\"email\":\"\"}"
+	"{\"pseudo\":\"$pseudo\",\"password\":\"$pass\",\"email\":\"$mail\"}"
+	"{\"pseudo\":\"$pseudo\",\"password\":\"$pass\",\"email\":\"$mail\"}"
+	"{\"pseudo\":\"$pseudo\",\"password\":\"$pass\"}"
+	"{}"
+	"{\"pseudo\":\"$pseudo\",\"password\":\"$pass\"}"
+	"{\"pseudo\":\"$pseudo\",\"password\":\"$pass\",\"email\":\"$mail\"}"
 )
 
 tests=(
+	"/login;200;POST"
+	"$url;200;DELETE"
 	"$url;400"
 	"$url;400"
 	"$url;400"
@@ -38,12 +39,12 @@ tests=(
 	"$url;400"
 	"$url;400"
 	"$url;400"
+	"$url;201"
 	"$url;400"
 	"/login;200;POST"
 	"$url;200;DELETE"
-	"$url;200"
-	"/login;200;POST"
-	"/login;200;DELETE"
+	"/login;400;POST"
+	"$url;201"
 	)
 
 j=0
@@ -75,17 +76,17 @@ for i in ${tests[@]}; do
 		-H 'DNT: 1' -H 'Connection: keep-alive'\
 		-H 'Upgrade-Insecure-Requests: 1'\
 		-X $method\
-		-d "$json"\
+		-d $json\
 		)
 	printf "test $j: ";
 	if [ $response -eq ${array[1]} ]; then
 		out="32mOK"
 		((success++))
 	else
-		out="31mFAIL!!!"
+		out="31mFAIL"
 		bool=1
 	fi
-	printf "$i:[\033[%s\033[0m]\n" $out;
+	printf "$i:[\033[%s\033[0m]\n" "$out: $response";
 	if [ $bool -eq 1 ];then
 		echo $response
 		bool=0

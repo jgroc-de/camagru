@@ -58,6 +58,7 @@ class picture extends Patronus
         $name = $image->getFileName();
         $this->pictureManager->addPic($name);
         $this->response['path'] = $name;
+        $this->code = Response::CREATED;
     }
 
     private function getUserDefineFilters(): array
@@ -74,6 +75,9 @@ class picture extends Patronus
             if (in_array($filter['title'], $titles)) {
                 $urls[] = $filter;
             }
+        }
+        if (count($titles) != count($urls)) {
+            throw new \Exception('filters', Response::NOT_FOUND);
         }
 
         return $urls;

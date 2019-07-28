@@ -1,15 +1,18 @@
 #!/bin/bash
-if [ $# -eq 0 ]; then
-	printf "usage: $0 dir/*\n\twhere dir is the directory containing your tests\n"
-else
-	for file in $@; do
-		printf "\n*** \033[32mbegin $file\033[0m ***\n"
-		./$file
-        TEST=$?
-        if [ $TEST -ne 0 ]
-        then
-            exit 1
-        fi
-	done
-fi
+printf "*** --> \033[31mWarning!!\033[0m: test should be run on port \033[42m8080\033[0m!!<-- ***\n"
+
+files=(\
+    "signup.sh"
+    "login.sh"
+    "createPic.sh"
+    "get.sh"
+    )
+for file in ${files[@]}; do
+    printf "\n*** \033[32mbegin $file\033[0m ***\n"
+    ./curlTest/$file
+    TEST=$?
+    if [ $TEST -ne 0 ]; then
+        exit 1
+    fi
+done
 exit 0

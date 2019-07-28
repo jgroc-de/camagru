@@ -102,7 +102,7 @@ class UserManager extends SqlManager
     public function deleteUser()
     {
         $request = 'DELETE FROM users WHERE id = ?';
-        $this->sqlRequestFetch($request, [(int) $_SESSION['id']]);
+        $return = $this->sqlRequest($request, [(int) $_SESSION['id']]);
     }
 
     public function getUser(string $pseudo)

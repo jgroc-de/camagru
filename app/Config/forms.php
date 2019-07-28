@@ -46,7 +46,7 @@ function imageType($key)
     } elseif (0 === strpos($_POST[$key], 'data:image/jpeg;base64,')) {
         $_POST['type'] = 'jpeg';
     } else {
-        throw new \Exception('bad params', Response::BAD_REQUEST);
+        throw new \Exception('not base 64 jpeg/png image', Response::BAD_REQUEST);
     }
     $_POST[$key] = base64_decode(str_replace(
         [' ', 'data:image/png;base64,'],

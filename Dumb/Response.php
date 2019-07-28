@@ -9,6 +9,7 @@ class Response
     const HTTP_CODE = [
         42 => 'OK',
         200 => 'OK',
+        201 => 'CREATED',
         400 => 'Bad Request',
         401 => 'Unauthorized',
         403 => 'Forbidden',
@@ -18,6 +19,7 @@ class Response
     ];
 
     const OK = 200;
+    const CREATED = 201;
     const BAD_REQUEST = 400;
     const UNAUTHORIZED = 401;
     const FORBIDDEN = 403;

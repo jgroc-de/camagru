@@ -67,12 +67,11 @@ for i in ${tests[@]}; do
 		out="32mOK"
 		((success++))
 	else
-		out="31mFAIL with status $response !!!"
+		out="31mFAIL"
 		bool=1
 	fi
-	printf "$i:[\033[%s\033[0m]\n" $out;
+	printf "$i:[\033[%s\033[0m]\n" "$out: $response";
 	if [ $bool -eq 1 ];then
-		echo $response
 		bool=0
 	fi
 	((j++))
