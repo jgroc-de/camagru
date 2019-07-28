@@ -51,7 +51,7 @@ function incept(Dumb $baka)
             if (empty($pic)) {
                 throw new \Exception('Picture not found', Response::NOT_FOUND);
             }
-            if ($_SESSION['pseudo'] !== $pic['pseudo']) {
+            if ($_SESSION['user']['pseudo'] !== $pic['pseudo']) {
                 throw new \Exception('Picture not yours', Response::FORBIDDEN);
             }
         },
