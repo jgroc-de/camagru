@@ -59,7 +59,7 @@ CREATE TABLE img (
 );
 
 ALTER TABLE img
-ADD FOREIGN KEY (author_id) REFERENCES users(id); 
+ADD FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE; 
 
 -- --------------------------------------------------------
 
@@ -73,8 +73,8 @@ CREATE TABLE comments (
   author_id bigint UNSIGNED NOT NULL,
   date datetime NOT NULL,
   content text NOT NULL,
-  FOREIGN KEY (author_id) REFERENCES users(id),
-  FOREIGN KEY (img_id) REFERENCES img(id)
+  FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (img_id) REFERENCES img(id) ON DELETE CASCADE
 );
 
 -- --------------------------------------------------------
@@ -87,8 +87,8 @@ CREATE TABLE likes (
   id SERIAL PRIMARY KEY,
   img_id bigint UNSIGNED NOT NULL,
   author_id bigint UNSIGNED NOT NULL,
-  FOREIGN KEY (author_id) REFERENCES users(id),
-  FOREIGN KEY (img_id) REFERENCES img(id)
+  FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (img_id) REFERENCES img(id) ON DELETE CASCADE
 );
 
 INSERT INTO filter (id, title, url, x, y) VALUES
@@ -98,4 +98,4 @@ INSERT INTO filter (id, title, url, x, y) VALUES
 (5, 'flamme', 'img/filter/flamme.png', 2, 185);
 
 INSERT INTO users (pseudo, passwd, validkey, email) VALUES
-('troll2', 'test', 'aiue', 'jerome.gds@free.fr');
+('troll2', 'test', 'aiue', 'lol@lol.fr');

@@ -8,8 +8,7 @@ badPseudo="testRoot1"
 badPass="lolLOLOLOL89"
 
 data=(
-	"{\"pseudo\":\"$pseudo\",\"password\":\"$pass\"}"
-	"{}"
+    "{}"
 	"{}"
 	"{\"pseudo\":\"$pseudo\",\"password\":\"lol\",\"email\":\"$mail\"}"
 	"{\"pseudo\":\"tauiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiuiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii,\"password\":\"lolLoll89\",\"email\":\"$mail\"}"
@@ -28,8 +27,7 @@ data=(
 )
 
 tests=(
-	"/login;200;POST"
-	"$url;200;DELETE"
+	"/setup;302;GET"
 	"$url;400"
 	"$url;400"
 	"$url;400"

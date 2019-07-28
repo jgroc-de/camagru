@@ -51,7 +51,7 @@ class Image
             0,
             0,
             $this->imageSize[0],
-            (int)floor($this->imageSize[0] * $s_size[1] / $s_size[0]),
+            (int) floor($this->imageSize[0] * $s_size[1] / $s_size[0]),
             $s_size[0],
             $s_size[1]
         )) {
