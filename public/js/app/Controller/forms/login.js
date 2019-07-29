@@ -1,5 +1,5 @@
-import { FormModal } from '../Abstract/formModal.js'
-import { printNotif } from '../../Library/printnotif.js'
+import { FormModal } from '../../Abstract/formModal.js'
+import { printNotif } from '../../../Library/printnotif.js'
 
 export class Login extends FormModal {
 	constructor (state) {
@@ -18,7 +18,7 @@ export class Login extends FormModal {
 	}
 
 	callback (response, httpStatus) {
-		if (this.redirect && response['flash']) {
+		if (response['flash']) {
 			printNotif(response['flash'], httpStatus)
 		}
 		if (response.settings) {

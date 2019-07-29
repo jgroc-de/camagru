@@ -6,10 +6,16 @@ export function printNotif (str, status) {
 	p.textContent = str
 	div.style.margin = '0'
 	div.appendChild(p)
-	if (status === 200) { div.classList.add('w3-green') } else { div.classList.add('w3-red') }
+	if (status < 400) {
+    div.classList.add('w3-green')
+  } else {
+    div.classList.add('w3-red')
+  }
 	notif.appendChild(div)
 
-	setTimeout(function () { notif.removeChild(div) }, 4500, notif, div)
+	setTimeout(function () {
+    notif.removeChild(div)
+  }, 4500, notif, div)
 }
 
 export function createNode (type, attributes) {

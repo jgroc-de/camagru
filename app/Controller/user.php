@@ -56,5 +56,6 @@ class user extends Patronus
         $this->userManager->deleteUser();
         session_unset();
         session_destroy();
+        $this->response['flash'] = "Account successfully erased!";
     }
 }

@@ -1,5 +1,5 @@
-import { Controller } from  '../Abstract/controller.js'
-import * as pictures from '../View/pictures.js'
+import { Controller } from '../../Abstract/controller.js'
+import * as pictures from '../../View/pictures.js'
 
 export class Index extends Controller {
 	constructor (state, name) {

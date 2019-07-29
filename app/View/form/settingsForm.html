@@ -3,11 +3,15 @@
 		<div class="w3-border-bottom">
 			<a class="w3-margin-right w3-right w3-button w3-red w3-section" type="button" href="#">
 				<i class="fas fa-times"></i>
+			<a id="settingsBtn" href="#settings" class="w3-button w3-section w3-grey gg-post-it">Settings</a>
+			<a id="passwordBtn" href="#password" class="w3-button w3-section gg-post-it">Password</a>
+			<a id="eraseBtn" href="#suppression" class="w3-button w3-section gg-post-it">Forget-me</a>
 			</a>
-			<span href="#settings" class="w3-button w3-section w3-grey gg-post-it">Settings</span>
 		</div>
 		<?php
 			require __DIR__.'/settings.html';
+			require __DIR__.'/password.html';
+			require __DIR__.'/erase.html';
 		?>
 	</div>
 </div>

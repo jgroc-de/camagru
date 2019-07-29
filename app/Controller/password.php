@@ -53,10 +53,5 @@ class password extends Patronus
         if ('get' !== $this->method) {
             parent::bomb($options);
         }
-        if ($this->code >= 400) {
-            header('Location: /error');
-        } else {
-            header('Location: /');
-        }
     }
 }

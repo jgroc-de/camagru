@@ -7,9 +7,23 @@ export class anGGularJS {
 		this.state = state
 	}
 
+  path (route) {
+    if (["suppression", "settings", "password", "login", "signup", "reinit"].includes(route)) {
+      return "forms/" + route
+    } else if (["index", "pictures"].includes(route)) {
+      return "home/" + route
+    } else if (["burger", "logout"].includes(route)) {
+      return "navbar/" + route
+    } else if (["camagru"].includes(route)) {
+      return "photomaton/" + route
+    } else {
+      return route
+    }
+  }
+
 	launch () {
 		try {
-			let route = middlewares(router(this.state))
+			let route = this.path(middlewares(router(this.state)))
 			const controller = './Controller/' + route + '.js'
 			console.log("route: " + route)
 
@@ -33,7 +47,8 @@ export class anGGularJS {
 	checkLogin () {
 		try {
 			//check if is logged on server
-			const controller = './Controller/login.js'
+			let route = this.path("login")
+			const controller = './Controller/' + route + '.js'
 			console.log("login")
 
 			import(controller).then((module) => {

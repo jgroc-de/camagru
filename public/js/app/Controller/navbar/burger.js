@@ -1,4 +1,4 @@
-import { Controller } from '../Abstract/controller.js'
+import { Controller } from '../../Abstract/controller.js'
 
 export class Burger extends Controller {
 	constructor (state) {

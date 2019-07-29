@@ -12,6 +12,8 @@ export function router(state) {
 		"reinit",
 		"signup",
 		"settings",
+		"password",
+    "suppression",
 	]
 	hash = hash.replace("!", "")
 	let index = routes.indexOf(hash)

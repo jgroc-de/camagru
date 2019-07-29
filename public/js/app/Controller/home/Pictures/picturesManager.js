@@ -1,6 +1,6 @@
-import { ggAjax } from '../../../Library/ggAjax.js'
+import { ggAjax } from '../../../../Library/ggAjax.js'
 import { Picture } from './picture.js'
-import * as view from '../../View/picture.js'
+import * as view from '../../../View/picture.js'
 
 export class PicturesManager {
 	constructor (section) {

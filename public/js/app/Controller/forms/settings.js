@@ -1,6 +1,6 @@
-import { FormModal } from '../Abstract/formModal.js'
-import { printNotif } from '../../Library/printnotif.js'
-import { ggAjax } from '../../Library/ggAjax.js'
+import { FormModal } from '../../Abstract/formModal.js'
+import { printNotif } from '../../../Library/printnotif.js'
+import { ggAjax } from '../../../Library/ggAjax.js'
 
 
 export class Settings extends FormModal {
@@ -14,7 +14,6 @@ export class Settings extends FormModal {
 		let forms = this.formContainer.getElementsByTagName('form')
 
 		forms[0].method = "patch"
-		forms[1].method = "patch"
 	}
 
 	getUser() {
@@ -30,7 +29,7 @@ export class Settings extends FormModal {
   checkboxManager (response, checkbox) {
     let isChecked = response.settings.alert ? true : false
 
-    if (checkbox.checked !== isChecked) {
+    if (!isChecked) {
       checkbox.click()
     }
   }

@@ -1,16 +1,12 @@
-import { hiddenController } from  '../Abstract/hiddenController.js'
-import * as pictures from '../View/pictures.js'
+import { newPage } from '../../Abstract/newPage.js'
+import * as view from '../../View/pictures.js'
 import { PicturesManager } from './Pictures/picturesManager.js'
 
-export class Pictures extends hiddenController {
-	constructor (state, name) {
-		super(state, 'pictures')
-		this.resetView()
-		if (!this.card) {
-			this.buildView()
-			this.card = document.getElementById('pictures')
-			this.link = this.card.children[0].children[0]
-		}
+export class Pictures extends newPage {
+	constructor (state) {
+		super(state, 'pictures', [
+			'camagru'
+    ], view)
 		this.PicturesManager = new PicturesManager(this.card.getElementsByTagName('section')[0])
 		this.sort = 'Date'
 		this.page = this.PicturesManager.page
@@ -69,18 +65,6 @@ export class Pictures extends hiddenController {
 		}
 	}
 
-	buildView () {
-		let anchor = document.getElementById('notif')
-		let view = (new DOMParser()).parseFromString(pictures.template, 'text/html')
-
-		anchor.parentNode.insertBefore(
-			view.body,
-			anchor.nextElementSibling
-		)
-
-		return view
-	}
-
 	changeView () {
 		this.PicturesManager.destroyView()
 		this.PicturesManager.getPictures(this.sort, this.page)
@@ -133,23 +117,4 @@ export class Pictures extends hiddenController {
       default:
     }
   }
-
-	resetView () {
-		let components = [
-			'Camagru'
-		]
-
-		for (let name of components) {
-			this.remove(name)
-		}
-	}
-
-	remove (name) {
-		if (this.state['components'][name]) {
-			let card = this.state['components'][name].card
-
-			card.parentNode.removeChild(card)
-			delete this.state['components'][name]
-		}
-	}
 }
