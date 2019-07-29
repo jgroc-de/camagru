@@ -2,6 +2,8 @@
 
 namespace App\Model;
 
+use Dumb\Response;
+
 class CommentManager extends SqlManager
 {
     public function getComments(int $id)
@@ -16,6 +18,17 @@ class CommentManager extends SqlManager
 		';
 
         return $this->sqlRequest($request, [$id]);
+    }
+
+    public function getComment(int $id)
+    {
+        $request = '
+            SELECT *
+            FROM comments
+			WHERE id = ?
+		';
+
+        return $this->sqlRequestFetch($request, [$id]);
     }
 
     public function getCommentByImgId(int $id)
@@ -45,16 +58,22 @@ class CommentManager extends SqlManager
     public function deleteComment($id)
     {
         $request = 'DELETE FROM comments WHERE id = ?';
-        $this->sqlRequest($request, [$id]);
+        $out = $this->sqlRequest($request, [$id], true);
+        if ($out === 0) {
+            throw new \Exception('Delete failed', Response::NOT_FOUND);
+        }
     }
 
     public function updateComment($id, $comment)
     {
-        $request = '
+            $request = '
                 UPDATE comments
                 SET date = NOW(), content = ?
                 WHERE id = ?
             ';
-        $this->sqlRequest($request, [$comment, $id]);
+            $out = $this->sqlRequest($request, [$comment, $id], true);
+            if ($out === 0) {
+                throw new \Exception('Update failed ', Response::NOT_FOUND);
+            }
     }
 }

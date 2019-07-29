@@ -3,6 +3,8 @@
 url="/user"
 pseudo="testRoot"
 pass="testRoot0"
+pseudo2="other"
+pass2="testOther1"
 mail="lol@lol.com"
 badPseudo="testRoot1"
 badPass="lolLOLOLOL89"
@@ -24,6 +26,7 @@ data=(
 	"{}"
 	"{\"pseudo\":\"$pseudo\",\"password\":\"$pass\"}"
 	"{\"pseudo\":\"$pseudo\",\"password\":\"$pass\",\"email\":\"$mail\"}"
+	"{\"pseudo\":\"$pseudo2\",\"password\":\"$pass2\",\"email\":\"$mail\"}"
 )
 
 tests=(
@@ -42,6 +45,7 @@ tests=(
 	"/login;200;POST"
 	"$url;200;DELETE"
 	"/login;400;POST"
+	"$url;201"
 	"$url;201"
 	)
 

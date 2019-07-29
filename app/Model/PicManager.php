@@ -2,12 +2,14 @@
 
 namespace App\Model;
 
+use Dumb\Response;
+
 class PicManager extends SqlManager
 {
     public function getPic(int $id)
     {
         $request = '
-			SELECT img.id, img.title, img.url, img.date as date2, img.nb_like, users.pseudo
+			SELECT img.id, img.title, img.url, img.date as date2, img.nb_like, img.author_id, users.pseudo
 			FROM img
             INNER JOIN users
             ON img.author_id = users.id
@@ -94,12 +96,9 @@ class PicManager extends SqlManager
             DELETE FROM img
             WHERE id = ? AND author_id = ?
         ';
-        if ($this->sqlRequest($request, [$img_id, $author_id], true)) {
-            $request = '
-            DELETE FROM comments
-            WHERE img_id = ?
-            ';
-            $this->sqlRequest($request, [$img_id], true);
+        $out = $this->sqlRequest($request, [$img_id, $author_id], true);
+        if ($out === 0) {
+            throw new \Exception('Delete failed', Response::NOT_FOUND);
         }
     }
 
@@ -165,6 +164,17 @@ class PicManager extends SqlManager
         return $count[0];
     }
 
+    public function deleteLike(int $img_id)
+    {
+        $author_id = $_SESSION['id'];
+        $request = 'DELETE FROM likes WHERE img_id = ? AND author_id = ?';
+        $out = $this->sqlRequest($request, [$img_id, $author_id], true);
+        if ($out === 0) {
+            throw new \Exception('Delete failed', Response::NOT_FOUND);
+        }
+    }
+
+
     public function changeTitle(int $id, string $title)
     {
         $request = '
@@ -173,14 +183,10 @@ class PicManager extends SqlManager
             WHERE id = ?
             AND author_id = ?
         ';
-        $this->sqlRequest($request, [$title, $id, $_SESSION['id']], true);
-        $request = '
-			SELECT title 
-			FROM img 
-			WHERE id = ?
-		';
-        $title = $this->sqlRequestFetch($request, [$id]);
-
-        return $title['title'];
+        $out = $this->sqlRequest($request, [$title, $id, $_SESSION['id']], true);
+        var_dump($out);
+        if ($out === 0) {
+            throw new \Exception('Update failed', Response::NOT_FOUND);
+        }
     }
 }

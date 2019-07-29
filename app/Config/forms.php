@@ -13,7 +13,7 @@ function escapeString($key)
 function numericType($key)
 {
     if (!is_numeric($_POST[$key]) || $_POST[$key] <= 0) {
-        throw new \Exception('bad params', Response::BAD_REQUEST);
+        throw new \Exception('bad params:not numeric', Response::BAD_REQUEST);
     }
     $_POST[$key] = (int) $_POST[$key];
 }
@@ -21,21 +21,21 @@ function numericType($key)
 function passwordType($key)
 {
     if (!preg_match('#(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,256}#', $_POST[$key])) {
-        throw new \Exception('bad params', Response::BAD_REQUEST);
+        throw new \Exception('bad params:not password', Response::BAD_REQUEST);
     }
 }
 
 function emailType($key)
 {
     if (!preg_match('#^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,63})$#', $_POST[$key])) {
-        throw new \Exception('bad params', Response::BAD_REQUEST);
+        throw new \Exception('bad params:not email', Response::BAD_REQUEST);
     }
 }
 
 function pseudoType($key)
 {
     if (mb_strlen($_POST[$key]) > 30) {
-        throw new \Exception('bad params', Response::BAD_REQUEST);
+        throw new \Exception('bad params:not pseudo', Response::BAD_REQUEST);
     }
 }
 
@@ -92,9 +92,6 @@ function trollBumper(Dumb $baka)
             ],
         ],
         'picture' => [
-            'delete' => [
-                'url' => '',
-            ],
             'patch' => [
                 'id' => 'numeric',
                 'title' => 'pseudo',

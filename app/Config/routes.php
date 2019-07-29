@@ -30,5 +30,7 @@ function bakado(Dumb $baka)
         'setup',
         'user',
         'minimifier',
+        'comment',
+        'like',
     ]);
 }

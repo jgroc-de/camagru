@@ -19,44 +19,45 @@ function incept(Dumb $baka)
         },
         [
             'like' => [
+                'delete',
                 'post',
             ],
         ]
     );
 
-    //à modifier pour ne pas etre dépendant de l'url
     $baka->setGhostShield(
         function (array $c) {
-            $pic = $c['picture']($c)->getPicByUrl($_POST['url']);
+            $pic = $c['picture']($c)->getPic($_GET['id']);
 
             if (empty($pic)) {
                 throw new \Exception('Picture not found', Response::NOT_FOUND);
             }
-            if ($_SESSION['id'] !== $pic['id_author']) {
+            if ($_SESSION['id'] !== $pic['author_id']) {
                 throw new \Exception('Picture not yours', Response::FORBIDDEN);
             }
-            $_POST['id'] = (int) $pic['id'];
         },
         [
             'picture' => [
                 'delete',
+                'patch',
             ],
         ]
     );
 
     $baka->setGhostShield(
         function (array $c) {
-            $pic = $c['picture']($c)->getPic($_POST['id']);
+            $comment = $c['comment']($c)->getComment($_GET['id']);
 
-            if (empty($pic)) {
-                throw new \Exception('Picture not found', Response::NOT_FOUND);
+            if (empty($comment)) {
+                throw new \Exception('Comment not found', Response::NOT_FOUND);
             }
-            if ($_SESSION['user']['pseudo'] !== $pic['pseudo']) {
-                throw new \Exception('Picture not yours', Response::FORBIDDEN);
+            if ($_SESSION['id'] !== $comment['author_id']) {
+                throw new \Exception('Comment not yours', Response::FORBIDDEN);
             }
         },
         [
-            'picture' => [
+            'comment' => [
+                'delete',
                 'patch',
             ],
         ]

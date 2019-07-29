@@ -7,8 +7,14 @@ files=(\
     "contact.sh"
     "user/login.sh"
     "image/createPic.sh"
+    "image/addcomment.sh"
+    "image/addlike.sh"
+    "image/changeTitle.sh"
+    "image/deletepic.sh"
     "get.sh"
     )
+    #"user/reinitPost.sh"
+
 for file in ${files[@]}; do
     printf "\n*** \033[32mbegin $file\033[0m ***\n"
     ./curlTest/$file

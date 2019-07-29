@@ -17,6 +17,8 @@ data=(
 	'{"pseudo":"testRoot","password":"testRoot0"}'
 	'{"pseudo":"testRoot","password":"testRoot0"}'
 	'{}'
+	'{"pseudo":"other","password":"testOther1"}'
+	'{}'
 )
 
 tests=(
@@ -31,6 +33,8 @@ tests=(
 	"$url;400"
 	"$url;200"
 	"$url;400"
+	"/login;200;POST"
+	"/login;200;DELETE"
 	"/login;200;POST"
 	"/login;200;DELETE"
 	)

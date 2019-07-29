@@ -24,7 +24,7 @@ class SqlManager
         $obj = $this->db->prepare($request);
         $success = $obj->execute($array);
         if ($bool) {
-            return $success;
+            return $obj->rowCount();
         }
 
         return $obj;

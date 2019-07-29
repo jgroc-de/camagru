@@ -29,6 +29,7 @@ class comment extends Patronus
             $this->container['mail']()->sendCommentMail($user);
         }
         $this->response = $this->commentManager->getCommentByImgId($id);
+        $this->code = Response::CREATED;
     }
 
     public function delete()

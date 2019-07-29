@@ -36,14 +36,18 @@ class picture extends Patronus
 
     public function patch()
     {
-        $this->response = $this->pictureManager->changeTitle($_POST['id'], $_POST['title']);
+        $id = $_GET['id'];
+        $this->pictureManager->changeTitle($id, $_POST['title']);
+        $this->response = $_POST['title'];
     }
 
     public function delete()
     {
-        $this->response['url'] = $_POST['url'];
-        $this->pictureManager->deletePic($_POST['id'], (int) $_SESSION['id']);
-        unlink($_POST['url']);
+        $id = $_GET['id'];
+        $this->response['id'] = $id;
+        $this->picture = $this->pictureManager->getPic($id);
+        $this->pictureManager->deletePic($id, (int) $_SESSION['id']);
+        unlink($this->picture['url']);
         $this->response['flash'] = 'Picture successfully deleted!';
     }
 

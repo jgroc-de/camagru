@@ -47,9 +47,12 @@ function shield(Dumb $baka)
             ],
             'comment' => [
                 'post',
+                'patch',
+                'delete',
             ],
             'like' => [
                 'post',
+                'delete',
             ],
             'picture' => [
                 'post',
