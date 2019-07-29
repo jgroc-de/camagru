@@ -11,14 +11,14 @@ class like extends Patronus
 {
     private $pictureManager;
 
-    public function delete()
-    {
-        $this->pictureManager->deleteLike((int)$_POST['id']);
-    }
-
     protected function setup()
     {
         $this->pictureManager = $this->container['picture']($this->container);
+    }
+
+    public function delete()
+    {
+        $this->pictureManager->deleteLike((int) $_POST['id']);
     }
 
     public function post()

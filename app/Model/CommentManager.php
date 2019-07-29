@@ -59,21 +59,21 @@ class CommentManager extends SqlManager
     {
         $request = 'DELETE FROM comments WHERE id = ?';
         $out = $this->sqlRequest($request, [$id], true);
-        if ($out === 0) {
+        if (0 === $out) {
             throw new \Exception('Delete failed', Response::NOT_FOUND);
         }
     }
 
     public function updateComment($id, $comment)
     {
-            $request = '
+        $request = '
                 UPDATE comments
                 SET date = NOW(), content = ?
                 WHERE id = ?
             ';
-            $out = $this->sqlRequest($request, [$comment, $id], true);
-            if ($out === 0) {
-                throw new \Exception('Update failed ', Response::NOT_FOUND);
-            }
+        $out = $this->sqlRequest($request, [$comment, $id], true);
+        if (0 === $out) {
+            throw new \Exception('Update failed ', Response::NOT_FOUND);
+        }
     }
 }

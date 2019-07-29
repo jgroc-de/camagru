@@ -97,7 +97,7 @@ class PicManager extends SqlManager
             WHERE id = ? AND author_id = ?
         ';
         $out = $this->sqlRequest($request, [$img_id, $author_id], true);
-        if ($out === 0) {
+        if (0 === $out) {
             throw new \Exception('Delete failed', Response::NOT_FOUND);
         }
     }
@@ -169,11 +169,10 @@ class PicManager extends SqlManager
         $author_id = $_SESSION['id'];
         $request = 'DELETE FROM likes WHERE img_id = ? AND author_id = ?';
         $out = $this->sqlRequest($request, [$img_id, $author_id], true);
-        if ($out === 0) {
+        if (0 === $out) {
             throw new \Exception('Delete failed', Response::NOT_FOUND);
         }
     }
-
 
     public function changeTitle(int $id, string $title)
     {
@@ -185,7 +184,7 @@ class PicManager extends SqlManager
         ';
         $out = $this->sqlRequest($request, [$title, $id, $_SESSION['id']], true);
         var_dump($out);
-        if ($out === 0) {
+        if (0 === $out) {
             throw new \Exception('Update failed', Response::NOT_FOUND);
         }
     }
