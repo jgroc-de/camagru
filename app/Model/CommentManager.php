@@ -9,12 +9,13 @@ class CommentManager extends SqlManager
     public function getComments(int $id)
     {
         $request = '
-            SELECT content, date as date2, pseudo
+            SELECT comments.id, comments.content, comments.date, users.pseudo
             FROM comments 
             INNER JOIN users
             ON comments.author_id = users.id
 			WHERE img_id = ?
 			ORDER BY comments.id DESC
+            LIMIT 50
 		';
 
         return $this->sqlRequest($request, [$id]);
@@ -34,7 +35,7 @@ class CommentManager extends SqlManager
     public function getCommentByImgId(int $id)
     {
         $request = '
-            SELECT content, date as date2, pseudo
+            SELECT comments.id, comments.content, comments.date, users.pseudo
             FROM comments
             INNER JOIN users
             ON comments.author_id = users.id

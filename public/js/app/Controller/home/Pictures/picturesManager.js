@@ -1,6 +1,6 @@
 import { ggAjax } from '../../../../Library/ggAjax.js'
-import { Picture } from './picture.js'
-import * as view from '../../../View/picture.js'
+import { Shot } from './shot.js'
+import * as view from '../../../View/shot.js'
 
 export class PicturesManager {
 	constructor (section) {
@@ -34,7 +34,7 @@ export class PicturesManager {
 
 		for (let picture of pictures) {
 			node = this.view.cloneNode(true)
-			this.pictures.push(new Picture(node, picture))
+			this.pictures.push(new Shot(node, picture))
 		}
 	}
 

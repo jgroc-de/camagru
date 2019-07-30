@@ -31,14 +31,14 @@ class picture extends Patronus
         if (empty($this->picture)) {
             throw new \Exception('picture', Response::NOT_FOUND);
         }
-        $this->comments = $this->container['comment']($this->container)->getComments($id)->fetchAll();
+        $this->response = $this->picture;
     }
 
     public function patch()
     {
         $id = $_GET['id'];
         $this->pictureManager->changeTitle($id, $_POST['title']);
-        $this->response = $_POST['title'];
+        $this->response['title'] = $_POST['title'];
     }
 
     public function delete()

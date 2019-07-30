@@ -4,7 +4,8 @@ use App\Model\CommentManager;
 use App\Model\ConfigManager;
 use App\Model\FilterManager;
 use App\Model\MailManager;
-use App\Model\PicManager;
+use App\Model\PicturesManager;
+use App\Model\LikesManager;
 use App\Model\UserManager;
 use Dumb\Dumb;
 
@@ -52,7 +53,10 @@ function equip(Dumb $baka)
             return new ConfigManager($c);
         },
         'picture' => function ($c) {
-            return new PicManager($c);
+            return new PicturesManager($c);
+        },
+        'like' => function ($c) {
+            return new LikesManager($c);
         },
         'mail' => function () {
             return new MailManager();

@@ -25,7 +25,7 @@ export class Login extends FormModal {
 			let redirection = '#' + this.redirect
 			console.log("redirection : " + redirection)
 
-			this.state.setLogin(response.settings.pseudo)
+			this.state.setLogin(response.settings)
 			this.toggleLoginButton()
 			this.reset()
 			this.shutDown()

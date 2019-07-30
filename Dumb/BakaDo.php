@@ -70,7 +70,7 @@ class BakaDo
         $uri = explode('/', $_SERVER['REQUEST_URI']);
         $this->uri = explode('?', $uri[1])[0];
         if (isset($uri[2])) {
-            $_GET['id'] = $uri[2];
+            $_GET['id'] = (int)$uri[2];
         }
     }
 

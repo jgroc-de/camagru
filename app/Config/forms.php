@@ -35,7 +35,7 @@ function emailType($key)
 function pseudoType($key)
 {
     if (mb_strlen($_POST[$key]) > 30) {
-        throw new \Exception('bad params:not pseudo', Response::BAD_REQUEST);
+        throw new \Exception('bad params:too long (>30 characters)', Response::BAD_REQUEST);
     }
 }
 
@@ -56,7 +56,7 @@ function imageType($key)
 }
 
 /**
- * troolBumper.
+ * trollBumper.
  * validation of forms for each routes.
  */
 function trollBumper(Dumb $baka)
@@ -64,11 +64,9 @@ function trollBumper(Dumb $baka)
     $formDefinition = [
         'comment' => [
             'post' => [
-                'id' => 'numeric',
                 'comment' => '',
             ],
             'patch' => [
-                'id' => 'numeric',
                 'comment' => '',
             ],
         ],
@@ -86,14 +84,8 @@ function trollBumper(Dumb $baka)
                 'pseudo' => 'pseudo',
             ],
         ],
-        'like' => [
-            'post' => [
-                'id' => 'numeric',
-            ],
-        ],
         'picture' => [
             'patch' => [
-                'id' => 'numeric',
                 'title' => 'pseudo',
             ],
             'post' => [

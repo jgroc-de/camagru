@@ -13,7 +13,7 @@ function incept(Dumb $baka)
 {
     $baka->setGhostShield(
         function (array $c) {
-            if (!($c['picture']($c)->picInDb($_POST['id']))) {
+            if (!($c['picture']($c)->picInDb($_GET['id']))) {
                 throw new \Exception('Picture not found', Response::NOT_FOUND);
             }
         },
@@ -21,6 +21,7 @@ function incept(Dumb $baka)
             'like' => [
                 'delete',
                 'post',
+                'get',
             ],
         ]
     );

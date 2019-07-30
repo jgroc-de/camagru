@@ -5,9 +5,8 @@ import { FilterManager } from './Camagru/filterManager.js'
 
 export class Camagru extends newPage {
 	constructor (state) {
-		super(state, 'camagru', [
-			'pictures',
-			'picture',
+		super(state, 'Camagru', [
+			'Pictures','Picture'
 		], view)
 		this.FilterManager = new FilterManager(this.section)
 		this.Photographer = new Photographer()

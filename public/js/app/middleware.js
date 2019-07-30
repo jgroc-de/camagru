@@ -36,9 +36,7 @@ function anonymousArea (state) {
 }
 
 export function middlewares (state) {
-	if (!restrictedArea(state)
-		|| !anonymousArea(state)
-	) {
+	if (!restrictedArea(state) || !anonymousArea(state)) {
 		return false
 	}
 

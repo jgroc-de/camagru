@@ -14,7 +14,7 @@ tests=(\
 	"/picturesByDate;200"
 	"/picturesByLike;200"
 	"/home;200"
-	"/picture/1;200"
+	"/picture/2;200"
 	"/minimifier;200"
 	"/picture;400"
 	"/password;400"

@@ -9,25 +9,30 @@ use Dumb\Response;
 
 class like extends Patronus
 {
-    private $pictureManager;
+    private $likeManager;
 
     protected function setup()
     {
-        $this->pictureManager = $this->container['picture']($this->container);
+        $this->likeManager = $this->container['like']($this->container);
+    }
+
+    public function get()
+    {
+        $this->response = $this->likeManager->getLike((int) $_GET['id']);
     }
 
     public function delete()
     {
-        $this->pictureManager->deleteLike((int) $_POST['id']);
+        $this->likeManager->deleteLike((int) $_GET['id']);
+        $this->response = $this->likeManager->getLike((int) $_GET['id']);
+        $this->response['flash'] = 'done :(';
     }
 
     public function post()
     {
-        $this->response['likes_counter'] = $this->pictureManager->addlike($_POST['id']);
-        if ($this->response['likes_counter'] < 0) {
-            $this->response['flash'] = 'Already liked!';
-        } else {
-            $this->code = Response::CREATED;
-        }
+        $this->likeManager->addLike((int) $_GET['id']);
+        $this->response = $this->likeManager->getLike((int) $_GET['id']);
+        $this->response['flash'] = 'Thx :)';
+        $this->code = Response::CREATED;
     }
 }

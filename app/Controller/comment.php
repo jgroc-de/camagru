@@ -16,6 +16,11 @@ class comment extends Patronus
         $this->commentManager = $this->container['comment']($this->container);
     }
 
+    public function get()
+    {
+        $this->response['comments'] = $this->container['comment']($this->container)->getComments($_GET['id'])->fetchAll();
+    }
+
     public function post()
     {
         $id = $_POST['id'];

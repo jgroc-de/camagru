@@ -10,18 +10,22 @@ export class hiddenController extends Controller {
 	}
 
 	view(defaultView = false) {
-		let link = this.link.href.split("#").pop()
+    let href = this.link.href
 
-		if (defaultView) {
-			this.link.href = "#" + this.name
-			this.card.children[1].setAttribute('hidden', true)
-		} else {
-			this.card.children[1].toggleAttribute('hidden')
-			if (link === this.name) {
-				this.link.href = "#!" + this.name
-			} else {
-				this.link.href = "#" + this.name
-			}
+    if (href) {
+      let link = href.split("#").pop()
+
+      if (defaultView) {
+        this.link.href = "#" + this.name
+        this.card.children[1].setAttribute('hidden', true)
+      } else {
+        this.card.children[1].toggleAttribute('hidden')
+        if (link === this.name) {
+          this.link.href = "#!" + this.name
+        } else {
+          this.link.href = "#" + this.name
+        }
+      }
     }
 
     return false

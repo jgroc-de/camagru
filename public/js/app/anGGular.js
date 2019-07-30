@@ -10,8 +10,10 @@ export class anGGularJS {
   path (route) {
     if (["suppression", "settings", "password", "login", "signup", "reinit"].includes(route)) {
       return "forms/" + route
-    } else if (["index", "pictures"].includes(route)) {
+    } else if (["pictures"].includes(route)) {
       return "home/" + route
+    } else if (["picture"].includes(route)) {
+      return "picture/" + route
     } else if (["burger", "logout"].includes(route)) {
       return "navbar/" + route
     } else if (["camagru"].includes(route)) {

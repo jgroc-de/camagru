@@ -4,12 +4,12 @@ namespace App\Model;
 
 use Dumb\Response;
 
-class PicManager extends SqlManager
+class PicturesManager extends SqlManager
 {
     public function getPic(int $id)
     {
         $request = '
-			SELECT img.id, img.title, img.url, img.date as date2, img.nb_like, img.author_id, users.pseudo
+			SELECT img.id, img.title, img.url, img.date, img.author_id, users.pseudo
 			FROM img
             INNER JOIN users
             ON img.author_id = users.id
@@ -38,11 +38,11 @@ class PicManager extends SqlManager
     public function getPicsByLike(int $start)
     {
         $request = $this->db->prepare('
-			SELECT img.id, img.title, img.url
+			SELECT img.id, img.title, img.url, (select COUNT(id) from likes where img.id = likes.img_id) AS likes
             FROM img
             INNER JOIN users
             ON img.author_id = users.id
-			ORDER BY img.nb_like DESC
+			ORDER BY likes DESC
 			LIMIT 8 OFFSET :start
 		');
         $request->bindParam(':start', $start, \PDO::PARAM_INT);
@@ -129,51 +129,6 @@ class PicManager extends SqlManager
         return false;
     }
 
-    public function addLike(int $img_id)
-    {
-        $author_id = $_SESSION['id'];
-        $request = '
-            SELECT id
-            FROM likes
-            WHERE img_id = ? AND author_id = ?
-        ';
-        $id = $this->sqlRequestFetch($request, [$img_id, $author_id]);
-        if (!isset($id['id'])) {
-            $request = '
-                UPDATE img 
-                SET nb_like = nb_like + 1 
-                WHERE id = ?
-                ';
-            $this->sqlRequest($request, [$img_id], true);
-            $request = '
-                INSERT INTO likes
-                (img_id, author_id)
-                VALUES (?, ?)
-                ';
-            $this->sqlRequest($request, [$img_id, $author_id], true);
-        } else {
-            return -1;
-        }
-        $request = '
-			SELECT nb_like 
-			FROM img 
-			WHERE id = ?
-		';
-        $count = $this->sqlRequestFetch($request, [$img_id]);
-
-        return $count[0];
-    }
-
-    public function deleteLike(int $img_id)
-    {
-        $author_id = $_SESSION['id'];
-        $request = 'DELETE FROM likes WHERE img_id = ? AND author_id = ?';
-        $out = $this->sqlRequest($request, [$img_id, $author_id], true);
-        if (0 === $out) {
-            throw new \Exception('Delete failed', Response::NOT_FOUND);
-        }
-    }
-
     public function changeTitle(int $id, string $title)
     {
         $request = '
@@ -183,7 +138,6 @@ class PicManager extends SqlManager
             AND author_id = ?
         ';
         $out = $this->sqlRequest($request, [$title, $id, $_SESSION['id']], true);
-        var_dump($out);
         if (0 === $out) {
             throw new \Exception('Update failed', Response::NOT_FOUND);
         }

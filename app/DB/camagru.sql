@@ -53,7 +53,6 @@ CREATE TABLE img (
   id SERIAL PRIMARY KEY,
   title varchar(255) NOT NULL,
   author_id bigint UNSIGNED NOT NULL,
-  nb_like int NOT NULL DEFAULT '0',
   url text NOT NULL,
   date date NOT NULL
 );

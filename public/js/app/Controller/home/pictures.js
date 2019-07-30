@@ -4,8 +4,8 @@ import { PicturesManager } from './Pictures/picturesManager.js'
 
 export class Pictures extends newPage {
 	constructor (state) {
-		super(state, 'pictures', [
-			'camagru'
+		super(state, 'Pictures', [
+			'Camagru','Picture'
     ], view)
 		this.PicturesManager = new PicturesManager(this.card.getElementsByTagName('section')[0])
 		this.sort = 'Date'

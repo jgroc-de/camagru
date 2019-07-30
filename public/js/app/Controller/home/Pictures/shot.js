@@ -1,4 +1,4 @@
-export class Picture {
+export class Shot {
 	constructor (node, param) {
 		this.node = node.body.children[0]
 		this.configure(param)
