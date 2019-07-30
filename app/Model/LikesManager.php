@@ -13,6 +13,7 @@ class LikesManager extends SqlManager
             FROM likes
             WHERE img_id = ?
         ';
+
         return $this->sqlRequestFetch($request, [$img_id]);
     }
 

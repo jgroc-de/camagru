@@ -23,7 +23,7 @@ class comment extends Patronus
 
     public function post()
     {
-        $id = $_POST['id'];
+        $id = $_GET['id'];
         $user = $this->container['user']($this->container)->getUserByImgId($id);
 
         if (empty($user)) {
