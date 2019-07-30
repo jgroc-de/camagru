@@ -43,19 +43,19 @@ data=(
     )
 
 tests=(
-    "$url;403"
+    "$url/$id;403"
     "/login;200;POST"
-    "$url;201"
-    "$url;400"
-    "$url;400"
-    "$url;400"
-    "$url;400"
-    "$url;400"
-    "$url;404"
-    "$url;400"
-    "$url;400"
-    "$url;400"
-    "$url;201"
+    "$url/$id;201"
+    "$url/;400"
+    "$url/$id;400"
+    "$url/;404"
+    "$url/;400"
+    "$url/$id;400"
+    "$url/$idbad1;404"
+    "$url/$idbad2;404"
+    "$url/$idbad3;404"
+    "$url/$id;400"
+    "$url/$id;201"
     "$url/$id;200;PATCH"
     "/login;200;DELETE"
     "/login;200;POST"
@@ -67,7 +67,7 @@ tests=(
     "$url/$id;200;DELETE"
     "$url/$idbad1;404;DELETE"
     "/login;200;DELETE"
-    "$url;403"
+    "$url/$id;403"
     )
 
 j=0
