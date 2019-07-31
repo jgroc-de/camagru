@@ -22,7 +22,7 @@ class SqlManager
     public function sqlRequest($request, array $array = [], bool $bool = false)
     {
         $obj = $this->db->prepare($request);
-        $success = $obj->execute($array);
+        $obj->execute($array);
         if ($bool) {
             return $obj->rowCount();
         }
@@ -32,6 +32,6 @@ class SqlManager
 
     public function sqlRequestFetch($request, array $array = [])
     {
-        return $this->sqlRequest($request, $array)->fetch();
+        return $this->sqlRequest($request, $array)->fetch(\PDO::FETCH_ASSOC);
     }
 }

@@ -16,7 +16,6 @@ export class newPage extends hiddenViewController {
 
 	resetView (components) {
     for (let name of components) {
-      console.log(name)
       if (this.state['components'][name]) {
         let card = this.state['components'][name].card
 
@@ -24,7 +23,6 @@ export class newPage extends hiddenViewController {
         delete this.state['components'][name]
       }
     }
-    console.log("end reset")
   }
 
 	buildView () {

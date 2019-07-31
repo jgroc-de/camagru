@@ -22,7 +22,7 @@ tests=(\
 	"/picturesByUser;403"
 	"/user;403"
 	"/aieaueaue;404"
-	"/picture/0;404"
+	"/picture/0;400"
 	"/picture/20000;404"
 	"/login;200;POST"
 	"/;200"
@@ -30,6 +30,8 @@ tests=(\
 	"/camagru;200"
 	"/picturesByUser;200"
 	"/login;200;DELETE"
+    "/comment/1;200"
+    "/comment/1;200;PUT"
 	)
 j=0
 

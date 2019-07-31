@@ -3,8 +3,6 @@ function restrictedArea (state) {
 		"camagru",
 		"settings",
 		"password",
-		"like",
-		"comment",
 	]
 	let index = logins.indexOf(state.route)
 

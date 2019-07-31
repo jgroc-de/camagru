@@ -15,7 +15,7 @@ function shield(Dumb $baka)
                 session_unset();
                 session_destroy();
 
-                throw new \Exception('you were logged in', Response::BAD_REQUEST);
+                throw new \Exception('you were logged in :(', Response::BAD_REQUEST);
             }
         },
         [
@@ -35,7 +35,7 @@ function shield(Dumb $baka)
     $baka->setMiddlewares(
         function () {
             if (!isset($_SESSION['user'])) {
-                throw new \Exception('You are logged out', Response::FORBIDDEN);
+                throw new \Exception('You should log in :)', Response::FORBIDDEN);
             }
         },
         [
@@ -76,10 +76,9 @@ function shield(Dumb $baka)
 
     $baka->setMiddlewares(
         function () {
-            if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+            if (!isset($_GET['id']) || ($_GET['id']) <= 0) {
                 throw new \Exception('bad request', Response::BAD_REQUEST);
             }
-            $_GET['id'] = (int) $_GET['id'];
         },
         [
             'picture' => [
@@ -87,6 +86,8 @@ function shield(Dumb $baka)
                 'delete',
                 'patch',
             ],
+            'comment' => [
+            ]
         ]
     );
 

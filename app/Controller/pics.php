@@ -19,7 +19,7 @@ class pics extends Patronus
     public function get()
     {
         $pics = $this->getPics();
-        $max = $this->picsManager->countPics()[0];
+        $max = $this->picsManager->countPics()['count'];
         if (empty($pics)) {
             throw new \Exception('pics', Response::NOT_FOUND);
         }

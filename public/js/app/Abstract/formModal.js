@@ -21,7 +21,7 @@ export class FormModal extends ModalController {
 		event.preventDefault()
 		event.stopPropagation()
 
-    switch(event.type) {
+    switch (event.type) {
       case 'click':
         this.submit(event)
         break;

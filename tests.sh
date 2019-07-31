@@ -1,7 +1,6 @@
 #!/bin/bash
 printf "*** --> \033[31mWarning!!\033[0m: test should be run on port \033[42m8080\033[0m!!<-- ***\n"
 
-    #"image/addcomment.sh"
 files=(\
     "user/signup.sh"
     "user/settings.sh"
@@ -9,6 +8,7 @@ files=(\
     "user/login.sh"
     "image/createPic.sh"
     "image/addlike.sh"
+    "image/addcomment.sh"
     "image/changeTitle.sh"
     "image/deletepic.sh"
     "get.sh"

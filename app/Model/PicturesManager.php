@@ -32,7 +32,7 @@ class PicturesManager extends SqlManager
         $request->bindParam(':start', $start, \PDO::PARAM_INT);
         $request->execute();
 
-        return $request->fetchAll();
+        return $request->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getPicsByLike(int $start)
@@ -48,7 +48,7 @@ class PicturesManager extends SqlManager
         $request->bindParam(':start', $start, \PDO::PARAM_INT);
         $request->execute();
 
-        return $request->fetchAll();
+        return $request->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getPicsByUser(string $pseudo)
@@ -105,7 +105,7 @@ class PicturesManager extends SqlManager
     public function countPics()
     {
         $request = '
-			SELECT COUNT(*)
+			SELECT COUNT(*) as count
 			FROM img
 		';
 

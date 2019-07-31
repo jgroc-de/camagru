@@ -1,15 +1,15 @@
 import { ggAjax } from '../../../../Library/ggAjax.js'
-import { LikeManager } from './likeManager.js'
-import { TitleManager } from './titleManager.js'
+import { Likes } from './likes.js'
+import { Title } from './title.js'
 import { printNotif } from '../../../../Library/printnotif.js'
 
-export class PictureManager {
+export class PicturePage {
 	constructor(section, state) {
     this.id = this.setId(state.id)
 		this.section = section
 		this.picture = null
-    this.likeManager = new LikeManager(this.section, state)
-    this.titleManager = new TitleManager(this.section, state)
+    this.likes = new Likes(this.section, state)
+    this.title = new Title(this.section, state)
 		this.getPicture()
 	}
 
@@ -45,10 +45,10 @@ export class PictureManager {
   }
 
   setPicture() {
-    this.titleManager.set(this.picture)
+    this.title.set(this.picture)
     this.setAuthor()
     this.setImage()
-    this.likeManager.set(this.picture)
+    this.likes.set(this.picture)
   }
 
 	callback (response, httpStatus) {

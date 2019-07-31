@@ -2,7 +2,7 @@ import { ggAjax } from '../../../../Library/ggAjax.js'
 import { request } from '../../../Abstract/request.js'
 import { printNotif } from '../../../../Library/printnotif.js'
 
-export class TitleManager {
+export class Title {
 	constructor(section, state) {
 		this.section = section.getElementsByTagName("h2")[0]
     this.button = this.section.getElementsByTagName("i")[0]
@@ -38,14 +38,8 @@ export class TitleManager {
 
 	eventDispatcher(event) {
 		event.preventDefault()
-		event.stopPropagation()
-
-    switch(event.type) {
-      case 'click':
-        this.submit(event)
-        break;
-      default:
-    }
+    event.stopPropagation()
+    this.submit(event)
   }
 
   setEventListener() {

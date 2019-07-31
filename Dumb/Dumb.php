@@ -85,7 +85,13 @@ class Dumb
     private function error($e)
     {
         $letter = new \App\Controller\error($this->container, 'get', (int) $e->getCode());
+        $message = $e->getMessage();
+        if ($letter->code > 600)
+        {
+            $letter->code = 404;
+            $message = "pdo error: " . $message;
+        }
         header('HTTP/1.1 '.$letter->code.' '.Response::HTTP_CODE[$letter->code]);
-        $letter->bomb(['flash' => $e->getMessage()]);
+        $letter->bomb(['flash' => $message]);
     }
 }

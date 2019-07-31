@@ -56,8 +56,6 @@ export class Form extends hiddenController {
 
   submit (event) {
     let inputs = event.target.form
-		console.log("form event target: ")
-		console.log(event.target)
 
     if (inputs.checkValidity()) {
       ggAjax(new request(inputs), this)
