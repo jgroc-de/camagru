@@ -1,16 +1,23 @@
+import * as view from '../../../View/filter.js'
+
 export class Filter {
-	constructor (node, param) {
-		this.node = node
-		this.configure(param)
-		this.parameters = param
+	constructor (section, data) {
+		this.section = section
+		this.data = data
+    this.buildView(view.template)
 	}
 
-	configure (param) {
-		let img = this.node.children[0]
+  setNode(img) {
 
-		this.node.id = param.title
-		img.src = param.url
-		img.alt = param.title
-		img.title = param.title
-	}
+		img.src = this.data.url
+		img.alt = this.data.title
+		img.title = this.data.title
+  }
+
+	buildView (template) {
+		let tmpNode = (new DOMParser()).parseFromString(template, 'text/html')
+
+    this.setNode(tmpNode.getElementsByTagName("img")[0])
+		this.node = this.section.appendChild(tmpNode.body.childNodes[0])
+  }
 }

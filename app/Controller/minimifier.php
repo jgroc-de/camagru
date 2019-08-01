@@ -19,10 +19,12 @@ class minimifier extends Patronus
     private $templates = [
         'camagru',
         'myPictures',
+        'myPicture',
         'pictures',
         'shot',
         'picture',
         'comment',
+        'filter',
     ];
 
     public function get()

@@ -9,7 +9,7 @@ class FilterManager extends SqlManager
         $tab = [];
 
         $request = $this->db->query('SELECT * FROM filter');
-        while ($elemt = $request->fetch()) {
+        while ($elemt = $request->fetch(\PDO::FETCH_ASSOC)) {
             $tab[] = $elemt;
         }
 

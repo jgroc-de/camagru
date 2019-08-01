@@ -19,11 +19,19 @@
 @media only screen and (max-width: 480px) {
     .gg-header {
     }
+
+		.gg-screen {
+			max-width: 480px;
+		}
 }
 
 @media only screen and (min-width: 480px) and (max-width: 800px) {
     .gg-header {
     }
+
+		.gg-screen {
+			max-width: 480px;
+		}
 }
 
 @media only screen and (min-width: 800px) {
@@ -34,7 +42,27 @@
         height: 700px;
         overflow: auto;
     }
+
+		.gg-screen {
+			width: 640px;
+			height: 480px;
+		}
 }
+
+@media only screen and (min-width: 1280px) {
+    .gg-header {
+    }
+
+    .gg-book {
+        height: 700px;
+        overflow: auto;
+    }
+		.gg-screen {
+			width: 640px;
+			height: 480px;
+		}
+
+	}
 
 .gg-wall {
     max-height: 600px;
@@ -100,4 +128,9 @@
   font-family: 'fa-solid-900';
   font-display: auto;
   src: local('fa-solid-900'), url(https://use.fontawesome.com/releases/v5.6.3/webfonts/fa-solid-900.woff2) format('woff2');
+}
+
+.gg-button:hover {
+	background-color:lightgrey;
+	cursor: pointer;
 }

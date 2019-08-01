@@ -96,7 +96,7 @@ export class CommentsPage {
   }
 
   addComment(comment) {
-    return new Comment(this.commentsSection, this.state, comment)
+    return new Comment(this.commentsSection, comment, this.state)
   }
 
 	callback (response, httpStatus) {

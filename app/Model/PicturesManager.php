@@ -56,17 +56,13 @@ class PicturesManager extends SqlManager
         $tab = [];
 
         $request = '
-			SELECT url, title
+			SELECT *
             FROM img
             WHERE author_id = ?
-			ORDER BY id DESC
 		';
-        $value = $this->sqlRequest($request, [$pseudo]);
-        while ($elemt = $value->fetch()) {
-            $tab[] = $elemt;
-        }
+        $request = $this->sqlRequest($request, [$pseudo]);
 
-        return $tab;
+        return $request->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getPicByUrl(string $url)
@@ -87,7 +83,13 @@ class PicturesManager extends SqlManager
 			(title, author_id, url, date)
 			VALUES (?, ?, ?, NOW())
 		';
-        $this->sqlRequest($request, [$_SESSION['user']['pseudo'].'_'.rand(), $_SESSION['id'], $path], true);
+        $out = $this->sqlRequest($request, [$_SESSION['user']['pseudo'].'_'.rand(), $_SESSION['id'], $path], true);
+        $id = $this->db->lastInsertId();
+        if (0 === $out) {
+            throw new \Exception('Addition failed', Response::NOT_FOUND);
+        }
+
+        return $this->getPic($id);
     }
 
     public function deletePic(int $img_id, int $author_id)

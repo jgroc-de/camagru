@@ -1,0 +1,1 @@
+export let template = '<button class="w3-col s6 m3 w3-button w3-margin w3-border"><img width="100%"></button>'

@@ -49,21 +49,25 @@ class picture extends Patronus
         $this->pictureManager->deletePic($id, (int) $_SESSION['id']);
         unlink($this->picture['url']);
         $this->response['flash'] = 'Picture successfully deleted!';
+        $this->response['status'] = 'deleted';
     }
 
     public function post()
     {
+				$this->response = $this->createPicture();
+        $this->code = Response::CREATED;
+    }
+
+		private function createPicture()
+		{
         $image = new Image();
         $filters = $this->getUserDefineFilters();
         foreach ($filters as $filter) {
             $image->add($filter);
         }
-        $image->save();
-        $name = $image->getFileName();
-        $this->pictureManager->addPic($name);
-        $this->response['path'] = $name;
-        $this->code = Response::CREATED;
-    }
+
+        return $image->save($this->pictureManager);
+		}
 
     private function getUserDefineFilters(): array
     {

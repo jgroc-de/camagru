@@ -1,35 +1,30 @@
 <div class="w3-container w3-padding-64" id="Camagru">
 	<section class="w3-col l6 w3-card gg-book" id="photomaton">
-    <h2 class="w3-border-bottom w3-border-light-grey w3-padding">
-      photomaton
-    </h2>
-		<div>
+		<h2 class="w3-border-bottom w3-border-light-grey w3-padding">
+			photomaton
+		</h2>
+		<div class="w3-content">
 			<div id="montage">
-				<video id="screen" poster="" width="100px" autoplay></video>
-				<img class="w3-hide" width="100px" id="filtertitle">
+				<video id="screen" class="gg-screen" controls poster="img/screen_bg.png" autoplay></video>
+				<img class="gg-screen w3-hide" id="filtertitle">
 			</div>
-			<button id="snap" class="w3-button w3-red">Snap Photo</button>
 			<form method="post" action="">
 				<input type="file" class="w3-input" id="file" accept=".png"/>
 			</form>
-			<canvas style="display:none" id="canvas" width="640" height="480"></canvas>
-			<div id="prev">
+			<div class="w3-row w3-margin">
+				<div class="w3-third"><h2></h2></div>
+				<button id="snap" class="w3-third w3-red w3-button">Snap Photo</button>
 			</div>
-		</div>
-  </section>
-  <section class="w3-col l6 w3-card-4 gg-book" id="filters">
-    <h2 class="w3-border-bottom w3-border-light-grey w3-padding">
-      filters
-    </h2>
-		<div class="w3-row-padding gg-filter">
-			<button class="w3-col s6 m3 w3-button w3-margin w3-border">
-				<img height="100px">
-			</button>
+			<canvas style="display:none" id="canvas" class="gg-screen"></canvas>
+			<div id="prev"></div>
 		</div>
 	</section>
-	<h3 class="w3-border-bottom w3-border-light-grey w3-padding">
-		<a class="w3-button" type="button" href="#MyPictures">
-			My Pictures
-		</a>
-	</h3>
+	<section class="w3-col l6 w3-card-4 gg-book">
+		<div class="w3-border-bottom w3-border-light-grey w3-row">
+			<h2><button class="w3-grey w3-button w3-half" style="margin-bottom:0">filters</button></h2>
+			<h2><button class="w3-button w3-half" style="margin-bottom:0">my pictures</button></h2>
+		</div>
+		<div id="filters" class="w3-row-padding"></div>
+		<div id="mypictures" class="w3-row-padding w3-hide"><i></i></div>
+	</section>
 </div>

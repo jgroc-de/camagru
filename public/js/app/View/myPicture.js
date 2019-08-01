@@ -1,0 +1,1 @@
+export let template = '<div class="w3-col l3 m6 w3-margin-top"><a class="w3-button w3-display-container"><span class="w3-display-topleft w3-black w3-padding-small">title</span><img style="width:100%" alt="title" title="title"></a><div class="w3-button fa fa-trash w3-black w3-hover-red" style="width:100%"></div></div>'

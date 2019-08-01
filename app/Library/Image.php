@@ -29,11 +29,6 @@ class Image
         $this->setFileName();
     }
 
-    public function getFileName()
-    {
-        return $this->fileName;
-    }
-
     public function add($filter)
     {
         $tmp = $filter['url'];
@@ -60,12 +55,14 @@ class Image
         imagedestroy($src);
     }
 
-    public function save()
+    public function save($pictureManager)
     {
         imagealphablending($this->image, true);
         imagesavealpha($this->image, true);
         imagepng($this->image, $this->fileName);
         imagedestroy($this->image);
+
+        return $pictureManager->addPic($this->fileName);
     }
 
     private function setFileName()

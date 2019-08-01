@@ -3,14 +3,14 @@ import * as view from '../../../View/comment.js'
 import { printNotif } from '../../../../Library/printnotif.js'
 
 export class Comment {
-	constructor(section, state, comment) {
+	constructor(section, data, state) {
 		this.section = section
-    this.setData(comment)
+    this.data = data
     this.buildView(view.template, state)
 	}
 
   setEvent(state) {
-    if (state.isLogin() && state.login.id === this.author_id) {
+    if (state.isLogin() && state.login.id === this.data.author_id) {
       this.eventType = 'click'
       this.handleEvent = function (event) {
         this.eventDispatcher(event)
@@ -21,19 +21,10 @@ export class Comment {
     }
   }
 
-  setData(comment) {
-    this.id = comment.id
-    this.img_id = comment.img_id
-    this.author_id = comment.author_id
-    this.author = comment.pseudo
-    this.content = comment.content
-    this.date = comment.date
-  }
-
   setNode() {
-    this.node.getElementsByTagName("h3")[0].firstChild.data = this.author + " "
-    this.node.getElementsByTagName("span")[0].innerText = this.date
-    this.node.getElementsByTagName("p")[0].innerText = this.content
+    this.node.getElementsByTagName("h3")[0].firstChild.data = this.data.pseudo + " "
+    this.node.getElementsByTagName("span")[0].innerText = this.data.date
+    this.node.getElementsByTagName("p")[0].innerText = this.data.content
   }
 
 	buildView (template, state) {
@@ -54,10 +45,10 @@ export class Comment {
       
     switch (event.type) {
       case 'click':
-        request = this.click(event)
+        request = this.delete(event)
         break;
       case 'blur':
-        request = this.blur(event)
+        request = this.update(event)
         break;
       default:
     }
@@ -74,10 +65,11 @@ export class Comment {
     i.addEventListener("click", this, false)
     i.classList.toggle("w3-hide")
     p.setAttribute("contenteditable", true)
+    p.classList.toggle("gg-button")
     p.addEventListener("blur", this, false)
   }
 
-  blur(event) {
+  update(event) {
     let content = event.target.innerText
 
     if (this.content !== content) {
@@ -93,17 +85,17 @@ export class Comment {
     return false
   }
 
-  click() {
+  delete() {
     return {
-      url:'/comment/' + this.id,
+      url:'/comment/' + this.data.id,
       method:"delete",
       body:{}
     }
   }
 
   update(comment) {
-    this.content = comment.content
-    this.date = comment.date
+    this.data.content = comment.content
+    this.data.date = comment.date
     this.setNode()
   }
 

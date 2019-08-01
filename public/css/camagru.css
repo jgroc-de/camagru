@@ -32,20 +32,10 @@
     box-shadow: 0px 0px 5px 5px;
 }
 
-.video	{
-    display: flex;
-	flex-direction: column;
-	position: relative;
-    width: 650px;
-    margin:auto;
-}
-
 video	{
 	border: 2px solid #f1f1f1;
 	border-radius: 5px;
-    width: 640px;
-    height: 480px;
-    margin: auto;
+	margin: auto;
 }
 
 .deco img	{
@@ -105,6 +95,6 @@ video	{
     box-shadow: 0px 0px 5px 5px;
 }
 
-.gg-row {
-  grid-gap: 50px;
+.gg-auto {
+	margin: auto;
 }

@@ -19,7 +19,7 @@ export class Suppression extends FormModal {
   submit (event) {
     let inputs = event.target.form
 
-    if (confirm("You are going all your datas (image, comments, likes, etc…). This can not undo this operation. Do you confirm?")) {
+    if (confirm("You are going all your datas (image, comments, likes, etc…). This can not undo this operation. Any last words?")) {
       ggAjax(new request(inputs), this)
     }
   }
