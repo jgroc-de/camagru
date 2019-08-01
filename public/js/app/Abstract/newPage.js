@@ -10,8 +10,7 @@ export class newPage extends hiddenViewController {
 		this.resetView(components)
 		this.buildView()
 		this.card = document.getElementById(this.name)
-		this.section = this.card.getElementsByTagName('section')[0]
-		this.link = this.card.children[0].children[0]
+    this.link = this.card.children[0].children[0]
 	}
 
 	resetView (components) {
@@ -24,6 +23,14 @@ export class newPage extends hiddenViewController {
       }
     }
   }
+
+  wakeUp () {
+		for (let i in this.state.components) {
+			this.state.components[i].shutDown()
+		}
+
+    return this.view(false)
+	}
 
 	buildView () {
 		let anchor = document.getElementById('notif')

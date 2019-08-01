@@ -87,7 +87,7 @@ function shield(Dumb $baka)
                 'patch',
             ],
             'comment' => [
-            ]
+            ],
         ]
     );
 

@@ -11,5 +11,6 @@ export class Filter {
 		this.node.id = param.title
 		img.src = param.url
 		img.alt = param.title
+		img.title = param.title
 	}
 }

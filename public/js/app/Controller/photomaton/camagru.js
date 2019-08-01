@@ -5,10 +5,16 @@ import { FilterManager } from './Camagru/filterManager.js'
 
 export class Camagru extends newPage {
 	constructor (state) {
-		super(state, 'Camagru', [
-			'Pictures','Picture'
-		], view)
-		this.FilterManager = new FilterManager(this.section)
+		super(state,
+      'Camagru',
+      [
+			  'Pictures',
+        'Picture',
+		  ],
+      view
+    )
+		let sections = this.card.getElementsByTagName('section')
+		this.FilterManager = new FilterManager(sections[1])
 		this.Photographer = new Photographer()
 	}
 }

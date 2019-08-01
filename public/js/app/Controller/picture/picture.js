@@ -5,10 +5,16 @@ import { CommentsPage } from './CommentsPage/commentsPage.js'
 
 export class Picture extends newPage {
 	constructor (state) {
-		super(state, 'Picture', [
-			'Pictures', 'Camagru'
-		], view)
-		this.PictureManager = new PicturePage(this.card.getElementsByTagName('section')[0], this.state)
-		this.CommentsManager = new CommentsPage(this.card.getElementsByTagName('section')[1], this.state)
+		super(state,
+      'Picture',
+      [
+			  'Pictures',
+        'Camagru',
+		  ],
+      view
+    )
+		let sections = this.card.getElementsByTagName('section')
+		this.PictureManager = new PicturePage(sections[0], this.state)
+		this.CommentsManager = new CommentsPage(sections[1], this.state)
 	}
 }

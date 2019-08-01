@@ -26,14 +26,17 @@ export class Photographer {
 
 	webcamON() {
 		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-			navigator.mediaDevices
-				.getUserMedia({ video: true })
+      console.log('here')
+			navigator.mediaDevices.getUserMedia({ video: true })
 				.then(function(stream) {
-					let video = document.getElementById('video')
+          console.log('here2')
+					let screen = document.getElementById('screen')
 
-					video.srcObject = stream
-					video.play()
+					screen.srcObject = stream
+					screen.play()
+          console.log(screen)
 				})
+      console.log(navigator.mediaDevices)
 		}
 	}
 

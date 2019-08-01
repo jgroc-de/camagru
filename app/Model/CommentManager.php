@@ -21,7 +21,7 @@ class CommentManager extends SqlManager
 
     public function getLastComments(int $id)
     {
-        $date = date("Y-m-d H:i:s", time() - 20);
+        $date = date('Y-m-d H:i:s', time() - 20);
         $request = '
             SELECT comments.*, users.pseudo
             FROM comments 

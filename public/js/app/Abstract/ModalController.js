@@ -23,10 +23,8 @@ export class ModalController extends hiddenController {
     let links = this.card.getElementsByTagName('a')
 		let i = 0
 		let hash = '#' + this.name
-		console.log(hash)
 
 		for (let link of links) {
-		console.log(link)
 			if (link.hash === hash)
 				link.classList.add("w3-grey")
 			else

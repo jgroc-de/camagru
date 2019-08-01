@@ -5,7 +5,6 @@ export class Login extends FormModal {
 	constructor (state) {
 		super(state, "login", "authForm")
 		this.logBtnG = document.getElementById('logBtnG')
-		this.redirect = ''
 	}
 
 	reset () {
@@ -23,6 +22,9 @@ export class Login extends FormModal {
 		}
 		if (response.settings) {
 			let redirection = '#' + this.redirect
+      if (!this.redirect) {
+        redirection = '#' + this.state.prevRoute
+      }
 			console.log("redirection : " + redirection)
 
 			this.state.setLogin(response.settings)

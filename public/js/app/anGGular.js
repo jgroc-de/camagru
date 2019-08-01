@@ -37,7 +37,6 @@ export class anGGularJS {
 							this.state.components[key] = new module[key](this.state)
 						}
 						this.state.components[key].wakeUp()
-						console.log("state:")
 						console.log(this.state)
 					})
 			}

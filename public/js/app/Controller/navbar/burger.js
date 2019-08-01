@@ -8,6 +8,7 @@ export class Burger extends Controller {
 		this.hiddenBtns = [
 			document.getElementById('btnSettings'),
 			document.getElementById('btnPictures'),
+			document.getElementById('btnMyPictures'),
 		]
 	}
 

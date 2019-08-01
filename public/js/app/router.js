@@ -8,7 +8,6 @@ function getHash() {
 
 export function router(state) {
 	let hash = getHash()
-  console.log(hash)
 	let routes = [
 		"about",
 		"burger",
@@ -27,10 +26,16 @@ export function router(state) {
 	]
 	let index = routes.indexOf(hash[0])
 
-	if (index !== -1) {
+  state.prevRoute = state.route
+  if (state.id) {
+    state.prevRoute += "/" + state.id
+  }
+  if (index !== -1) {
 		state.route = hash[0]
     if (hash[1]) {
 		  state.id = hash[1]
+    } else {
+      state.id = null
     }
 	} else if (hash[0] === "") {
 		state.route = "pictures"
