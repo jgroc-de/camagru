@@ -52,7 +52,7 @@ tests=(
     "$url/$idbad3;400"
     "$url/$idbad4;400"
     "$url/$idbad5;404"
-    "$url/$idbad6;404"
+    "$url/$idbad6;200"
     "$url/$idbad7;404"
     "$url/$id;404"
     "$url/$id;400"

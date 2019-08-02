@@ -80,7 +80,7 @@ class picture extends Patronus
         return $data;
     }
 
-    private function getUserDefineFilters(): array
+    private function getUserDefineFilters()
     {
         $filters = $_POST['filters'];
         $i = 0;

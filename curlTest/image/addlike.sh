@@ -11,7 +11,7 @@ idbad2="-1"
 idbad3="aieuaie"
 idbad4="=123"
 idbad5="123=aui"
-idbad6="12=aui"
+idbad6="10=aui"
 
 data=(
     "{}"
@@ -44,7 +44,7 @@ tests=(
     "$url/$idbad3;404"
     "$url/$idbad4;404"
     "$url/$idbad5;404"
-    "$url/$idbad6;404"
+    "$url/$idbad6;201"
     "$url/$id;201"
     "/login;200;DELETE"
     "$url/$id;403;DELETE"

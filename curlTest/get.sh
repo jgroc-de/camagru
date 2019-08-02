@@ -20,7 +20,7 @@ tests=(\
 	"/password;400"
 	"/camagru;403"
 	"/picturesByUser;403"
-	"/user;403"
+	"/user;200"
 	"/aieaueaue;404"
 	"/picture/0;400"
 	"/picture/20000;404"
