@@ -4,6 +4,7 @@ import { Filter } from './filter.js'
 export class Filters {
 	constructor () {
 		this.filters = []
+    this.screenNode = document.getElementById("montage")
 		this.getFilters()
     this.isHidden = false
 	  this.section = document.getElementById("filters")
@@ -39,7 +40,7 @@ export class Filters {
 		let i = 0
 
 		while (i < filters.length) {
-			this.filters.push(new Filter(this.section, filters[i]))
+			this.filters.push(new Filter(this.section, filters[i], this.screenNode))
 			i++
 		}
 	}

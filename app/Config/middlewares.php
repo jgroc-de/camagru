@@ -60,7 +60,6 @@ function shield(Dumb $baka)
                 'delete',
             ],
             'user' => [
-                'get',
                 'put',
                 'patch',
                 'delete',

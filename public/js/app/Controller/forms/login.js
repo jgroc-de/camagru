@@ -17,7 +17,7 @@ export class Login extends FormModal {
 	}
 
 	callback (response, httpStatus) {
-		if (response['flash'] && httpStatus !== 403) {
+		if (response['flash']) {
 			printNotif(response['flash'], httpStatus)
 		}
 		if (response.settings) {

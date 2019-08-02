@@ -8,8 +8,8 @@ use Dumb\Response;
 
 class Image
 {
-    const WIDTH = 640;
-    const HEIGHT = 480;
+    const WIDTH = 400;
+    const HEIGHT = 300;
 
     private $imageSize;
 
@@ -31,7 +31,7 @@ class Image
 
     public function add($filter)
     {
-        $tmp = $filter['url'];
+        $tmp = $filter->url;
         $s_size = getimagesize($tmp);
         if (!($src = imagecreatefrompng($tmp))) {
             throw new \Exception('filter loading error', Response::INTERNAL_SERVER_ERROR);
@@ -41,12 +41,12 @@ class Image
         if (!imagecopyresized(
             $this->image,
             $src,
-            (int) $filter['x'],
-            (int) $filter['y'],
+            (int) $filter->x,
+            (int) $filter->y,
             0,
             0,
-            $this->imageSize[0],
-            (int) floor($this->imageSize[0] * $s_size[1] / $s_size[0]),
+            (int) $filter->width,
+            (int) floor((int) $filter->width * $s_size[1] / $s_size[0]),
             $s_size[0],
             $s_size[1]
         )) {

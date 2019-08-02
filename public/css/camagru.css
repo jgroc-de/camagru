@@ -46,8 +46,8 @@ video	{
 .preview, .visible, .hidden	{
 	visibility: hidden;
 	position: absolute;
-	max-height: 480px;
-	max-width: 640px;
+	max-width: 400px;
+	max-height: 300px;
 	margin: 10px;
 	left: 5px;
 	bottom: 0px;
@@ -87,8 +87,8 @@ video	{
 }
 
 #upload {
-    max-width: 640px;
-    max-height: 480px;
+    max-width: 400px;
+    max-height: 300px;
 }
 
 #new img:hover    {
@@ -97,4 +97,24 @@ video	{
 
 .gg-auto {
 	margin: auto;
+}
+
+.gg-screen {
+	width: 400px;
+	height: 300px;
+}
+
+.gg-screen-container {
+	width: 100%;
+	height: 400px;
+}
+
+.gg-screen-width {
+	max-width: 400px;
+}
+
+.gg-position-filter {
+	position: absolute;
+	top:0px;
+	left:0px;
 }

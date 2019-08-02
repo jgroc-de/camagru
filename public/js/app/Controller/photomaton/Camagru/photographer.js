@@ -7,6 +7,7 @@ export class Photographer {
 		this.button = document.getElementById('snap');
 		this.screen = document.getElementById('screen');
 		this.canvas = document.getElementById('canvas');
+		this.filtersON = document.getElementById('montage');
 		this.webcamON()
 		this.handleEvent = function (event) {
 			this.eventDispatcher(event)
@@ -20,41 +21,38 @@ export class Photographer {
 		if (!upload) {
 			let context = this.canvas.getContext('2d')
 
-			context.drawImage(this.screen, 0, 0, 640, 480)
+			context.drawImage(this.screen, 0, 0, 400, 300)
 			return this.canvas.toDataURL('image/png')
 		}
 
 		return upload.src
 	}
 
-	getTitles() {
-		let titles = [];
-		let	filters = document.querySelectorAll('img[alt=visible]')
+	getFilters() {
+		let filters = [];
+		let	imgs = this.filtersON.getElementsByTagName('img')
 		let i = 0;
 
-		while (i < filters.length) {
-			titles.push(filters[i++].id)
+		while (i < imgs.length) {
+			filters.push({
+        title:imgs[i].title,
+        y:imgs[i].style.top,
+        x:imgs[i].style.left,
+        width:imgs[i].width,
+      })
+      i++
 		}
 
-		return titles
+		return filters
 	}
 
-	imageToString(data, filters) {
-		let i = 0
-
-		while (i < filters.length) {
-			data += '&title' + i + '=' + filters[i]
-			i++
-		}
-		return data
-	}
-
-	sendShot(str) {
+	sendShot(dataUrl, filters) {
 		let request = {
 			method: "Post",
 			url: "/picture",
 			body: {
-				picture: str
+				picture: dataUrl,
+        filters: filters
 			},
 		}
 
@@ -63,10 +61,9 @@ export class Photographer {
 
 	submit() {
 		let dataUrl = this.getDataUrl()
-		let titles = this.getTitles()
-		let str = this.imageToString(dataUrl, titles)
+		let filters = this.getFilters()
 
-		this.sendShot(str)
+		this.sendShot(dataUrl, filters)
 		printNotif('On fait chauffer les hamsters, votre photo arrive!', 200)
 	}
 
@@ -74,7 +71,7 @@ export class Photographer {
     console.log("callback photo ")
     console.log(response)
     if (httpStatus === 201) {
-		  printNotif('It\'s online!!', 200)
+		  printNotif('It\'s online!!', httpStatus)
       this.MyPictures.add(response)
     }
 	}

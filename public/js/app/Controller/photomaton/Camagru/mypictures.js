@@ -8,7 +8,9 @@ export class MyPictures {
 	}
 
   add(picture) {
-			this.pictures.push(new MyPicture(this.section, picture))
+    if (!this.firstLaunch()) {
+      this.pictures.push(new MyPicture(this.section, picture))
+    }
   }
 
   hide() {
@@ -19,11 +21,16 @@ export class MyPictures {
     }
   }
 
-  show() {
+  firstLaunch() {
     if (!this.pictures) {
       this.pictures = []
 		  this.getPictures()
+      return true
     }
+  }
+
+  show() {
+    this.firstLaunch()
     if (this.isHidden) {
       this.isHidden = false
       this.section.classList.toggle("w3-hide")
