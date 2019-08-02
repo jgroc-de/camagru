@@ -53,47 +53,44 @@ class picture extends Patronus
     }
 
     public function post()
-	{
-		$this->response = $this->createPicture();
-		$this->code = Response::CREATED;
-	}
+    {
+        $this->response = $this->createPicture();
+        $this->code = Response::CREATED;
+    }
 
-	private function createPicture()
-	{
-		$image = new Image();
-		$filters = $this->getUserDefineFilters();
-		foreach ($filters as $filter) {
-			$image->add($filter);
-		}
+    private function createPicture()
+    {
+        $image = new Image();
+        $filters = $this->getUserDefineFilters();
+        foreach ($filters as $filter) {
+            $image->add($filter);
+        }
 
-		return $image->save($this->pictureManager);
-	}
+        return $image->save($this->pictureManager);
+    }
 
-	private function getOriginalFilters(): array
-	{
+    private function getOriginalFilters(): array
+    {
         $filters = $this->container['filter']($this->container)->getFilters();
-		$data = [];
-		foreach ($filters as $filter)
-		{
-			$data[$filter['title']] = $filter['url'];
-		}
+        $data = [];
+        foreach ($filters as $filter) {
+            $data[$filter['title']] = $filter['url'];
+        }
 
-		return $data;
-	}
+        return $data;
+    }
 
     private function getUserDefineFilters(): array
     {
         $filters = $_POST['filters'];
-		$i = 0;
-		$all = $this->getOriginalFilters();
-		while ($filters[$i])
-		{
-			if (!($filter = $all[$filters[$i]->title]))
-			{
-				throw new \Exception('filter', Response::NOT_FOUND);
-			}
-			$filters[$i]->url = $filter;
-			$i++;
+        $i = 0;
+        $all = $this->getOriginalFilters();
+        while ($filters[$i]) {
+            if (!($filter = $all[$filters[$i]->title])) {
+                throw new \Exception('filter', Response::NOT_FOUND);
+            }
+            $filters[$i]->url = $filter;
+            ++$i;
         }
 
         return $filters;
