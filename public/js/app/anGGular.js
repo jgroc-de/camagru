@@ -27,21 +27,22 @@ export class anGGularJS {
 		try {
 			let route = this.path(middlewares(router(this.state)))
 			const controller = './Controller/' + route + '.js'
-			console.log("route: " + route)
 
 			if (route) {
 				import(controller)
 					.then((module) => {
 						let key = Object.keys(module)[0]
+
+            console.log(key)
 						if (!this.state.components[key]) {
+              console.log("creation")
 							this.state.components[key] = new module[key](this.state)
 						}
 						this.state.components[key].wakeUp()
-						console.log(this.state)
 					})
 			}
 		} catch(error) {
-			//console.log(error)
+    	console.log(error)
 		}
 	}
 
@@ -50,7 +51,6 @@ export class anGGularJS {
 			//check if is logged on server
 			let route = this.path("login")
 			const controller = './Controller/' + route + '.js'
-			console.log("login")
 
 			import(controller).then((module) => {
 				let request = {
@@ -64,7 +64,7 @@ export class anGGularJS {
 				this.launch()
 			})
 		} catch(error) {
-			//console.log(error)
+			console.log(error)
 		}
 	}
 }

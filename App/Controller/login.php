@@ -27,7 +27,7 @@ class login extends Patronus
         }
         $user = $this->userManager->getUser($pseudo);
         new Session($user);
-        $this->setResponse($pseudo);
+        $this->setResponse();
     }
 
     protected function delete()
@@ -37,11 +37,14 @@ class login extends Patronus
         $this->response['flash'] = 'See u soon!!';
     }
 
-    private function setResponse($pseudo)
+    private function setResponse()
     {
         $this->response = [
-            'flash' => 'Welcome back '.$pseudo,
-            'settings' => ['pseudo' => $pseudo],
+            'flash' => 'Welcome back '.$_SESSION['user']['pseudo'],
+			'settings' => [
+				'pseudo' => $_SESSION['user']['pseudo'],
+				'id' => $_SESSION['id']
+			],
         ];
     }
 }

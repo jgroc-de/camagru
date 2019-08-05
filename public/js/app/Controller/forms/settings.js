@@ -55,8 +55,6 @@ export class Settings extends FormModal {
     let name = ''
     let input
 
-		console.log('inputs')
-		console.log(inputs)
     while (i < inputs.length) {
       this.setInput(response, inputs[i++])
     }

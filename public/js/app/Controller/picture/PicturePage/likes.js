@@ -53,13 +53,12 @@ export class Likes {
   }
 
   setCount() {
-    this.section.childNodes[2].data = this.count
+    this.section.childNodes[1].textContent = this.count
   }
 
   set(picture) {
     this.picture_id = picture.id
     this.update(this)
-    console.log(this.state)
     this.timeId = window.setInterval(this.update, 30000, this)
   }
   

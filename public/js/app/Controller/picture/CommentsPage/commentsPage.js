@@ -19,6 +19,7 @@ export class CommentsPage {
 			this.eventDispatcher(event)
 		}
 		this.setEventListener()
+    console.log(' ---- comments')
     this.timeId = window.setInterval(this.update, 12000, this)
 	}
 
@@ -90,7 +91,7 @@ export class CommentsPage {
         this.commentsId.push(comment.id)
         this.comments.push(this.addComment(comment))
       } else {
-        this.comments[this.commentsId.indexOf(comment.id)].update(comment)
+        this.comments[this.commentsId.indexOf(comment.id)].updateComment(comment)
       }
     }
   }
@@ -110,4 +111,10 @@ export class CommentsPage {
 			printNotif(response['flash'], httpStatus)
 		}
 	}
+
+  renew(state) {
+    for (let comment of this.comments) {
+      comment.setEvent(state)
+    }
+  }
 }

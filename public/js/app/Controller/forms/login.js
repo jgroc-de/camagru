@@ -25,7 +25,6 @@ export class Login extends FormModal {
       if (!this.redirect) {
         redirection = '#' + this.state.prevRoute
       }
-			console.log("redirection : " + redirection)
 
 			this.state.setLogin(response.settings)
 			this.toggleLoginButton()

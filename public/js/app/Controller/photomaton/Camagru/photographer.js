@@ -68,8 +68,6 @@ export class Photographer {
 	}
 
 	callback(response, httpStatus) {
-    console.log("callback photo ")
-    console.log(response)
     if (httpStatus === 201) {
 		  printNotif('It\'s online!!', httpStatus)
       this.MyPictures.add(response)

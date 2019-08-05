@@ -17,4 +17,8 @@ export class Picture extends newPage {
 		this.PictureManager = new PicturePage(sections[0], this.state)
 		this.CommentsManager = new CommentsPage(sections[1], this.state)
 	}
+
+  wakeUp() {
+    this.CommentsManager.renew(this.state)
+  }
 }

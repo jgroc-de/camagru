@@ -16,8 +16,6 @@ export class Comment {
         this.eventDispatcher(event)
       }
       this.setEventListener()
-    } else {
-      console.log("not yours")
     }
   }
 
@@ -75,7 +73,7 @@ export class Comment {
     if (this.content !== content) {
       this.content = content
       return {
-        url:'/comment/' + this.id,
+        url:'/comment/' + this.data.id,
         method:"patch",
         body:{
           comment:content
@@ -93,15 +91,12 @@ export class Comment {
     }
   }
 
-  update(comment) {
-    this.data.content = comment.content
-    this.data.date = comment.date
-    this.setNode()
-  }
-
   updateComment(response) {
     if (response.status === 'deleted') {
       this.node.parentNode.removeChild(this.node)
+    } else if (!response['flash']) {
+      this.data = response
+      this.setNode()
     }
   }
   
