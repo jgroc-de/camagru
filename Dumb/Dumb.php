@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Dumb;
 
+function autoload($class) {
+}
+
 /**
  * this is the "main" of the framework.
  */
@@ -18,9 +21,11 @@ class Dumb
 
     public function __construct($functions = [])
     {
-        /*spl_autoload_register(function ($class) {
-            require '../app/Model/'.$class.'.php';
-        });*/
+		spl_autoload_register(function ($class) {
+			$path = explode("\\", $class);
+			$class = implode('/', $path);
+			require '../' . $class . '.php';
+		});
         if ($input = file_get_contents('php://input')) {
             $_POST += (array) \json_decode($input);
         }

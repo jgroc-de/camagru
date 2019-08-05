@@ -17,9 +17,6 @@
     },
 	"autoload": {
 		"psr-4": {
-			"Dumb\\": "Dumb",
-			"App\\": "app"
-		},
-		"files": ["app/Config/routes.php", "app/Config/middlewares.php", "app/Config/forms.php", "app/container.php", "app/Config/ghosts.php"]
+		}
 	}
 }
