@@ -21,11 +21,6 @@ export class Burger extends Controller {
 		} else {
 			this.nav.toggleAttribute('hidden')
 			this.toggleHiddenButtons()
-			if (link === this.name) {
-				this.link.href = "#!" + this.name
-			} else {
-				this.link.href = "#" + this.name
-			}
 		}
 
 		return false

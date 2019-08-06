@@ -35,15 +35,14 @@ export class anGGularJS {
 					.then((module) => {
 						let key = Object.keys(module)[0]
 
-            console.log(key)
 						if (!this.state.components[key]) {
-              console.log("creation")
 							this.state.components[key] = new module[key](this.state)
 						}
 						this.state.components[key].wakeUp()
 					})
 			}
 		} catch(error) {
+    	console.log("anGGular error")
     	console.log(error)
 		}
 	}
@@ -66,6 +65,7 @@ export class anGGularJS {
 				this.launch()
 			})
 		} catch(error) {
+    	console.log("anGGular error")
 			console.log(error)
 		}
 	}

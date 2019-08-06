@@ -13,18 +13,36 @@ export class Controller {
     if (this.events) {
       this.events.init(this.card)
     }
+    this.setCloseButtons("settingsForm")
+    this.setCloseButtons("authForm")
 	}
 
+  setCloseButtons(name) {
+		let form = document.getElementById(name)
+    let path = "#" + this.state.route
+
+    if (this.state.id) {
+      path += "/" + this.state.id
+    }
+
+    form.getElementsByTagName("a")[0].href = path
+  }
+
   wakeUp () {
+    let keys = Object.keys(this.state.components)
+
+    for (let key of keys) {
+      if (this.state.components[key].view) {
+        this.state.components[key].view.run(true)
+      }
+    }
     if (this.view) {
-      console.log("wakeup " + this.name)
       return this.view.run(false)
     }
 	}
 
 	shutDown () {
     if (this.view) {
-      console.log("shutdown " + this.name)
       this.view.run(true)
     }
   }

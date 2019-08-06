@@ -16,6 +16,5 @@ export class Pictures extends Controller {
       view: new HiddenView(name),
       events: new Events(name),
     })
-    console.log(this)
   }
 }
