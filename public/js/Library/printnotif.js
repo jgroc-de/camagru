@@ -1,29 +1,32 @@
-function createNode (type, attributes) {
-	var node = document.createElement(type)
-
-	for (var property in attributes) {
-		node.setAttribute(property, attributes[property])
-	}
-
-	return node
-}
-
-export function printNotif (str, status) {
+function createDiv(str, status) {
+	let div = document.createElement("div")
 	let p = document.createElement('p')
-	let div = createNode('div', { class: 'w3-panel w3-round' })
-	let notif = document.getElementById('notif')
 
 	p.textContent = str
-	div.style.margin = '0'
 	div.appendChild(p)
+  div.classList.add('w3-panel')
+  div.classList.add('w3-round')
+	div.style.margin = '0'
 	if (status < 400) {
     div.classList.add('w3-green')
   } else {
     div.classList.add('w3-red')
   }
-	notif.appendChild(div)
 
-	setTimeout(function () {
-    notif.removeChild(div)
-  }, 4500, notif, div)
+	return div
+}
+
+export function printNotif(str, status) {
+	let div = createDiv(str, status)
+	let notif = document.getElementById('notif')
+
+	notif.appendChild(div)
+	setTimeout(
+    function () {
+      notif.removeChild(div)
+    },
+    4500,
+    notif,
+    div
+  )
 }

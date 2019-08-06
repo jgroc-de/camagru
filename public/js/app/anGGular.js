@@ -12,6 +12,8 @@ export class anGGularJS {
       return "forms/" + route
     } else if (["pictures"].includes(route)) {
       return "home/" + route
+    } else if (["about", "contact"].includes(route)) {
+      return "commons/" + route
     } else if (["picture"].includes(route)) {
       return "picture/" + route
     } else if (["burger", "logout"].includes(route)) {

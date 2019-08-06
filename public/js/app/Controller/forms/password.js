@@ -1,11 +1,15 @@
-import { FormModal } from '../../Abstract/formModal.js'
-import { printNotif } from '../../../Library/printnotif.js'
-import { ggAjax } from '../../../Library/ggAjax.js'
+import { Controller } from '../../AnGGular/controller.js'
+import { ModalView } from '../../AnGGular/Views/modal.js'
+import { Events } from './Events/commonFormsEvents.js'
 
-
-export class Password extends FormModal {
-	constructor (state) {
-		super(state, "password", "settingsForm")
+export class Password extends Controller {
+	constructor (state, name = "password") {
+		super({
+      state: state,
+      name: name,
+      view: new ModalView(name, "settingsForm"),
+      events: new Events(name),
+    })
 		this.setFormsMethod()
 	}
 
@@ -14,10 +18,4 @@ export class Password extends FormModal {
 
 		forms[0].method = "patch"
 	}
-
-  callback (response, httpStatus) {
-		if (response['flash']) {
-			printNotif(response['flash'], httpStatus)
-		}
-  }
 }

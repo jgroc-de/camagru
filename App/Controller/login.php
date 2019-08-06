@@ -41,10 +41,10 @@ class login extends Patronus
     {
         $this->response = [
             'flash' => 'Welcome back '.$_SESSION['user']['pseudo'],
-			'settings' => [
-				'pseudo' => $_SESSION['user']['pseudo'],
-				'id' => $_SESSION['id']
-			],
+            'settings' => [
+                'pseudo' => $_SESSION['user']['pseudo'],
+                'id' => $_SESSION['id'],
+            ],
         ];
     }
 }

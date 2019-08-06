@@ -23,6 +23,7 @@ let state = {
 }
 
 let app = new anGGularJS(state)
+console.log(state)
 
 window.onload = function () {
 	app.checkLogin()
