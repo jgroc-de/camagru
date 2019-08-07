@@ -5,21 +5,13 @@ import { printNotif } from '../../../../Library/printnotif.js'
 
 export class PicturePage {
 	constructor(section, state) {
-    this.id = this.setId(state.id)
+    this.id = state.id
 		this.section = section
 		this.picture = null
     this.likes = new Likes(this.section, state)
     this.title = new Title(this.section, state)
 		this.getPicture()
 	}
-
-  setId(id) {
-    if (isNaN(id) || id <= 1) {
-      id = 1
-    }
-
-    return id
-  }
 
 	getPicture() {
 		let request = {

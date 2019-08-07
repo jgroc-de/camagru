@@ -7,7 +7,7 @@ function restrictedArea (state) {
 	let index = logins.indexOf(state.route)
 
 	if (index !== -1 && !state.isLogin()) {
-		state.components.Login.redirect = state.route
+		state.components.login.redirect = state.route
 		state.httpCode = 403
 		window.location.assign('#login')
 		return false

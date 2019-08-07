@@ -6,8 +6,7 @@ export class Title {
 	constructor(section, state) {
 		this.section = section.getElementsByTagName("h2")[0]
     this.button = this.section.getElementsByTagName("i")[0]
-    this.isLogin = state.isLogin()
-    this.login = state.login
+    this.state = state
     this.picture_id = -1
     this.title = ""
     this.owner_id = 0
@@ -23,16 +22,16 @@ export class Title {
     this.section.firstChild.data = title
   }
 
-  setOwner(id) {
-    this.owner_id = id
-    if (this.isLogin && this.login.id === this.owner_id) {
+  setEvent() {
+    if (this.state.isLogin() && this.state.login.id === this.owner_id) {
       this.button.classList.toggle("w3-hide")
     }
   }
 
   set(picture) {
     this.setTitle(picture.title)
-    this.setOwner(picture.author_id)
+    this.owner_id = picture.author_id
+    this.setEvent()
     this.picture_id = picture.id
   }
 

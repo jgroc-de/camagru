@@ -7,28 +7,31 @@ function getHash() {
 }
 
 export function router(state) {
+  console.log(state)
 	let hash = getHash()
 	let routes = [
-		"about",
-		"burger",
-		"camagru",
-		"contact",
 		"error",
 		"login",
 		"logout",
-		"pictures",
-    "picture",
 		"reinit",
 		"signup",
 		"settings",
 		"password",
     "suppression",
+		"burger",
+		"about",
+		"camagru",
+		"contact",
+		"pictures",
+    "picture",
 	]
 	let index = routes.indexOf(hash[0])
 
-  state.prevRoute = state.route
-  if (state.id) {
-    state.prevRoute += "/" + state.id
+  if (index > 7) {
+    state.prevRoute = state.route
+    if (state.id) {
+      state.prevRoute += "/" + state.id
+    }
   }
   if (index !== -1) {
 		state.route = hash[0]
@@ -40,6 +43,7 @@ export function router(state) {
 	} else if (hash[0] === "") {
 		state.route = "pictures"
 	} else {
+    console.log(hash)
 		state.httpStatus = 404
 		window.location.assign("#error")
 	}

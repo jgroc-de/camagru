@@ -4,12 +4,17 @@ export function ggAjax (request, objet, async = true) {
 
 	XHR.open(request.method.toUpperCase(), request.url, async)
 	XHR.onreadystatechange = function () {
-		if (this.readyState === 4) {
-			let json = JSON.parse(this.responseText)
+    if (this.readyState === 4) {
+      try {
+        let json = JSON.parse(this.responseText)
 
-			if (objet && objet.callback) {
-				objet.callback(json, this.status)
-			}
+        if (objet && objet.callback) {
+          objet.callback(json, this.status)
+        }
+      } catch(error) {
+        console.log("ggAjax")
+        console.log(error)
+      }
 		}
 	}
 	XHR.setRequestHeader('Content-type', 'application/json')

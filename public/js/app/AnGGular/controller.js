@@ -6,16 +6,22 @@ export class Controller {
     this.events = init.events
 		this.resetView(init.components)
 		this.buildView(init.template)
-    if (this.view) {
-      this.view.init()
-    }
 		this.card = document.getElementById(this.name)
+    if (this.view) {
+      this.view.init(this.card)
+    }
     if (this.events) {
       this.events.init(this.card)
     }
     this.setCloseButtons("settingsForm")
     this.setCloseButtons("authForm")
 	}
+
+  toggleLogin() {
+    if (this.events) {
+      this.events.toggleLogin()
+    }
+  }
 
   setCloseButtons(name) {
 		let form = document.getElementById(name)
@@ -63,14 +69,12 @@ export class Controller {
   buildView (view) {
     if (view) {
       let anchor = document.getElementById('notif')
-      let template = (new DOMParser()).parseFromString(view.template, 'text/html')
+      let template = (new DOMParser()).parseFromString(view, 'text/html')
 
       anchor.parentNode.insertBefore(
         template.body.childNodes[0],
         anchor.nextElementSibling
       )
-
-      return template
     }
 	}
 }

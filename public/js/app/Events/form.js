@@ -9,6 +9,9 @@ export class Form {
 		}
   }
 
+  toggleLogin() {
+  }
+
   eventDispatcher(event) {
 		event.preventDefault()
 		event.stopPropagation()
