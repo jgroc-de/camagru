@@ -14,7 +14,6 @@ export class Events {
   init(card) {
     this.card = card
 		this.handleEvent = function (event) {
-      console.log(event.target)
 			this.eventDispatcher(event)
 		}
 
