@@ -5,30 +5,32 @@ import { Comment } from './comment.js'
 
 export class CommentsPage {
 	constructor(section, state) {
-    this.id = this.setId(state.id)
-    this.lastId = 0
     this.state = state
 		this.section = section
-		this.commentsSection = document.getElementById("comments")
-    this.commentsId = []
-    this.comments = []
-		this.picture = null
-		this.getComments()
-		this.eventType = 'click'
+    this.init()
 		this.handleEvent = function (event) {
 			this.eventDispatcher(event)
 		}
 		this.setEventListener()
-    console.log(' ---- comments')
-    this.timeId = window.setInterval(this.update, 12000, this)
 	}
 
-  setId(id) {
-    if (isNaN(id) || id <= 1) {
-      id = 1
+  init() {
+    this.comments = []
+    this.setId()
+		this.getComments()
+		this.commentsSection = document.getElementById("comments")
+    this.commentsId = []
+    this.form = this.section.getElementsByTagName("form")[0]
+    this.form.action = "/comment/" + this.id
+    this.timeId = window.setInterval(this.update, 12000, this)
+  }
+
+  setId() {
+    if (isNaN(this.state.id) || this.state.id <= 1) {
+      this.state.id = 1
     }
 
-    return id
+    this.id = this.state.id
   }
 
   update(commentsPage) {
@@ -69,10 +71,7 @@ export class CommentsPage {
   }
 
   setEventListener() {
-    let form = this.section.getElementsByTagName("form")[0]
-
-    form.action += "/" + this.id
-    form.getElementsByTagName("button")[0].addEventListener(this.eventType, this, false)
+    this.form.getElementsByTagName("button")[0].addEventListener("click", this, false)
   }
 
 	getComments() {
@@ -88,8 +87,7 @@ export class CommentsPage {
   setComments(response) {
     for (let comment of response.comments) {
       if (!this.commentsId.includes(comment.id)) {
-        this.commentsId.push(comment.id)
-        this.comments.push(this.addComment(comment))
+        this.addComment(comment)
       } else {
         this.comments[this.commentsId.indexOf(comment.id)].updateComment(comment)
       }
@@ -97,7 +95,11 @@ export class CommentsPage {
   }
 
   addComment(comment) {
-    return new Comment(this.commentsSection, comment, this.state)
+    console.log("here")
+    let item = new Comment(this.commentsSection, comment, this.state)
+
+    this.commentsId.push(item.id)
+    this.comments.push(item)
   }
 
 	callback (response, httpStatus) {
@@ -116,5 +118,12 @@ export class CommentsPage {
     for (let comment of this.comments) {
       comment.setEvent(state)
     }
+  }
+
+  reset() {
+    while (this.comments.length) {
+      this.comments.pop().remove()
+    }
+    window.clearInterval(this.timeId)
   }
 }

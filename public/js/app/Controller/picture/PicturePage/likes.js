@@ -4,28 +4,29 @@ import { printNotif } from '../../../../Library/printnotif.js'
 
 export class Likes {
 	constructor(section, state) {
+    this.state = state
 		this.section = section.getElementsByTagName("h3")[0]
     this.picture_id = -1
-    this.state = state
-    this.isLogin = state.isLogin()
-    if (this.isLogin) {
-      this.user_id = state.login.id
-    }
-    this.count = 0
-		this.eventType = 'click'
+    this.init()
 		this.handleEvent = function (event) {
 			this.eventDispatcher(event)
 		}
 		this.setEventListener()
 	}
 
+  init() {
+    if (this.state.isLogin()) {
+      this.user_id = this.state.login.id
+    }
+    this.count = 0
+  }
+
 	eventDispatcher(event) {
 		event.preventDefault()
 		event.stopPropagation()
 
     if (!this.state.isLogin()) {
-      this.state.components.Login.redirect = this.state.route
-      this.state.httpCode = 403
+      this.state.components.login.redirect = this.state.prevRoute
       window.location.assign('#login')
     } else {
       this.submit(event)
@@ -34,8 +35,9 @@ export class Likes {
 
   setEventListener() {
     let i = this.section.getElementsByTagName("i");
-    i[0].addEventListener(this.eventType, this, false)
-    i[1].addEventListener(this.eventType, this, false)
+
+    i[0].addEventListener("click", this, false)
+    i[1].addEventListener("click", this, false)
   }
 
   submit (event) {
@@ -68,7 +70,7 @@ export class Likes {
   }
 
   update(likes) {
-    if (!likes.state.components['Picture']) {
+    if (!likes.state.components['picture']) {
       window.clearInterval(likes.timeId)
     } else {
       let inputs = {
@@ -88,5 +90,10 @@ export class Likes {
     if (httpStatus < 400) {
       this.updateCount(response.count);
     }
+  }
+
+  reset() {
+    window.clearInterval(this.timeId)
+    this.init()
   }
 }

@@ -8,13 +8,28 @@ export class Picture {
   }
 
   init(card) {
-		let sections = card.getElementsByTagName('section')
-		this.PictureManager = new PicturePage(sections[0], this.state)
-		this.CommentsManager = new CommentsPage(sections[1], this.state)
+		this.sections = card.getElementsByTagName('section')
+		this.PictureManager = new PicturePage(this.sections[0], this.state)
+		this.CommentsManager = new CommentsPage(this.sections[1], this.state)
   }
 
   toggleLogin() {
     this.CommentsManager.renew(this.state)
     this.PictureManager.title.setEvent()
+  }
+
+  async resetComments() {
+    this.CommentsManager.reset()
+    this.CommentsManager.init()
+  }
+
+  async resetPicture() {
+    this.PictureManager.reset()
+    this.PictureManager.init()
+  }
+
+  reinit() {
+    this.resetComments()
+    this.resetPicture()
   }
 }

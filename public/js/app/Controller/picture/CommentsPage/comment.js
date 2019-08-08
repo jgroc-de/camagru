@@ -4,6 +4,7 @@ import { printNotif } from '../../../../Library/printnotif.js'
 
 export class Comment {
 	constructor(section, data, state) {
+    this.state = state
 		this.section = section
     this.data = data
     this.buildView(view.template, state)
@@ -60,10 +61,10 @@ export class Comment {
     let i = this.node.getElementsByTagName("i")[0]
     let p = this.node.getElementsByTagName("p")[0]
 
-    i.addEventListener("click", this, false)
     i.classList.toggle("w3-hide")
     p.setAttribute("contenteditable", true)
     p.classList.toggle("gg-button")
+    i.addEventListener("click", this, false)
     p.addEventListener("blur", this, false)
   }
 
@@ -107,5 +108,9 @@ export class Comment {
     if (httpStatus < 400) {
       this.updateComment(response);
     }
+  }
+
+  remove() {
+    this.node.parentNode.removeChild(this.node)
   }
 }

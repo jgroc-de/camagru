@@ -4,7 +4,8 @@ let state = {
 	components: {},
 	url: window.location.origin,
 	route: "",
-  id: 1,
+  prevRoute: "#",
+  id: null,
 	login: {
 		pseudo: "",
 		id: -1,
@@ -23,7 +24,6 @@ let state = {
 }
 
 let app = new anGGularJS(state)
-console.log(state)
 
 window.onload = function () {
 	app.checkLogin()

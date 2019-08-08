@@ -26,7 +26,7 @@ class BakaDo
     public function getController($container)
     {
         if (!$this->isSetRoute()) {
-            throw new \Exception('routes not found', Response::NOT_FOUND);
+			$this->uri = "home";
         }
         $this->setController($container);
         if (!method_exists($this->controller, $this->method)) {

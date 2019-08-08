@@ -1,38 +1,46 @@
 export class ModalView {
-  constructor(name, modal) {
+  constructor(name, params) {
     this.name = name
-    this.modal = modal
+    this.state = params.state
+    this.modal = params.modal
   }
 
   init() {
     this.card = document.getElementById(this.modal)
-    this.link = this.card.children[0].children[0]
+    this.sections = this.card.getElementsByTagName('section')
+    this.links = this.card.getElementsByTagName('a')
+    this.closeBtns = this.links[0]
+    this.setCloseButtons()
+  }
+
+  setCloseButtons() {
+    this.closeBtns.href = this.state.prevRoute
   }
 
   hideOtherSections () {
-    let sections = this.card.getElementsByTagName('section')
     let i = 0
 
-    while (i < sections.length) {
-      if (sections[i].id !== this.name) {
-        sections[i].setAttribute('hidden', '')
+    while (i < this.sections.length) {
+      if (this.sections[i].id !== this.name) {
+        this.sections[i].setAttribute('hidden', '')
       } else {
-        sections[i].removeAttribute('hidden')
+        this.sections[i].removeAttribute('hidden')
       }
       i++
     }
   }
 
   toggleLinks() {
-    let links = this.card.getElementsByTagName('a')
-    let i = 0
+    //i = 1 dont take the close buttons
+    let i = 1
     let hash = '#' + this.name
 
-    for (let link of links) {
-      if (link.hash === hash)
-        link.classList.add("w3-grey")
+    while (i < this.links.length) {
+      if (this.links[i].hash === hash)
+        this.links[i].classList.add("w3-grey")
       else
-        link.classList.remove("w3-grey")
+        this.links[i].classList.remove("w3-grey")
+      i++
     }
   }
 
@@ -40,6 +48,7 @@ export class ModalView {
     if (defaultView) {
       this.card.style.display = 'none'
     } else {
+      this.setCloseButtons()
       this.hideOtherSections()
       this.toggleLinks()
       this.card.style.display = 'block'

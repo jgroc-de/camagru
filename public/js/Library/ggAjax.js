@@ -8,12 +8,17 @@ export function ggAjax (request, objet, async = true) {
       try {
         let json = JSON.parse(this.responseText)
 
+        if (objet && objet.state && this.status > 399) {
+          objet.state.httpStatus = this.status
+          objet.state.error = this.statusText
+        }
+        if (this.status === 404) {
+		      window.location.assign("#error")
+        }
         if (objet && objet.callback) {
           objet.callback(json, this.status)
         }
       } catch(error) {
-        console.log("ggAjax")
-        console.log(error)
       }
 		}
 	}

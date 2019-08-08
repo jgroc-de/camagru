@@ -24,7 +24,7 @@ export class Title {
 
   setEvent() {
     if (this.state.isLogin() && this.state.login.id === this.owner_id) {
-      this.button.classList.toggle("w3-hide")
+      this.button.classList.remove("w3-hide")
     }
   }
 
@@ -73,5 +73,9 @@ export class Title {
 			printNotif('Success', httpStatus)
       this.setTitle(response.title)
 		}
+  }
+
+  reset() {
+    this.button.classList.add("w3-hide")
   }
 }

@@ -5,13 +5,26 @@ import { printNotif } from '../../../../Library/printnotif.js'
 
 export class PicturePage {
 	constructor(section, state) {
-    this.id = state.id
+    this.state = state
 		this.section = section
-		this.picture = null
-    this.likes = new Likes(this.section, state)
-    this.title = new Title(this.section, state)
-		this.getPicture()
+    this.init()
+    this.likes = new Likes(this.section, this.state)
+    this.title = new Title(this.section, this.state)
 	}
+
+  init() {
+		this.picture = null
+    this.setId()
+		this.getPicture()
+  }
+
+  setId() {
+    if (isNaN(this.state.id) || this.state.id <= 1) {
+      this.state.id = 1
+    }
+
+    this.id = this.state.id
+  }
 
 	getPicture() {
 		let request = {
@@ -36,7 +49,8 @@ export class PicturePage {
     img.alt = this.picture.title
   }
 
-  setPicture() {
+  setPicture(response) {
+    this.picture = response
     this.title.set(this.picture)
     this.setAuthor()
     this.setImage()
@@ -45,12 +59,16 @@ export class PicturePage {
 
 	callback (response, httpStatus) {
 		if (httpStatus <= 400) {
-      this.picture = response
-		  this.setPicture()
+		  this.setPicture(response)
 		}
 		if (response['flash']) {
 			printNotif(response['flash'], httpStatus)
 		}
 	}
+
+  reset() {
+    this.likes.reset()
+    this.init()
+  }
 }
 

@@ -13,25 +13,12 @@ export class Controller {
     if (this.events) {
       this.events.init(this.card)
     }
-    this.setCloseButtons("settingsForm")
-    this.setCloseButtons("authForm")
 	}
 
   toggleLogin() {
     if (this.events) {
       this.events.toggleLogin()
     }
-  }
-
-  setCloseButtons(name) {
-		let form = document.getElementById(name)
-    let path = "#" + this.state.route
-
-    if (this.state.id) {
-      path += "/" + this.state.id
-    }
-
-    form.getElementsByTagName("a")[0].href = path
   }
 
   wakeUp () {

@@ -16,6 +16,10 @@ export class CommonForm {
 		}
 		this.setButtons()
 		this.setEventListener()
+    this.extra()
+  }
+
+  extra() {
   }
 
 	eventDispatcher(event) {

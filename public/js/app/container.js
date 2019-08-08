@@ -19,6 +19,9 @@ export class Container {
      login: true,
      reinit: true,
      signup: true,
+     password: true,
+     settings: true,
+     suppression: true,
      picture: true,
      pictures: true,
      about: true,
@@ -28,15 +31,28 @@ export class Container {
   }
 
   setBehaviour() {
-   this.view = {
-     login: ["modal", "authForm"],
-     reinit: ["modal", "authForm"],
-     signup: ["modal", "authForm"],
-     pictures: ["hidden"],
-     burger: ["burger", this.state],
-     logout: ["logout", this.state],
-     error: ["error"]
-   }
+    let modal1 = {
+      state: this.state,
+      modal: "authForm",
+    }
+    let modal2 = {
+      state: this.state,
+      modal: "settingsForm",
+    }
+
+    this.behaviour = {
+      login: ["modal", modal1],
+      reinit: ["modal", modal1],
+      signup: ["modal", modal1],
+      password: ["modal", modal2],
+      settings: ["modal", modal2],
+      suppression: ["modal", modal2],
+      pictures: ["hidden"],
+      burger: ["burger", this.state],
+      logout: ["logout", this.state],
+      error: ["error", this.state],
+      picture: ["picture", this.state],
+    }
   }
 
   setComponents() {
@@ -65,7 +81,7 @@ export class Container {
   }
 
   async getBehaviour(name) {
-    let behaviour = this.view[name]
+    let behaviour = this.behaviour[name]
 
     if (behaviour) {
       let path =  "./Behaviour/" + behaviour[0] + ".js"

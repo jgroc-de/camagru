@@ -16,7 +16,9 @@ export class anGGularJS {
     try {
       let route = middlewares(router(this.state))
 
-      this.container.start(route)
+      if (route) {
+        this.container.start(route)
+      }
 		} catch(error) {
       this.errorManager(error)
 		}
