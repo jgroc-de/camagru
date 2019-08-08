@@ -21,7 +21,7 @@ tests=(\
 	"/camagru;403"
 	"/picturesByUser;403"
 	"/user;200"
-	"/aieaueaue;404"
+	"/aieaueaue;200"
 	"/picture/0;400"
 	"/picture/20000;404"
 	"/login;200;POST"

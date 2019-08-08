@@ -1,5 +1,5 @@
 import { ggAjax } from '../../../../Library/ggAjax.js'
-import { request } from '../../../Abstract/request.js'
+import { request } from '../../../../Library/request.js'
 import { printNotif } from '../../../../Library/printnotif.js'
 
 export class Likes {

@@ -1,6 +1,6 @@
 import { ggAjax } from '../../Library/ggAjax.js'
 import { printNotif } from '../../Library/printnotif.js'
-import { request } from '../Abstract/request.js'
+import { request } from '../../Library/request.js'
 
 export class Events {
   constructor() {

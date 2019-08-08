@@ -26,7 +26,7 @@ class BakaDo
     public function getController($container)
     {
         if (!$this->isSetRoute()) {
-			$this->uri = "home";
+            $this->uri = 'home';
         }
         $this->setController($container);
         if (!method_exists($this->controller, $this->method)) {
