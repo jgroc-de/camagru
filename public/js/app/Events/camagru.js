@@ -9,6 +9,10 @@ export class Camagru {
   }
 
   init() {
+    this.canvas = document.getElementsByTagName("canvas")[0]
+    this.canvas.width = 400
+    this.canvas.height = 300
+
 		this.MyPictures = new MyPictures()
 		this.Photographer = new Photographer(this.MyPictures)
 		this.Filters = new Filters()

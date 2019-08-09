@@ -13,19 +13,34 @@ export class Photographer {
 			this.eventDispatcher(event)
 		}
 		this.button.addEventListener('click', this, false);
+		this.upload = document.getElementById('upload')
+    this.upload.addEventListener('change', this, false)
+    this.reader = new FileReader()
+    this.reader.addEventListener('load', this, false)
 	}
 
-	getDataUrl() {
-		let upload = document.getElementById('upload')
+  onChange() {
+    let file = this.upload.files[0]
 
-		if (!upload) {
+    this.reader.readAsDataURL(file)
+    this.screen.poster = URL.createObjectURL(file)
+  }
+
+  readFile(event) {
+    this.upload.src = this.reader.result;
+  }
+
+	getDataUrl() {
+		if (this.screen.srcObject) {
 			let context = this.canvas.getContext('2d')
 
 			context.drawImage(this.screen, 0, 0, 400, 300)
 			return this.canvas.toDataURL('image/png')
-		}
+		} else if (this.upload.src) {
+		  return this.upload.src
+    }
 
-		return upload.src
+    return false
 	}
 
 	getFilters() {
@@ -63,8 +78,12 @@ export class Photographer {
 		let dataUrl = this.getDataUrl()
 		let filters = this.getFilters()
 
-		this.sendShot(dataUrl, filters)
-		printNotif('On fait chauffer les hamsters, votre photo arrive!', 200)
+    if (!dataUrl) {
+      printNotif('You must activate the webcam or upload a picture first!', 400)
+    } else {
+      this.sendShot(dataUrl, filters)
+      printNotif('On fait chauffer les hamsters, votre photo arrive!', 200)
+    }
 	}
 
 	callback(response, httpStatus) {
@@ -81,7 +100,12 @@ export class Photographer {
 		switch(event.type) {
 			case 'click':
 				this.submit(event)
-				break;
+				break
+      case 'load':
+        this.readFile(event)
+        break
+      case 'change':
+        this.onChange()
 			default:
 		}
 	}
@@ -89,7 +113,7 @@ export class Photographer {
 	webcamON() {
 		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 			navigator.mediaDevices.getUserMedia({ video: true })
-				.then(function(stream) {
+        .then(function(stream) {
 					let screen = document.getElementById('screen')
 
 					screen.srcObject = stream

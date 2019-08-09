@@ -8,11 +8,18 @@ export class Filters {
 		this.getFilters()
     this.isHidden = false
 	  this.section = document.getElementById("filters")
+    this.info = document.getElementById("info")
+    this.toChange = false
 	}
 
   hide() {
     if (!this.isHidden) {
-      this.section.classList.toggle("w3-hide")
+      console.log(this.section.classList)
+      if (!this.section.classList.contains("w3-hide")) {
+        this.section.classList.add("w3-hide")
+        this.toChange = true
+      }
+      this.info.classList.add("w3-hide")
       this.isHidden = true
       return true
     }
@@ -21,7 +28,11 @@ export class Filters {
   show() {
     if (this.isHidden) {
       this.isHidden = false
-      this.section.classList.toggle("w3-hide")
+      this.info.classList.remove("w3-hide")
+      if (this.section.classList.contains("w3-hide") && this.toChange) {
+        this.toChange = false
+        this.section.classList.remove("w3-hide")
+      }
       return true
     }
   }
@@ -40,7 +51,7 @@ export class Filters {
 		let i = 0
 
 		while (i < filters.length) {
-			this.filters.push(new Filter(this.section, filters[i], this.screenNode))
+			this.filters.push(new Filter(this.section, filters[i], this.screenNode, this.info))
 			i++
 		}
 	}

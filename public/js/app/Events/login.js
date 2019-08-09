@@ -83,11 +83,10 @@ export class Login {
 			this.toggleLoginButton()
 			this.state.components[this.name].shutDown()
       this.toggleComponents()
-      if (this.redirect) {
-			  let redirection = '#' + this.redirect
-
-		    this.redirect = ''
-			  window.location.assign(redirection)
+      if (this.state.prevRoute) {
+			  window.location.assign(this.state.prevRoute)
+      } else {
+			  window.location.assign("#")
       }
 		}
 	}

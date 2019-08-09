@@ -1,7 +1,7 @@
 import * as view from '../../View/filter.js'
 
 export class Filter {
-	constructor (section, data, screenNode) {
+	constructor (section, data, screenNode, info) {
     this.camagru = section.parentNode.parentNode
     this.screenNode = screenNode
 		this.section = section
@@ -17,23 +17,46 @@ export class Filter {
       x:null,
       y:null
     }
+    this.info = info.getElementsByTagName("div")
+    this.buttons = info.getElementsByTagName("button")
 	}
+
+  resetCenter() {
+    this.img.style.top = "0px"
+    this.img.style.left = "0px"
+    this.center.x = 0
+    this.center.y = 0
+    this.client.x = null
+    this.client.y = null
+  }
 
   setCenter() {
     this.center.y = this.imgNode.height / 2
     this.center.x = this.imgNode.width / 2
   }
 
+  toggleHide() {
+    this.section.classList.toggle("w3-hide")
+    this.info[0].classList.toggle("w3-hide")
+    this.info[1].classList.toggle("w3-hide")
+  }
+
   activate() {
     if (!this.isActive) {
+      this.toggleHide()
       this.imgNode = this.screenNode.appendChild(this.img)
       this.imgNode.classList.add("gg-drag")
       this.setCenter()
       this.addEvents()
       this.isActive = true
+      for (let button of this.buttons) {
+        button.addEventListener("click", this, false)
+      }
     } else {
       this.screenNode.removeChild(this.img)
+      this.imgNode = null
       this.isActive = false
+      this.resetCenter()
     }
   }
 
@@ -43,6 +66,7 @@ export class Filter {
       this.client.x = event.clientX
     }
     this.imgNode.addEventListener("mousemove", this, false)
+    document.addEventListener("mouseup", this, false)
   }
 
   drag(event) {
@@ -54,27 +78,39 @@ export class Filter {
   }
 
   addEvents() {
-      this.imgNode.addEventListener("mousedown", this, false)
-      this.camagru.addEventListener("keypress", this, false)
-      this.camagru.addEventListener("mouseup", this, false)
+    document.addEventListener("keypress", this, false)
+    this.imgNode.addEventListener("mousedown", this, false)
   }
 
   removeEvents() {
-      this.imgNode.removeEventListener("mousedown", this, false)
-      this.camagru.removeEventListener("keypress", this, false)
-      this.camagru.removeEventListener("mouseup", this, false)
-      this.imgNode.removeEventListener("mousemove", this, false)
+    this.imgNode.removeEventListener("mousedown", this, false)
+    document.removeEventListener("keypress", this, false)
+    document.removeEventListener("mouseup", this, false)
+    this.imgNode.removeEventListener("mousemove", this, false)
+    for (let button of this.buttons) {
+      button.removeEventListener("click", this, false)
+    }
+  }
+
+  fix() {
+    this.removeEvents()
+    this.toggleHide()
+  }
+
+  zoom(key) {
+    if (key === "+") {
+      this.imgNode.width += 20
+    } else {
+      this.imgNode.width -= 20
+    }
+    this.setCenter()
   }
 
   key(event) {
     if (event.key === "Enter") {
-      this.removeEvents()
-    } else if (event.key === "+") {
-      this.imgNode.width += 20
-      this.setCenter()
-    } else if (event.key === "-") {
-      this.imgNode.width -= 20
-      this.setCenter()
+      this.fix()
+    } else if (event.key === "+" || event.key === "-") {
+      this.zoom(event.key)
     }
   }
 
@@ -85,13 +121,29 @@ export class Filter {
     this.node.addEventListener("click", this, false)
   }
 
+  click(event) {
+    switch (event.target.textContent) {
+      case "enter":
+        this.fix()
+        break
+      case "+":
+        this.zoom("+")
+        break
+      case "-":
+        this.zoom("-")
+        break
+      default:
+        this.activate()
+    }
+  }
+
 	eventDispatcher(event) {
 		event.preventDefault()
     event.stopPropagation()
 
     switch (event.type) {
       case "click":
-        this.activate()
+        this.click(event)
         break
       case "mousedown":
         this.startDrag(event)
@@ -102,6 +154,7 @@ export class Filter {
       case "mouseup":
         this.drag(event)
         this.imgNode.removeEventListener("mousemove", this, false)
+        document.removeEventListener("mouseup", this, false)
         break
       case "keypress":
         this.key(event)

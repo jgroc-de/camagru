@@ -49,7 +49,7 @@ function imageType($key)
         throw new \Exception('not base 64 jpeg/png image', Response::BAD_REQUEST);
     }
     $_POST[$key] = base64_decode(str_replace(
-        [' ', 'data:image/png;base64,'],
+        [' ', 'data:image/' . $_POST['type'] . ';base64,'],
         ['+', ''],
         $_POST[$key]
     ));

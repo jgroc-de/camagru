@@ -20,9 +20,10 @@ export class BurgerView {
       this.hide = !this.hide
 			this.link.href = "#" + this.name
 			this.nav.setAttribute('hidden', true)
+      this.animateBurgerButton()
 		} else if (!defaultView) {
       this.hide = !this.hide
-      let route = "#"
+      let route = ""
 
       if (this.state.prevRoute) {
         route += this.state.prevRoute
@@ -30,10 +31,15 @@ export class BurgerView {
       this.link.href = route
 			this.nav.toggleAttribute('hidden')
 			this.toggleHiddenButtons()
+      this.animateBurgerButton()
 		}
 
 		return false
 	}
+
+  animateBurgerButton() {
+    this.link.classList.toggle("change")
+  }
 
 	toggleHiddenButtons() {
 			if (this.state.isLogin()) {

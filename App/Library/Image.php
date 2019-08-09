@@ -96,11 +96,11 @@ class Image
             throw new \Exception('cant create image layer', Response::INTERNAL_SERVER_ERROR);
         }
         if ($this->imageSize[0] > $this->imageSize[1]) {
-            $width = 640;
-            $height = (int) (640 * $this->imageSize[1] / $this->imageSize[0]);
+            $width = self::WIDTH;
+            $height = (int) (self::WIDTH * $this->imageSize[1] / $this->imageSize[0]);
         } else {
-            $width = (int) (480 * $this->imageSize[0] / $this->imageSize[1]);
-            $height = 480;
+            $width = (int) (self::HEIGHT * $this->imageSize[0] / $this->imageSize[1]);
+            $height = self::HEIGHT;
         }
         imagecopyresampled($image, $this->image, 0, 0, 0, 0, $width, $height, (int) $this->imageSize[0], (int) $this->imageSize[1]);
         $this->imageSize[0] = self::WIDTH;

@@ -22,13 +22,12 @@ export class Logout {
 	}
 
 	callback (response) {
-    console.log(this.state)
     this.state.destroyLogin()
 		if (this.state.components['Settings'])
 			delete this.state.components['Settings']
     this.logBtnG.href = '#login'
     this.logBtnG.className = "w3-bar-item w3-green w3-button"
-    window.location.assign('/')
+    window.location.assign('/#')
   }
 }
 

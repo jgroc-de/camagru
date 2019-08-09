@@ -13,7 +13,7 @@ function getHash() {
 }
 
 function setPrevRoute(index, state) {
-  if (index > 8) {
+  if (index > 9) {
     state.prevRoute = "#" + state.route
     if (state.id) {
       state.prevRoute += "/" + state.id
@@ -54,7 +54,6 @@ export function router(state) {
       state.id = null
     }
     setPrevRoute(index, state)
-    console.log(state)
 	} else {
 		state.httpStatus = 404
 		state.error = "Not Found"

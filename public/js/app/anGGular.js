@@ -16,6 +16,7 @@ export class anGGularJS {
     try {
       let route = middlewares(router(this.state))
 
+      console.log("launch " + route)
       if (route) {
         this.container.start(route)
       }

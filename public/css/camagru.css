@@ -118,3 +118,8 @@ video	{
 	top:0px;
 	left:0px;
 }
+
+.gg-canvas {
+	width: 400px;
+	height: 300px;
+}
