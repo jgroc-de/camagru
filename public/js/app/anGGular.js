@@ -12,14 +12,15 @@ export class anGGularJS {
 		console.log(error)
   }
 
-	launch () {
+	async launch () {
     try {
       let route = middlewares(router(this.state))
 
-      console.log("launch " + route)
+      console.log(this.state.components)
       if (route) {
-        this.container.start(route)
+        await this.container.start(route)
       }
+      console.log(this.state.components)
 		} catch(error) {
       this.errorManager(error)
 		}

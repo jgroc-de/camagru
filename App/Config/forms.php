@@ -45,11 +45,15 @@ function imageType($key)
         $_POST['type'] = 'png';
     } elseif (0 === strpos($_POST[$key], 'data:image/jpeg;base64,')) {
         $_POST['type'] = 'jpeg';
+    } elseif (0 === strpos($_POST[$key], 'data:image/gif;base64,')) {
+        $_POST['type'] = 'gif';
+    } elseif (0 === strpos($_POST[$key], 'data:image/bmp;base64,')) {
+        $_POST['type'] = 'bmp';
     } else {
-        throw new \Exception('not base 64 jpeg/png image', Response::BAD_REQUEST);
+        throw new \Exception('not base 64 jpeg/png/bmp/gif image', Response::BAD_REQUEST);
     }
     $_POST[$key] = base64_decode(str_replace(
-        [' ', 'data:image/' . $_POST['type'] . ';base64,'],
+        [' ', 'data:image/'.$_POST['type'].';base64,'],
         ['+', ''],
         $_POST[$key]
     ));

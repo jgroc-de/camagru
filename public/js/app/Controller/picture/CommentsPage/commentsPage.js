@@ -53,7 +53,7 @@ export class CommentsPage {
     if (inputs.checkValidity()) {
       ggAjax(new request(inputs), this)
     } else {
-      console.log("valid: "+ inputs.checkValidity())
+      //console.log("valid: "+ inputs.checkValidity())
     }
   }
 
@@ -95,7 +95,6 @@ export class CommentsPage {
   }
 
   addComment(comment) {
-    console.log("here")
     let item = new Comment(this.commentsSection, comment, this.state)
 
     this.commentsId.push(item.id)

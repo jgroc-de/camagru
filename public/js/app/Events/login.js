@@ -57,7 +57,7 @@ export class Login {
     if (inputs.checkValidity()) {
       ggAjax(new request(inputs), this)
     } else {
-      console.log("valid: "+ inputs.checkValidity())
+      //console.log("valid: "+ inputs.checkValidity())
     }
   }
 

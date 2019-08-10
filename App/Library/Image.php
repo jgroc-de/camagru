@@ -59,7 +59,20 @@ class Image
     {
         imagealphablending($this->image, true);
         imagesavealpha($this->image, true);
-        imagepng($this->image, $this->fileName);
+				switch ($_POST['type']) {
+					case "png":
+        		imagepng($this->image, $this->fileName);
+						break;
+					case "gif":
+        		imagegif($this->image, $this->fileName);
+						break;
+					case "jpeg":
+        		imagejpeg($this->image, $this->fileName);
+						break;
+					case "bmp":
+        		imagebmp($this->image, $this->fileName);
+						break;
+				}
         imagedestroy($this->image);
 
         return $pictureManager->addPic($this->fileName);
@@ -68,7 +81,7 @@ class Image
     private function setFileName()
     {
         $user = $_SESSION['user'];
-        $this->fileName = 'img/pics/'.$user['pseudo'].'_'.rand().'.png';
+        $this->fileName = 'img/pics/'.$user['pseudo'].'_'.rand(). '.' . $_POST['type'];
     }
 
     private function createPicsDir()
@@ -95,14 +108,14 @@ class Image
         if (!$image) {
             throw new \Exception('cant create image layer', Response::INTERNAL_SERVER_ERROR);
         }
-        if ($this->imageSize[0] > $this->imageSize[1]) {
+        if (self::WIDTH - $this->imageSize[0] < self::HEIGHT - $this->imageSize[1]) {
             $width = self::WIDTH;
             $height = (int) (self::WIDTH * $this->imageSize[1] / $this->imageSize[0]);
         } else {
             $width = (int) (self::HEIGHT * $this->imageSize[0] / $this->imageSize[1]);
             $height = self::HEIGHT;
         }
-        imagecopyresampled($image, $this->image, 0, 0, 0, 0, $width, $height, (int) $this->imageSize[0], (int) $this->imageSize[1]);
+        imagecopyresampled($image, $this->image, (int)((self::WIDTH - $width) / 2), (int)((self::HEIGHT - $height) / 2), 0, 0, $width, $height, (int) $this->imageSize[0], (int) $this->imageSize[1]);
         $this->imageSize[0] = self::WIDTH;
         $this->imageSize[1] = self::HEIGHT;
 

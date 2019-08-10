@@ -62,8 +62,8 @@ export class Events {
     if (inputs.checkValidity()) {
       ggAjax(new request(inputs), this)
     } else {
-      console.log("valid: ")
-      console.log(inputs.checkValidity())
+      //console.log("valid: ")
+      //console.log(inputs.checkValidity())
     }
   }
 

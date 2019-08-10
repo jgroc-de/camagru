@@ -14,7 +14,6 @@ export class Filters {
 
   hide() {
     if (!this.isHidden) {
-      console.log(this.section.classList)
       if (!this.section.classList.contains("w3-hide")) {
         this.section.classList.add("w3-hide")
         this.toChange = true
