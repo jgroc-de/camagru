@@ -5,7 +5,7 @@ export class Container {
   constructor(state) {
     this.state = state
     this.setEvents()
-    this.setBehaviour()
+    this.setBehavior()
     this.setComponents()
     this.setTemplates()
   }
@@ -30,7 +30,7 @@ export class Container {
    }
   }
 
-  setBehaviour() {
+  setBehavior() {
     let modal1 = {
       state: this.state,
       modal: "authForm",
@@ -40,7 +40,7 @@ export class Container {
       modal: "settingsForm",
     }
 
-    this.behaviour = {
+    this.behavior = {
       login: ["modal", modal1],
       reinit: ["modal", modal1],
       signup: ["modal", modal1],
@@ -80,14 +80,14 @@ export class Container {
     }
   }
 
-  async getBehaviour(name) {
-    let behaviour = this.behaviour[name]
+  async getBehavior(name) {
+    let behavior = this.behavior[name]
 
-    if (behaviour) {
-      let path =  "./Behaviour/" + behaviour[0] + ".js"
+    if (behavior) {
+      let path =  "./Behavior/" + behavior[0] + ".js"
       let module = await import(path)
 
-      return new module[this.key(module)](name, behaviour[1])
+      return new module[this.key(module)](name, behavior[1])
     }
 
     return null
@@ -122,7 +122,7 @@ export class Container {
         name: name,
         components: this.components[name],
         template: await this.getTemplate(name),
-        view: await this.getBehaviour(name),
+        view: await this.getBehavior(name),
         events: await this.getEvent(name),
       }
       this.state.components[name] = new Controller(params)

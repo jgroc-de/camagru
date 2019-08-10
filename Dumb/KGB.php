@@ -25,7 +25,7 @@ class KGB
     {
         foreach ($this->formParams as $param) {
             foreach ($param['params'] as $key => $type) {
-                ($param['function'])($key, $type);
+                $param['function']($key, $type);
             }
         }
     }

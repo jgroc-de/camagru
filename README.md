@@ -2,22 +2,38 @@
 ## Description: (nouvelle version)
 
 Petit site type instagram en php/js brut.
+![screenshot](/assets/camagruV2_0.png)
 
 ## Installation
 
+PHP 7.0 ou supérier est nécessaire pour faire fonctionner ce site.
 Pour installer le projet:
 ```
-git clone git@github.com:jgroc-de/camagru.git && composer install && php -S localhost:8000 -t public
+git clone git@github.com:jgroc-de/camagru.git && php -S localhost:8080
 ```
-composer sert ici à initialiser l autoloader. Le site est accessible a l'adresse http:\\localhost:8000
+composer n'est pas ubsolument utile
+
+le site est désormais accessible à l'adresse "localhost:8080/" dans votre navigateur
+
+Pour faire fonctionner le site, il faut aussi une base mysql active et entrer les identifiants dans App/container.php
+initialiser la base de donnée en entrant l'adresse "localhost:8080/config/setup.php" dans votre navigateur internet
+
+![screenshot](/assets/camagruV2_1.png)
 
 ## details technique
 
+### PHP
+
 Le site utilise une sorte de microframework php naif pour fonctionner.
 Le code de celui-ci se trouve dans le dossier Dumb.
-Il est composé de deux fichiers:
+Il est composé de septs fichiers:
 - dumb.php qui est le corps du framework
-- patronus.php qui est le controller parent
+- patronus.php qui est le controller parent (donc les autres controllers héritent. En théorie, la composition, c'est mieux en objet mais bon…)
+- BakaDo.php (en japonais), le router
+- IronWall.php, le gestionnaire de middleware
+- KGB.php, le gestionnaire de validation de formulaire 
+- shell.php, la troisieme couche fourre tout de middleware
+- response.php, une esquisse d'objet response
 
 Ce framework permet de definir:
 - un middleware dans app/config/middleware.php
@@ -26,20 +42,36 @@ Ce framework permet de definir:
 - les routes possibles dans app/config/routes.php (avec de l'url rewriting tres basique)
 - un systeme de container dans app/container.php
 
-le point d'entrée se trouve de manière classique dans public/index.php
+le point d'entrée se trouve de manière classique dans index.php
 enfin, une organisation pseudo REST est proposée avec l'utilisation des verbs HTTP comme methodes des controller.
 le site est ainsi une sorte d'api qui livre le front sur la route /.
 le front se charge ensuite de remplir le site en tapant sur les autres routes.
 
+### JS
+
+Le front est à peu pret tout en JS, avec la navigation géré par le changement de hash (visible par le '#' dans l'adresse).
+Dans le dossier public/js, vous trouverez app.js qui est le point d'entrée
+et qui charge:
+-app/anGGular.js, la class initiale qui charge les modules de bases 
+-app/router.js, le router, chargé de définir la route
+-middleware.js, le middleware.js qui sert nottamment à rediriger vers la page login les pages nécessitant d'etre idetifié sur le site
+-app/container.js, qui sert à construire le controller qui va bien en fonction de la route demandée
+-AnGGular/controller.js, qui est donc le squellette de controller dont tout le monde dépend
+
+Contrairement à la partie PHP, ce n'est pas une structure MVC. Nous avons ici un seul controller dont les parametres sont, en résuné:
+- une classe event qui gére les events de la page (ou l'élément) visionnée
+- une classe behavior, qui vient gérer la maniere dont l'élément réagit visiblement parlant en général
+La logique n'est pas totalement finalisée au sens ou behavior fait un peu doublon avec event et les classes du dossier events pourraient etre refactorisée (pas mal de code dupliqué dans ce dossier)
+
+Cela reste une tentative instrutive de mon point de vue.
+
 ## evolution en cours
 
-- faire du js propre
 - en faire une pwa
 
-## Description: (ancienne version)
+## evolution possible
 
-  Vous allez devoir réaliser, en PHP, un petit site Instagram-like permettant à des utilisateurs de réaliser et partager des photo-montages. Vous allez ainsi implémenter, à mains nues (les frameworks sont interdits), les fonctionnalités de base rencontrées sur la majorité des sites possédant une base utilisateur
-![screenshot](/assets/camagru2.png)
+- faire du js propre (trollolol)
 
 ## Objectif pédagogique:
   
@@ -47,14 +79,13 @@ le front se charge ensuite de remplir le site en tapant sur les autres routes.
   - Gestion permissions
   - Mailing
   - Sécurité / Validation de données
-  
-![screenshot](/assets/camagru1.png)
+ 
 
 ## Langages:
 
 | Back-end | Front-end | bdd |
 |---|---|---|
-| PHP | HTML5, CSS3, *VanillaJS* | MySQL |
+| PHP 7.2 | HTML5, CSS3 (w3-css), *VanillaJS* | MySQL 5.7 |
   
 ## Contraintes techniques:
 
@@ -64,13 +95,4 @@ le front se charge ensuite de remplir le site en tapant sur les autres routes.
   <?='Hello Worldl!'?>
   ```
   
-## Utilisation
-
-Pour lancer ce site, il vous faut un service/server mysql actif, et php 5.4 ou supérieur.
-
-- dans un terminal, entrer: "git clone https://github.com/jgroc-de/camagru.git"
-- dans le dossier camagru tout juste créé, aller dans config/database.php et modifier le mot de passe pour permettre l'acces à votre base de donnée mysql (et éventuellement le nom d'utilisateur si vous n'etes pas "root")
-- placer vous à la racine du dossier 'camagru' et entrez la commande "php -S localhost:8080". un serveur est maintenant lancé en local.
-- initialiser la base de donnée en entrant l'adresse "localhost:8080/config/setup.php" dans votre navigateur internet (firefox/chrome/safari)
-- le site est désormais opérationnel et accessible à l'adresse "localhost:8080/". faites chauffer votre webcam!
-![screenshot](/assets/camagru0.png)
+![screenshot](/assets/camagruV2_2.png)

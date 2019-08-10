@@ -4,10 +4,6 @@ declare(strict_types=1);
 
 namespace Dumb;
 
-function autoload($class)
-{
-}
-
 /**
  * this is the "main" of the framework.
  */
@@ -25,7 +21,7 @@ class Dumb
         spl_autoload_register(function ($class) {
             $path = explode('\\', $class);
             $class = implode('/', $path);
-            require '../'.$class.'.php';
+            require $class.'.php';
         });
         if ($input = file_get_contents('php://input')) {
             $_POST += (array) \json_decode($input);
@@ -83,7 +79,7 @@ class Dumb
     private function run($letter, $args)
     {
         $letter->trap();
-        header('Cache-Control: max-age=360');
+        header('Cache-Control: max-age=3600');
         header('HTTP/1.1 '.$letter->code.' '.Response::HTTP_CODE[$letter->code]);
         $letter->bomb($args);
     }

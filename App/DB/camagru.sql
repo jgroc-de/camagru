@@ -91,10 +91,15 @@ CREATE TABLE likes (
 );
 
 INSERT INTO filter (id, title, url, x, y) VALUES
-(1, 'troll', 'img/filter/trollface.png', 0, 0),
-(3, 'mouton', 'img/filter/mouton.png', -19, 140),
-(4, 'bambou', 'img/filter/bambou.png', 0, -8),
-(5, 'flamme', 'img/filter/flamme.png', 2, 185);
+(1, 'troll', 'public/img/filter/trollface.png', 0, 0),
+(2, 'rick', 'public/img/filter/rick.png', 0, 0),
+(3, 'mouton', 'public/img/filter/mouton.png', 0, 0),
+(4, 'bambou', 'public/img/filter/bambou.png', 0, 0),
+(5, 'flamme', 'public/img/filter/flamme.png', 0, 0),
+(6, 'rick2', 'public/img/filter/rick2.png', 0, 0),
+(7, 'rick3', 'public/img/filter/rick3.png', 0, 0),
+(8, 'rick4', 'public/img/filter/rick4.png', 0, 0),
+(9, 'rick5', 'public/img/filter/rick5.png', 0, 0);
 
 INSERT INTO users (pseudo, passwd, validkey, email) VALUES
 ('troll2', 'test', 'aiue', 'lol@lol.fr');

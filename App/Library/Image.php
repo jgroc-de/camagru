@@ -85,7 +85,7 @@ class Image
     private function setFileName()
     {
         $user = $_SESSION['user'];
-        $this->fileName = 'img/pics/'.$user['pseudo'].'_'.rand().'.'.$_POST['type'];
+        $this->fileName = 'public/img/pics/'.$user['pseudo'].'_'.rand().'.'.$_POST['type'];
     }
 
     private function createPicsDir()
