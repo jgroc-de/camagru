@@ -1,3 +1,5 @@
+import { getImage } from '../../../Library/image.js'
+
 export class Shot {
 	constructor (node, param) {
 		this.node = node.body.children[0]
@@ -6,15 +8,12 @@ export class Shot {
 	}
 
 	configure (param) {
-		let box = this.node
-		let title = box.children[0]
-		let img = box.children[1]
+		let title = this.node.children[0]
+		let img = this.node.children[1]
 
 		this.node.id = param.title
-		img.src = param.url
-		img.alt = param.title
-		img.title = param.title
+    getImage(img, param)
 		title.innerText = param.title
-		box.href = "#picture/" + param.id
+		this.node.href = "#picture/" + param.id
 	}
 }

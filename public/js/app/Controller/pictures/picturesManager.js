@@ -49,7 +49,7 @@ export class PicturesManager {
 
 	buildView () {
 		for (let picture of this.pictures) {
-			this.section.appendChild(picture.node.cloneNode(true))
+			this.section.appendChild(picture.node)
 		}
 	}
 

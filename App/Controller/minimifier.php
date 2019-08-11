@@ -36,7 +36,8 @@ class minimifier extends Patronus
         foreach ($this->templates as $template) {
             $this->minimifyHtml($this->toJS($template));
         }
-        $this->minimifyHtml($this->toIndex());
+        $this->minimifyHtml($this->toIndex(true));
+        $this->minimifyHtml($this->toIndex(false));
     }
 
     private function minimifyHtml($destFile)
@@ -54,9 +55,13 @@ class minimifier extends Patronus
         return $destFile;
     }
 
-    private function toIndex(): string
+    private function toIndex($index = true): string
     {
-        $destFile = __DIR__.'/../../public/index.html';
+				if ($index) {
+					$destFile = __DIR__.'/../../public/index.html';
+				} else {
+					$destFile = __DIR__.'/../../offline.html';
+				}
         ob_start();
         require __DIR__.'/../View/template.html';
         $this->content = ob_get_contents();

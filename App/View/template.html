@@ -11,11 +11,18 @@
 		<link rel="stylesheet" href="/public/css/main.css" async>
 		<link rel="stylesheet" href="/public/css/camagru.css" async>
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" async>
+		<link rel="manifest" href="/public/manifest.json">
     <link rel="modulepreload" href="/public/js/app.js">
 		<script type="module" src="/public/js/app.js"></script>
 		<link rel="modulepreload" href="/public/js/Library/ggAjax.js">
 		<link rel="modulepreload" href="/public/js/Library/printnotif.js">
-		<!--<link rel="manifest" href="/manifest.json">-->
+		<!-- PWA -->
+		<meta name="theme-color" content="#4caf50" />
+		<!-- iOS -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-title" content="Weather PWA">
+		<link rel="apple-touch-icon" href="/images/icons/icon-152x152.png">
 	</head>
 
   <body>
@@ -24,8 +31,12 @@
     <?php
     require __DIR__.'/components/navbar.html';
     require __DIR__.'/components/header.html';
-    require __DIR__.'/form/authForm.html';
-    require __DIR__.'/form/settingsForm.html';
+		if ($index) {
+    	require __DIR__.'/form/authForm.html';
+    	require __DIR__.'/form/settingsForm.html';
+		} else {
+    	require __DIR__.'/components/offline.html';
+		}
     ?>
 
     <!-- notif -->
@@ -36,7 +47,9 @@
     <!-- commons -->
     <?php
     require __DIR__.'/components/about.html';
-    require __DIR__.'/components/contact.html';
+		if ($index) {
+    	require __DIR__.'/components/contact.html';
+		}
     ?>
 
 	<footer class="w3-container w3-black w3-padding-16">
@@ -48,8 +61,8 @@
       <em class="">© jgroc-de 2018</em>
     </a>
 	</footer>
+		<?php if ($index) { ?>
 	<script>
-    /**
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js')
@@ -57,7 +70,8 @@
             console.log('Service worker registered.', reg)
           })
       });
-    }*/
+    }
 	</script>
+	<?php } ?>
 	</body>
 </html>

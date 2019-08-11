@@ -1,4 +1,5 @@
 import * as view from '../../View/filter.js'
+import { getImage } from '../../../Library/image.js'
 
 export class Filter {
 	constructor (section, data, screenNode, info) {
@@ -164,15 +165,9 @@ export class Filter {
     }
   }
 
-  setNode(img) {
-		img.src = this.data.url
-		img.alt = this.data.title
-		img.title = this.data.title
-  }
-
   setImage() {
     this.img = document.createElement("img")
-    this.setNode(this.img)
+    getImage(this.img, this.data)
     this.img.classList.add("gg-screen-width")
     this.img.classList.add("gg-position-filter")
     this.img.style.top = 0
@@ -182,7 +177,8 @@ export class Filter {
 	buildView (template) {
 		let tmpNode = (new DOMParser()).parseFromString(template, 'text/html')
 
-    this.setNode(tmpNode.getElementsByTagName("img")[0])
+    //doublon…
+    getImage(tmpNode.getElementsByTagName("img")[0], this.data)
     this.setImage()
 		this.node = this.section.appendChild(tmpNode.body.childNodes[0])
   }

@@ -2,6 +2,7 @@ import { ggAjax } from '../../../../Library/ggAjax.js'
 import { Likes } from './likes.js'
 import { Title } from './title.js'
 import { printNotif } from '../../../../Library/printnotif.js'
+import { getImage } from '../../../../Library/image.js'
 
 export class PicturePage {
 	constructor(section, state) {
@@ -42,18 +43,11 @@ export class PicturePage {
     span.innerText = "by " + this.picture.pseudo + " on " + this.picture.date
   }
 
-  setImage() {
-    let img = this.section.getElementsByTagName("img")[0]
-    
-    img.src = this.picture.url
-    img.alt = this.picture.title
-  }
-
   setPicture(response) {
     this.picture = response
     this.title.set(this.picture)
     this.setAuthor()
-    this.setImage()
+    getImage(this.section.getElementsByTagName("img")[0], this.picture)
     this.likes.set(this.picture)
   }
 

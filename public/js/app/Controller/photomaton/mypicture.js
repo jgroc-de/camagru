@@ -1,6 +1,7 @@
 import * as view from '../../View/myPicture.js'
 import { ggAjax } from '../../../Library/ggAjax.js'
 import { printNotif } from '../../../Library/printnotif.js'
+import { getImage } from '../../../Library/image.js'
 
 export class MyPicture {
 	constructor (section, data) {
@@ -34,16 +35,10 @@ export class MyPicture {
     ggAjax(this.delete(event), this)
   }
 
-  setNode(img) {
-		img.src = this.data.url
-		img.alt = this.data.title
-		img.title = this.data.title
-  }
-
 	buildView (template) {
 		let tmpNode = (new DOMParser()).parseFromString(template, 'text/html')
 
-    this.setNode(tmpNode.getElementsByTagName("img")[0])
+    getImage(tmpNode.getElementsByTagName("img")[0], this.data)
     tmpNode.getElementsByTagName("span")[0].textContent = this.data.id
     tmpNode.getElementsByTagName("a")[0].href = "/#picture/" + this.data.id
 		this.node = this.section.insertBefore(
