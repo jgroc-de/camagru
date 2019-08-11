@@ -27,7 +27,7 @@ function bakado(Dumb $baka)
             'picturesByUser',
         ],
         'picture',
-        //'setup',
+        'setup',
         'user',
         'minimifier',
         'comment',

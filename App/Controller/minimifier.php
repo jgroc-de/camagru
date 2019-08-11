@@ -57,11 +57,11 @@ class minimifier extends Patronus
 
     private function toIndex($index = true): string
     {
-				if ($index) {
-					$destFile = __DIR__.'/../../public/index.html';
-				} else {
-					$destFile = __DIR__.'/../../offline.html';
-				}
+        if ($index) {
+            $destFile = __DIR__.'/../../public/index.html';
+        } else {
+            $destFile = __DIR__.'/../../offline.html';
+        }
         ob_start();
         require __DIR__.'/../View/template.html';
         $this->content = ob_get_contents();
