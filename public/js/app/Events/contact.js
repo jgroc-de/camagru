@@ -34,14 +34,14 @@ export class Events {
 
     switch(event.target.tagName) {
       case 'A':
-        this.toggleHide(event)
+        this.toggleHide()
         break;
       default:
         this.submit(event)
     }
   }
 
-  toggleHide(event) {
+  toggleHide() {
     this.card.children[1].classList.toggle("w3-hide")
   }
 

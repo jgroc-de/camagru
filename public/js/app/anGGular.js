@@ -17,7 +17,7 @@ export class anGGularJS {
       let route = middlewares(router(this.state))
 
       if (route) {
-        await this.container.start(route)
+        await this.container.start(route, true)
       }
 		} catch(error) {
       this.errorManager(error)
@@ -28,6 +28,8 @@ export class anGGularJS {
     try {
       //check if is logged on server
       await this.container.start("login", false)
+      await this.container.start("about", false)
+      await this.container.start("contact", false)
       this.launch()
     } catch(error) {
       this.errorManager(error)

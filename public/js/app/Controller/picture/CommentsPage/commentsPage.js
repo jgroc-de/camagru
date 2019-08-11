@@ -62,7 +62,6 @@ export class CommentsPage {
 		event.stopPropagation()
 
     if (!this.state.isLogin()) {
-      this.state.components.Login.redirect = this.state.route
       this.state.httpCode = 403
       window.location.assign('#login')
     } else {

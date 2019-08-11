@@ -2,6 +2,7 @@ import { PicturesManager } from '../Controller/pictures/picturesManager.js'
 
 export class Events {
   constructor() {
+    //console.log("events " + "pictures")
   }
 
   init(card) {
@@ -19,6 +20,13 @@ export class Events {
   setEvents () {
     this.setSortButtons()
     this.setPageButtons()
+    this.setSectionButton()
+  }
+
+  setSectionButton() {
+    let a = this.card.getElementsByTagName("a")[0]
+
+    a.addEventListener("click", this, false)
   }
 
   setSortButtons () {
@@ -105,15 +113,20 @@ export class Events {
     }
   }
 
+  toggleHide() {
+    this.card.children[1].classList.toggle("w3-hide")
+  }
+
   eventDispatcher(event) {
     event.preventDefault()
     event.stopPropagation()
 
-    switch(event.type) {
-      case 'click':
-        this.submit(event)
+    switch(event.target.tagName) {
+      case 'A':
+        this.toggleHide()
         break;
       default:
+        this.submit(event)
     }
   }
 

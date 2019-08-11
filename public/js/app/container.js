@@ -116,7 +116,9 @@ export class Container {
   }
 
   async start(name, wakeUp = true) {
+    //console.log(name)
     if (!this.state.components[name]) {
+      this.state.components[name] = true
       let params = {
         state: this.state,
         name: name,

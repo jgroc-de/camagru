@@ -23,10 +23,18 @@
 		.gg-screen {
 			max-width: 480px;
 		}
+    .gg-book {
+        max-height: 700px;
+        overflow: auto;
+    }
 }
 
 @media only screen and (min-width: 480px) and (max-width: 800px) {
     .gg-header {
+    }
+    .gg-book {
+        max-height: 700px;
+        overflow: auto;
     }
 }
 

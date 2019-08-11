@@ -52,6 +52,7 @@ export class Filter {
       for (let button of this.buttons) {
         button.addEventListener("click", this, false)
       }
+      this.section.parentNode.firstChild.classList.add("w3-hide")
     } else {
       this.screenNode.removeChild(this.img)
       this.imgNode = null
@@ -90,6 +91,7 @@ export class Filter {
     for (let button of this.buttons) {
       button.removeEventListener("click", this, false)
     }
+    this.section.parentNode.firstChild.classList.remove("w3-hide")
   }
 
   fix() {

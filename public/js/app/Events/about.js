@@ -17,10 +17,10 @@ export class About {
     event.preventDefault()
     event.stopPropagation()
 
-    this.toggleHide(event)
+    this.toggleHide()
   }
 
-  toggleHide(event) {
+  toggleHide() {
     this.p.classList.toggle("w3-hide")
   }
 
