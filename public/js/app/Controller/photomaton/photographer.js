@@ -4,15 +4,15 @@ import { printNotif } from '../../../Library/printnotif.js'
 export class Photographer {
 	constructor (MyPictures) {
     this.MyPictures = MyPictures
-		this.button = document.getElementById('snap');
-		this.screen = document.getElementById('screen');
-		this.canvas = document.getElementById('canvas');
-		this.filtersON = document.getElementById('montage');
+		this.button = document.getElementById('snap')
+		this.screen = document.getElementById('screen')
+		this.canvas = document.getElementById('canvas')
+		this.filtersON = document.getElementById('montage')
 		this.webcamON()
 		this.handleEvent = function (event) {
 			this.eventDispatcher(event)
 		}
-		this.button.addEventListener('click', this, false);
+		this.button.addEventListener('click', this, false)
 		this.upload = document.getElementById('upload')
     this.upload.addEventListener('change', this, false)
     this.reader = new FileReader()
@@ -27,7 +27,7 @@ export class Photographer {
   }
 
   readFile(event) {
-    this.upload.src = this.reader.result;
+    this.upload.src = this.reader.result
   }
 
 	getDataUrl() {
@@ -44,9 +44,9 @@ export class Photographer {
 	}
 
 	getFilters() {
-		let filters = [];
+		let filters = []
 		let	imgs = this.filtersON.getElementsByTagName('img')
-		let i = 0;
+		let i = 0
 
 		while (i < imgs.length) {
 			filters.push({
@@ -112,7 +112,7 @@ export class Photographer {
 
 	webcamON() {
 		if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-			navigator.mediaDevices.getUserMedia({ video: true })
+			navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
         .then(function(stream) {
 					let screen = document.getElementById('screen')
 
