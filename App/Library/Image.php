@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Library;
 
+use Cloudinary\Uploader;
 use Dumb\Response;
 
 class Image
@@ -78,6 +79,11 @@ class Image
                         break;
                 }
         imagedestroy($this->image);
+        if ($_ENV['CLOUDINARY_URL']) {
+             $response = Uploader::upload($this->fileName);
+             var_dump($response);
+             $this->fileName = $response['secure_url'];
+        }
 
         return $pictureManager->addPic($this->fileName);
     }

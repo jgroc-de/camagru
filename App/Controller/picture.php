@@ -22,6 +22,7 @@ class picture extends Patronus
     protected function setup()
     {
         $this->pictureManager = $this->container['picture']($this->container);
+        $this->cloudinay = $this->container['cloudinary']();
     }
 
     public function get()

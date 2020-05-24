@@ -29,8 +29,8 @@ function equip(Dumb $baka)
             } else {
                 return [
                     'driver' => 'mysql',
-                    'user' => 'admin',
-                    'password' => 'admin',
+                    'user' => 'camgru',
+                    'password' => 'camagru',
                     'host' => 'localhost',
                     'name' => 'camagru',
                     'export' => __DIR__ . '/DB/camagru.sql',
