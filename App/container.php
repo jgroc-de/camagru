@@ -17,25 +17,28 @@ function equip(Dumb $baka)
 {
     $baka->setContainer([
         'env' => function (): array {
-            //$dbopts = parse_url(getenv('DATABASE_URL'));
-            return [
-                /*'driver' => 'pgsql',
-                    'user' => $dbopts['user'],
-                    'host' => $dbopts['host'],
-                    'port' => $dbopts['port'],
-                    'password' => $dbopts['pass'],
-                    'name' => ltrim($dbopts['path'], '/'),*/
-                'driver' => 'mysql',
-                'user' => 'admin',
-                'password' => 'admin',
-                'host' => 'localhost',
-                'name' => 'camagru',
-                'export' => __DIR__.'/DB/camagru.sql',
-                'port' => '3306',
-            ];
+            if (!empty($_ENV['DB_HOST'])) {
+                return [
+                    'driver' => 'mysql',
+                    'user' => $_ENV['DB_USER'],
+                    'host' => $_ENV['DB_HOST'],
+                    'port' => $_ENV['DB_PORT'],
+                    'password' => $_ENV['DB_PASS'],
+                    'name' => $_ENV['DB_NAME'],
+                ];
+            } else {
+                return [
+                    'driver' => 'mysql',
+                    'user' => 'admin',
+                    'password' => 'admin',
+                    'host' => 'localhost',
+                    'name' => 'camagru',
+                    'export' => __DIR__ . '/DB/camagru.sql',
+                    'port' => '3306',
+                ];
+            }
         },
-        'db' => function ($DB): PDO {
-            $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';';
+        'db' => function ($DB): \PDO {
             $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';port='.$DB['port'];
             //à remplacer par mysqli pour profiter des async pour les creations update delete
 

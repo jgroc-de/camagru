@@ -12,8 +12,6 @@ use Dumb\Patronus;
  */
 class minimifier extends Patronus
 {
-    private $view;
-
     private $content = '';
 
     private $templates = [
