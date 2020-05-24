@@ -1,4 +1,4 @@
 public/img/pics
 vendor
 .*.swp
-app/container.php
+.env

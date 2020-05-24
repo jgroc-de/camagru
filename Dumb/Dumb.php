@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Dumb;
 
+use App\Controller\error;
+
 /**
  * this is the "main" of the framework.
  */
@@ -86,11 +88,14 @@ class Dumb
 
     private function error($e)
     {
-        $letter = new \App\Controller\error($this->container, 'get', (int) $e->getCode());
+        $letter = new error($this->container, 'get', (int) $e->getCode());
         $message = $e->getMessage();
         if ($letter->code > 600) {
             $letter->code = 404;
             $message = 'pdo error: '.$message;
+        }
+        if (!isset(Response::HTTP_CODE[$letter->code])) {
+            $letter->code = 404;
         }
         header('HTTP/1.1 '.$letter->code.' '.Response::HTTP_CODE[$letter->code]);
         $letter->bomb(['flash' => $message]);

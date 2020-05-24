@@ -80,8 +80,8 @@ class Image
                 }
         imagedestroy($this->image);
         if ($_ENV['CLOUDINARY_URL']) {
+            \Cloudinary::config_from_url($_ENV['CLOUDINARY_URL']);
              $response = Uploader::upload($this->fileName);
-             var_dump($response);
              $this->fileName = $response['secure_url'];
         }
 

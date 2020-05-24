@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Library\Image;
+use App\Model\PicturesManager;
 use Dumb\Patronus;
 use Dumb\Response;
 
@@ -13,10 +14,10 @@ use Dumb\Response;
  */
 class picture extends Patronus
 {
+    /** @var string */
     private $picture;
 
-    private $comments;
-
+    /** @var PicturesManager */
     private $pictureManager;
 
     protected function setup()
@@ -85,8 +86,9 @@ class picture extends Patronus
         $filters = $_POST['filters'];
         $i = 0;
         $all = $this->getOriginalFilters();
-        while ($filters[$i]) {
-            if (!($filter = $all[$filters[$i]->title])) {
+        while (isset($filters[$i])) {
+            $filter = $all[$filters[$i]->title];
+            if (!$filter) {
                 throw new \Exception('filter', Response::NOT_FOUND);
             }
             $filters[$i]->url = $filter;
