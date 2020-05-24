@@ -2,9 +2,10 @@
 -- Database: 'camagru'
 --
 
-DROP DATABASE IF EXISTS camagru;
-CREATE DATABASE camagru;
-USE camagru;
+-- DROP DATABASE IF EXISTS camagru;
+-- CREATE DATABASE camagru;
+-- USE camagru;
+use fo8wewxs9mdfhspo;
 
 -- --------------------------------------------------------
 
