@@ -1,7 +1,7 @@
 # Camagru
 ## Description: (nouvelle version)
 
-Petit site type instagram en php/js brut.
+Petit site type instagram en php/js brut visible [ici](https://camagru42.herokuapp.com/).
 ![screenshot](/assets/camagruV2_0.png)
 
 ## Objectif pédagogique:
@@ -23,7 +23,7 @@ Petit site type instagram en php/js brut.
   Pas de framework;
   
   ```php
-  <?='Hello Worldl!'?>
+  <?= 'Hello Worldl!' ?>
   ```
   
 ## Installation
@@ -31,9 +31,10 @@ Petit site type instagram en php/js brut.
 PHP 7.0 ou supérier est nécessaire pour faire fonctionner ce site.
 Pour installer le projet:
 ```
-git clone git@github.com:jgroc-de/camagru.git && php -S localhost:8080
+git clone git@github.com:jgroc-de/camagru.git && composer install
+php -S localhost:8080
 ```
-composer n'est pas ubsolument utile
+composer ne fut pas absolument utile fut un temps
 
 le site est désormais accessible à l'adresse "localhost:8080/" dans votre navigateur
 

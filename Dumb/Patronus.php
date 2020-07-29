@@ -19,21 +19,9 @@ class Patronus
 
     protected $method;
 
-    public function __construct(array $container, string $method, int $code = 200)
-    {
-        $this->container = $container;
-        $this->method = $method;
-        $this->code = $code;
-        $this->setup();
-    }
-
     public function __call(string $string, array $args)
     {
         throw new \Exception("{$string} controller error", Response::METHOD_NOT_ALLOWED);
-    }
-
-    protected function setup()
-    {
     }
 
     public function trap()
@@ -64,8 +52,8 @@ class Patronus
         }
     }
 
-    public function bomb(array $options = null)
+    public function bomb(): string
     {
-        echo json_encode($this->response);
+        return json_encode($this->response);
     }
 }

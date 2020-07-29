@@ -10,7 +10,7 @@ session_start();
 require __DIR__.'/vendor/autoload.php';
 
 //Dumb Framework load without autoloader
-require 'Dumb/Dumb.php';
+//require 'Dumb/Dumb.php';
 
 $dotenv = new Dotenv();
 if (is_file(__DIR__.'/.env')) {
@@ -21,8 +21,7 @@ if (is_file(__DIR__.'/.env')) {
 $baka = new Dumb();
 
 //set container
-require 'App/container.php';
-equip($baka);
+require 'App/Config/container.php';
 
 //set routes
 require 'App/Config/routes.php';
@@ -30,7 +29,6 @@ bakado($baka);
 
 //set url validator
 require 'App/Config/middlewares.php';
-shield($baka);
 
 //set form validator
 require 'App/Config/forms.php';

@@ -5,16 +5,20 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Library\Session;
+use App\Model\UserManager;
 use Dumb\Patronus;
 use Dumb\Response;
 
 class login extends Patronus
 {
+    /** @var UserManager */
     private $userManager;
 
-    protected function setup()
+    public function __construct(array $container, string $method, int $code = 200)
     {
-        $this->userManager = $this->container['user']($this->container);
+        $this->method = $method;
+        $this->code = $code;
+        $this->userManager = $container['user']($container);
     }
 
     protected function post()

@@ -4,26 +4,40 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\CommentManager;
+use App\Model\MailManager;
+use App\Model\UserManager;
 use Dumb\Patronus;
 use Dumb\Response;
 
 class comment extends Patronus
 {
+    /** @var CommentManager $commentManager */
     private $commentManager;
 
-    protected function setup()
+    /** @var UserManager $userManager */
+    private $userManager;
+
+    /** @var MailManager $mailManager */
+    private $mailManager;
+
+    public function __construct(array $container, string $method, int $code = 200)
     {
-        $this->commentManager = $this->container['comment']($this->container);
+        $this->method = $method;
+        $this->code = $code;
+        $this->commentManager = $container['comment']($container);
+        $this->userManager = $container['user']($container);
+        $this->mailManager = $container['mail']();
     }
 
     public function get()
     {
-        $this->response['comments'] = $this->container['comment']($this->container)->getComments($_GET['id'])->fetchAll(\PDO::FETCH_ASSOC);
+        $this->response['comments'] = $this->commentManager->getComments($_GET['id'])->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function put()
     {
-        $this->response['comments'] = $this->container['comment']($this->container)->getLastComments($_GET['id'])->fetchAll(\PDO::FETCH_ASSOC);
+        $this->response['comments'] = $this->commentManager->getLastComments($_GET['id'])->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function post()
@@ -49,9 +63,9 @@ class comment extends Patronus
 
     private function sendUserNotification($id)
     {
-        $user = $this->container['user']($this->container)->getUserByImgId($id);
+        $user = $this->userManager->getUserByImgId($id);
         if ($user['alert']) {
-            $this->container['mail']()->sendCommentMail($user);
+            $this->mailManager->sendCommentMail($user);
         }
     }
 }

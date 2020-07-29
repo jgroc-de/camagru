@@ -24,7 +24,10 @@
         "vimeo/psalm": "^3.3"
     },
 	"autoload": {
-		"psr-4": {
-		}
-	}
+        "psr-4": {
+            "App\\":"App/",
+            "Dumb\\": "Dumb/",
+            "Psr\\": "Psr/"
+        }
+    }
 }

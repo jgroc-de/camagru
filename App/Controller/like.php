@@ -4,16 +4,20 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\LikesManager;
 use Dumb\Patronus;
 use Dumb\Response;
 
 class like extends Patronus
 {
+    /** @var LikesManager */
     private $likeManager;
 
-    protected function setup()
+    public function __construct(array $container, string $method, int $code = 200)
     {
-        $this->likeManager = $this->container['like']($this->container);
+        $this->method = $method;
+        $this->code = $code;
+        $this->likeManager = $container['like']($container);
     }
 
     public function get()

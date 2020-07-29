@@ -23,7 +23,7 @@ class BakaDo
         $this->setUri();
     }
 
-    public function getController($container)
+    public function getController($container): Patronus
     {
         if (!$this->isSetRoute()) {
             $this->uri = 'home';

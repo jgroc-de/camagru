@@ -5,16 +5,24 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Library\Session;
+use App\Model\MailManager;
+use App\Model\UserManager;
 use Dumb\Patronus;
 use Dumb\Response;
 
 class user extends Patronus
 {
+    /** @var UserManager */
     private $userManager;
+    /** @var MailManager */
+    private $mailManager;
 
-    protected function setup()
+    public function __construct(array $container, string $method, int $code = 200)
     {
-        $this->userManager = $this->container['user']($this->container);
+        $this->method = $method;
+        $this->code = $code;
+        $this->userManager = $container['user']($container);
+        $this->mailManager = $container['mail']();
     }
 
     public function get()
@@ -43,7 +51,7 @@ class user extends Patronus
         if (!$this->userManager->addUser($user, password_hash($password, PASSWORD_DEFAULT))) {
             throw new \Exception($_SESSION['flash']['fail'], Response::UNAUTHORIZED);
         }
-        $this->container['mail']()->sendValidationMail($this->userManager->getUser($user->getPseudo()));
+        $this->mailManager->sendValidationMail($this->userManager->getUser($user->getPseudo()));
         if (isset($_SESSION['flash']['success'])) {
             $this->response['flash'] = $_SESSION['flash']['success'];
         }

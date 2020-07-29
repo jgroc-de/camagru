@@ -25,17 +25,25 @@ class minimifier extends Patronus
         'filter',
     ];
 
+    public function __construct(array $container, string $method, int $code = 200)
+    {
+        $this->method = $method;
+        $this->code = $code;
+    }
+
     public function get()
     {
     }
 
-    public function bomb(array $options = null)
+    public function bomb(): string
     {
         foreach ($this->templates as $template) {
             $this->minimifyHtml($this->toJS($template));
         }
         $this->minimifyHtml($this->toIndex(true));
         $this->minimifyHtml($this->toIndex(false));
+
+        return "";
     }
 
     private function minimifyHtml($destFile)

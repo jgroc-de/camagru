@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Model\FilterManager;
 use Dumb\Patronus;
 
 /**
@@ -12,11 +13,14 @@ use Dumb\Patronus;
  */
 class filter extends Patronus
 {
+    /** @var FilterManager */
     private $filterManager;
 
-    protected function setup()
+    public function __construct(array $container, string $method, int $code = 200)
     {
-        $this->filterManager = $this->container['filter']($this->container);
+        $this->method = $method;
+        $this->code = $code;
+        $this->filterManager = $container['filter']($container);
     }
 
     public function get()

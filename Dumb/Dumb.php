@@ -4,27 +4,32 @@ declare(strict_types=1);
 
 namespace Dumb;
 
-use App\Controller\error;
+use Psr\Http\Message\ResponseInterface;
 
 /**
  * this is the "main" of the framework.
  */
 class Dumb
 {
+    /** @var array $container */
     public $container;
 
+    /** @var BakaDo $router */
     private $router;
+    /** @var IronWall $middleware */
     private $middleware;
+    /** @var KGB $formValidator */
     private $formValidator;
+    /** @var $ghost */
     private $ghost;
 
     public function __construct($functions = [])
     {
-        spl_autoload_register(function ($class) {
+        /*spl_autoload_register(function ($class) {
             $path = explode('\\', $class);
             $class = implode('/', $path);
             require $class.'.php';
-        });
+        });*/
         if ($input = file_get_contents('php://input')) {
             $_POST += (array) \json_decode($input);
         }
@@ -45,10 +50,10 @@ class Dumb
         $this->router = new BakaDo($routes);
     }
 
-    public function setMiddlewares($function, array $routes)
+    public function setMiddlewares(string $class, array $routes)
     {
         if ($this->router->isMiddleWareMatch($routes)) {
-            $this->middleware->add($function);
+            $this->middleware->add($class);
         }
     }
 
@@ -65,39 +70,44 @@ class Dumb
         }
     }
 
-    public function kamehameha($args = null)
+    public function kamehameha()
     {
         try {
-            $controller = $this->router->getController($this->container);
-            $this->middleware->check();
-            $this->formValidator->check();
-            $this->ghost->check($this->container);
-            $this->run($controller, $args);
+            $response = $this->middleware->handle(new Request());
+            if ($response->getStatusCode() >= 400) {
+                $response = $this->error($response);
+            } else {
+                /** @var Patronus $controller */
+                $controller = $this->router->getController($this->container);
+                $this->formValidator->check();
+                $this->ghost->check($this->container);
+                $response = $this->run($controller);
+            }
         } catch (\Exception $e) {
-            $this->error($e);
+            $response = $this->error(new Response($e->getCode(), $e->getMessage()));
         }
+        $response->send();
     }
 
-    private function run($letter, $args)
+    private function run(Patronus $letter): Response
     {
         $letter->trap();
-        header('Cache-Control: max-age=3600');
-        header('HTTP/1.1 '.$letter->code.' '.Response::HTTP_CODE[$letter->code]);
-        $letter->bomb($args);
+        $response = new Response();
+        $response->setMessage($letter->bomb());
+
+        return $response;
     }
 
-    private function error($e)
+    private function error(ResponseInterface $response): ResponseInterface
     {
-        $letter = new error($this->container, 'get', (int) $e->getCode());
-        $message = $e->getMessage();
-        if ($letter->code > 600) {
-            $letter->code = 404;
-            $message = 'pdo error: '.$message;
+        if ($response->getStatusCode() > 600) {
+            $response = $response->withStatus(404, 'pdo error: ' . $response->getReasonPhrase());
         }
-        if (!isset(Response::HTTP_CODE[$letter->code])) {
-            $letter->code = 404;
+        if (!isset(Response::HTTP_CODE[$response->getStatusCode()])) {
+            $response = $response->withStatus(404);
         }
-        header('HTTP/1.1 '.$letter->code.' '.Response::HTTP_CODE[$letter->code]);
-        $letter->bomb(['flash' => $message]);
+        $response->setMessage(json_encode(['flash' => $response->getReasonPhrase()]));
+
+        return $response;
     }
 }

@@ -5,16 +5,24 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Library\Session;
+use App\Model\MailManager;
+use App\Model\UserManager;
 use Dumb\Patronus;
 use Dumb\Response;
 
 class password extends Patronus
 {
+    /** @var UserManager */
     private $userManager;
+    /** @var MailManager */
+    private $mailManager;
 
-    protected function setup()
+    public function __construct(array $container, string $method, int $code = 200)
     {
-        $this->userManager = $this->container['user']($this->container);
+        $this->method = $method;
+        $this->code = $code;
+        $this->userManager = $container['user']($container);
+        $this->mailManager = $container['mail']($container);
     }
 
     public function get()
@@ -42,16 +50,18 @@ class password extends Patronus
         if (empty($user) || !$this->userManager->resetValidkey($user['pseudo'])) {
             throw new \Exception('password', Response::NOT_FOUND);
         }
-        $this->container['mail']($this->container)->sendReinitMail($user);
+        $this->mailManager->sendReinitMail($user);
         if (isset($_SESSION['flash'])) {
             $this->response['flash'] = $_SESSION['flash'];
         }
     }
 
-    public function bomb(array $options = null)
+    public function bomb(): string
     {
         if ('get' !== $this->method) {
-            parent::bomb($options);
+            return json_encode($this->response);
         }
+
+        return "";
     }
 }

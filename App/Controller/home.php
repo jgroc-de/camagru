@@ -12,14 +12,21 @@ use Dumb\Patronus;
  */
 class home extends Patronus
 {
+    public function __construct(array $container, string $method, int $code = 200)
+    {
+        $this->container = $container;
+        $this->method = $method;
+        $this->code = $code;
+    }
+
     public function get()
     {
     }
 
-    public function bomb(array $options = null)
+    public function bomb(): string
     {
         ob_start();
         require __DIR__.'/../../public/index.html';
-        ob_end_flush();
+        return ob_get_contents();
     }
 }

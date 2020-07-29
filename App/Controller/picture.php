@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Library\Image;
+use App\Model\FilterManager;
 use App\Model\PicturesManager;
 use Dumb\Patronus;
 use Dumb\Response;
@@ -14,15 +15,20 @@ use Dumb\Response;
  */
 class picture extends Patronus
 {
-    /** @var string */
+    /** @var array */
     private $picture;
 
     /** @var PicturesManager */
     private $pictureManager;
+    /** @var FilterManager */
+    private $filterManager;
 
-    protected function setup()
+    public function __construct(array $container, string $method, int $code = 200)
     {
-        $this->pictureManager = $this->container['picture']($this->container);
+        $this->method = $method;
+        $this->code = $code;
+        $this->pictureManager = $container['picture']($container);
+        $this->filterManager = $container['filter']($container);
     }
 
     public function get()
@@ -72,7 +78,7 @@ class picture extends Patronus
 
     private function getOriginalFilters(): array
     {
-        $filters = $this->container['filter']($this->container)->getFilters();
+        $filters = $this->filterManager->getFilters();
         $data = [];
         foreach ($filters as $filter) {
             $data[$filter['title']] = $filter['url'];
