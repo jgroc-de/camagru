@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "cloudinary/cloudinary_php",
-            "version": "1.18.0",
+            "version": "1.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/cloudinary/cloudinary_php.git",
-                "reference": "0f24e862b40d7fa1fdb2429e77d711c68e77be71"
+                "reference": "9698155f6bcf7fc9b6aa140bf1daebca7ac3d5c5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/0f24e862b40d7fa1fdb2429e77d711c68e77be71",
-                "reference": "0f24e862b40d7fa1fdb2429e77d711c68e77be71",
+                "url": "https://api.github.com/repos/cloudinary/cloudinary_php/zipball/9698155f6bcf7fc9b6aa140bf1daebca7ac3d5c5",
+                "reference": "9698155f6bcf7fc9b6aa140bf1daebca7ac3d5c5",
                 "shasum": ""
             },
             "require": {
@@ -57,7 +57,7 @@
                 "image management",
                 "sdk"
             ],
-            "time": "2020-09-07T12:16:45+00:00"
+            "time": "2020-10-29T04:01:07+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",
