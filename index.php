@@ -20,12 +20,11 @@ if (is_file(__DIR__.'/.env')) {
 //Dumb Framework is alive!!!
 $baka = new Dumb();
 
-//set container
-require 'App/Config/container.php';
-
 //set routes
 require 'App/Config/routes.php';
-bakado($baka);
+
+//set container
+require 'App/Config/container.php';
 
 //set url validator
 require 'App/Config/middlewares.php';
@@ -36,6 +35,5 @@ trollBumper($baka);
 
 //set specific validators
 require 'App/Config/ghosts.php';
-incept($baka);
 
 $baka->kamehameha();

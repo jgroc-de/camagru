@@ -5,25 +5,26 @@ declare(strict_types=1);
 namespace Dumb;
 
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * this is the "main" of the framework.
  */
 class Dumb
 {
-    /** @var array $container */
+    /** @var array */
     public $container;
 
-    /** @var BakaDo $router */
+    /** @var Patronus */
+    private $controller;
+    /** @var Bakado */
     private $router;
-    /** @var IronWall $middleware */
-    private $middleware;
-    /** @var KGB $formValidator */
+    /** @var array */
+    private $middlewareHandlers = [];
+    /** @var KGB */
     private $formValidator;
-    /** @var $ghost */
-    private $ghost;
 
-    public function __construct($functions = [])
+    public function __construct()
     {
         /*spl_autoload_register(function ($class) {
             $path = explode('\\', $class);
@@ -33,28 +34,22 @@ class Dumb
         if ($input = file_get_contents('php://input')) {
             $_POST += (array) \json_decode($input);
         }
-        $this->container = $functions;
-        $this->middleware = new IronWall();
         $this->formValidator = new KGB();
     }
 
-    public function setContainer(array $functions)
+    public function setRouter(Bakado $router)
     {
-        $this->container = array_merge($this->container, $functions);
-        //side effect…
-        $this->ghost = new Shell();
+        $this->router = $router;
     }
 
-    public function setRoutes(array $routes)
+    public function setContainer(array &$container)
     {
-        $this->router = new BakaDo($routes);
+        $this->container = $container;
     }
 
-    public function setMiddlewares(string $class, array $routes)
+    public function addMiddlewareHandlers(IronWall &$middlewareHandler)
     {
-        if ($this->router->isMiddleWareMatch($routes)) {
-            $this->middleware->add($class);
-        }
+        $this->middlewareHandlers[] = $middlewareHandler;
     }
 
     public function setFormValidator($function, array $routes)
@@ -63,37 +58,40 @@ class Dumb
         $this->formValidator->add($function, $formParams);
     }
 
-    public function setGhostShield($function, array $routes)
-    {
-        if ($this->router->isGhostMatch($routes)) {
-            $this->ghost->add($function);
-        }
-    }
-
     public function kamehameha()
     {
         try {
-            $response = $this->middleware->handle(new Request());
-            if ($response->getStatusCode() >= 400) {
-                $response = $this->error($response);
-            } else {
-                /** @var Patronus $controller */
-                $controller = $this->router->getController($this->container);
-                $this->formValidator->check();
-                $this->ghost->check($this->container);
-                $response = $this->run($controller);
-            }
-        } catch (\Exception $e) {
-            $response = $this->error(new Response($e->getCode(), $e->getMessage()));
+            $controller = $this->router->getController($this->container);
+            $response = $this->runMiddlewares();
+        } catch (\Exception $exception) {
+            $response = new Response($exception->getCode(), $exception->getMessage());
         }
-        $response->send();
+
+        if ($response->getStatusCode() < 400) {
+            $controller->trap();
+            $response->setMessage($controller->bomb());
+        } else {
+            $response = $this->error($response);
+        }
+
+        $code = $response->getStatusCode();
+        header('Cache-Control: max-age=3600');
+        header($_SERVER['SERVER_PROTOCOL'].' '.$code.' '.Response::HTTP_CODE[$code]);
+        echo $response->getMessage();
     }
 
-    private function run(Patronus $letter): Response
+    private function runMiddlewares(): ResponseInterface
     {
-        $letter->trap();
+        $request = new Request();
         $response = new Response();
-        $response->setMessage($letter->bomb());
+        foreach ($this->middlewareHandlers as $middlewareHandler) {
+            /** @var RequestHandlerInterface $middlewareHandler */
+            $response = $middlewareHandler->handle($request);
+            if ($response->getStatusCode() >= 400) {
+                return $response;
+            }
+        }
+        $this->formValidator->check();
 
         return $response;
     }
@@ -101,7 +99,7 @@ class Dumb
     private function error(ResponseInterface $response): ResponseInterface
     {
         if ($response->getStatusCode() > 600) {
-            $response = $response->withStatus(404, 'pdo error: ' . $response->getReasonPhrase());
+            $response = $response->withStatus(404, 'pdo error: '.$response->getReasonPhrase());
         }
         if (!isset(Response::HTTP_CODE[$response->getStatusCode()])) {
             $response = $response->withStatus(404);

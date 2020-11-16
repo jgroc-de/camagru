@@ -49,21 +49,19 @@ initialiser la base de donnée en entrant l'adresse "localhost:8080/config/setup
 
 Le site utilise une sorte de microframework php naif pour fonctionner.
 Le code de celui-ci se trouve dans le dossier Dumb.
-Il est composé de septs fichiers:
+Il est composé des fichiers:
 - dumb.php qui est le corps du framework
-- patronus.php qui est le controller parent (donc les autres controllers héritent. En théorie, la composition, c'est mieux en objet mais bon…)
-- BakaDo.php (en japonais), le router
-- IronWall.php, le gestionnaire de middleware
-- KGB.php, le gestionnaire de validation de formulaire 
-- shell.php, la troisieme couche fourre tout de middleware
-- response.php, une esquisse d'objet response
+- patronus.php qui est le controller parent (dont les autres controllers héritent. En théorie, la composition, c'est mieux en objet mais bon…)
+- BakaDo.php, le router
+- IronWall.php, le gestionnaire de middleware respectant PSR-15 construit en suivant le pattern "chain of responsability"
+- Response.php compatible PSR-7
+- Request.php compatible PSR-7
 
 Ce framework permet de definir:
-- un middleware dans app/config/middleware.php
-- un validateur de formulaire dans app/config/form.php
-- une troisieme couche de securité dans app/config/ghost.php
+- des middlewares dans app/config/middleware.php (autant de couches que nécessaires)
 - les routes possibles dans app/config/routes.php (avec de l'url rewriting tres basique)
-- un systeme de container dans app/container.php
+- un systeme de container dans app/config/container.php
+- un systeme de validation de formulaire dans app/config/forms.php
 
 le point d'entrée se trouve de manière classique dans index.php
 enfin, une organisation pseudo REST est proposée avec l'utilisation des verbs HTTP comme methodes des controller.

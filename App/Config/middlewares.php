@@ -5,93 +5,101 @@ use App\MiddleWares\shouldBeConnected;
 use App\MiddleWares\shouldNotBeConnected;
 use App\MiddleWares\ShouldRequestID;
 use App\MiddleWares\ShouldRequestLogAndKey;
+use Dumb\BakaDo;
 use Dumb\Dumb;
+use Dumb\IronWall;
 
 
 /**
  * restrict access to some Routes depending on some conditions.
  */
+
 /** @var Dumb $baka */
-$baka->setMiddlewares(
-    shouldNotBeConnected::class,
-    [
-        'login' => [
-            'post',
-        ],
-        'signup' => [
-            'post',
-        ],
-        'password' => [
-            'post',
-            'get',
-        ],
-    ]
-);
+/** @var BakaDo $router */
 
-$baka->setMiddlewares(
-    shouldBeConnected::class,
-    [
-        'login' => [
-            'delete',
-        ],
-        'camagru' => [
-            'get',
-        ],
-        'comment' => [
-            'post',
-            'patch',
-            'delete',
-        ],
-        'like' => [
-            'post',
-            'delete',
-        ],
-        'picture' => [
-            'post',
-            'patch',
-            'delete',
-        ],
-        'user' => [
-            'put',
-            'patch',
-            'delete',
-        ],
-        'password' => [
-            'patch',
-        ],
-        'picturesByUser' => [
-            'get',
-        ],
-    ]
-);
+$middlewareHandler = new IronWall();
+$baka->addMiddlewareHandlers($middlewareHandler);
 
-$baka->setMiddlewares(
-    ShouldRequestID::class,
-    [
-        'picture' => [
-            'get',
-            'delete',
-            'patch',
-        ],
-        'comment' => [
-        ],
-    ]
-);
+$routes =  [
+    'login' => [
+        'post',
+    ],
+    'signup' => [
+        'post',
+    ],
+    'password' => [
+        'post',
+        'get',
+    ],
+];
+if ($router->isMiddleWareMatch($routes)) {
+    $middlewareHandler->addMiddleware(new shouldNotBeConnected());
+}
 
-$baka->setMiddlewares(
-    ShouldRequestLogAndKey::class,
-    [
-        'password' => [
-            'get',
-        ],
-    ]
-);
+$routes = [
+    'login' => [
+        'delete',
+    ],
+    'camagru' => [
+        'get',
+    ],
+    'comment' => [
+        'post',
+        'patch',
+        'delete',
+    ],
+    'like' => [
+        'post',
+        'delete',
+    ],
+    'picture' => [
+        'post',
+        'patch',
+        'delete',
+    ],
+    'user' => [
+        'put',
+        'patch',
+        'delete',
+    ],
+    'password' => [
+        'patch',
+    ],
+    'picturesByUser' => [
+        'get',
+    ],
+];
+if ($router->isMiddleWareMatch($routes)) {
+    $middlewareHandler->addMiddleware(new shouldBeConnected());
+}
 
-$baka->setMiddlewares(
-    ShouldBeAdmin::class,
-    [
-        'setup' => [
-            'post',
-        ],
-    ]
-);
+$routes = [
+    'picture' => [
+        'get',
+        'delete',
+        'patch',
+    ],
+    'comment' => [
+    ],
+];
+if ($router->isMiddleWareMatch($routes)) {
+    $middlewareHandler->addMiddleware(new ShouldRequestID());
+}
+
+$routes = [
+    'password' => [
+        'get',
+    ],
+];
+if ($router->isMiddleWareMatch($routes)) {
+    $middlewareHandler->addMiddleware(new ShouldRequestLogAndKey());
+}
+
+$routes = [
+    'setup' => [
+        'post',
+    ],
+];
+if ($router->isMiddleWareMatch($routes)) {
+    $middlewareHandler->addMiddleware(new ShouldBeAdmin());
+}

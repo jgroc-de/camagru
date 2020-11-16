@@ -2,20 +2,17 @@
 
 namespace App\MiddleWares;
 
+use Dumb\DumbMiddleware;
 use Dumb\Response;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 
-class ShouldRequestLogAndKey implements MiddlewareInterface
+class ShouldRequestLogAndKey extends DumbMiddleware
 {
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function Check(ServerRequestInterface $request)
     {
-        if (!isset($_GET['log'], $_GET['key'])) {
-            throw new \Exception('bad request', Response::BAD_REQUEST);
+        $queryParams = $request->getQueryParams();
+        if (!isset($queryParams['log'], $queryParams['key'])) {
+            throw new \Exception("", Response::BAD_REQUEST);
         }
-
-        return $handler->handle($request);
     }
 }

@@ -1,66 +1,47 @@
 <?php
 
+use App\MiddleWares\checkCommentProperty;
+use App\MiddleWares\checkPictureProperty;
+use App\MiddleWares\findPicture;
+use Dumb\BakaDo;
 use Dumb\Dumb;
+use Dumb\IronWall;
 use Dumb\Response;
 
 /**
- * incept.
  * restrict access to some routes if datas does not exist in DB.
- *
- * @param Dumb $baka
  */
-function incept(Dumb $baka)
-{
-    $baka->setGhostShield(
-        function (array $c) {
-            if (!($c['picture']($c)->picInDb($_GET['id']))) {
-                throw new \Exception('Picture not found', Response::NOT_FOUND);
-            }
-        },
-        [
-            'like' => [
-                'delete',
-                'post',
-                'get',
-            ],
-        ]
-    );
 
-    $baka->setGhostShield(
-        function (array $c) {
-            $pic = $c['picture']($c)->getPic($_GET['id']);
+/** @var Dumb $baka */
+/** @var BakaDo $router */
+/** @var array $container */
 
-            if (empty($pic)) {
-                throw new \Exception('Picture not found', Response::NOT_FOUND);
-            }
-            if ($_SESSION['id'] !== $pic['author_id']) {
-                throw new \Exception('Picture not yours', Response::FORBIDDEN);
-            }
-        },
-        [
-            'picture' => [
-                'delete',
-                'patch',
-            ],
-        ]
-    );
-
-    $baka->setGhostShield(
-        function (array $c) {
-            $comment = $c['comment']($c)->getComment($_GET['id']);
-
-            if (empty($comment)) {
-                throw new \Exception('Comment not found', Response::NOT_FOUND);
-            }
-            if ($_SESSION['id'] !== $comment['author_id']) {
-                throw new \Exception('Comment not yours', Response::FORBIDDEN);
-            }
-        },
-        [
-            'comment' => [
-                'delete',
-                'patch',
-            ],
-        ]
-    );
+$middlewareHandler = new IronWall();
+if ($router->isGhostMatch([
+    'like' => [
+        'delete',
+        'post',
+        'get',
+    ],
+])) {
+    $middlewareHandler->addMiddleware(new findPicture($container['picture']($container)));
 }
+
+if ($router->isGhostMatch([
+    'picture' => [
+        'delete',
+        'patch',
+    ],
+])) {
+    $middlewareHandler->addMiddleware(new checkPictureProperty($container['picture']($container)));
+}
+
+if ($router->isGhostMatch([
+    'comment' => [
+        'delete',
+        'patch',
+    ],
+])) {
+    $middlewareHandler->addMiddleware(new checkCommentProperty($container['comment']($container)));
+}
+
