@@ -1,31 +1,8 @@
 # Camagru
 ## Description: (nouvelle version)
 
-Petit site type instagram en php/js brut visible [ici](https://camagru42.herokuapp.com/).
-![screenshot](/assets/camagruV2_0.png)
+[description](https://jgroc-de.github.io/camagru.html)
 
-## Objectif pédagogique:
-  
-  - Gestion utilisateurs
-  - Gestion permissions
-  - Mailing
-  - Sécurité / Validation de données
- 
-
-## Langages:
-
-| Back-end | Front-end | bdd |
-|---|---|---|
-| PHP 7.2 | HTML5, CSS3 (w3-css), *VanillaJS* | MySQL 5.7 |
-  
-## Contraintes techniques:
-
-  Pas de framework;
-  
-  ```php
-  <?= 'Hello Worldl!' ?>
-  ```
-  
 ## Installation
 
 PHP 7.0 ou supérier est nécessaire pour faire fonctionner ce site.
@@ -40,8 +17,6 @@ le site est désormais accessible à l'adresse "localhost:8080/" dans votre navi
 
 Pour faire fonctionner le site, il faut aussi une base mysql active et entrer les identifiants dans App/container.php
 initialiser la base de donnée en entrant l'adresse "localhost:8080/config/setup.php" dans votre navigateur internet
-
-![screenshot](/assets/camagruV2_1.png)
 
 ## details technique
 
@@ -93,5 +68,3 @@ Cela reste une tentative instructive de mon point de vue.
 ## evolution possible
 
 - faire du js propre (trollolol)
-
-![screenshot](/assets/camagruV2_2.png)
