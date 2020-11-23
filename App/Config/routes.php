@@ -30,4 +30,5 @@ $router = new BakaDo([
     'minimifier',
     'comment',
     'like',
+    'admin',
 ]);

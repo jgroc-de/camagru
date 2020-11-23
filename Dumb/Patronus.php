@@ -21,6 +21,12 @@ abstract class Patronus
     /** @var string */
     protected $method;
 
+    public function __construct(array $container, string $method, int $code = 200)
+    {
+        $this->method = $method;
+        $this->code = $code;
+    }
+
     public function __call(string $string, array $args): void
     {
         throw new \Exception("{$string} controller error", Response::METHOD_NOT_ALLOWED);
