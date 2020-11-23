@@ -27,7 +27,7 @@ $container = [
 
         return [
             'driver' => 'mysql',
-            'user' => 'camgru',
+            'user' => 'camagru',
             'password' => 'camagru',
             'host' => 'localhost',
             'name' => 'camagru',
