@@ -12,7 +12,7 @@ class KGB
     /** @var array */
     private $formParams = [];
 
-    public function add($function, array $formParams): void
+    public function add(object $function, array $formParams): void
     {
         if (!empty($formParams)) {
             $this->formParams[] = [
