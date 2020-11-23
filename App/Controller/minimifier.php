@@ -23,7 +23,7 @@ class minimifier extends Patronus
         'comment',
         'filter',
     ];
-    
+
     /** @var string */
     private $content;
 
