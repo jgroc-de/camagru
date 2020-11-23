@@ -81,8 +81,8 @@ class Image
         imagedestroy($this->image);
         if ($_ENV['CLOUDINARY_URL']) {
             \Cloudinary::config_from_url($_ENV['CLOUDINARY_URL']);
-             $response = Uploader::upload($this->fileName);
-             $this->fileName = $response['secure_url'];
+            $response = Uploader::upload($this->fileName);
+            $this->fileName = $response['secure_url'];
         }
 
         return $pictureManager->addPic($this->fileName);

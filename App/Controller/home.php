@@ -27,6 +27,7 @@ class home extends Patronus
     {
         ob_start();
         require __DIR__.'/../../public/index.html';
+
         return ob_get_contents();
     }
 }

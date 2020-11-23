@@ -12,13 +12,13 @@ use Dumb\Response;
 
 class comment extends Patronus
 {
-    /** @var CommentManager $commentManager */
+    /** @var CommentManager */
     private $commentManager;
 
-    /** @var UserManager $userManager */
+    /** @var UserManager */
     private $userManager;
 
-    /** @var MailManager $mailManager */
+    /** @var MailManager */
     private $mailManager;
 
     public function __construct(array $container, string $method, int $code = 200)

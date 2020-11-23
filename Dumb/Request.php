@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Dumb;
 
 use Psr\Http\Message\ServerRequestInterface;
@@ -9,8 +8,8 @@ use Psr\Http\Message\UriInterface;
 
 class Request implements ServerRequestInterface
 {
-    /** @var array|null */
-    private $queryParams = null;
+    /** @var null|array */
+    private $queryParams;
 
     public function getProtocolVersion()
     {
@@ -112,31 +111,9 @@ class Request implements ServerRequestInterface
         // TODO: Implement withCookieParams() method.
     }
 
-    private function setQueryParams()
-    {
-        $queryParams = [];
-        if (!isset($_SERVER['QUERY_STRING'])) {
-            $this->queryParams = $queryParams;
-        }
-
-        $params = explode('&', $_SERVER['QUERY_STRING']);
-        foreach ($params as $param) {
-            $values = explode('=', $param);
-            if (!in_array(count($values), [1, 2])) {
-                continue;
-            }
-            if (count($values) === 1) {
-                $values[] = true;
-            }
-            $queryParams[$values[0]] = $values[1];
-        }
-
-        $this->queryParams = $queryParams;
-    }
-
     public function getQueryParams()
     {
-        if ($this->queryParams === null) {
+        if (null === $this->queryParams) {
             $this->setQueryParams();
         }
 
@@ -186,5 +163,27 @@ class Request implements ServerRequestInterface
     public function withoutAttribute($name)
     {
         // TODO: Implement withoutAttribute() method.
+    }
+
+    private function setQueryParams()
+    {
+        $queryParams = [];
+        if (!isset($_SERVER['QUERY_STRING'])) {
+            $this->queryParams = $queryParams;
+        }
+
+        $params = explode('&', $_SERVER['QUERY_STRING']);
+        foreach ($params as $param) {
+            $values = explode('=', $param);
+            if (!in_array(count($values), [1, 2])) {
+                continue;
+            }
+            if (1 === count($values)) {
+                $values[] = true;
+            }
+            $queryParams[$values[0]] = $values[1];
+        }
+
+        $this->queryParams = $queryParams;
     }
 }

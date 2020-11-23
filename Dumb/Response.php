@@ -30,23 +30,23 @@ class Response implements ResponseInterface
     const METHOD_NOT_ALLOWED = 405;
     const INTERNAL_SERVER_ERROR = 500;
 
-    /** @var int $code */
+    /** @var int */
     private $code;
 
-    /** @var string $reasonPhrase */
+    /** @var string */
     private $reasonPhrase;
 
-    /** @var StreamInterface $body */
+    /** @var StreamInterface */
     private $body;
 
-    /** @var array $headers */
+    /** @var array */
     private $headers;
 
     //temp: to remove asap
-    /** @var string $message */
-    private $message = "";
+    /** @var string */
+    private $message = '';
 
-    public function __construct(int $code = 200, string $reasonPhrase = "", array $headers = [], ?StreamInterface $body = null)
+    public function __construct(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null)
     {
         if (!$reasonPhrase && isset(self::HTTP_CODE[$code])) {
             $this->reasonPhrase = self::HTTP_CODE[$code];
@@ -65,8 +65,8 @@ class Response implements ResponseInterface
 
     public function withProtocolVersion($version)
     {
-        if ($version === '1.1' || $version === '1.0') {
-            $_SERVER['SERVER_PROTOCOL'] = "http/$version";
+        if ('1.1' === $version || '1.0' === $version) {
+            $_SERVER['SERVER_PROTOCOL'] = "http/{$version}";
         }
 
         return $this;
@@ -96,10 +96,10 @@ class Response implements ResponseInterface
     {
         $name = strtolower($name);
         if (isset($this->headers[$name])) {
-            return implode(",", $this->headers[$name]);
+            return implode(',', $this->headers[$name]);
         }
 
-        return "";
+        return '';
     }
 
     public function withHeader($name, $value)
@@ -147,7 +147,7 @@ class Response implements ResponseInterface
     public function withStatus($code, $reasonPhrase = '')
     {
         if ($code < 100 || $code > 599) {
-            throw new \InvalidArgumentException("$code: this code does not exist.");
+            throw new \InvalidArgumentException("{$code}: this code does not exist.");
         }
         $this->code = $code;
         if (!$reasonPhrase && isset(self::HTTP_CODE[$code])) {

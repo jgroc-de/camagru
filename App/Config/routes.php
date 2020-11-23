@@ -2,7 +2,6 @@
 
 use Dumb\BakaDo;
 
-
 /**
  * bakaDo.
  * declare GET and POST routes

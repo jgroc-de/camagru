@@ -9,18 +9,16 @@ use Dumb\BakaDo;
 use Dumb\Dumb;
 use Dumb\IronWall;
 
-
 /**
  * restrict access to some Routes depending on some conditions.
  */
 
 /** @var Dumb $baka */
 /** @var BakaDo $router */
-
 $middlewareHandler = new IronWall();
 $baka->addMiddlewareHandlers($middlewareHandler);
 
-$routes =  [
+$routes = [
     'login' => [
         'post',
     ],

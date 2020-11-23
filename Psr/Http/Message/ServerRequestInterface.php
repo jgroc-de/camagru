@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Psr\Http\Message;
 
 /**
@@ -80,7 +79,8 @@ interface ServerRequestInterface extends RequestInterface
      * immutability of the message, and MUST return an instance that has the
      * updated cookie values.
      *
-     * @param array $cookies Array of key/value pairs representing cookies.
+     * @param array $cookies array of key/value pairs representing cookies
+     *
      * @return static
      */
     public function withCookieParams(array $cookies);
@@ -117,8 +117,9 @@ interface ServerRequestInterface extends RequestInterface
      * immutability of the message, and MUST return an instance that has the
      * updated query string arguments.
      *
-     * @param array $query Array of query string arguments, typically from
-     *     $_GET.
+     * @param array $query array of query string arguments, typically from
+     *                     $_GET
+     *
      * @return static
      */
     public function withQueryParams(array $query);
@@ -132,8 +133,8 @@ interface ServerRequestInterface extends RequestInterface
      * These values MAY be prepared from $_FILES or the message body during
      * instantiation, or MAY be injected via withUploadedFiles().
      *
-     * @return array An array tree of UploadedFileInterface instances; an empty
-     *     array MUST be returned if no data is present.
+     * @return array an array tree of UploadedFileInterface instances; an empty
+     *               array MUST be returned if no data is present
      */
     public function getUploadedFiles();
 
@@ -144,9 +145,11 @@ interface ServerRequestInterface extends RequestInterface
      * immutability of the message, and MUST return an instance that has the
      * updated body parameters.
      *
-     * @param array $uploadedFiles An array tree of UploadedFileInterface instances.
+     * @param array $uploadedFiles an array tree of UploadedFileInterface instances
+     *
+     * @throws \InvalidArgumentException if an invalid structure is provided
+     *
      * @return static
-     * @throws \InvalidArgumentException if an invalid structure is provided.
      */
     public function withUploadedFiles(array $uploadedFiles);
 
@@ -163,7 +166,7 @@ interface ServerRequestInterface extends RequestInterface
      * the absence of body content.
      *
      * @return null|array|object The deserialized body parameters, if any.
-     *     These will typically be an array or object.
+     *                           These will typically be an array or object.
      */
     public function getParsedBody();
 
@@ -190,10 +193,12 @@ interface ServerRequestInterface extends RequestInterface
      * updated body parameters.
      *
      * @param null|array|object $data The deserialized body data. This will
-     *     typically be in an array or object.
-     * @return static
+     *                                typically be in an array or object.
+     *
      * @throws \InvalidArgumentException if an unsupported argument type is
-     *     provided.
+     *                                   provided
+     *
+     * @return static
      */
     public function withParsedBody($data);
 
@@ -206,7 +211,7 @@ interface ServerRequestInterface extends RequestInterface
      * deserializing non-form-encoded message bodies; etc. Attributes
      * will be application and request specific, and CAN be mutable.
      *
-     * @return mixed[] Attributes derived from the request.
+     * @return mixed[] attributes derived from the request
      */
     public function getAttributes();
 
@@ -220,9 +225,11 @@ interface ServerRequestInterface extends RequestInterface
      * This method obviates the need for a hasAttribute() method, as it allows
      * specifying a default value to return if the attribute is not found.
      *
-     * @param string $name The attribute name.
-     * @param mixed $default Default value to return if the attribute does not exist.
+     * @param string $name    the attribute name
+     * @param mixed  $default default value to return if the attribute does not exist
+     *
      * @return mixed
+     *
      * @see getAttributes()
      */
     public function getAttribute($name, $default = null);
@@ -237,9 +244,11 @@ interface ServerRequestInterface extends RequestInterface
      * immutability of the message, and MUST return an instance that has the
      * updated attribute.
      *
-     * @param string $name The attribute name.
-     * @param mixed $value The value of the attribute.
+     * @param string $name  the attribute name
+     * @param mixed  $value the value of the attribute
+     *
      * @return static
+     *
      * @see getAttributes()
      */
     public function withAttribute($name, $value);
@@ -254,8 +263,10 @@ interface ServerRequestInterface extends RequestInterface
      * immutability of the message, and MUST return an instance that removes
      * the attribute.
      *
-     * @param string $name The attribute name.
+     * @param string $name the attribute name
+     *
      * @return static
+     *
      * @see getAttributes()
      */
     public function withoutAttribute($name);

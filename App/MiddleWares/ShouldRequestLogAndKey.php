@@ -12,7 +12,7 @@ class ShouldRequestLogAndKey extends DumbMiddleware
     {
         $queryParams = $request->getQueryParams();
         if (!isset($queryParams['log'], $queryParams['key'])) {
-            throw new \Exception("", Response::BAD_REQUEST);
+            throw new \Exception('', Response::BAD_REQUEST);
         }
     }
 }

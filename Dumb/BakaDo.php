@@ -38,7 +38,6 @@ class BakaDo
 
     public function isMiddleWareMatch($routes): bool
     {
-        return true;
         if (empty($routes)) {
             return true;
         }

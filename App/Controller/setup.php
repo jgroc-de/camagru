@@ -30,6 +30,7 @@ class setup extends Patronus
     public function bomb(): string
     {
         header('Location: /');
-        return "";
+
+        return '';
     }
 }

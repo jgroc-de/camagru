@@ -43,7 +43,7 @@ class minimifier extends Patronus
         $this->minimifyHtml($this->toIndex(true));
         $this->minimifyHtml($this->toIndex(false));
 
-        return "";
+        return '';
     }
 
     private function minimifyHtml($destFile)

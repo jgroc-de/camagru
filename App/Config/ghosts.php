@@ -6,7 +6,6 @@ use App\MiddleWares\findPicture;
 use Dumb\BakaDo;
 use Dumb\Dumb;
 use Dumb\IronWall;
-use Dumb\Response;
 
 /**
  * restrict access to some routes if datas does not exist in DB.
@@ -15,7 +14,6 @@ use Dumb\Response;
 /** @var Dumb $baka */
 /** @var BakaDo $router */
 /** @var array $container */
-
 $middlewareHandler = new IronWall();
 if ($router->isGhostMatch([
     'like' => [
@@ -44,4 +42,3 @@ if ($router->isGhostMatch([
 ])) {
     $middlewareHandler->addMiddleware(new checkCommentProperty($container['comment']($container)));
 }
-

@@ -14,7 +14,7 @@ require __DIR__.'/vendor/autoload.php';
 
 $dotenv = new Dotenv();
 if (is_file(__DIR__.'/.env')) {
-    $dotenv->load(__DIR__ . '/.env');
+    $dotenv->load(__DIR__.'/.env');
 }
 
 //Dumb Framework is alive!!!

@@ -21,21 +21,21 @@ $container = [
                 'port' => $_ENV['DB_PORT'],
                 'password' => $_ENV['DB_PASS'],
                 'name' => $_ENV['DB_NAME'],
-                'export' => "",
-            ];
-        } else {
-            return [
-                'driver' => 'mysql',
-                'user' => 'camgru',
-                'password' => 'camagru',
-                'host' => 'localhost',
-                'name' => 'camagru',
-                'export' => __DIR__ . '/DB/camagru.sql',
-                'port' => '3306',
+                'export' => '',
             ];
         }
+
+        return [
+            'driver' => 'mysql',
+            'user' => 'camgru',
+            'password' => 'camagru',
+            'host' => 'localhost',
+            'name' => 'camagru',
+            'export' => __DIR__.'/DB/camagru.sql',
+            'port' => '3306',
+        ];
     },
-    'db' => function ($DB): \PDO {
+    'db' => function ($DB): PDO {
         $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';port='.$DB['port'];
         //à remplacer par mysqli pour profiter des async pour les creations update delete
 
