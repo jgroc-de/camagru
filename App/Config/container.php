@@ -31,7 +31,7 @@ $container = [
             'password' => 'camagru',
             'host' => 'localhost',
             'name' => 'camagru',
-            'export' => __DIR__.'/DB/camagru.sql',
+            'export' => __DIR__.'/../DB/camagru.sql',
             'port' => '3306',
         ];
     },
