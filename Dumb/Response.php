@@ -52,6 +52,18 @@ class Response implements ResponseInterface
     /** @var Response */
     private static $instance;
 
+    private function __construct(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null)
+    {
+        if (!$reasonPhrase && isset(self::HTTP_CODE[$code])) {
+            $this->reasonPhrase = self::HTTP_CODE[$code];
+        } else {
+            $this->reasonPhrase = $reasonPhrase;
+        }
+        $this->code = $code;
+        $this->headers = $headers;
+        $this->body = $body;
+    }
+
     public static function getInstance(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null): Response
     {
         if (false == self::$instance) {
@@ -177,17 +189,5 @@ class Response implements ResponseInterface
     public function getMessage(): string
     {
         return $this->message;
-    }
-
-    private function __construct(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null): void
-    {
-        if (!$reasonPhrase && isset(self::HTTP_CODE[$code])) {
-            $this->reasonPhrase = self::HTTP_CODE[$code];
-        } else {
-            $this->reasonPhrase = $reasonPhrase;
-        }
-        $this->code = $code;
-        $this->headers = $headers;
-        $this->body = $body;
     }
 }
