@@ -84,7 +84,7 @@ class PicturesManager extends SqlManager
 			VALUES (?, ?, ?, NOW())
 		';
         $out = $this->sqlRequest($request, [$_SESSION['user']['pseudo'].'_'.rand(), $_SESSION['id'], $path], true);
-        $id = $this->db->lastInsertId();
+        $id = (int) $this->db->lastInsertId();
         if (0 === $out) {
             throw new Exception('Addition failed', Response::NOT_FOUND);
         }

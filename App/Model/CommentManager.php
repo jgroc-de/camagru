@@ -62,7 +62,7 @@ class CommentManager extends SqlManager
         return $this->sqlRequestFetch($request, [$id]);
     }
 
-    public function addComment($id): ?array
+    public function addComment(int $id): ?array
     {
         $request = '
                 INSERT INTO comments (img_id, author_id, date, content)
@@ -77,13 +77,13 @@ class CommentManager extends SqlManager
         return $this->getComment($id);
     }
 
-    public function deleteComment($id): void
+    public function deleteComment(int $id): void
     {
         $request = 'DELETE FROM comments WHERE id = ?';
         $this->sqlRequest($request, [$id], true);
     }
 
-    public function updateComment($id, $comment): void
+    public function updateComment(int $id, string $comment): void
     {
         $request = '
                 UPDATE comments

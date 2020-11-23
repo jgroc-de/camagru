@@ -56,7 +56,7 @@ class UserManager extends SqlManager
     }
 
     /**
-     * About password_verify: it's a function from the standard library
+     * About password_verify: it's a function from the standard library.
      */
     public function checklogin(string $pseudo, string $pass): bool
     {

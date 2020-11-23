@@ -6,7 +6,7 @@ use PDO;
 
 class ConfigManager
 {
-    /** @var PDO */
+    /** @var array */
     protected $db;
 
     public function __construct(array $container = [])
