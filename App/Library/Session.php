@@ -6,9 +6,16 @@ namespace App\Library;
 
 class Session
 {
+    /** @var string */
     private $pseudo;
+
+    /** @var int */
     private $id;
+
+    /** @var bool */
     private $alert;
+
+    /** @var string */
     private $email;
 
     public function __construct($user = null)
@@ -18,7 +25,7 @@ class Session
         }
     }
 
-    public function updateSession()
+    public function updateSession(): void
     {
         $_SESSION['id'] = $this->id;
         $_SESSION['user'] = [
@@ -29,7 +36,7 @@ class Session
         ];
     }
 
-    public function setSession(array $user)
+    public function setSession(array $user): void
     {
         $_SESSION['id'] = $user['id'];
         $_SESSION['user'] = [
@@ -40,7 +47,7 @@ class Session
         ];
     }
 
-    public function getSession()
+    public function getSession(): ?array
     {
         if (isset($_SESSION['user'])) {
             return $_SESSION['user'];
@@ -49,7 +56,7 @@ class Session
         return null;
     }
 
-    public function setUserFromPostData()
+    public function setUserFromPostData(): void
     {
         $this->pseudo = $_POST['pseudo'];
         $this->email = $_POST['email'];
@@ -57,22 +64,22 @@ class Session
         $this->id = isset($_SESSION['id']) ? $_SESSION['id'] : null;
     }
 
-    public function getPseudo()
+    public function getPseudo(): string
     {
         return $this->pseudo;
     }
 
-    public function getEmail()
+    public function getEmail(): string
     {
         return $this->email;
     }
 
-    public function getAlert()
+    public function getAlert(): bool
     {
         return $this->alert;
     }
 
-    public function setAlert(bool $alert)
+    public function setAlert(bool $alert): void
     {
         $this->alert = $alert;
     }
