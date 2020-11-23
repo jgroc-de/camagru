@@ -24,12 +24,12 @@ abstract class Patronus
     /** @var string */
     protected $method;
 
-    public function __call(string $string, array $args)
+    public function __call(string $string, array $args): void
     {
         throw new \Exception("{$string} controller error", Response::METHOD_NOT_ALLOWED);
     }
 
-    public function trap()
+    public function trap(): void
     {
         switch ($this->method) {
             case 'get':
@@ -60,5 +60,30 @@ abstract class Patronus
     public function bomb(): string
     {
         return json_encode($this->response);
+    }
+
+    public function get()
+    {
+        throw new \Exception("controller error", Response::METHOD_NOT_ALLOWED);
+    }
+
+    public function post()
+    {
+        throw new \Exception("controller error", Response::METHOD_NOT_ALLOWED);
+    }
+
+    public function put()
+    {
+        throw new \Exception("controller error", Response::METHOD_NOT_ALLOWED);
+    }
+
+    public function delete()
+    {
+        throw new \Exception("controller error", Response::METHOD_NOT_ALLOWED);
+    }
+
+    public function patch()
+    {
+        throw new \Exception("controller error", Response::METHOD_NOT_ALLOWED);
     }
 }
