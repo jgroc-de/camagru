@@ -17,7 +17,7 @@ class findPicture extends DumbMiddleware
         $this->pictureManager = $pictureManager;
     }
 
-    public function check(ServerRequestInterface $request)
+    public function check(ServerRequestInterface $request): void
     {
         $id = $request->getQueryParams()['id'];
         if (!($this->pictureManager->picInDb($id))) {

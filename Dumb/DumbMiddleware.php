@@ -16,7 +16,7 @@ abstract class DumbMiddleware implements MiddlewareInterface
     public $message = '';
 
     /** @var DumbMiddleware */
-    private $nextMiddleware = null;
+    private $nextMiddleware;
 
     public function setNextMiddleware(DumbMiddleware $middleware): void
     {

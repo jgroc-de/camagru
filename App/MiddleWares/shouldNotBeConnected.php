@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class shouldNotBeConnected extends DumbMiddleware
 {
-    public function check(ServerRequestInterface $request)
+    public function check(ServerRequestInterface $request): void
     {
         if (isset($_SESSION['user'])) {
             session_unset();

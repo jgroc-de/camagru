@@ -17,7 +17,7 @@ class checkCommentProperty extends DumbMiddleware
         $this->commentManager = $commentManager;
     }
 
-    public function check(ServerRequestInterface $request)
+    public function check(ServerRequestInterface $request): void
     {
         $id = $request->getQueryParams()['id'];
         $comment = $this->commentManager->getComment($id);

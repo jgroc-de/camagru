@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class ShouldRequestLogAndKey extends DumbMiddleware
 {
-    public function Check(ServerRequestInterface $request)
+    public function Check(ServerRequestInterface $request): void
     {
         $queryParams = $request->getQueryParams();
         if (!isset($queryParams['log'], $queryParams['key'])) {

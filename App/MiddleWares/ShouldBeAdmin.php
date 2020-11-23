@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class ShouldBeAdmin extends DumbMiddleware
 {
-    public function check(ServerRequestInterface $request)
+    public function check(ServerRequestInterface $request): void
     {
         if ('troll2' !== $_SESSION['user']['pseudo']) {
             throw new \Exception('', Response::FORBIDDEN);

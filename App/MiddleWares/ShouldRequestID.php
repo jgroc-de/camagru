@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class ShouldRequestID extends DumbMiddleware
 {
-    public function check(ServerRequestInterface $request)
+    public function check(ServerRequestInterface $request): void
     {
         $queryParams = $request->getQueryParams();
         if (!isset($queryParams['id']) || ($queryParams['id']) <= 0) {
