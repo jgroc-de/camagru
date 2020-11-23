@@ -2,3 +2,4 @@ public/img/pics
 vendor
 .*.swp
 .env
+.php_cs.cache
