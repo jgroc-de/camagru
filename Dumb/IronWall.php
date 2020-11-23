@@ -16,9 +16,9 @@ class IronWall implements RequestHandlerInterface
     /** @var DumbMiddleware */
     private $middleware;
 
-    public function addMiddleware(DumbMiddleware $middleware)
+    public function addMiddleware(DumbMiddleware $middleware): void
     {
-        if (!$this->middleware) {
+        if ($this->middleware === null) {
             $this->middleware = $middleware;
         } else {
             $this->middleware->setNextMiddleware($middleware);
@@ -27,7 +27,7 @@ class IronWall implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        if (!$this->middleware) {
+        if ($this->middleware === null) {
             return new Response();
         }
 
