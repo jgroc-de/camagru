@@ -7,7 +7,7 @@ namespace Dumb;
 /**
  * this is the parent class for controller.
  */
-class Patronus
+abstract class Patronus
 {
     public $code;
 

@@ -1,23 +1,17 @@
 <?php
 
-
 namespace App\MiddleWares;
 
-
+use Dumb\DumbMiddleware;
 use Dumb\Response;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 
-class ShouldBeAdmin implements MiddlewareInterface
+class ShouldBeAdmin extends DumbMiddleware
 {
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function check(ServerRequestInterface $request)
     {
         if ('troll2' !== $_SESSION['user']['pseudo']) {
             throw new \Exception('', Response::FORBIDDEN);
         }
-
-        return $handler->handle($request);
     }
 }

@@ -11,7 +11,7 @@ use App\Model\UserManager;
 /**
  * equip everything u need into the container of dumb.
  */
-$baka->setContainer([
+$container = [
     'env' => function (): array {
         if (!empty($_ENV['DB_HOST'])) {
             return [
@@ -64,4 +64,5 @@ $baka->setContainer([
     'user' => function ($c) {
         return new UserManager($c);
     },
-]);
+];
+$baka->setContainer($container);

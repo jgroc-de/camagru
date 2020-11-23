@@ -44,11 +44,15 @@ class Response implements ResponseInterface
 
     //temp: to remove asap
     /** @var string $message */
-    private $message;
+    private $message = "";
 
     public function __construct(int $code = 200, string $reasonPhrase = "", array $headers = [], ?StreamInterface $body = null)
     {
-        $this->reasonPhrase = $reasonPhrase;
+        if (!$reasonPhrase && isset(self::HTTP_CODE[$code])) {
+            $this->reasonPhrase = self::HTTP_CODE[$code];
+        } else {
+            $this->reasonPhrase = $reasonPhrase;
+        }
         $this->code = $code;
         $this->headers = $headers;
         $this->body = $body;
@@ -163,10 +167,8 @@ class Response implements ResponseInterface
         $this->message = $message;
     }
 
-    public function send()
+    public function getMessage(): string
     {
-        header('Cache-Control: max-age=3600');
-        header($_SERVER['SERVER_PROTOCOL'] . ' ' . $this->code . ' ' . Response::HTTP_CODE[$this->code]);
-        echo $this->message;
+        return $this->message;
     }
 }

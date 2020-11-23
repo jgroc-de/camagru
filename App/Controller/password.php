@@ -62,6 +62,6 @@ class password extends Patronus
             return json_encode($this->response);
         }
 
-        return "";
+        return json_encode([]);
     }
 }

@@ -1,23 +1,18 @@
 <?php
 
-
 namespace App\MiddleWares;
 
-
+use Dumb\DumbMiddleware;
 use Dumb\Response;
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 
-class ShouldRequestID implements MiddlewareInterface
+class ShouldRequestID extends DumbMiddleware
 {
-    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    public function check(ServerRequestInterface $request)
     {
-        if (!isset($_GET['id']) || ($_GET['id']) <= 0) {
-            throw new \Exception('bad request', Response::BAD_REQUEST);
+        $queryParams = $request->getQueryParams();
+        if (!isset($queryParams['id']) || ($queryParams['id']) <= 0) {
+            throw new \Exception('', Response::BAD_REQUEST);
         }
-
-        return $handler->handle($request);
     }
 }

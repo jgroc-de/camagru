@@ -117,6 +117,7 @@ function trollBumper(Dumb $baka)
         ],
     ];
     $baka->setFormValidator(
+        //factory
         function ($key, $type) {
             if (empty($_POST[$key])) {
                 throw new \Exception("key {$key} is missing", Response::BAD_REQUEST);

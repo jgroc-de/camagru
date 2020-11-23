@@ -14,25 +14,24 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 class IronWall implements RequestHandlerInterface
 {
-    private $middlewares = [];
+    /** @var DumbMiddleware */
+    private $middleware;
 
-    public function add(string $middleware)
+    public function addMiddleware(DumbMiddleware $middleware)
     {
-        $this->middlewares[] = $middleware;
+        if (!$this->middleware) {
+            $this->middleware = $middleware;
+        } else {
+            $this->middleware->setNextMiddleware($middleware);
+        }
     }
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        if ($this->middlewares === []) {
+        if (!$this->middleware) {
             return new Response();
         }
-        /** @var MiddlewareInterface $middleware */
-        $middleware = array_shift($this->middlewares);
 
-        try {
-            return (new $middleware())->process($request, $this);
-        } catch (\Exception $exception) {
-            return new Response($exception->getCode());
-        }
+        return $this->middleware->process($request, $this);
     }
 }
