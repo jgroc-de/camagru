@@ -26,6 +26,7 @@ class Request implements ServerRequestInterface
     public function getHeaders()
     {
         // TODO: Implement getHeaders() method.
+        return [['']];
     }
 
     public function hasHeader($name)
@@ -37,11 +38,13 @@ class Request implements ServerRequestInterface
     public function getHeader($name)
     {
         // TODO: Implement getHeader() method.
+        return [''];
     }
 
     public function getHeaderLine($name)
     {
         // TODO: Implement getHeaderLine() method.
+        return '';
     }
 
     public function withHeader($name, $value)
@@ -76,6 +79,7 @@ class Request implements ServerRequestInterface
     public function getRequestTarget()
     {
         // TODO: Implement getRequestTarget() method.
+        return '';
     }
 
     public function withRequestTarget($requestTarget)
@@ -109,11 +113,13 @@ class Request implements ServerRequestInterface
     public function getServerParams()
     {
         // TODO: Implement getServerParams() method.
+        return [];
     }
 
     public function getCookieParams()
     {
         // TODO: Implement getCookieParams() method.
+        return [];
     }
 
     public function withCookieParams(array $cookies)
@@ -140,6 +146,7 @@ class Request implements ServerRequestInterface
     public function getUploadedFiles()
     {
         // TODO: Implement getUploadedFiles() method.
+        return [];
     }
 
     public function withUploadedFiles(array $uploadedFiles)
@@ -151,6 +158,7 @@ class Request implements ServerRequestInterface
     public function getParsedBody()
     {
         // TODO: Implement getParsedBody() method.
+        return null;
     }
 
     public function withParsedBody($data)
@@ -162,6 +170,7 @@ class Request implements ServerRequestInterface
     public function getAttributes()
     {
         // TODO: Implement getAttributes() method.
+        return [];
     }
 
     public function getAttribute($name, $default = null)
