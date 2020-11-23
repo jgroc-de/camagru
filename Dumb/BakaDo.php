@@ -25,7 +25,7 @@ class BakaDo
         $this->setUri();
     }
 
-    public function getController($container): Patronus
+    public function getController(array $container): Patronus
     {
         if (!$this->isSetRoute()) {
             $this->uri = 'home';
@@ -38,7 +38,7 @@ class BakaDo
         return $this->controller;
     }
 
-    public function isMiddleWareMatch($routes): bool
+    public function isMiddleWareMatch(array $routes): bool
     {
         if (empty($routes)) {
             return true;
@@ -47,12 +47,12 @@ class BakaDo
         return $this->isMatch($routes);
     }
 
-    public function isGhostMatch($routes): bool
+    public function isGhostMatch(array $routes): bool
     {
         return $this->isMatch($routes);
     }
 
-    public function getFormParameters($routes): array
+    public function getFormParameters(array $routes): array
     {
         if (isset($routes[$this->uri][$this->method])) {
             return $routes[$this->uri][$this->method];
@@ -61,7 +61,7 @@ class BakaDo
         return [];
     }
 
-    private function setController($container): void
+    private function setController(array $container): void
     {
         $class = '\App\Controller\\'.($this->uri);
         $this->controller = new $class($container, $this->method);
@@ -93,7 +93,7 @@ class BakaDo
         return false;
     }
 
-    private function isMatch($routes): bool
+    private function isMatch(array $routes): bool
     {
         if (isset($routes[$this->uri])) {
             $route = $routes[$this->uri];

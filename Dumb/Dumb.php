@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dumb;
 
+use Exception;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
@@ -32,7 +33,7 @@ class Dumb
             require $class.'.php';
         });*/
         if ($input = file_get_contents('php://input')) {
-            $_POST += (array) \json_decode($input);
+            $_POST += (array) json_decode($input);
         }
         $this->formValidator = new KGB();
     }
@@ -42,12 +43,12 @@ class Dumb
         $this->router = $router;
     }
 
-    public function setContainer(array &$container): void
+    public function setContainer(array $container): void
     {
         $this->container = $container;
     }
 
-    public function addMiddlewareHandlers(IronWall &$middlewareHandler): void
+    public function addMiddlewareHandlers(IronWall $middlewareHandler): void
     {
         $this->middlewareHandlers[] = $middlewareHandler;
     }
@@ -69,7 +70,7 @@ class Dumb
             } else {
                 $response = $this->error($response);
             }
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             $response = new Response($exception->getCode(), $exception->getMessage());
         }
 
