@@ -79,6 +79,7 @@ class Dumb
         $code = $response->getStatusCode();
         header('Cache-Control: max-age=3600');
         header($_SERVER['SERVER_PROTOCOL'] ?? ''.' '.$code.' '.Response::HTTP_CODE[$code]);
+        /** @var Response $response */
         echo $response->getMessage();
     }
 
