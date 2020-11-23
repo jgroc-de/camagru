@@ -15,9 +15,6 @@ abstract class Patronus
     /** @var array */
     protected $container;
 
-    /** @var Request */
-    protected $request;
-
     /** @var array */
     protected $response = [];
 
