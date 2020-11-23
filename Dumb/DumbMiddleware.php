@@ -14,10 +14,11 @@ abstract class DumbMiddleware implements MiddlewareInterface
 
     /** @var string */
     public $message = '';
-    /** @var DumbMiddleware */
-    private $nextMiddleware;
 
-    public function setNextMiddleware(DumbMiddleware $middleware)
+    /** @var DumbMiddleware */
+    private $nextMiddleware = null;
+
+    public function setNextMiddleware(DumbMiddleware $middleware): void
     {
         if ($this->nextMiddleware) {
             $this->nextMiddleware->setNextMiddleware($middleware);
@@ -41,5 +42,5 @@ abstract class DumbMiddleware implements MiddlewareInterface
         return new Response();
     }
 
-    abstract public function check(ServerRequestInterface $request);
+    abstract public function check(ServerRequestInterface $request): void;
 }

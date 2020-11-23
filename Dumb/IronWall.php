@@ -14,7 +14,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 class IronWall implements RequestHandlerInterface
 {
     /** @var DumbMiddleware */
-    private $middleware = null;
+    private $middleware;
 
     public function addMiddleware(DumbMiddleware $middleware): void
     {
