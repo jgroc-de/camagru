@@ -105,10 +105,9 @@ class Response implements ResponseInterface
     public function withHeader($name, $value)
     {
         $name = strtolower($name);
+        $this->headers = [$name => [$value]];
 
-        $headers = [$name => [$value]];
-
-        return new Response($this->code, $this->reasonPhrase, $headers, $this->body);
+        return $this;
     }
 
     public function withAddedHeader($name, $value)
@@ -120,13 +119,16 @@ class Response implements ResponseInterface
             $headers[$name] = [];
         }
         $headers[$name][] = $value;
+        $this->headers = $headers;
 
-        return new Response($this->code, $this->reasonPhrase, $headers, $this->body);
+        return $this;
     }
 
     public function withoutHeader($name)
     {
-        return new Response($this->code, $this->reasonPhrase, [], $this->body);
+        $this->headers = [];
+
+        return $this;
     }
 
     public function getBody()
@@ -136,7 +138,9 @@ class Response implements ResponseInterface
 
     public function withBody(StreamInterface $body)
     {
-        return new Response($this->code, $this->reasonPhrase, $this->headers, $body);
+        $this->body = $body;
+
+        return $this;
     }
 
     public function getStatusCode()
@@ -162,7 +166,7 @@ class Response implements ResponseInterface
         return $this->reasonPhrase;
     }
 
-    public function setMessage(string $message)
+    public function setMessage(string $message): void
     {
         $this->message = $message;
     }
