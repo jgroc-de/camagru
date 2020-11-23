@@ -8,10 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
- * Class Response
- * @package Dumb
- *
- * cette classe est un signleton
+ * Class Response.
  */
 class Response implements ResponseInterface
 {
@@ -55,21 +52,9 @@ class Response implements ResponseInterface
     /** @var Response */
     private static $instance;
 
-    private static function construct(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null)
+    public static function getInstance(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null): Response
     {
-        if (!$reasonPhrase && isset(self::HTTP_CODE[$code])) {
-            self::$reasonPhrase = self::HTTP_CODE[$code];
-        } else {
-            self::$reasonPhrase = $reasonPhrase;
-        }
-        self::$code = $code;
-        self::$headers = $headers;
-        self::$body = $body;
-    }
-
-    public static function getInstance(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null)
-    {
-        if (self::$instance === null) {
+        if (null === self::$instance) {
             self::construct($code, $reasonPhrase, $headers, $body);
         }
 
@@ -192,5 +177,17 @@ class Response implements ResponseInterface
     public function getMessage(): string
     {
         return $this->message;
+    }
+
+    private static function construct(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null): void
+    {
+        if (!$reasonPhrase && isset(self::HTTP_CODE[$code])) {
+            self::$reasonPhrase = self::HTTP_CODE[$code];
+        } else {
+            self::$reasonPhrase = $reasonPhrase;
+        }
+        self::$code = $code;
+        self::$headers = $headers;
+        self::$body = $body;
     }
 }
