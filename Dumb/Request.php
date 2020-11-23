@@ -91,6 +91,7 @@ class Request implements ServerRequestInterface
     public function getMethod()
     {
         // TODO: Implement getMethod() method.
+        return '';
     }
 
     public function withMethod($method)

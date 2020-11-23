@@ -9,14 +9,19 @@ namespace Dumb;
  */
 abstract class Patronus
 {
+    /** @var int */
     public $code;
 
+    /** @var array */
     protected $container;
 
+    /** @var Request */
     protected $request;
 
+    /** @var array */
     protected $response = [];
 
+    /** @var string */
     protected $method;
 
     public function __call(string $string, array $args)
