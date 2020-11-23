@@ -14,11 +14,11 @@ use Psr\Http\Server\RequestHandlerInterface;
 class IronWall implements RequestHandlerInterface
 {
     /** @var DumbMiddleware */
-    private $middleware;
+    private $middleware = null;
 
     public function addMiddleware(DumbMiddleware $middleware): void
     {
-        if ($this->middleware === null) {
+        if (null === $this->middleware) {
             $this->middleware = $middleware;
         } else {
             $this->middleware->setNextMiddleware($middleware);
@@ -27,7 +27,7 @@ class IronWall implements RequestHandlerInterface
 
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        if ($this->middleware === null) {
+        if (null === $this->middleware) {
             return new Response();
         }
 
