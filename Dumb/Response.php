@@ -34,28 +34,28 @@ class Response implements ResponseInterface
     const INTERNAL_SERVER_ERROR = 500;
 
     /** @var int */
-    private static $code;
+    private $code;
 
     /** @var string */
-    private static $reasonPhrase;
+    private $reasonPhrase;
 
     /** @var StreamInterface */
-    private static $body;
+    private $body;
 
     /** @var array */
-    private static $headers;
+    private $headers;
 
     //temp: to remove asap
     /** @var string */
-    private static $message = '';
+    private $message = '';
 
     /** @var Response */
     private static $instance;
 
     public static function getInstance(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null): Response
     {
-        if (null === self::$instance) {
-            self::construct($code, $reasonPhrase, $headers, $body);
+        if (false == self::$instance) {
+            self::$instance = new Response($code, $reasonPhrase, $headers, $body);
         }
 
         return self::$instance;
@@ -179,15 +179,15 @@ class Response implements ResponseInterface
         return $this->message;
     }
 
-    private static function construct(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null): void
+    private function __construct(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null): void
     {
         if (!$reasonPhrase && isset(self::HTTP_CODE[$code])) {
-            self::$reasonPhrase = self::HTTP_CODE[$code];
+            $this->reasonPhrase = self::HTTP_CODE[$code];
         } else {
-            self::$reasonPhrase = $reasonPhrase;
+            $this->reasonPhrase = $reasonPhrase;
         }
-        self::$code = $code;
-        self::$headers = $headers;
-        self::$body = $body;
+        $this->code = $code;
+        $this->headers = $headers;
+        $this->body = $body;
     }
 }
