@@ -10,7 +10,7 @@ use PDOStatement;
 
 class UserManager extends SqlManager
 {
-    public function pseudoInDb(string $pseudo): ?int
+    public function pseudoInDb(string $pseudo): ?array
     {
         $request = '
 			SELECT id
@@ -89,7 +89,11 @@ class UserManager extends SqlManager
         return $request->execute([$key, $pseudo]);
     }
 
-    public function addUser(Session $user, string $pass): PDOStatement
+    /**
+     * @return bool|int|PDOStatement
+     * @throws Exception
+     */
+    public function addUser(Session $user, string $pass)
     {
         if ($this->pseudoInDb($user->getPseudo())) {
             throw new Exception('Pseudo déjà pris, desl…!', Response::BAD_REQUEST);
