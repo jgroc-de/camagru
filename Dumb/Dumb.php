@@ -64,7 +64,7 @@ class Dumb
         try {
             $controller = $this->router->getController($this->container);
             /** @var Response $response */
-            $response = $this->runMiddlewares();
+            $response = $this->runMiddlewares($controller->code);
             if ($response->getStatusCode() < 400) {
                 $controller->trap();
                 $response->setMessage($controller->bomb());
@@ -73,20 +73,20 @@ class Dumb
             }
         } catch (Exception $exception) {
             /** @var Response $response */
-            $response = new Response($exception->getCode(), $exception->getMessage());
+            $response = Response::getInstance($exception->getCode(), $exception->getMessage());
         }
 
         $code = $response->getStatusCode();
         header('Cache-Control: max-age=3600');
-        header($_SERVER['SERVER_PROTOCOL'] ?? ''.' '.$code.' '.Response::HTTP_CODE[$code]);
+        header($_SERVER['SERVER_PROTOCOL'].' '.$code.' '.Response::HTTP_CODE[$code]);
         /** @var Response $response */
         echo $response->getMessage();
     }
 
-    private function runMiddlewares(): ResponseInterface
+    private function runMiddlewares(int $code): ResponseInterface
     {
         $request = new Request();
-        $response = new Response();
+        $response = Response::getInstance($code);
         foreach ($this->middlewareHandlers as $middlewareHandler) {
             /** @var RequestHandlerInterface $middlewareHandler */
             $response = $middlewareHandler->handle($request);

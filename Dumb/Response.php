@@ -7,6 +7,12 @@ namespace Dumb;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\StreamInterface;
 
+/**
+ * Class Response
+ * @package Dumb
+ *
+ * cette classe est un signleton
+ */
 class Response implements ResponseInterface
 {
     const HTTP_CODE = [
@@ -31,31 +37,43 @@ class Response implements ResponseInterface
     const INTERNAL_SERVER_ERROR = 500;
 
     /** @var int */
-    private $code;
+    private static $code;
 
     /** @var string */
-    private $reasonPhrase;
+    private static $reasonPhrase;
 
     /** @var StreamInterface */
-    private $body;
+    private static $body;
 
     /** @var array */
-    private $headers;
+    private static $headers;
 
     //temp: to remove asap
     /** @var string */
-    private $message = '';
+    private static $message = '';
 
-    public function __construct(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null)
+    /** @var Response */
+    private static $instance;
+
+    private static function construct(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null)
     {
         if (!$reasonPhrase && isset(self::HTTP_CODE[$code])) {
-            $this->reasonPhrase = self::HTTP_CODE[$code];
+            self::$reasonPhrase = self::HTTP_CODE[$code];
         } else {
-            $this->reasonPhrase = $reasonPhrase;
+            self::$reasonPhrase = $reasonPhrase;
         }
-        $this->code = $code;
-        $this->headers = $headers;
-        $this->body = $body;
+        self::$code = $code;
+        self::$headers = $headers;
+        self::$body = $body;
+    }
+
+    public static function getInstance(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null)
+    {
+        if (self::$instance === null) {
+            self::construct($code, $reasonPhrase, $headers, $body);
+        }
+
+        return self::$instance;
     }
 
     public function getProtocolVersion()

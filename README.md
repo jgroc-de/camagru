@@ -27,10 +27,10 @@ Le code de celui-ci se trouve dans le dossier Dumb.
 Il est composé des fichiers:
 - dumb.php qui est le corps du framework
 - patronus.php qui est le controller parent (dont les autres controllers héritent. En théorie, la composition, c'est mieux en objet mais bon…)
-- BakaDo.php, le router
+- BakaDo.php, le router (Do la voie, et baka…)
 - IronWall.php, le gestionnaire de middleware respectant PSR-15 construit en suivant le pattern "chain of responsability"
-- Response.php compatible PSR-7
-- Request.php compatible PSR-7
+- Response.php compatible PSR-7 (pattern singleton)
+- Request.php compatible PSR-7 (ébauche)
 
 Ce framework permet de definir:
 - des middlewares dans app/config/middleware.php (autant de couches que nécessaires)

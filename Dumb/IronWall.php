@@ -28,7 +28,7 @@ class IronWall implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         if (null === $this->middleware) {
-            return new Response();
+            return Response::getInstance();
         }
 
         return $this->middleware->process($request, $this);

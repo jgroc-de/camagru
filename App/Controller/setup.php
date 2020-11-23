@@ -14,7 +14,7 @@ class setup extends Patronus
     /** @var string */
     private $export;
 
-    public function __construct(array $container, string $method, int $code = 200)
+    public function __construct(array $container, string $method, int $code = 302)
     {
         $this->configManager = $container['config']($container);
         $this->export = $container['env']()['export'];
