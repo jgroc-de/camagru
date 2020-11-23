@@ -9,9 +9,10 @@ namespace Dumb;
  */
 class KGB
 {
+    /** @var array */
     private $formParams = [];
 
-    public function add($function, array $formParams)
+    public function add($function, array $formParams): void
     {
         if (!empty($formParams)) {
             $this->formParams[] = [
@@ -21,7 +22,7 @@ class KGB
         }
     }
 
-    public function check()
+    public function check(): void
     {
         foreach ($this->formParams as $param) {
             foreach ($param['params'] as $key => $type) {
