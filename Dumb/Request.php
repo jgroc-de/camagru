@@ -14,11 +14,13 @@ class Request implements ServerRequestInterface
     public function getProtocolVersion()
     {
         // TODO: Implement getProtocolVersion() method.
+        return '';
     }
 
     public function withProtocolVersion($version)
     {
         // TODO: Implement withProtocolVersion() method.
+        return $this;
     }
 
     public function getHeaders()
@@ -29,6 +31,7 @@ class Request implements ServerRequestInterface
     public function hasHeader($name)
     {
         // TODO: Implement hasHeader() method.
+        return false;
     }
 
     public function getHeader($name)
@@ -44,16 +47,19 @@ class Request implements ServerRequestInterface
     public function withHeader($name, $value)
     {
         // TODO: Implement withHeader() method.
+        return $this;
     }
 
     public function withAddedHeader($name, $value)
     {
         // TODO: Implement withAddedHeader() method.
+        return $this;
     }
 
     public function withoutHeader($name)
     {
         // TODO: Implement withoutHeader() method.
+        return $this;
     }
 
     public function getBody()
@@ -64,6 +70,7 @@ class Request implements ServerRequestInterface
     public function withBody(StreamInterface $body)
     {
         // TODO: Implement withBody() method.
+        return $this;
     }
 
     public function getRequestTarget()
@@ -74,6 +81,7 @@ class Request implements ServerRequestInterface
     public function withRequestTarget($requestTarget)
     {
         // TODO: Implement withRequestTarget() method.
+        return $this;
     }
 
     public function getMethod()
@@ -84,6 +92,7 @@ class Request implements ServerRequestInterface
     public function withMethod($method)
     {
         // TODO: Implement withMethod() method.
+        return $this;
     }
 
     public function getUri()
@@ -94,6 +103,7 @@ class Request implements ServerRequestInterface
     public function withUri(UriInterface $uri, $preserveHost = false)
     {
         // TODO: Implement withUri() method.
+        return $this;
     }
 
     public function getServerParams()
@@ -109,6 +119,7 @@ class Request implements ServerRequestInterface
     public function withCookieParams(array $cookies)
     {
         // TODO: Implement withCookieParams() method.
+        return $this;
     }
 
     public function getQueryParams()
@@ -123,6 +134,7 @@ class Request implements ServerRequestInterface
     public function withQueryParams(array $query)
     {
         // TODO: Implement withQueryParams() method.
+        return $this;
     }
 
     public function getUploadedFiles()
@@ -133,6 +145,7 @@ class Request implements ServerRequestInterface
     public function withUploadedFiles(array $uploadedFiles)
     {
         // TODO: Implement withUploadedFiles() method.
+        return $this;
     }
 
     public function getParsedBody()
@@ -143,6 +156,7 @@ class Request implements ServerRequestInterface
     public function withParsedBody($data)
     {
         // TODO: Implement withParsedBody() method.
+        return $this;
     }
 
     public function getAttributes()
@@ -158,14 +172,16 @@ class Request implements ServerRequestInterface
     public function withAttribute($name, $value)
     {
         // TODO: Implement withAttribute() method.
+        return $this;
     }
 
-    public function withoutAttribute($name)
+    public function withoutAttribute($name):
     {
         // TODO: Implement withoutAttribute() method.
+        return $this;
     }
 
-    private function setQueryParams()
+    private function setQueryParams(): void
     {
         $queryParams = [];
         if (!isset($_SERVER['QUERY_STRING'])) {
