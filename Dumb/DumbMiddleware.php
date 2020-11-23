@@ -35,7 +35,7 @@ abstract class DumbMiddleware implements MiddlewareInterface
             return new Response($e->getCode(), $e->getMessage());
         }
 
-        if ($this->nextMiddleware) {
+        if (!empty($this->nextMiddleware)) {
             return $this->nextMiddleware->process($request, $handler);
         }
 
