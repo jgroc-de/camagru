@@ -31,4 +31,3 @@ $router = new BakaDo([
     'comment',
     'like',
 ]);
-$baka->setRouter($router);

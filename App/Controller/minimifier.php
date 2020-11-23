@@ -12,9 +12,6 @@ use Dumb\Patronus;
  */
 class minimifier extends Patronus
 {
-    /** @var string */
-    private $content;
-
     /** @var array */
     private const TEMPLATES = [
         'camagru',
@@ -26,6 +23,8 @@ class minimifier extends Patronus
         'comment',
         'filter',
     ];
+    /** @var string */
+    private $content;
 
     public function __construct(array $container, string $method, int $code = 200)
     {

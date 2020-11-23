@@ -22,10 +22,13 @@ $baka = new Dumb();
 
 //set routes
 require 'App/Config/routes.php';
+if (!empty($router)) {
+    $baka->setRouter($router);
+}
 
 //set container
 require 'App/Config/container.php';
-if (isset($container)) {
+if (!empty($container)) {
     $baka->setContainer($container);
 }
 

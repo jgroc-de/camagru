@@ -3,14 +3,14 @@
 use Dumb\Dumb;
 use Dumb\Response;
 
-function escapeString(string $key)
+function escapeString(string $key): void
 {
     if ('data' != $key) {
         $_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
     }
 }
 
-function numericType(string $key)
+function numericType(string $key): void
 {
     if (!is_numeric($_POST[$key]) || $_POST[$key] <= 0) {
         throw new \Exception('bad params:not numeric', Response::BAD_REQUEST);
@@ -18,21 +18,21 @@ function numericType(string $key)
     $_POST[$key] = (int) $_POST[$key];
 }
 
-function passwordType(string $key)
+function passwordType(string $key): void
 {
     if (!preg_match('#(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,256}#', $_POST[$key])) {
         throw new \Exception('bad params:not password', Response::BAD_REQUEST);
     }
 }
 
-function emailType(string $key)
+function emailType(string $key): void
 {
     if (!preg_match('#^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,63})$#', $_POST[$key])) {
         throw new \Exception('bad params:not email', Response::BAD_REQUEST);
     }
 }
 
-function pseudoType(string $key)
+function pseudoType(string $key): void
 {
     if (mb_strlen($_POST[$key]) > 30) {
         throw new \Exception('bad params:too long (>30 characters)', Response::BAD_REQUEST);
@@ -63,7 +63,7 @@ function imageType(string $key)
  * trollBumper.
  * validation of forms for each routes.
  */
-function trollBumper(Dumb $baka)
+function trollBumper(Dumb $baka): void
 {
     $formDefinition = [
         'comment' => [
