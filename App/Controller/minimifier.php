@@ -12,9 +12,11 @@ use Dumb\Patronus;
  */
 class minimifier extends Patronus
 {
-    private $content = '';
+    /** @var string */
+    private $content;
 
-    private $templates = [
+    /** @var array */
+    private const TEMPLATES = [
         'camagru',
         'myPictures',
         'myPicture',
@@ -37,7 +39,7 @@ class minimifier extends Patronus
 
     public function bomb(): string
     {
-        foreach ($this->templates as $template) {
+        foreach (self::TEMPLATES as $template) {
             $this->minimifyHtml($this->toJS($template));
         }
         $this->minimifyHtml($this->toIndex(true));
@@ -46,13 +48,13 @@ class minimifier extends Patronus
         return '';
     }
 
-    private function minimifyHtml($destFile)
+    private function minimifyHtml(string $destFile): void
     {
         $this->content = str_replace(["\t", "\n"], '', $this->content);
         echo file_put_contents($destFile, $this->content).';';
     }
 
-    private function toJS($template): string
+    private function toJS(string $template): string
     {
         $htmlName = __DIR__.'/../View/components/'.$template.'.html';
         $destFile = __DIR__.'/../../public/js/app/View/'.$template.'.js';
@@ -61,7 +63,7 @@ class minimifier extends Patronus
         return $destFile;
     }
 
-    private function toIndex($index = true): string
+    private function toIndex(bool $index = true): string
     {
         if ($index) {
             $destFile = __DIR__.'/../../public/index.html';

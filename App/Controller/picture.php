@@ -65,7 +65,7 @@ class picture extends Patronus
         $this->code = Response::CREATED;
     }
 
-    private function createPicture()
+    private function createPicture(): ?array
     {
         $image = new Image();
         $filters = $this->getUserDefineFilters();
@@ -87,7 +87,7 @@ class picture extends Patronus
         return $data;
     }
 
-    private function getUserDefineFilters()
+    private function getUserDefineFilters(): ?array
     {
         $filters = $_POST['filters'];
         $i = 0;

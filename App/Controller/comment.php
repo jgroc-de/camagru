@@ -61,7 +61,7 @@ class comment extends Patronus
         $this->response['flash'] = 'updated!';
     }
 
-    private function sendUserNotification($id)
+    private function sendUserNotification(int $id): void
     {
         $user = $this->userManager->getUserByImgId($id);
         if ($user['alert']) {

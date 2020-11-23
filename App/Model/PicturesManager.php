@@ -112,6 +112,7 @@ class PicturesManager extends SqlManager
 		';
 
         $count = $this->sqlRequestFetch($request);
+
         return $count['count'] ?? 0;
     }
 

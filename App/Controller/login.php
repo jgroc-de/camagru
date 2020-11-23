@@ -41,7 +41,7 @@ class login extends Patronus
         $this->response['flash'] = 'See u soon!!';
     }
 
-    private function setResponse()
+    private function setResponse(): void
     {
         $this->response = [
             'flash' => 'Welcome back '.$_SESSION['user']['pseudo'],
