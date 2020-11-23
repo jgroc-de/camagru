@@ -64,26 +64,26 @@ abstract class Patronus
 
     public function get()
     {
-        throw new \Exception("controller error", Response::METHOD_NOT_ALLOWED);
+        throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
     public function post()
     {
-        throw new \Exception("controller error", Response::METHOD_NOT_ALLOWED);
+        throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
     public function put()
     {
-        throw new \Exception("controller error", Response::METHOD_NOT_ALLOWED);
+        throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
     public function delete()
     {
-        throw new \Exception("controller error", Response::METHOD_NOT_ALLOWED);
+        throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
     public function patch()
     {
-        throw new \Exception("controller error", Response::METHOD_NOT_ALLOWED);
+        throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 }

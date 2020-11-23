@@ -21,7 +21,7 @@ class login extends Patronus
         $this->userManager = $container['user']($container);
     }
 
-    protected function post()
+    public function post()
     {
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
@@ -34,7 +34,7 @@ class login extends Patronus
         $this->setResponse();
     }
 
-    protected function delete()
+    public function delete()
     {
         session_unset();
         session_destroy();
