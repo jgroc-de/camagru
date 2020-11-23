@@ -6,7 +6,10 @@ use Dumb\Response;
 
 class CommentManager extends SqlManager
 {
-    public function getComments(int $id): ?array
+    /**
+     * @return bool|int|\PDOStatement
+     */
+    public function getComments(int $id)
     {
         $request = '
             SELECT comments.*, users.pseudo
@@ -19,7 +22,10 @@ class CommentManager extends SqlManager
         return $this->sqlRequest($request, [$id]);
     }
 
-    public function getLastComments(int $id): ?array
+    /**
+     * @return bool|int|\PDOStatement
+     */
+    public function getLastComments(int $id)
     {
         $date = date('Y-m-d H:i:s', time() - 20);
         $request = '
@@ -69,7 +75,7 @@ class CommentManager extends SqlManager
                 Values (?, ?, NOW(), ?)
             ';
         $out = $this->sqlRequest($request, [$id, $_SESSION['id'], $_POST['comment']], true);
-        $id = $this->db->lastInsertId();
+        $id = (int) $this->db->lastInsertId();
         if (0 === $out) {
             throw new \Exception('Addition failed', Response::NOT_FOUND);
         }
