@@ -20,7 +20,7 @@ abstract class DumbMiddleware implements MiddlewareInterface
 
     public function setNextMiddleware(DumbMiddleware $middleware): void
     {
-        if ($this->nextMiddleware) {
+        if (!empty($this->nextMiddleware)) {
             $this->nextMiddleware->setNextMiddleware($middleware);
         } else {
             $this->nextMiddleware = $middleware;
