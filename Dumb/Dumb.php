@@ -15,7 +15,7 @@ class Dumb
     /** @var array */
     public $container;
 
-    /** @var Bakado */
+    /** @var BakaDo */
     private $router;
 
     /** @var array */
@@ -37,7 +37,7 @@ class Dumb
         $this->formValidator = new KGB();
     }
 
-    public function setRouter(Bakado $router): void
+    public function setRouter(BakaDo $router): void
     {
         $this->router = $router;
     }
@@ -52,7 +52,7 @@ class Dumb
         $this->middlewareHandlers[] = $middlewareHandler;
     }
 
-    public function setFormValidator($function, array $routes): void
+    public function setFormValidator(object $function, array $routes): void
     {
         $formParams = $this->router->getFormParameters($routes);
         $this->formValidator->add($function, $formParams);
@@ -63,15 +63,14 @@ class Dumb
         try {
             $controller = $this->router->getController($this->container);
             $response = $this->runMiddlewares();
+            if ($response->getStatusCode() < 400) {
+                $controller->trap();
+                $response->setMessage($controller->bomb());
+            } else {
+                $response = $this->error($response);
+            }
         } catch (\Exception $exception) {
             $response = new Response($exception->getCode(), $exception->getMessage());
-        }
-
-        if ($response->getStatusCode() < 400) {
-            $controller->trap();
-            $response->setMessage($controller->bomb());
-        } else {
-            $response = $this->error($response);
         }
 
         $code = $response->getStatusCode();
