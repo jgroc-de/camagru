@@ -65,4 +65,3 @@ $container = [
         return new UserManager($c);
     },
 ];
-$baka->setContainer($container);

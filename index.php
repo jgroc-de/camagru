@@ -25,6 +25,9 @@ require 'App/Config/routes.php';
 
 //set container
 require 'App/Config/container.php';
+if (isset($container)) {
+    $baka->setContainer($container);
+}
 
 //set url validator
 require 'App/Config/middlewares.php';

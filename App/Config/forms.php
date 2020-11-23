@@ -3,14 +3,14 @@
 use Dumb\Dumb;
 use Dumb\Response;
 
-function escapeString($key)
+function escapeString(string $key)
 {
     if ('data' != $key) {
         $_POST[$key] = htmlspecialchars(stripslashes(trim($_POST[$key])));
     }
 }
 
-function numericType($key)
+function numericType(string $key)
 {
     if (!is_numeric($_POST[$key]) || $_POST[$key] <= 0) {
         throw new \Exception('bad params:not numeric', Response::BAD_REQUEST);
@@ -18,28 +18,28 @@ function numericType($key)
     $_POST[$key] = (int) $_POST[$key];
 }
 
-function passwordType($key)
+function passwordType(string $key)
 {
     if (!preg_match('#(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,256}#', $_POST[$key])) {
         throw new \Exception('bad params:not password', Response::BAD_REQUEST);
     }
 }
 
-function emailType($key)
+function emailType(string $key)
 {
     if (!preg_match('#^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,63})$#', $_POST[$key])) {
         throw new \Exception('bad params:not email', Response::BAD_REQUEST);
     }
 }
 
-function pseudoType($key)
+function pseudoType(string $key)
 {
     if (mb_strlen($_POST[$key]) > 30) {
         throw new \Exception('bad params:too long (>30 characters)', Response::BAD_REQUEST);
     }
 }
 
-function imageType($key)
+function imageType(string $key)
 {
     if (0 === strpos($_POST[$key], 'data:image/png;base64,')) {
         $_POST['type'] = 'png';
@@ -118,7 +118,7 @@ function trollBumper(Dumb $baka)
     ];
     $baka->setFormValidator(
         //factory
-        function ($key, $type) {
+        function (string $key, $type) {
             if (empty($_POST[$key])) {
                 throw new \Exception("key {$key} is missing", Response::BAD_REQUEST);
             }
