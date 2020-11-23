@@ -61,9 +61,9 @@ class Dumb
 
     public function kamehameha(): void
     {
+        /** @var Response $response */
         try {
             $controller = $this->router->getController($this->container);
-            /** @var Response $response */
             $response = $this->runMiddlewares();
             if ($response->getStatusCode() < 400) {
                 $controller->trap();
@@ -99,6 +99,7 @@ class Dumb
 
     private function error(ResponseInterface $response): ResponseInterface
     {
+        /** @var Response $response */
         if ($response->getStatusCode() > 600) {
             $response = $response->withStatus(404, 'pdo error: '.$response->getReasonPhrase());
         }
