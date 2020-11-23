@@ -48,7 +48,7 @@ class user extends Patronus
         $user->setUserFromPostData();
         $password = $_POST['password'];
 
-        if ($this->userManager->addUser($user, password_hash($password, PASSWORD_DEFAULT)) == false) {
+        if (false == $this->userManager->addUser($user, password_hash($password, PASSWORD_DEFAULT))) {
             throw new \Exception($_SESSION['flash']['fail'], Response::UNAUTHORIZED);
         }
         $this->mailManager->sendValidationMail($this->userManager->getUser($user->getPseudo()));

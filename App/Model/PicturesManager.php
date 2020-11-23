@@ -111,7 +111,8 @@ class PicturesManager extends SqlManager
 			FROM img
 		';
 
-        return $this->sqlRequestFetch($request);
+        $count = $this->sqlRequestFetch($request);
+        return $count['count'] ?? 0;
     }
 
     public function picInDb(int $id): bool
