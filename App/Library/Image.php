@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Library;
 
+use App\Model\PicturesManager;
 use Cloudinary\Uploader;
 use Dumb\Response;
 
@@ -12,10 +13,13 @@ class Image
     const WIDTH = 400;
     const HEIGHT = 300;
 
+    /** @var array|false */
     private $imageSize;
 
+    /** @var false|resource */
     private $image;
 
+    /** @var string */
     private $fileName;
 
     public function __construct()
@@ -30,7 +34,7 @@ class Image
         $this->setFileName();
     }
 
-    public function add($filter)
+    public function add(object $filter)
     {
         $tmp = $filter->url;
         $s_size = getimagesize($tmp);
@@ -56,7 +60,7 @@ class Image
         imagedestroy($src);
     }
 
-    public function save($pictureManager)
+    public function save(PicturesManager $picturesManager): ?array
     {
         imagealphablending($this->image, true);
         imagesavealpha($this->image, true);
@@ -85,16 +89,16 @@ class Image
             $this->fileName = $response['secure_url'];
         }
 
-        return $pictureManager->addPic($this->fileName);
+        return $picturesManager->addPic($this->fileName);
     }
 
-    private function setFileName()
+    private function setFileName(): void
     {
         $user = $_SESSION['user'];
         $this->fileName = 'public/img/pics/'.$user['pseudo'].'_'.rand().'.'.$_POST['type'];
     }
 
-    private function createPicsDir()
+    private function createPicsDir(): void
     {
         $path = __DIR__.'/../../public/img/pics';
         if (!is_dir($path)) {
@@ -102,7 +106,7 @@ class Image
         }
     }
 
-    private function resize()
+    private function resize(): void
     {
         if (self::WIDTH != $this->imageSize[0] || self::HEIGHT != $this->imageSize[1]) {
             $this->image = $this->resampled();
@@ -112,6 +116,10 @@ class Image
         }
     }
 
+    /**
+     * @return resource
+     * @throws \Exception
+     */
     private function resampled()
     {
         $image = imagecreatetruecolor(self::WIDTH, self::HEIGHT);

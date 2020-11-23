@@ -18,7 +18,7 @@ class Session
     /** @var string */
     private $email;
 
-    public function __construct($user = null)
+    public function __construct(array $user = null)
     {
         if ($user) {
             $this->setSession($user);
