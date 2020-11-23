@@ -34,7 +34,7 @@ class Image
         $this->setFileName();
     }
 
-    public function add(object $filter)
+    public function add(object $filter): void
     {
         $tmp = $filter->url;
         $s_size = getimagesize($tmp);
@@ -110,15 +110,16 @@ class Image
     {
         if (self::WIDTH != $this->imageSize[0] || self::HEIGHT != $this->imageSize[1]) {
             $this->image = $this->resampled();
-            if (!$this->image) {
+            if (empty($this->image)) {
                 throw new \Exception('cant resize image', Response::INTERNAL_SERVER_ERROR);
             }
         }
     }
 
     /**
-     * @return resource
      * @throws \Exception
+     *
+     * @return resource
      */
     private function resampled()
     {
