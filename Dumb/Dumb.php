@@ -15,12 +15,12 @@ class Dumb
     /** @var array */
     public $container;
 
-    /** @var Patronus */
-    private $controller;
     /** @var Bakado */
     private $router;
+
     /** @var array */
     private $middlewareHandlers = [];
+
     /** @var KGB */
     private $formValidator;
 
@@ -37,28 +37,28 @@ class Dumb
         $this->formValidator = new KGB();
     }
 
-    public function setRouter(Bakado $router)
+    public function setRouter(Bakado $router): void
     {
         $this->router = $router;
     }
 
-    public function setContainer(array &$container)
+    public function setContainer(array &$container): void
     {
         $this->container = $container;
     }
 
-    public function addMiddlewareHandlers(IronWall &$middlewareHandler)
+    public function addMiddlewareHandlers(IronWall &$middlewareHandler): void
     {
         $this->middlewareHandlers[] = $middlewareHandler;
     }
 
-    public function setFormValidator($function, array $routes)
+    public function setFormValidator($function, array $routes): void
     {
         $formParams = $this->router->getFormParameters($routes);
         $this->formValidator->add($function, $formParams);
     }
 
-    public function kamehameha()
+    public function kamehameha(): void
     {
         try {
             $controller = $this->router->getController($this->container);

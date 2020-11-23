@@ -6,14 +6,16 @@ namespace Dumb;
 
 class BakaDo
 {
+    /** @var Patronus */
     private $controller;
 
-    //routes available
+    /** @var array */
     private $routes = [];
 
-    //http verb
+    /** @var string */
     private $method;
 
+    /** @var string */
     private $uri;
 
     public function __construct(array $routes)
@@ -59,13 +61,13 @@ class BakaDo
         return [];
     }
 
-    private function setController($container)
+    private function setController($container): void
     {
         $class = '\App\Controller\\'.($this->uri);
         $this->controller = new $class($container, $this->method);
     }
 
-    private function setUri()
+    private function setUri(): void
     {
         $uri = explode('/', $_SERVER['REQUEST_URI']);
         $this->uri = explode('?', $uri[1])[0];
