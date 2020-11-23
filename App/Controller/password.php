@@ -25,7 +25,7 @@ class password extends Patronus
         $this->mailManager = $container['mail']($container);
     }
 
-    public function get()
+    public function get(): void
     {
         $pseudo = $_GET['log'];
         if (!$this->userManager->pseudoInDb($pseudo)
@@ -37,13 +37,13 @@ class password extends Patronus
         new Session($user);
     }
 
-    public function patch()
+    public function patch(): void
     {
         $this->userManager->updatePassword($_POST['password']);
         $this->response['flash'] = 'Password Succesfully updated';
     }
 
-    public function post()
+    public function post(): void
     {
         $email = $_POST['email'];
         $user = $this->userManager->getUserByEmail($email);

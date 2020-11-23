@@ -22,7 +22,7 @@ class setup extends Patronus
         $this->code = $code;
     }
 
-    public function get()
+    public function get(): void
     {
         $this->configManager->createDB(file_get_contents($this->export));
     }

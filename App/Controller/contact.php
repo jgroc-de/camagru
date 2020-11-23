@@ -19,7 +19,7 @@ class contact extends Patronus
         $this->mailManager = $container['mail']();
     }
 
-    public function post()
+    public function post(): void
     {
         $this->response['flash'] = 'Thx!';
     }

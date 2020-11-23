@@ -30,17 +30,17 @@ class comment extends Patronus
         $this->mailManager = $container['mail']();
     }
 
-    public function get()
+    public function get(): void
     {
         $this->response['comments'] = $this->commentManager->getComments($_GET['id'])->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function put()
+    public function put(): void
     {
         $this->response['comments'] = $this->commentManager->getLastComments($_GET['id'])->fetchAll(\PDO::FETCH_ASSOC);
     }
 
-    public function post()
+    public function post(): void
     {
         $id = $_GET['id'];
         $comment = $this->commentManager->addComment($id);
@@ -49,13 +49,13 @@ class comment extends Patronus
         $this->code = Response::CREATED;
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->commentManager->deleteComment($_GET['id']);
         $this->response['status'] = 'deleted';
     }
 
-    public function patch()
+    public function patch(): void
     {
         $this->commentManager->updateComment($_GET['id'], $_POST['comment']);
         $this->response['flash'] = 'updated!';

@@ -31,7 +31,7 @@ class picture extends Patronus
         $this->filterManager = $container['filter']($container);
     }
 
-    public function get()
+    public function get(): void
     {
         $id = $_GET['id'];
         $this->picture = $this->pictureManager->getPic($id);
@@ -41,14 +41,14 @@ class picture extends Patronus
         $this->response = $this->picture;
     }
 
-    public function patch()
+    public function patch(): void
     {
         $id = $_GET['id'];
         $this->pictureManager->changeTitle($id, $_POST['title']);
         $this->response['title'] = $_POST['title'];
     }
 
-    public function delete()
+    public function delete(): void
     {
         $id = $_GET['id'];
         $this->response['id'] = $id;
@@ -59,7 +59,7 @@ class picture extends Patronus
         $this->response['status'] = 'deleted';
     }
 
-    public function post()
+    public function post(): void
     {
         $this->response = $this->createPicture();
         $this->code = Response::CREATED;

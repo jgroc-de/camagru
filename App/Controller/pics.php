@@ -20,7 +20,7 @@ class pics extends Patronus
         $this->picsManager = $container['picture']($container);
     }
 
-    public function get()
+    public function get(): void
     {
         $pics = $this->getPics();
         $max = $this->picsManager->countPics()['count'];

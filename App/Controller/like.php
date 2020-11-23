@@ -20,19 +20,19 @@ class like extends Patronus
         $this->likeManager = $container['like']($container);
     }
 
-    public function get()
+    public function get(): void
     {
         $this->response = $this->likeManager->getLike((int) $_GET['id']);
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->likeManager->deleteLike((int) $_GET['id']);
         $this->response = $this->likeManager->getLike((int) $_GET['id']);
         $this->response['flash'] = 'done :(';
     }
 
-    public function post()
+    public function post(): void
     {
         $this->likeManager->addLike((int) $_GET['id']);
         $this->response = $this->likeManager->getLike((int) $_GET['id']);

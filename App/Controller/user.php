@@ -25,12 +25,12 @@ class user extends Patronus
         $this->mailManager = $container['mail']();
     }
 
-    public function get()
+    public function get(): void
     {
         $this->response['settings'] = (new Session())->getSession();
     }
 
-    public function patch()
+    public function patch(): void
     {
         $user = new Session();
         $user->setUserFromPostData();
@@ -42,7 +42,7 @@ class user extends Patronus
         $this->response['flash'] = 'Profil Succesfully updated';
     }
 
-    public function post()
+    public function post(): void
     {
         $user = new Session();
         $user->setUserFromPostData();
@@ -59,7 +59,7 @@ class user extends Patronus
         $this->code = Response::CREATED;
     }
 
-    public function delete()
+    public function delete(): void
     {
         $this->userManager->deleteUser();
         session_unset();

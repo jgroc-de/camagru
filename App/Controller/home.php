@@ -19,7 +19,7 @@ class home extends Patronus
         $this->code = $code;
     }
 
-    public function get()
+    public function get(): void
     {
     }
 

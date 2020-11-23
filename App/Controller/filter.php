@@ -23,7 +23,7 @@ class filter extends Patronus
         $this->filterManager = $container['filter']($container);
     }
 
-    public function get()
+    public function get(): void
     {
         $filters = $this->filterManager->getFilters();
         $this->response['filters'] = $filters;
