@@ -39,7 +39,7 @@ function pseudoType(string $key): void
     }
 }
 
-function imageType(string $key)
+function imageType(string $key): void
 {
     if (0 === strpos($_POST[$key], 'data:image/png;base64,')) {
         $_POST['type'] = 'png';

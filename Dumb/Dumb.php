@@ -63,6 +63,7 @@ class Dumb
     {
         try {
             $controller = $this->router->getController($this->container);
+            /** @var Response $response */
             $response = $this->runMiddlewares();
             if ($response->getStatusCode() < 400) {
                 $controller->trap();
