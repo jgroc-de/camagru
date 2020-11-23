@@ -3,10 +3,11 @@
 namespace App\Model;
 
 use Dumb\Response;
+use Exception;
 
 class LikesManager extends SqlManager
 {
-    public function getLike(int $img_id)
+    public function getLike(int $img_id): array
     {
         $request = '
             SELECT COUNT(id) as count
@@ -17,7 +18,7 @@ class LikesManager extends SqlManager
         return $this->sqlRequestFetch($request, [$img_id]);
     }
 
-    public function addLike(int $img_id)
+    public function addLike(int $img_id): void
     {
         $author_id = $_SESSION['id'];
         $request = '
@@ -27,7 +28,7 @@ class LikesManager extends SqlManager
         ';
         $out = $this->sqlRequestFetch($request, [$img_id, $author_id]);
         if (isset($out['id'])) {
-            throw new \Exception('Already liked', Response::BAD_REQUEST);
+            throw new Exception('Already liked', Response::BAD_REQUEST);
         }
         $request = '
             INSERT INTO likes
@@ -37,13 +38,13 @@ class LikesManager extends SqlManager
         $this->sqlRequest($request, [$img_id, $author_id], true);
     }
 
-    public function deleteLike(int $img_id)
+    public function deleteLike(int $img_id): void
     {
         $author_id = $_SESSION['id'];
         $request = 'DELETE FROM likes WHERE img_id = ? AND author_id = ?';
         $out = $this->sqlRequest($request, [$img_id, $author_id], true);
         if (0 === $out) {
-            throw new \Exception('Delete failed', Response::NOT_FOUND);
+            throw new Exception('Delete failed', Response::NOT_FOUND);
         }
     }
 }

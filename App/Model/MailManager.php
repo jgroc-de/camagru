@@ -7,7 +7,7 @@ class MailManager
     const URL = 'http://jgroc2s.free.fr';
     const EMAIL = 'jgroc2s@free.fr';
 
-    public function sendMail(string $dest, string $subject, string $message, string $headers)
+    public function sendMail(string $dest, string $subject, string $message, string $headers): bool
     {
         //$mail = new PHPMailer\PHPMailer\PHPMailer();
 
@@ -29,7 +29,7 @@ class MailManager
         //return $mail->send();
     }
 
-    public function sendReinitMail(array $user)
+    public function sendReinitMail(array $user): void
     {
         $key = $user['validkey'];
         $dest = $user['email'];
@@ -50,7 +50,7 @@ class MailManager
         $_SESSION['flash'] = ['success' => 'Opération éffectuée! Scrutez votre boite mail avec attention'];
     }
 
-    public function sendValidationMail(array $user)
+    public function sendValidationMail(array $user): bool
     {
         $subject = 'Camagru Activation link';
         $message = 'Bienvenue sur Camagru '.$user['pseudo'].',
@@ -74,7 +74,7 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
         return true;
     }
 
-    public function sendCommentMail(array $user)
+    public function sendCommentMail(array $user): void
     {
         $subject = 'nouveau commentaire';
         $message = 'Hi '.$user['pseudo'].', You have a new comment for one of your picture! Check-it out';
@@ -82,7 +82,7 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
         $this->sendMail($user['email'], $subject, $message, $headers);
     }
 
-    public function sendContactMail()
+    public function sendContactMail(): bool
     {
         $headers = 'From: '.$_POST['email']."\r\n".'Reply-To: '.self::EMAIL."\r\n".'X-Mailer: PHP/'.phpversion();
         if ($this->sendMail(self::EMAIL, $_POST['subject'], $_POST['message'], $headers)) {

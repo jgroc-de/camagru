@@ -6,7 +6,7 @@ use Dumb\Response;
 
 class CommentManager extends SqlManager
 {
-    public function getComments(int $id)
+    public function getComments(int $id): ?array
     {
         $request = '
             SELECT comments.*, users.pseudo
@@ -19,7 +19,7 @@ class CommentManager extends SqlManager
         return $this->sqlRequest($request, [$id]);
     }
 
-    public function getLastComments(int $id)
+    public function getLastComments(int $id): ?array
     {
         $date = date('Y-m-d H:i:s', time() - 20);
         $request = '
@@ -34,7 +34,7 @@ class CommentManager extends SqlManager
         return $this->sqlRequest($request, [$id, $date]);
     }
 
-    public function getComment(int $id)
+    public function getComment(int $id): ?array
     {
         $request = '
             SELECT comments.*, users.pseudo
@@ -47,7 +47,7 @@ class CommentManager extends SqlManager
         return $this->sqlRequestFetch($request, [$id]);
     }
 
-    public function getCommentByImgId(int $id)
+    public function getCommentByImgId(int $id): ?array
     {
         $request = '
             SELECT comments.id, comments.content, comments.date, users.pseudo
@@ -62,7 +62,7 @@ class CommentManager extends SqlManager
         return $this->sqlRequestFetch($request, [$id]);
     }
 
-    public function addComment($id)
+    public function addComment($id): ?array
     {
         $request = '
                 INSERT INTO comments (img_id, author_id, date, content)
@@ -77,13 +77,13 @@ class CommentManager extends SqlManager
         return $this->getComment($id);
     }
 
-    public function deleteComment($id)
+    public function deleteComment($id): void
     {
         $request = 'DELETE FROM comments WHERE id = ?';
-        $out = $this->sqlRequest($request, [$id], true);
+        $this->sqlRequest($request, [$id], true);
     }
 
-    public function updateComment($id, $comment)
+    public function updateComment($id, $comment): void
     {
         $request = '
                 UPDATE comments

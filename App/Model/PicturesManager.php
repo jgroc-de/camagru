@@ -3,10 +3,12 @@
 namespace App\Model;
 
 use Dumb\Response;
+use Exception;
+use PDO;
 
 class PicturesManager extends SqlManager
 {
-    public function getPic(int $id)
+    public function getPic(int $id): ?array
     {
         $request = '
 			SELECT img.id, img.title, img.url, img.date, img.author_id, users.pseudo
@@ -19,7 +21,7 @@ class PicturesManager extends SqlManager
         return $this->sqlRequestFetch($request, [$id]);
     }
 
-    public function getPicsByDate(int $start)
+    public function getPicsByDate(int $start): ?array
     {
         $request = $this->db->prepare('
 			SELECT img.id, img.title, img.url
@@ -29,13 +31,13 @@ class PicturesManager extends SqlManager
 			ORDER BY img.id DESC
 			LIMIT 8 OFFSET :start
 		');
-        $request->bindParam(':start', $start, \PDO::PARAM_INT);
+        $request->bindParam(':start', $start, PDO::PARAM_INT);
         $request->execute();
 
-        return $request->fetchAll(\PDO::FETCH_ASSOC);
+        return $request->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getPicsByLike(int $start)
+    public function getPicsByLike(int $start): ?array
     {
         $request = $this->db->prepare('
 			SELECT img.id, img.title, img.url, (select COUNT(id) from likes where img.id = likes.img_id) AS likes
@@ -45,16 +47,14 @@ class PicturesManager extends SqlManager
 			ORDER BY likes DESC
 			LIMIT 8 OFFSET :start
 		');
-        $request->bindParam(':start', $start, \PDO::PARAM_INT);
+        $request->bindParam(':start', $start, PDO::PARAM_INT);
         $request->execute();
 
-        return $request->fetchAll(\PDO::FETCH_ASSOC);
+        return $request->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getPicsByUser(string $pseudo)
+    public function getPicsByUser(string $pseudo): ?array
     {
-        $tab = [];
-
         $request = '
 			SELECT *
             FROM img
@@ -62,10 +62,10 @@ class PicturesManager extends SqlManager
 		';
         $request = $this->sqlRequest($request, [$pseudo]);
 
-        return $request->fetchAll(\PDO::FETCH_ASSOC);
+        return $request->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getPicByUrl(string $url)
+    public function getPicByUrl(string $url): ?array
     {
         $request = '
             SELECT id, author_id
@@ -76,7 +76,7 @@ class PicturesManager extends SqlManager
         return $this->sqlRequestFetch($request, [$url]);
     }
 
-    public function addPic(string $path)
+    public function addPic(string $path): ?array
     {
         $request = '
 			INSERT INTO img
@@ -86,13 +86,13 @@ class PicturesManager extends SqlManager
         $out = $this->sqlRequest($request, [$_SESSION['user']['pseudo'].'_'.rand(), $_SESSION['id'], $path], true);
         $id = $this->db->lastInsertId();
         if (0 === $out) {
-            throw new \Exception('Addition failed', Response::NOT_FOUND);
+            throw new Exception('Addition failed', Response::NOT_FOUND);
         }
 
         return $this->getPic($id);
     }
 
-    public function deletePic(int $img_id, int $author_id)
+    public function deletePic(int $img_id, int $author_id): void
     {
         $request = '
             DELETE FROM img
@@ -100,11 +100,11 @@ class PicturesManager extends SqlManager
         ';
         $out = $this->sqlRequest($request, [$img_id, $author_id], true);
         if (0 === $out) {
-            throw new \Exception('Delete failed', Response::NOT_FOUND);
+            throw new Exception('Delete failed', Response::NOT_FOUND);
         }
     }
 
-    public function countPics()
+    public function countPics(): int
     {
         $request = '
 			SELECT COUNT(*) as count
@@ -114,7 +114,7 @@ class PicturesManager extends SqlManager
         return $this->sqlRequestFetch($request);
     }
 
-    public function picInDb(int $id)
+    public function picInDb(int $id): bool
     {
         $request = '
 			SELECT *
@@ -131,7 +131,7 @@ class PicturesManager extends SqlManager
         return false;
     }
 
-    public function changeTitle(int $id, string $title)
+    public function changeTitle(int $id, string $title): void
     {
         $request = '
             UPDATE img
@@ -141,7 +141,7 @@ class PicturesManager extends SqlManager
         ';
         $out = $this->sqlRequest($request, [$title, $id, $_SESSION['id']], true);
         if (0 === $out) {
-            throw new \Exception('Update failed', Response::NOT_FOUND);
+            throw new Exception('Update failed', Response::NOT_FOUND);
         }
     }
 }
