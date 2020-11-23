@@ -10,7 +10,10 @@ use PDOStatement;
 
 class UserManager extends SqlManager
 {
-    public function pseudoInDb(string $pseudo): ?array
+    /**
+     * @return mixed
+     */
+    public function pseudoInDb(string $pseudo)
     {
         $request = '
 			SELECT id
@@ -90,8 +93,9 @@ class UserManager extends SqlManager
     }
 
     /**
-     * @return bool|int|PDOStatement
      * @throws Exception
+     *
+     * @return bool|int|PDOStatement
      */
     public function addUser(Session $user, string $pass)
     {
