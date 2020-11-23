@@ -62,27 +62,27 @@ abstract class Patronus
         return json_encode($this->response);
     }
 
-    public function get()
+    public function get(): void
     {
         throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
-    public function post()
+    public function post(): void
     {
         throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
-    public function put()
+    public function put(): void
     {
         throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
-    public function delete()
+    public function delete(): void
     {
         throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
-    public function patch()
+    public function patch(): void
     {
         throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
