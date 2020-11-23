@@ -175,7 +175,7 @@ class Request implements ServerRequestInterface
         return $this;
     }
 
-    public function withoutAttribute($name):
+    public function withoutAttribute($name)
     {
         // TODO: Implement withoutAttribute() method.
         return $this;
