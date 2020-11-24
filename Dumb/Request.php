@@ -132,7 +132,7 @@ class Request implements ServerRequestInterface
     public function getQueryParams()
     {
         if (null === $this->queryParams) {
-            $this->setQueryParams();
+            $this->queryParams = $this->setQueryParams();
         }
 
         return $this->queryParams;
@@ -191,25 +191,24 @@ class Request implements ServerRequestInterface
         return $this;
     }
 
-    private function setQueryParams(): void
+    private function setQueryParams(): array
     {
         $queryParams = [];
         if (!isset($_SERVER['QUERY_STRING'])) {
-            $this->queryParams = $queryParams;
-        } else {
-            $params = explode('&', $_SERVER['QUERY_STRING']);
-            foreach ($params as $param) {
-                $values = explode('=', $param);
-                if (!in_array(count($values), [1, 2])) {
-                    continue;
-                }
-                if (1 === count($values)) {
-                    $values[] = true;
-                }
-                $queryParams[$values[0]] = $values[1];
-            }
-
-            $this->queryParams = $queryParams;
+            return $_GET;
         }
+        $params = explode('&', $_SERVER['QUERY_STRING']);
+        foreach ($params as $param) {
+            $values = explode('=', $param);
+            if (!in_array(count($values), [1, 2])) {
+                continue;
+            }
+            if (1 === count($values)) {
+                $values[] = true;
+            }
+            $queryParams[$values[0]] = $values[1];
+        }
+
+        return $queryParams;
     }
 }

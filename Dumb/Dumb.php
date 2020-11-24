@@ -64,6 +64,7 @@ class Dumb
         $controller = $this->router->getController($this->container);
         /** @var Response $response */
         $response = Response::getInstance($controller->code);
+
         try {
             $this->runMiddlewares();
             if ($response->getStatusCode() < 400) {
