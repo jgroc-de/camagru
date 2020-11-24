@@ -40,7 +40,11 @@ class CommentManager extends SqlManager
         return $this->sqlRequest($request, [$id, $date]);
     }
 
-    public function getComment(int $id): ?array
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function getComment(int $id)
     {
         $request = '
             SELECT comments.*, users.pseudo
