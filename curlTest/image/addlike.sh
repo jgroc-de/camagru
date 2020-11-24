@@ -83,6 +83,7 @@ for i in ${tests[@]}; do
 		-H 'Referer: http://localhost:8080/'\
 		-H 'DNT: 1' -H 'Connection: keep-alive'\
 		-H 'Upgrade-Insecure-Requests: 1'\
+    -H 'Cookie:XDEBUG_SESSION=XDEBUG'\
 		-X $method\
 		-d $json\
 		)

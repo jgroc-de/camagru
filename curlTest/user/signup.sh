@@ -10,7 +10,7 @@ badPseudo="testRoot1"
 badPass="lolLOLOLOL89"
 
 data=(
-    "{}"
+  "{}"
 	"{}"
 	"{\"pseudo\":\"$pseudo\",\"password\":\"lol\",\"email\":\"$mail\"}"
 	"{\"pseudo\":\"tauiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiuiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii,\"password\":\"lolLoll89\",\"email\":\"$mail\"}"
@@ -66,7 +66,7 @@ for i in ${tests[@]}; do
 	response=$(
 	curl -w "%{http_code}\n"\
 		-o /dev/null\
-		-c cookieMonster\
+    -c cookieMonster\
 		-b cookieMonster\
 		-s "http://localhost:8080${array[0]}"\
 		-H 'User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0'\
@@ -77,7 +77,7 @@ for i in ${tests[@]}; do
 		-H 'Referer: http://localhost:8080/'\
 		-H 'DNT: 1' -H 'Connection: keep-alive'\
 		-H 'Upgrade-Insecure-Requests: 1'\
-    -H 'Cookie: XDEBUG_SESSION=XDEBUG'\
+    -H 'Cookie:XDEBUG_SESSION=XDEBUG'\
 		-X $method\
 		-d $json\
 		)

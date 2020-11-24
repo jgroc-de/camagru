@@ -16,6 +16,8 @@ class Response implements ResponseInterface
         42 => 'OK',
         200 => 'OK',
         201 => 'CREATED',
+        301 => 'Moved Permanently',
+        302 => 'Found',
         400 => 'Bad Request',
         401 => 'Unauthorized',
         403 => 'Forbidden',
@@ -62,6 +64,14 @@ class Response implements ResponseInterface
         $this->code = $code;
         $this->headers = $headers;
         $this->body = $body;
+    }
+
+    public function setAll(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null): void
+    {
+        self::$instance->code = $code;
+        self::$instance->reasonPhrase = $reasonPhrase;
+        self::$instance->headers = $headers;
+        self::$instance->body = $body;
     }
 
     public static function getInstance(int $code = 200, string $reasonPhrase = '', array $headers = [], ?StreamInterface $body = null): Response
@@ -161,6 +171,11 @@ class Response implements ResponseInterface
     public function getStatusCode()
     {
         return $this->code;
+    }
+
+    public function setStatusCode(int $code): void
+    {
+        $this->code = $code;
     }
 
     public function withStatus($code, $reasonPhrase = '')

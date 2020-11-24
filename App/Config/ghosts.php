@@ -15,6 +15,7 @@ use Dumb\IronWall;
 /** @var BakaDo $router */
 /** @var array $container */
 $middlewareHandler = new IronWall();
+$baka->addMiddlewareHandlers($middlewareHandler);
 if ($router->isGhostMatch([
     'like' => [
         'delete',

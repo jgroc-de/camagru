@@ -64,7 +64,8 @@ class Dumb
         try {
             $controller = $this->router->getController($this->container);
             /** @var Response $response */
-            $response = $this->runMiddlewares($controller->code);
+            $response = Response::getInstance($controller->code);
+            $this->runMiddlewares();
             if ($response->getStatusCode() < 400) {
                 $controller->trap();
                 $response->setMessage($controller->bomb());
@@ -73,7 +74,7 @@ class Dumb
             }
         } catch (Exception $exception) {
             /** @var Response $response */
-            $response = Response::getInstance($exception->getCode(), $exception->getMessage());
+            $response->setAll((int) $exception->getCode(), $exception->getMessage());
         }
 
         $code = $response->getStatusCode();
@@ -83,10 +84,10 @@ class Dumb
         echo $response->getMessage();
     }
 
-    private function runMiddlewares(int $code): ResponseInterface
+    private function runMiddlewares(): ResponseInterface
     {
         $request = new Request();
-        $response = Response::getInstance($code);
+        $response = Response::getInstance();
         foreach ($this->middlewareHandlers as $middlewareHandler) {
             /** @var RequestHandlerInterface $middlewareHandler */
             $response = $middlewareHandler->handle($request);

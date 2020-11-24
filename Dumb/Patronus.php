@@ -58,6 +58,8 @@ abstract class Patronus
             default:
                 $this->{$this->method}();
         }
+        $response = Response::getInstance();
+        $response->setStatusCode($this->code);
     }
 
     public function bomb(): string
