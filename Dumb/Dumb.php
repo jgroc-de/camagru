@@ -61,10 +61,10 @@ class Dumb
 
     public function kamehameha(): void
     {
+        $controller = $this->router->getController($this->container);
+        /** @var Response $response */
+        $response = Response::getInstance($controller->code);
         try {
-            $controller = $this->router->getController($this->container);
-            /** @var Response $response */
-            $response = Response::getInstance($controller->code);
             $this->runMiddlewares();
             if ($response->getStatusCode() < 400) {
                 $controller->trap();
@@ -73,7 +73,6 @@ class Dumb
                 $response = $this->error($response);
             }
         } catch (Exception $exception) {
-            // @var Response $response
             $response->setAll((int) $exception->getCode(), $exception->getMessage());
         }
 

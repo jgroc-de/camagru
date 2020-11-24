@@ -196,20 +196,20 @@ class Request implements ServerRequestInterface
         $queryParams = [];
         if (!isset($_SERVER['QUERY_STRING'])) {
             $this->queryParams = $queryParams;
-        }
-
-        $params = explode('&', $_SERVER['QUERY_STRING']);
-        foreach ($params as $param) {
-            $values = explode('=', $param);
-            if (!in_array(count($values), [1, 2])) {
-                continue;
+        } else {
+            $params = explode('&', $_SERVER['QUERY_STRING']);
+            foreach ($params as $param) {
+                $values = explode('=', $param);
+                if (!in_array(count($values), [1, 2])) {
+                    continue;
+                }
+                if (1 === count($values)) {
+                    $values[] = true;
+                }
+                $queryParams[$values[0]] = $values[1];
             }
-            if (1 === count($values)) {
-                $values[] = true;
-            }
-            $queryParams[$values[0]] = $values[1];
-        }
 
-        $this->queryParams = $queryParams;
+            $this->queryParams = $queryParams;
+        }
     }
 }
