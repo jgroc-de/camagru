@@ -30,8 +30,8 @@ tests=(\
 	"/camagru;200"
 	"/picturesByUser;200"
 	"/login;200;DELETE"
-    "/comment/1;200"
-    "/comment/1;200;PUT"
+  "/comment/2;200"
+  "/comment/2;200;PUT"
 	)
 j=0
 
