@@ -22,6 +22,13 @@ if ($router->isGhostMatch([
         'post',
         'get',
     ],
+    'comment' => [
+        'post',
+        'delete',
+        'patch',
+        'put',
+        'get',
+    ]
 ])) {
     $middlewareHandler->addMiddleware(new findPicture($container['picture']($container)));
 }

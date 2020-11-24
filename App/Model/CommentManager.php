@@ -41,7 +41,6 @@ class CommentManager extends SqlManager
     }
 
     /**
-     * @param int $id
      * @return mixed
      */
     public function getComment(int $id)
