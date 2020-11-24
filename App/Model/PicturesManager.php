@@ -8,7 +8,10 @@ use PDO;
 
 class PicturesManager extends SqlManager
 {
-    public function getPic(int $id): ?array
+    /**
+     * @return mixed
+     */
+    public function getPic(int $id)
     {
         $request = '
 			SELECT img.id, img.title, img.url, img.date, img.author_id, users.pseudo
