@@ -30,10 +30,12 @@ abstract class DumbMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $response = Response::getInstance();
+
         try {
             $this->check($request);
         } catch (\Exception $e) {
             $response->setAll((int) $e->getCode(), $e->getMessage());
+
             return $response;
         }
 

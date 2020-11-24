@@ -73,7 +73,7 @@ class Dumb
                 $response = $this->error($response);
             }
         } catch (Exception $exception) {
-            /** @var Response $response */
+            // @var Response $response
             $response->setAll((int) $exception->getCode(), $exception->getMessage());
         }
 

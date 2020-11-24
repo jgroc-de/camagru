@@ -34,9 +34,7 @@ class like extends Patronus
 
     public function post(): void
     {
-        //try {
-            $this->likeManager->addLike((int)$_GET['id']);
-        //}
+        $this->likeManager->addLike((int) $_GET['id']);
         $this->response = $this->likeManager->getLike((int) $_GET['id']);
         $this->response['flash'] = 'Thx :)';
         $this->code = Response::CREATED;
