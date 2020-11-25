@@ -49,7 +49,7 @@ class Dumb
         $this->router = $router;
     }
 
-    public function setContainer(array $container): void
+    public function setContainer(ContainerInterface $container): void
     {
         self::$container = $container;
     }

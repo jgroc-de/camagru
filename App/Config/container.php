@@ -1,5 +1,6 @@
 <?php
 
+use App\Library\Container\Container;
 use App\Library\Mail\PHPMailer2;
 use App\Library\MailSender;
 use App\Model\CommentManager;
@@ -13,7 +14,9 @@ use Dumb\Dumb;
 /**
  * equip everything u need into the container of dumb.
  */
-$container = [
+$container = new Container();
+
+$container->setAll([
     'env' => function (): array {
         if (!empty($_ENV['DB_HOST'])) {
             return [
@@ -74,4 +77,4 @@ $container = [
 
         return new MailSender(null, $mail, $proto.'://'.$_SERVER['HTTP_HOST']);
     },
-];
+]);

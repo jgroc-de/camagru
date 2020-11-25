@@ -1,9 +1,7 @@
 <?php
 
-
 namespace App\Library\Container;
 
-use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
 
 class Container implements ContainerInterface
@@ -11,9 +9,11 @@ class Container implements ContainerInterface
     /** @var array */
     private $services;
 
-    public function set($id, $function): void
+    public function setAll(array $services): void
     {
-        $this->services[$id] = $function;
+        foreach($services as $id => $function) {
+            $this->services[$id] = $function;
+        }
     }
 
     public function get($id)
@@ -21,6 +21,7 @@ class Container implements ContainerInterface
         if (!isset($this->services[$id])) {
             throw new NotFoundException($id);
         }
+
         try {
             return $this->services[$id]();
         } catch (\Exception $e) {
