@@ -20,7 +20,7 @@ class filter extends Patronus
     public function __construct(string $method, int $code = 200)
     {
         parent::__construct($method, $code);
-        $this->filterManager = Dumb::$container['filter'](Dumb::$container);
+        $this->filterManager = Dumb::getService('filter');
     }
 
     public function get(): void

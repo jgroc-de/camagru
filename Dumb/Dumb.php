@@ -14,7 +14,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 class Dumb
 {
     /** @var array */
-    public static $container = [];
+    private static $container = [];
 
     /** @var BakaDo */
     private $router;
@@ -36,6 +36,18 @@ class Dumb
             $_POST += (array) json_decode($input);
         }
         $this->formValidator = new KGB();
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public static function getService(string $name)
+    {
+        if (isset(self::$container[$name])) {
+            return self::$container[$name](self::$container);
+        }
+
+        return null;
     }
 
     public function setRouter(BakaDo $router): void

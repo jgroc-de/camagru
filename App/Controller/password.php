@@ -21,8 +21,8 @@ class password extends Patronus
     public function __construct(string $method, int $code = 200)
     {
         parent::__construct($method, $code);
-        $this->userManager = Dumb::$container['user'](Dumb::$container);
-        $this->mailManager = Dumb::$container['mail'](Dumb::$container);
+        $this->userManager = Dumb::getService('user');
+        $this->mailManager = Dumb::getService('mail');
     }
 
     public function get(): void

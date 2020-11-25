@@ -13,7 +13,7 @@ class SqlManager
 
     public function __construct()
     {
-        $this->db = Dumb::$container['db'](Dumb::$container['env']());
+        $this->db = Dumb::getService('db');
     }
 
     /**
@@ -21,7 +21,7 @@ class SqlManager
      */
     public function __get(string $name)
     {
-        return Dumb::$container->{$name};
+        return Dumb::getService($name);
     }
 
     /**

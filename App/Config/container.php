@@ -12,7 +12,7 @@ use App\Model\UserManager;
  * equip everything u need into the container of dumb.
  */
 $container = [
-    'env' => function (): array {
+    'env' => function (array $c): array {
         if (!empty($_ENV['DB_HOST'])) {
             return [
                 'driver' => 'mysql',
@@ -35,7 +35,8 @@ $container = [
             'port' => '3306',
         ];
     },
-    'db' => function ($DB): PDO {
+    'db' => function (array $c): PDO {
+        $DB = $c['env'];
         $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';port='.$DB['port'];
         //à remplacer par mysqli pour profiter des async pour les creations update delete
 
@@ -43,25 +44,25 @@ $container = [
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
         ]);
     },
-    'filter' => function () {
+    'filter' => function (array $c) {
         return new FilterManager();
     },
-    'comment' => function () {
+    'comment' => function (array $c) {
         return new CommentManager();
     },
-    'config' => function () {
+    'config' => function (array $c) {
         return new ConfigManager();
     },
-    'picture' => function () {
+    'picture' => function (array $c) {
         return new PicturesManager();
     },
-    'like' => function () {
+    'like' => function (array $c) {
         return new LikesManager();
     },
-    'mail' => function () {
+    'mail' => function (array $c) {
         return new MailManager();
     },
-    'user' => function () {
+    'user' => function (array $c) {
         return new UserManager();
     },
 ];

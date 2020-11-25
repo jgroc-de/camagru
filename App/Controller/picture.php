@@ -27,8 +27,8 @@ class picture extends Patronus
     public function __construct(string $method, int $code = 200)
     {
         parent::__construct($method, $code);
-        $this->pictureManager = Dumb::$container['picture'](Dumb::$container);
-        $this->filterManager = Dumb::$container['filter'](Dumb::$container);
+        $this->pictureManager = Dumb::getService('picture');
+        $this->filterManager = Dumb::getService('filter');
     }
 
     public function get(): void

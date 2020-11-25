@@ -17,7 +17,7 @@ class like extends Patronus
     public function __construct(string $method, int $code = 200)
     {
         parent::__construct($method, $code);
-        $this->likeManager = Dumb::$container['like'](Dumb::$container);
+        $this->likeManager = Dumb::getService('like');
     }
 
     public function get(): void
