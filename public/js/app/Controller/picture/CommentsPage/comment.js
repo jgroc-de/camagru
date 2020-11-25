@@ -34,7 +34,7 @@ export class Comment {
 		buildView(node, state) {
 				this.setNodeData(node)
 				this.node = this.section.insertBefore(
-						node.body.childNodes[0],
+						node,
 						this.section.firstChild
 				)
 				this.setEvent(state)
