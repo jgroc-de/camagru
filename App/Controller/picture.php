@@ -23,12 +23,11 @@ class picture extends Patronus
     /** @var FilterManager */
     private $filterManager;
 
-    public function __construct(array $container, string $method, int $code = 200)
+    public function __construct(string $method, int $code = 200)
     {
-        $this->method = $method;
-        $this->code = $code;
-        $this->pictureManager = $container['picture']($container);
-        $this->filterManager = $container['filter']($container);
+        parent::__construct($method, $code);
+        $this->pictureManager = Dumb::$container['picture'](Dumb::$container);
+        $this->filterManager = Dumb::$container['filter'](Dumb::$container);
     }
 
     public function get(): void

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Model\PicturesManager;
+use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
 
@@ -13,11 +14,10 @@ class pics extends Patronus
     /** @var PicturesManager */
     private $picsManager;
 
-    public function __construct(array $container, string $method, int $code = 200)
+    public function __construct(string $method, int $code = 200)
     {
-        $this->method = $method;
-        $this->code = $code;
-        $this->picsManager = $container['picture']($container);
+        parent::__construct($method, $code);
+        $this->picsManager = Dumb::$container ['picture'](Dumb::$container);
     }
 
     public function get(): void

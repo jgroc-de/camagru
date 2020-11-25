@@ -12,13 +12,6 @@ use Dumb\Patronus;
  */
 class home extends Patronus
 {
-    public function __construct(array $container, string $method, int $code = 200)
-    {
-        $this->container = $container;
-        $this->method = $method;
-        $this->code = $code;
-    }
-
     public function get(): void
     {
     }

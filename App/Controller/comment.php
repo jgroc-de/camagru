@@ -21,13 +21,14 @@ class comment extends Patronus
     /** @var MailManager */
     private $mailManager;
 
-    public function __construct(array $container, string $method, int $code = 200)
+    public function __construct(string $method, int $code = 200)
     {
+        parent::__construct($method, $code);
         $this->method = $method;
         $this->code = $code;
-        $this->commentManager = $container['comment']($container);
-        $this->userManager = $container['user']($container);
-        $this->mailManager = $container['mail']();
+        $this->commentManager = Dumb::$container['comment'](Dumb::$container);
+        $this->userManager = Dumb::$container['user'](Dumb::$container);
+        $this->mailManager = Dumb::$container['mail']();
     }
 
     public function get(): void

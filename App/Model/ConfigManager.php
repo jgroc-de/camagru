@@ -11,7 +11,7 @@ class ConfigManager
 
     public function __construct(array $container = [])
     {
-        $this->db = $container['env']();
+        $this->db = Dumb::$container['env']();
     }
 
     public function createDB(string $file): void

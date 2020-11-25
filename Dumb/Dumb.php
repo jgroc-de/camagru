@@ -14,7 +14,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 class Dumb
 {
     /** @var array */
-    public $container;
+    public static $container = [];
 
     /** @var BakaDo */
     private $router;
@@ -45,7 +45,7 @@ class Dumb
 
     public function setContainer(array $container): void
     {
-        $this->container = $container;
+        self::$container = $container;
     }
 
     public function addMiddlewareHandlers(IronWall $middlewareHandler): void
@@ -61,7 +61,7 @@ class Dumb
 
     public function kamehameha(): void
     {
-        $controller = $this->router->getController($this->container);
+        $controller = $this->router->getController();
         /** @var Response $response */
         $response = Response::getInstance($controller->code);
 

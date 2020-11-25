@@ -14,12 +14,11 @@ class setup extends Patronus
     /** @var string */
     private $export;
 
-    public function __construct(array $container, string $method, int $code = 302)
+    public function __construct(string $method, int $code = 302)
     {
-        $this->configManager = $container['config']($container);
-        $this->export = $container['env']()['export'];
-        $this->method = $method;
-        $this->code = $code;
+        parent::__construct($method, $code);
+        $this->configManager = Dumb::$container['config'](Dumb::$container);
+        $this->export = Dumb::$container['env']()['export'];
     }
 
     public function get(): void

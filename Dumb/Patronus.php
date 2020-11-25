@@ -13,15 +13,12 @@ abstract class Patronus
     public $code;
 
     /** @var array */
-    protected $container;
-
-    /** @var array */
     protected $response = [];
 
     /** @var string */
     protected $method;
 
-    public function __construct(array $container, string $method, int $code = 200)
+    public function __construct(string $method, int $code = 200)
     {
         $this->method = $method;
         $this->code = $code;

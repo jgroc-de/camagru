@@ -13,11 +13,10 @@ class like extends Patronus
     /** @var LikesManager */
     private $likeManager;
 
-    public function __construct(array $container, string $method, int $code = 200)
+    public function __construct(string $method, int $code = 200)
     {
-        $this->method = $method;
-        $this->code = $code;
-        $this->likeManager = $container['like']($container);
+        parent::__construct($method, $code)
+        $this->likeManager = Dumb::$container['like'](Dumb::$container);
     }
 
     public function get(): void

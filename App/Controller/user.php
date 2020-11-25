@@ -17,12 +17,11 @@ class user extends Patronus
     /** @var MailManager */
     private $mailManager;
 
-    public function __construct(array $container, string $method, int $code = 200)
+    public function __construct(string $method, int $code = 200)
     {
-        $this->method = $method;
-        $this->code = $code;
-        $this->userManager = $container['user']($container);
-        $this->mailManager = $container['mail']();
+        parent::__construct($method, $code);
+        $this->userManager = Dumb::$container['user'](Dumb::$container);
+        $this->mailManager = Dumb::$container['mail']();
     }
 
     public function get(): void

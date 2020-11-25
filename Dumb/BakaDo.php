@@ -25,12 +25,12 @@ class BakaDo
         $this->setUri();
     }
 
-    public function getController(array $container): Patronus
+    public function getController(): Patronus
     {
         if (!$this->isSetRoute()) {
             $this->uri = 'home';
         }
-        $this->setController($container);
+        $this->setController();
         if (!method_exists($this->controller, $this->method)) {
             throw new \Exception('method '.$this->method.' forbidden for this routes', Response::METHOD_NOT_ALLOWED);
         }
@@ -61,10 +61,10 @@ class BakaDo
         return [];
     }
 
-    private function setController(array $container): void
+    private function setController(): void
     {
         $class = '\App\Controller\\'.($this->uri);
-        $this->controller = new $class($container, $this->method);
+        $this->controller = new $class($this->method);
     }
 
     private function setUri(): void

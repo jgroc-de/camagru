@@ -2,21 +2,18 @@
 
 namespace App\Model;
 
+use Dumb\Dumb;
 use PDO;
 use PDOStatement;
 
 class SqlManager
 {
-    /** @var array */
-    protected $container;
-
     /** @var PDO */
     protected $db;
 
-    public function __construct(array $container = [])
+    public function __construct()
     {
-        $this->container = $container;
-        $this->db = $container['db']($container['env']());
+        $this->db = Dumb::$container['db'](Dumb::$container['env']());
     }
 
     /**
@@ -24,7 +21,7 @@ class SqlManager
      */
     public function __get(string $name)
     {
-        return $this->container->{$name};
+        return Dumb::$container->{$name};
     }
 
     /**
