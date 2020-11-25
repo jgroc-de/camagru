@@ -50,7 +50,7 @@ class password extends Patronus
         if (empty($user) || !$this->userManager->resetValidkey($user['pseudo'])) {
             throw new \Exception('password', Response::NOT_FOUND);
         }
-        $this->mailManager->sendReinitMail($user);
+        $this->mailManager->sendResetMail($user);
         if (isset($_SESSION['flash'])) {
             $this->response['flash'] = $_SESSION['flash'];
         }

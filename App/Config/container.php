@@ -1,10 +1,11 @@
 <?php
 
+use App\Library\Mail\PHPMailer2;
+use App\Library\MailSender;
 use App\Model\CommentManager;
 use App\Model\ConfigManager;
 use App\Model\FilterManager;
 use App\Model\LikesManager;
-use App\Model\MailManager;
 use App\Model\PicturesManager;
 use App\Model\UserManager;
 use Dumb\Dumb;
@@ -41,8 +42,8 @@ $container = [
         $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';port='.$DB['port'];
         //à remplacer par mysqli pour profiter des async pour les creations update delete
 
-        return new \PDO($DB_DSN, $DB['user'], $DB['password'], [
-            \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
+        return new PDO($DB_DSN, $DB['user'], $DB['password'], [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         ]);
     },
     'filter' => function () {
@@ -60,10 +61,17 @@ $container = [
     'like' => function () {
         return new LikesManager();
     },
-    'mail' => function () {
-        return new MailManager();
-    },
     'user' => function () {
         return new UserManager();
     },
+    'mail' => function () {
+        if (!empty($_ENV['PROD'])) {
+            $mail = new \App\Library\Mail\SendGrid();
+        } else {
+            $mail = new PHPMailer2();
+        }
+        $proto = strpos($_SERVER['HTTP_HOST'], 'localhost') === 0 ? 'http' : 'https';
+
+        return new MailSender(null, $mail, strpos($_SERVER['HTTP_HOST'], $proto . '://' . $_SERVER['HTTP_HOST']));
+    }
 ];

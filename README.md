@@ -72,6 +72,11 @@ Cela reste une tentative instructive de mon point de vue.
 Des test du backend existent à coup de curl dans le dossier curlTest.
 Dans le dossier hooks, on trouve des hooks pour git pour tester le back au moment des push et éventuellement l'arreter si ceux ci échouent.
 
-## evolution en cours
+## evolution possible
 
+### front
 - en faire une pwa
+
+### back
+- container respectant psr
+- systeme de logger respectant psr
