@@ -18,7 +18,7 @@ class login extends Patronus
     public function __construct(string $method, int $code = 200)
     {
         parent::__construct($method, $code);
-        $this->userManager = Dumb::getService('user');
+        $this->userManager = Dumb::getContainer()->('user');
     }
 
     public function post(): void

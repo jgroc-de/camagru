@@ -38,7 +38,7 @@ $container = [
         ];
     },
     'db' => function (): PDO {
-        $DB = Dumb::getService('env');
+        $DB = Dumb::getContainer()->get('env');
         $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';port='.$DB['port'];
         //à remplacer par mysqli pour profiter des async pour les creations update delete
 

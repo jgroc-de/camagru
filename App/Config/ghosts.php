@@ -30,7 +30,7 @@ if ($router->isGhostMatch([
         'get',
     ],
 ])) {
-    $middlewareHandler->addMiddleware(new findPicture(Dumb::getService('picture')));
+    $middlewareHandler->addMiddleware(new findPicture(Dumb::getContainer()->('picture')));
 }
 
 if ($router->isGhostMatch([
@@ -39,7 +39,7 @@ if ($router->isGhostMatch([
         'patch',
     ],
 ])) {
-    $middlewareHandler->addMiddleware(new checkPictureProperty(Dumb::getService('picture')));
+    $middlewareHandler->addMiddleware(new checkPictureProperty(Dumb::getContainer()->('picture')));
 }
 
 if ($router->isGhostMatch([
@@ -48,5 +48,5 @@ if ($router->isGhostMatch([
         'patch',
     ],
 ])) {
-    $middlewareHandler->addMiddleware(new checkCommentProperty(Dumb::getService('comment')));
+    $middlewareHandler->addMiddleware(new checkCommentProperty(Dumb::getContainer()->('comment')));
 }

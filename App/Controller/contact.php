@@ -16,7 +16,7 @@ class contact extends Patronus
     public function __construct(string $method, int $code = 200)
     {
         parent::__construct($method, $code);
-        $this->mailManager = Dumb::getService('mail');
+        $this->mailManager = Dumb::getContainer()->('mail');
     }
 
     public function post(): void

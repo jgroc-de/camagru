@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dumb;
 
 use Exception;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
@@ -13,8 +14,8 @@ use Psr\Http\Server\RequestHandlerInterface;
  */
 class Dumb
 {
-    /** @var array */
-    private static $container = [];
+    /** @var ContainerInterface */
+    private static $container;
 
     /** @var BakaDo */
     private $router;
@@ -38,18 +39,9 @@ class Dumb
         $this->formValidator = new KGB();
     }
 
-    /**
-     * @return null|mixed
-     */
-    public static function getService(string $name)
+    public static function getContainer(): ContainerInterface
     {
-        $container = self::$container;
-        if (isset($container[$name])) {
-            return $container[$name]();
-        }
-        // faudrait logger
-
-        return null;
+        return self::$container;
     }
 
     public function setRouter(BakaDo $router): void
