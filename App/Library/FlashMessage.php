@@ -19,7 +19,7 @@ class FlashMessage
     /**
      * @param string $key key = FlashMessage::SUCCESS or FAIL
      */
-    public function addMessage(string $key, string $message)
+    public function addMessage(string $key, string $message): void
     {
         if (self::SUCCESS === $key) {
             $this->storage[self::SUCCESS] = $message;
