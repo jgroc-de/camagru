@@ -89,6 +89,9 @@ class picture extends Patronus
 
     private function getUserDefineFilters(): ?array
     {
+        if (!isset($_POST['filters'])) {
+            return [];
+        }
         $filters = $_POST['filters'];
         $i = 0;
         $all = $this->getOriginalFilters();

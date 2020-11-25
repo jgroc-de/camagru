@@ -43,8 +43,9 @@ class Dumb
      */
     public static function getService(string $name)
     {
-        if (isset(self::$container[$name])) {
-            return self::$container[$name](self::$container);
+        $container = self::$container;
+        if (isset($container[$name])) {
+            return $container[$name]();
         }
         // faudrait logger
 
