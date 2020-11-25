@@ -93,7 +93,7 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
 
     public function sendContactMail(): bool
     {
-        $this->mail->addTo($_ENV['MAIL_OWNER'] ?? '', MailInterface::OWNER);
+        $this->mail->addTo($_ENV['MAIL_OWNER'] ?? 'lol@lol.com', MailInterface::OWNER);
         $this->mail->setSubject('User contact from '.$_SERVER['SERVER_NAME']);
         $this->mail->setReplyTo($_POST['email'], $_POST['name']);
         $this->mail->addContent(MailInterface::TYPE_TEXT, "Bonjour maître des 7 océans numériques,
