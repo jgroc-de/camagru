@@ -25,7 +25,6 @@ class filter extends Patronus
 
     public function get(): void
     {
-        $filters = $this->filterManager->getFilters();
-        $this->response['filters'] = $filters;
+        $this->response['filters'] = $this->filterManager->getFilters();
     }
 }

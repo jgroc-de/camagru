@@ -183,6 +183,6 @@ export class Filter {
 				//doublon…
 				getImage(template.getElementsByTagName("img")[0], this.data)
 				this.setImage()
-				this.node = this.section.appendChild(template.body.childNodes[0])
+				this.node = this.section.appendChild(template)
 		}
 }

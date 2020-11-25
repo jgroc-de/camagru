@@ -45,7 +45,7 @@ export class MyPicture {
 				tmpNode.getElementsByTagName("span")[0].textContent = this.data.id
 				tmpNode.getElementsByTagName("a")[0].href = "/#picture/" + this.data.id
 				this.node = this.section.insertBefore(
-						tmpNode.body.firstElementChild,
+						tmpNode,
 						this.section.firstChild
 				)
 		}
