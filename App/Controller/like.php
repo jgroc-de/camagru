@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Model\LikesManager;
+use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
 

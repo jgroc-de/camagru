@@ -43,25 +43,25 @@ $container = [
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
         ]);
     },
-    'filter' => function ($c) {
-        return new FilterManager($c);
+    'filter' => function () {
+        return new FilterManager();
     },
-    'comment' => function ($c) {
-        return new CommentManager($c);
+    'comment' => function () {
+        return new CommentManager();
     },
-    'config' => function ($c) {
-        return new ConfigManager($c);
+    'config' => function () {
+        return new ConfigManager();
     },
-    'picture' => function ($c) {
-        return new PicturesManager($c);
+    'picture' => function () {
+        return new PicturesManager();
     },
-    'like' => function ($c) {
-        return new LikesManager($c);
+    'like' => function () {
+        return new LikesManager();
     },
     'mail' => function () {
         return new MailManager();
     },
-    'user' => function ($c) {
-        return new UserManager($c);
+    'user' => function () {
+        return new UserManager();
     },
 ];

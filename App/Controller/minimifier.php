@@ -48,7 +48,7 @@ class minimifier extends Patronus
     {
         $destFile = __DIR__.'/../../public/index.html';
         ob_start();
-        require __DIR__ . '/../View/template.php';
+        require __DIR__.'/../View/template.php';
         $this->content = ob_get_contents();
         ob_end_clean();
 
