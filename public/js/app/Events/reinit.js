@@ -1,7 +1,7 @@
-import { CommonForm } from "./commonForm.js"
+import {CommonForm} from "./commonForm.js"
 
 export class Reinit extends CommonForm {
-  constructor(name) {
-    super(name)
-  }
+		constructor(name) {
+				super(name)
+		}
 }

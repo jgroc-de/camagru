@@ -1,7 +1,7 @@
-import { CommonForm } from "./commonForm.js"
+import {CommonForm} from "./commonForm.js"
 
 export class Signup extends CommonForm {
-  constructor(name) {
-    super(name)
-  }
+		constructor(name) {
+				super(name)
+		}
 }

@@ -1,42 +1,42 @@
-function restrictedArea (state) {
-	let logins = [
-		"camagru",
-		"settings",
-		"password",
-	]
-	let index = logins.indexOf(state.route)
+function restrictedArea(state) {
+		let logins = [
+				"camagru",
+				"settings",
+				"password",
+		]
+		let index = logins.indexOf(state.route)
 
-	if (index !== -1 && !state.isLogin()) {
-		state.components.login.redirect = state.route
-		state.httpCode = 403
-		window.location.assign('#login')
-		return false
-	}
+		if (index !== -1 && !state.isLogin()) {
+				state.components.login.redirect = state.route
+				state.httpCode = 403
+				window.location.assign('#login')
+				return false
+		}
 
-	return true
+		return true
 }
 
-function anonymousArea (state) {
-	let logins = [
-		"login",
-		"reinit",
-		"signup",
-	]
-	let index = logins.indexOf(state.route)
+function anonymousArea(state) {
+		let logins = [
+				"login",
+				"reinit",
+				"signup",
+		]
+		let index = logins.indexOf(state.route)
 
-	if (index !== -1 && state.isLogin()) {
-		state.httpCode = 403
-		window.location.assign('#error')
-		return false
-	}
+		if (index !== -1 && state.isLogin()) {
+				state.httpCode = 403
+				window.location.assign('#error')
+				return false
+		}
 
-	return true
+		return true
 }
 
-export function middlewares (state) {
-	if (!restrictedArea(state) || !anonymousArea(state)) {
-		return false
-	}
+export function middlewares(state) {
+		if (!restrictedArea(state) || !anonymousArea(state)) {
+				return false
+		}
 
-	return state.route
+		return state.route
 }

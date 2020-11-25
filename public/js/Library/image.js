@@ -1,7 +1,7 @@
 function fetchImage(img, url) {
   img.src = url
-    return
-  if (window.fetch) {
+  return
+  /*if (window.fetch) {
     fetch(url)
       .then(function(response) {
         return response.blob();
@@ -12,7 +12,7 @@ function fetchImage(img, url) {
       });
   } else {
     img.src = url
-  }
+  }*/
 }
 
 export function getImage(img, data) {

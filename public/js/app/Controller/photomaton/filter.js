@@ -1,185 +1,188 @@
-import * as view from '../../View/filter.js'
-import { getImage } from '../../../Library/image.js'
+import {getImage} from '../../../Library/image.js'
 
 export class Filter {
-	constructor (section, data, screenNode, info) {
-    this.camagru = section.parentNode.parentNode
-    this.screenNode = screenNode
-		this.section = section
-		this.data = data
-    this.buildView(view.template)
-    this.isActive = false
-    this.setEvent()
-    this.center = {
-      x:0,
-      y:0
-    }
-    this.client = {
-      x:null,
-      y:null
-    }
-    this.info = info.getElementsByTagName("div")
-    this.buttons = info.getElementsByTagName("button")
-	}
+		constructor(section, data, screenNode, info) {
+				this.camagru = section.parentNode.parentNode
+				this.screenNode = screenNode
+				this.section = section
+				this.data = data
+				this.buildView(this.getView("filter"))
+				this.isActive = false
+				this.setEvent()
+				this.center = {
+						x: 0,
+						y: 0
+				}
+				this.client = {
+						x: null,
+						y: null
+				}
+				this.info = info.getElementsByTagName("div")
+				this.buttons = info.getElementsByTagName("button")
+		}
 
-  resetCenter() {
-    this.img.style.top = "0px"
-    this.img.style.left = "0px"
-    this.center.x = 0
-    this.center.y = 0
-    this.client.x = null
-    this.client.y = null
-  }
+		getView(name) {
+				let template = document.querySelector("#" + name + "_skeleton").content;
 
-  setCenter() {
-    this.center.y = this.imgNode.height / 2
-    this.center.x = this.imgNode.width / 2
-  }
+				return document.importNode(template, true).firstElementChild;
+		}
 
-  toggleHide() {
-    this.section.classList.toggle("w3-hide")
-    this.info[0].classList.toggle("w3-hide")
-    this.info[1].classList.toggle("w3-hide")
-  }
+		resetCenter() {
+				this.img.style.top = "0px"
+				this.img.style.left = "0px"
+				this.center.x = 0
+				this.center.y = 0
+				this.client.x = null
+				this.client.y = null
+		}
 
-  activate() {
-    if (!this.isActive) {
-      this.toggleHide()
-      this.imgNode = this.screenNode.appendChild(this.img)
-      this.imgNode.classList.add("gg-drag")
-      this.setCenter()
-      this.addEvents()
-      this.isActive = true
-      for (let button of this.buttons) {
-        button.addEventListener("click", this, false)
-      }
-      this.section.parentNode.firstChild.classList.add("w3-hide")
-    } else {
-      this.screenNode.removeChild(this.img)
-      this.imgNode = null
-      this.isActive = false
-      this.resetCenter()
-    }
-  }
+		setCenter() {
+				this.center.y = this.imgNode.height / 2
+				this.center.x = this.imgNode.width / 2
+		}
 
-  startDrag(event) {
-    if (!this.client.y) {
-      this.client.y = event.clientY
-      this.client.x = event.clientX
-    }
-    this.imgNode.addEventListener("mousemove", this, false)
-    document.addEventListener("mouseup", this, false)
-  }
+		toggleHide() {
+				this.section.classList.toggle("w3-hide")
+				this.info[0].classList.toggle("w3-hide")
+				this.info[1].classList.toggle("w3-hide")
+		}
 
-  drag(event) {
-    let y = event.clientY - this.client.y
-    let x = event.clientX - this.client.x
+		activate() {
+				if (!this.isActive) {
+						this.toggleHide()
+						this.imgNode = this.screenNode.appendChild(this.img)
+						this.imgNode.classList.add("gg-drag")
+						this.setCenter()
+						this.addEvents()
+						this.isActive = true
+						for (let button of this.buttons) {
+								button.addEventListener("click", this, false)
+						}
+						this.section.parentNode.firstChild.classList.add("w3-hide")
+				} else {
+						this.screenNode.removeChild(this.img)
+						this.imgNode = null
+						this.isActive = false
+						this.resetCenter()
+				}
+		}
 
-    this.imgNode.style.top = y + "px"
-    this.imgNode.style.left = x + "px"
-  }
+		startDrag(event) {
+				if (!this.client.y) {
+						this.client.y = event.clientY
+						this.client.x = event.clientX
+				}
+				this.imgNode.addEventListener("mousemove", this, false)
+				document.addEventListener("mouseup", this, false)
+		}
 
-  addEvents() {
-    document.addEventListener("keypress", this, false)
-    this.imgNode.addEventListener("mousedown", this, false)
-  }
+		drag(event) {
+				let y = event.clientY - this.client.y
+				let x = event.clientX - this.client.x
 
-  removeEvents() {
-    this.imgNode.removeEventListener("mousedown", this, false)
-    document.removeEventListener("keypress", this, false)
-    document.removeEventListener("mouseup", this, false)
-    this.imgNode.removeEventListener("mousemove", this, false)
-    for (let button of this.buttons) {
-      button.removeEventListener("click", this, false)
-    }
-    this.section.parentNode.firstChild.classList.remove("w3-hide")
-  }
+				this.imgNode.style.top = y + "px"
+				this.imgNode.style.left = x + "px"
+		}
 
-  fix() {
-    this.removeEvents()
-    this.toggleHide()
-  }
+		addEvents() {
+				document.addEventListener("keypress", this, false)
+				this.imgNode.addEventListener("mousedown", this, false)
+		}
 
-  zoom(key) {
-    if (key === "+") {
-      this.imgNode.width += 20
-    } else {
-      this.imgNode.width -= 20
-    }
-    this.setCenter()
-  }
+		removeEvents() {
+				this.imgNode.removeEventListener("mousedown", this, false)
+				document.removeEventListener("keypress", this, false)
+				document.removeEventListener("mouseup", this, false)
+				this.imgNode.removeEventListener("mousemove", this, false)
+				for (let button of this.buttons) {
+						button.removeEventListener("click", this, false)
+				}
+				this.section.parentNode.firstChild.classList.remove("w3-hide")
+		}
 
-  key(event) {
-    if (event.key === "Enter") {
-      this.fix()
-    } else if (event.key === "+" || event.key === "-") {
-      this.zoom(event.key)
-    }
-  }
+		fix() {
+				this.removeEvents()
+				this.toggleHide()
+		}
 
-  setEvent() {
-    this.handleEvent = function (event) {
-      this.eventDispatcher(event)
-    }
-    this.node.addEventListener("click", this, false)
-  }
+		zoom(key) {
+				if (key === "+") {
+						this.imgNode.width += 20
+				} else {
+						this.imgNode.width -= 20
+				}
+				this.setCenter()
+		}
 
-  click(event) {
-    switch (event.target.textContent) {
-      case "enter":
-        this.fix()
-        break
-      case "+":
-        this.zoom("+")
-        break
-      case "-":
-        this.zoom("-")
-        break
-      default:
-        this.activate()
-    }
-  }
+		key(event) {
+				if (event.key === "Enter") {
+						this.fix()
+				} else if (event.key === "+" || event.key === "-") {
+						this.zoom(event.key)
+				}
+		}
 
-	eventDispatcher(event) {
-		event.preventDefault()
-    event.stopPropagation()
+		setEvent() {
+				this.handleEvent = function (event) {
+						this.eventDispatcher(event)
+				}
+				this.node.addEventListener("click", this, false)
+		}
 
-    switch (event.type) {
-      case "click":
-        this.click(event)
-        break
-      case "mousedown":
-        this.startDrag(event)
-        break
-      case "mousemove":
-        this.drag(event)
-        break
-      case "mouseup":
-        this.drag(event)
-        this.imgNode.removeEventListener("mousemove", this, false)
-        document.removeEventListener("mouseup", this, false)
-        break
-      case "keypress":
-        this.key(event)
-        break
-    }
-  }
+		click(event) {
+				switch (event.target.textContent) {
+						case "enter":
+								this.fix()
+								break
+						case "+":
+								this.zoom("+")
+								break
+						case "-":
+								this.zoom("-")
+								break
+						default:
+								this.activate()
+				}
+		}
 
-  setImage() {
-    this.img = document.createElement("img")
-    getImage(this.img, this.data)
-    this.img.classList.add("gg-screen-width")
-    this.img.classList.add("gg-position-filter")
-    this.img.style.top = 0
-    this.img.style.left = 0
-  }
+		eventDispatcher(event) {
+				event.preventDefault()
+				event.stopPropagation()
 
-	buildView (template) {
-		let tmpNode = (new DOMParser()).parseFromString(template, 'text/html')
+				switch (event.type) {
+						case "click":
+								this.click(event)
+								break
+						case "mousedown":
+								this.startDrag(event)
+								break
+						case "mousemove":
+								this.drag(event)
+								break
+						case "mouseup":
+								this.drag(event)
+								this.imgNode.removeEventListener("mousemove", this, false)
+								document.removeEventListener("mouseup", this, false)
+								break
+						case "keypress":
+								this.key(event)
+								break
+				}
+		}
 
-    //doublon…
-    getImage(tmpNode.getElementsByTagName("img")[0], this.data)
-    this.setImage()
-		this.node = this.section.appendChild(tmpNode.body.childNodes[0])
-  }
+		setImage() {
+				this.img = document.createElement("img")
+				getImage(this.img, this.data)
+				this.img.classList.add("gg-screen-width")
+				this.img.classList.add("gg-position-filter")
+				this.img.style.top = 0
+				this.img.style.left = 0
+		}
+
+		buildView(template) {
+				//doublon…
+				getImage(template.getElementsByTagName("img")[0], this.data)
+				this.setImage()
+				this.node = this.section.appendChild(template.body.childNodes[0])
+		}
 }

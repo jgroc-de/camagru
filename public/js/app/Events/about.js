@@ -1,29 +1,29 @@
 export class About {
-  constructor() {
-  }
-
-  init(card) {
-    let a = card.getElementsByTagName("a")[0]
-    this.p = card.children[1]
-
-		this.handleEvent = function (event) {
-			this.eventDispatcher(event)
+		constructor() {
 		}
 
-    a.addEventListener("click", this, false)
-  }
+		init(card) {
+				let a = card.getElementsByTagName("a")[0]
+				this.p = card.children[1]
 
-	eventDispatcher(event) {
-    event.preventDefault()
-    event.stopPropagation()
+				this.handleEvent = function (event) {
+						this.eventDispatcher(event)
+				}
 
-    this.toggleHide()
-  }
+				a.addEventListener("click", this, false)
+		}
 
-  toggleHide() {
-    this.p.classList.toggle("w3-hide")
-  }
+		eventDispatcher(event) {
+				event.preventDefault()
+				event.stopPropagation()
 
-  toggleLogin() {
-  }
+				this.toggleHide()
+		}
+
+		toggleHide() {
+				this.p.classList.toggle("w3-hide")
+		}
+
+		toggleLogin() {
+		}
 }

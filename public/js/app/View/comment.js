@@ -1,1 +1,0 @@
-export let template = '<div class="w3-row w3-margin-bottom"><h3>pseudo <span class="w3-opacity w3-medium">on date</span><i class="w3-small fa fa-trash w3-button w3-hide" title="delete"></i></h3><p style="word-wrap:break-word">message</p></div>'

@@ -11,7 +11,7 @@ Pour installer le projet:
 git clone git@github.com:jgroc-de/camagru.git && composer install
 php -S localhost:8080
 ```
-composer ne fut pas absolument utile fut un temps
+composer ne fut pas absolument utile fut un temps désormais lointain
 
 le site est désormais accessible à l'adresse "localhost:8080/" dans votre navigateur
 
@@ -20,16 +20,23 @@ initialiser la base de donnée en entrant l'adresse "localhost:8080/config/setup
 
 ## details technique
 
-### PHP
+Le site est constitué de deux parties:
+- le backend qui se comporte comme une sorte d'api rest
+- le front qui est une autre tentative de framework js
 
-Le site utilise une sorte de microframework php naif pour fonctionner.
+Le site est ainsi une sorte d'api qui livre le front sur la route /.
+Le front se charge ensuite de remplir le site en tapant sur les autres routes.
+
+### backend PHP
+
+Le backend est construit autour d'un microframework php naif respectant le pattern MVC pour fonctionner.
 Le code de celui-ci se trouve dans le dossier Dumb.
 Il est composé des fichiers:
-- dumb.php qui est le corps du framework
+- dumb.php qui est le corps du framework MVC
 - patronus.php qui est le controller parent (dont les autres controllers héritent. En théorie, la composition, c'est mieux en objet mais bon…)
 - BakaDo.php, le router (Do la voie, et baka…)
-- IronWall.php, le gestionnaire de middleware respectant PSR-15 construit en suivant le pattern "chain of responsability"
-- Response.php compatible PSR-7 (pattern singleton)
+- IronWall.php, le gestionnaire de middleware respectant PSR-15 (pattern "chain of responsability")
+- Response.php compatible PSR-7 (pattern "singleton")
 - Request.php compatible PSR-7 (ébauche)
 
 Ce framework permet de definir:
@@ -38,10 +45,8 @@ Ce framework permet de definir:
 - un systeme de container dans app/config/container.php
 - un systeme de validation de formulaire dans app/config/forms.php
 
-le point d'entrée se trouve de manière classique dans index.php
-enfin, une organisation pseudo REST est proposée avec l'utilisation des verbs HTTP comme methodes des controller.
-le site est ainsi une sorte d'api qui livre le front sur la route /.
-le front se charge ensuite de remplir le site en tapant sur les autres routes.
+Le point d'entrée se trouve de manière classique dans index.php.
+Enfin, une organisation pseudo REST est proposée avec l'utilisation des verbs HTTP comme méthodes des controllers.
 
 ### JS
 
@@ -50,7 +55,7 @@ Dans le dossier public/js, vous trouverez app.js qui est le point d'entrée
 et qui charge:
 - app/anGGular.js, la class initiale qui charge les modules de bases 
 - app/router.js, le router, chargé de définir la route
-- middleware.js, le middleware.js qui sert nottamment à rediriger vers la page login les pages nécessitant d'etre idetifié sur le site
+- middleware.js, le middleware.js qui sert nottamment à rediriger vers la page login les pages nécessitant d'etre identifié sur le site
 - app/container.js, qui sert à construire le controller qui va bien en fonction de la route demandée
 - AnGGular/controller.js, qui est donc le squellette de controller dont tout le monde dépend
 
@@ -61,10 +66,12 @@ La logique n'est pas totalement finalisée au sens ou behavior fait un peu doubl
 
 Cela reste une tentative instructive de mon point de vue.
 
+
+### Test du backend
+
+Des test du backend existent à coup de curl dans le dossier curlTest.
+Dans le dossier hooks, on trouve des hooks pour git pour tester le back au moment des push et éventuellement l'arreter si ceux ci échouent.
+
 ## evolution en cours
 
 - en faire une pwa
-
-## evolution possible
-
-- faire du js propre (trollolol)

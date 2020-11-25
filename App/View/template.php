@@ -68,5 +68,12 @@
       });
     }*/
 </script>
+<?php
+foreach (\App\Controller\minimifier::TEMPLATES as $template) { ?>
+    <template id="<?= $template ?>_skeleton">
+        <?php require __DIR__.'/components/'.$template.'.html'; ?>
+    </template>
+    <?php
+} ?>
 </body>
 </html>

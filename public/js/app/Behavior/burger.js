@@ -1,55 +1,55 @@
 export class BurgerView {
-  constructor(name, state) {
-    this.state = state
-    this.name = name
-    this.hide = true
-  }
-
-  init(card) {
-		this.nav = document.getElementById('pageNav')
-    this.link = card
-		this.hiddenBtns = [
-			document.getElementById('btnSettings'),
-			document.getElementById('btnPictures'),
-			document.getElementById('btnMyPictures'),
-		]
-  }
-
-	run(defaultView = false) {
-		if (defaultView && !this.hide) {
-      this.hide = !this.hide
-			this.link.href = "#" + this.name
-			this.nav.setAttribute('hidden', true)
-      this.animateBurgerButton()
-		} else if (!defaultView) {
-      this.hide = !this.hide
-      let route = ""
-
-      if (this.state.prevRoute) {
-        route += this.state.prevRoute
-      }
-      this.link.href = route
-			this.nav.toggleAttribute('hidden')
-			this.toggleHiddenButtons()
-      this.animateBurgerButton()
+		constructor(name, state) {
+				this.state = state
+				this.name = name
+				this.hide = true
 		}
 
-		return false
-	}
+		init(card) {
+				this.nav = document.getElementById('pageNav')
+				this.link = card
+				this.hiddenBtns = [
+						document.getElementById('btnSettings'),
+						document.getElementById('btnPictures'),
+						document.getElementById('btnMyPictures'),
+				]
+		}
 
-  animateBurgerButton() {
-    this.link.classList.toggle("change")
-  }
+		run(defaultView = false) {
+				if (defaultView && !this.hide) {
+						this.hide = !this.hide
+						this.link.href = "#" + this.name
+						this.nav.setAttribute('hidden', true)
+						this.animateBurgerButton()
+				} else if (!defaultView) {
+						this.hide = !this.hide
+						let route = ""
 
-	toggleHiddenButtons() {
-			if (this.state.isLogin()) {
-				for (let btn of this.hiddenBtns) {
-					btn.removeAttribute('hidden')
+						if (this.state.prevRoute) {
+								route += this.state.prevRoute
+						}
+						this.link.href = route
+						this.nav.toggleAttribute('hidden')
+						this.toggleHiddenButtons()
+						this.animateBurgerButton()
 				}
-			} else {
-				for (let btn of this.hiddenBtns) {
-					btn.setAttribute('hidden', '')
+
+				return false
+		}
+
+		animateBurgerButton() {
+				this.link.classList.toggle("change")
+		}
+
+		toggleHiddenButtons() {
+				if (this.state.isLogin()) {
+						for (let btn of this.hiddenBtns) {
+								btn.removeAttribute('hidden')
+						}
+				} else {
+						for (let btn of this.hiddenBtns) {
+								btn.setAttribute('hidden', '')
+						}
 				}
-			}
-	}
+		}
 }
