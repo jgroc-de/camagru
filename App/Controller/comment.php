@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Model\CommentManager;
 use App\Model\MailManager;
 use App\Model\UserManager;
+use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
 

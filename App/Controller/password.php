@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Library\Session;
 use App\Model\MailManager;
 use App\Model\UserManager;
+use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
 

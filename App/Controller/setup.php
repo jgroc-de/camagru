@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use App\Model\ConfigManager;
+use Dumb\Dumb;
 use Dumb\Patronus;
 
 class setup extends Patronus
