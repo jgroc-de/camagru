@@ -78,5 +78,4 @@ Dans le dossier hooks, on trouve des hooks pour git pour tester le back au momen
 - en faire une pwa
 
 ### back
-- container respectant psr
 - systeme de logger respectant psr
