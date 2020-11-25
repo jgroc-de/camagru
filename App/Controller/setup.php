@@ -19,7 +19,7 @@ class setup extends Patronus
     {
         parent::__construct($method, $code);
         $this->configManager = Dumb::getService('config');
-        $this->export = Dumb::getService('env');
+        $this->export = Dumb::getService('env')['export'];
     }
 
     public function get(): void

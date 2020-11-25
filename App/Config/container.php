@@ -7,12 +7,13 @@ use App\Model\LikesManager;
 use App\Model\MailManager;
 use App\Model\PicturesManager;
 use App\Model\UserManager;
+use Dumb\Dumb;
 
 /**
  * equip everything u need into the container of dumb.
  */
 $container = [
-    'env' => function (array $c): array {
+    'env' => function (): array {
         if (!empty($_ENV['DB_HOST'])) {
             return [
                 'driver' => 'mysql',
@@ -35,8 +36,8 @@ $container = [
             'port' => '3306',
         ];
     },
-    'db' => function (array $c): PDO {
-        $DB = $c['env'];
+    'db' => function (): PDO {
+        $DB = Dumb::getService('env');
         $DB_DSN = $DB['driver'].':host='.$DB['host'].';dbname='.$DB['name'].';port='.$DB['port'];
         //à remplacer par mysqli pour profiter des async pour les creations update delete
 
@@ -44,25 +45,25 @@ $container = [
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
         ]);
     },
-    'filter' => function (array $c) {
+    'filter' => function () {
         return new FilterManager();
     },
-    'comment' => function (array $c) {
+    'comment' => function () {
         return new CommentManager();
     },
-    'config' => function (array $c) {
+    'config' => function () {
         return new ConfigManager();
     },
-    'picture' => function (array $c) {
+    'picture' => function () {
         return new PicturesManager();
     },
-    'like' => function (array $c) {
+    'like' => function () {
         return new LikesManager();
     },
-    'mail' => function (array $c) {
+    'mail' => function () {
         return new MailManager();
     },
-    'user' => function (array $c) {
+    'user' => function () {
         return new UserManager();
     },
 ];

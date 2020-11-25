@@ -39,13 +39,14 @@ class Dumb
     }
 
     /**
-     * @return mixed|null
+     * @return null|mixed
      */
     public static function getService(string $name)
     {
         if (isset(self::$container[$name])) {
             return self::$container[$name](self::$container);
         }
+        // faudrait logger
 
         return null;
     }
