@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use Dumb\Dumb;
 use PDO;
 
 class ConfigManager
@@ -9,7 +10,7 @@ class ConfigManager
     /** @var array */
     protected $db;
 
-    public function __construct(array $container = [])
+    public function __construct()
     {
         $this->db = Dumb::$container['env']();
     }
