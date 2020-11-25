@@ -12,7 +12,7 @@ class ConfigManager
 
     public function __construct()
     {
-        $this->db = Dumb::getContainer()->('env');
+        $this->db = Dumb::getContainer()->get()->('env');
     }
 
     public function createDB(string $file): void

@@ -11,7 +11,7 @@ class Container implements ContainerInterface
 
     public function setAll(array $services): void
     {
-        foreach($services as $id => $function) {
+        foreach ($services as $id => $function) {
             $this->services[$id] = $function;
         }
     }

@@ -18,8 +18,8 @@ class setup extends Patronus
     public function __construct(string $method, int $code = 302)
     {
         parent::__construct($method, $code);
-        $this->configManager = Dumb::getContainer()->('config');
-        $this->export = Dumb::getContainer()->('env')['export'];
+        $this->configManager = Dumb::getContainer()->get()->('config');
+        $this->export = Dumb::getContainer()->get()->('env')['export'];
     }
 
     public function get(): void

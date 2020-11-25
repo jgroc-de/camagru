@@ -25,9 +25,9 @@ class comment extends Patronus
     public function __construct(string $method, int $code = 200)
     {
         parent::__construct($method, $code);
-        $this->commentManager = Dumb::getContainer()->('comment');
-        $this->userManager = Dumb::getContainer()->('user');
-        $this->mailManager = Dumb::getContainer()->('mail');
+        $this->commentManager = Dumb::getContainer()->get()->('comment');
+        $this->userManager = Dumb::getContainer()->get()->('user');
+        $this->mailManager = Dumb::getContainer()->get()->('mail');
     }
 
     public function get(): void
