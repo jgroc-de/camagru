@@ -70,8 +70,8 @@ $container = [
         } else {
             $mail = new PHPMailer2();
         }
-        $proto = strpos($_SERVER['HTTP_HOST'], 'localhost') === 0 ? 'http' : 'https';
+        $proto = 0 === strpos($_SERVER['HTTP_HOST'], 'localhost') ? 'http' : 'https';
 
-        return new MailSender(null, $mail, strpos($_SERVER['HTTP_HOST'], $proto . '://' . $_SERVER['HTTP_HOST']));
-    }
+        return new MailSender(null, $mail, $proto.'://'.$_SERVER['HTTP_HOST']);
+    },
 ];

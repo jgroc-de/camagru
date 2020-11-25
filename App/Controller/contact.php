@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Model\MailManager;
+use App\Library\MailSender;
 use Dumb\Dumb;
 use Dumb\Patronus;
 
 class contact extends Patronus
 {
-    /** @var MailManager */
+    /** @var MailSender */
     private $mailManager;
 
     public function __construct(string $method, int $code = 200)

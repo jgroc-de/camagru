@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Library\MailSender;
 use App\Model\CommentManager;
-use App\Model\MailManager;
 use App\Model\UserManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
@@ -19,7 +19,7 @@ class comment extends Patronus
     /** @var UserManager */
     private $userManager;
 
-    /** @var MailManager */
+    /** @var MailSender */
     private $mailManager;
 
     public function __construct(string $method, int $code = 200)

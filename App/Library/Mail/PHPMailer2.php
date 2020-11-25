@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Library\Mail;
 
 use PHPMailer\PHPMailer\Exception;
@@ -52,10 +51,12 @@ class PHPMailer2 implements MailInterface
         switch ($type) {
             case self::TYPE_HTML:
                 $this->mail->isHTML(false);
+
                 return $this;
             case self::TYPE_TEXT:
             default:
                 $this->mail->isHTML(false);
+
                 return $this;
         }
     }
@@ -74,10 +75,10 @@ class PHPMailer2 implements MailInterface
 
         try {
             $this->mail->send();
+
             return true;
         } catch (Exception $error) {
             return false;
         }
     }
-
 }

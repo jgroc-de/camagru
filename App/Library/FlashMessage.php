@@ -3,17 +3,17 @@
 namespace App\Library;
 
 /**
- * managing flash message
+ * managing flash message.
  */
 class FlashMessage
 {
     const SUCCESS = 'success';
     const FAIL = 'failure';
 
-    /** @var int $id */
+    /** @var int */
     private $id = 1;
 
-    /** @var array $storage */
+    /** @var array */
     private $storage = [];
 
     /**
@@ -21,7 +21,7 @@ class FlashMessage
      */
     public function addMessage(string $key, string $message)
     {
-        if ($key === self::SUCCESS) {
+        if (self::SUCCESS === $key) {
             $this->storage[self::SUCCESS] = $message;
         } else {
             if (!isset($this->storage[self::FAIL])) {

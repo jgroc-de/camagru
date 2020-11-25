@@ -5,7 +5,7 @@ namespace App\Library;
 use App\Library\Mail\MailInterface;
 
 /**
- * managing mail sending
+ * managing mail sending.
  */
 class MailSender
 {
@@ -94,7 +94,7 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
     public function sendContactMail(): bool
     {
         $this->mail->addTo($_ENV['MAIL_OWNER'], MailInterface::OWNER);
-        $this->mail->setSubject('User contact from ' . $_SERVER['SERVER_NAME']);
+        $this->mail->setSubject('User contact from '.$_SERVER['SERVER_NAME']);
         $this->mail->setReplyTo($_POST['email'], $_POST['name']);
         $this->mail->addContent(MailInterface::TYPE_TEXT, "Bonjour maître des 7 océans numériques,
 
@@ -106,13 +106,13 @@ Ceci est un mail automatique, Merci de ne pas y répondre.';
 
     Glorieuse journée à vous!
 
-            Votre dévoué, " . $_SERVER['SERVER_NAME']);
+            Votre dévoué, ".$_SERVER['SERVER_NAME']);
 
         return $this->send();
     }
 
     private function linkGen(array $user, string $action): string
     {
-        return $this->siteUrl . "/validation?action=$action&token=" . rawurlencode($user['token']) . '&id=' . $user['id'];
+        return $this->siteUrl."/validation?action={$action}&token=".rawurlencode($user['token']).'&id='.$user['id'];
     }
 }

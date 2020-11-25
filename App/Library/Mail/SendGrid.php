@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Library\Mail;
 
 use SendGrid\Mail\Mail;
@@ -62,11 +61,14 @@ class SendGrid implements MailInterface
         $this->mail->setFrom(MailInterface::MAIL, MailInterface::OWNER);
         $this->mail->setReplyTo($replyTo, $name);
         $sendgrid = new \SendGrid($_ENV['SENDGRID_API_KEY']);
+
         try {
             $response = $sendgrid->send($this->mail);
+
             return true;
         } catch (\Exception $e) {
-            echo 'Caught exception: '. $e->getMessage() ."\n";
+            echo 'Caught exception: '.$e->getMessage()."\n";
+
             return false;
         }
     }
