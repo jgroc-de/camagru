@@ -10,7 +10,8 @@ class ShouldBeAdmin extends DumbMiddleware
 {
     public function check(ServerRequestInterface $request): void
     {
-        return;
+        // for prod
+        //return;
         if ('troll2' !== $_SESSION['user']['pseudo']) {
             throw new \Exception('', Response::FORBIDDEN);
         }
