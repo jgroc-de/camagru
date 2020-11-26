@@ -68,8 +68,11 @@ class PHPMailer2 implements MailInterface
         return $this;
     }
 
-    public function send(string $replyTo = self::MAIL, string $name = self::OWNER): bool
+    public function send(string $replyTo = '', string $name = self::OWNER): bool
     {
+        if ($replyTo === '' && !empty($_ENV['MAIL'])) {
+            $replyTo = $_ENV['MAIL'];
+        }
         $this->mail->addReplyTo($replyTo, $name);
         $this->mail->setFrom($replyTo, $name);
 

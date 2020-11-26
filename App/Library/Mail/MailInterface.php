@@ -7,7 +7,7 @@ interface MailInterface
     const TYPE_TEXT = 'text/plain';
     const TYPE_HTML = 'text/html';
     const OWNER = 'Camagru webmasta';
-    const MAIL = 'jgroc-de@student.42.fr';
+    const MAIL = 'lol@lol.fr';
 
     public function setFrom(string $email, string $name): MailInterface;
 
@@ -21,5 +21,5 @@ interface MailInterface
 
     public function addAttachment(string $file): MailInterface;
 
-    public function send(string $replyTo = self::MAIL, string $name = self::OWNER): bool;
+    public function send(string $replyTo = '', string $name = self::OWNER): bool;
 }
