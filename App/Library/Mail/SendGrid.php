@@ -59,7 +59,7 @@ class SendGrid implements MailInterface
     public function send(string $replyTo = '', string $name = self::OWNER): bool
     {
         $adminMail = $_ENV['MAIL'] ?? MailInterface::MAIL;
-        if ($replyTo === '' && !empty($_ENV['MAIL'])) {
+        if ('' === $replyTo && !empty($_ENV['MAIL'])) {
             $replyTo = $_ENV['MAIL'];
         }
         $this->mail->setFrom($adminMail, MailInterface::OWNER);
