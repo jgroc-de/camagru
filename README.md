@@ -5,7 +5,7 @@
 
 ## Installation
 
-PHP 7.0 ou supérier est nécessaire pour faire fonctionner ce site.
+PHP 7.2 ou supérier est nécessaire pour faire fonctionner ce site.
 Pour installer le projet:
 ```
 git clone git@github.com:jgroc-de/camagru.git && composer install
@@ -14,6 +14,7 @@ php -S localhost:8080
 composer ne fut pas absolument utile fut un temps désormais lointain
 
 le site est désormais accessible à l'adresse "localhost:8080/" dans votre navigateur
+je conseille mailhog pour les tester les mails.
 
 Pour faire fonctionner le site, il faut aussi une base mysql active et entrer les identifiants dans App/container.php
 initialiser la base de donnée en entrant l'adresse "localhost:8080/config/setup.php" dans votre navigateur internet
@@ -50,7 +51,7 @@ Enfin, une organisation pseudo REST est proposée avec l'utilisation des verbs H
 
 ### JS
 
-Le front est à peu pret tout en JS, avec la navigation gérée par le changement de hash (visible par le '#' dans l'adresse).
+Le front est à peu pret tout en JS, avec la navigation gérée par le trick du changement de hash (visible par le '#' dans l'adresse).
 Dans le dossier public/js, vous trouverez app.js qui est le point d'entrée
 et qui charge:
 - app/anGGular.js, la class initiale qui charge les modules de bases 
@@ -75,7 +76,9 @@ Dans le dossier hooks, on trouve des hooks pour git pour tester le back au momen
 ## evolution possible
 
 ### front
+- passer par l'API history
 - en faire une pwa
 
 ### back
+- rajouter des objets images etc, et un ORM tant qu'a faire
 - systeme de logger respectant psr

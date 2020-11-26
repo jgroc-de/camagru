@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Library\Image;
 use App\Model\FilterManager;
 use App\Model\PicturesManager;
+use Cloudinary\Uploader;
 use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
@@ -53,8 +54,13 @@ class picture extends Patronus
         $id = $_GET['id'];
         $this->response['id'] = $id;
         $this->picture = $this->pictureManager->getPic($id);
+        if (!empty($_ENV['CLOUDINARY_URL'])) {
+            \Cloudinary::config_from_url($_ENV['CLOUDINARY_URL']);
+            Uploader::destroy($this->picture['url']);
+        } else {
+            unlink($this->picture['url']);
+        }
         $this->pictureManager->deletePic($id, (int) $_SESSION['id']);
-        unlink($this->picture['url']);
         $this->response['flash'] = 'Picture successfully deleted!';
         $this->response['status'] = 'deleted';
     }
