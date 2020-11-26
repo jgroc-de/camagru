@@ -12,7 +12,7 @@ class ShouldBeAdmin extends DumbMiddleware
     {
         // for prod
         //return;
-        if ('troll2' !== $_SESSION['user']['pseudo'] || empty($_ENV['PROD'])) {
+        if ('troll2' !== $_SESSION['user']['pseudo'] && !empty($_ENV['PROD'])) {
             throw new \Exception('', Response::FORBIDDEN);
         }
     }
