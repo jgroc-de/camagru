@@ -26,7 +26,7 @@ $container->setAll([
                 'port' => $_ENV['DB_PORT'],
                 'password' => $_ENV['DB_PASS'],
                 'name' => $_ENV['DB_NAME'],
-                'export' => '',
+                'export' => __DIR__.'/../DB/camagru.sql',
             ];
         }
 
