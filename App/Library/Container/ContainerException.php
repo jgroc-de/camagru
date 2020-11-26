@@ -9,10 +9,9 @@ class ContainerException extends \Exception implements ContainerExceptionInterfa
 {
     /**
      * ContainerException constructor.
+     *
      * @param string $message
-     * @param int $code
-     * @param Throwable|null $previous
-     * @return void
+     * @param int    $code
      */
     public function __construct($message = '', $code = 0, Throwable $previous = null)
     {
