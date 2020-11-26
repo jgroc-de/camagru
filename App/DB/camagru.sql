@@ -4,8 +4,8 @@
 
 DROP DATABASE IF EXISTS camagru;
 CREATE DATABASE camagru;
--- USE camagru;
-USE fo8wewxs9mdfhspo;
+USE camagru;
+-- USE fo8wewxs9mdfhspo;
 
 -- --------------------------------------------------------
 
