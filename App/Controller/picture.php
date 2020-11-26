@@ -56,7 +56,7 @@ class picture extends Patronus
         $this->picture = $this->pictureManager->getPic($id);
         if (!empty($_ENV['CLOUDINARY_URL'])) {
             \Cloudinary::config_from_url($_ENV['CLOUDINARY_URL']);
-            Uploader::destroy($this->picture['url']);
+            Uploader::destroy($this->picture['cloudinary_id']);
         } else {
             unlink($this->picture['url']);
         }

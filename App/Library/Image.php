@@ -83,13 +83,16 @@ class Image
                         break;
                 }
         imagedestroy($this->image);
-        if (!empty($_ENV['CLOUDINARY_URL'])) {
+        $public_id = null;
+        if (!empty($_ENV['CLOUDINARY_URL']) && !empty($_ENV['PROD'])) {
             \Cloudinary::config_from_url($_ENV['CLOUDINARY_URL']);
             $response = Uploader::upload($this->fileName);
+            unlink($this->fileName);
             $this->fileName = $response['secure_url'];
+            $public_id = $response['public_id'];
         }
 
-        return $picturesManager->addPic($this->fileName);
+        return $picturesManager->addPic($this->fileName, $public_id);
     }
 
     private function setFileName(): void

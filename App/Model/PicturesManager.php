@@ -14,7 +14,7 @@ class PicturesManager extends SqlManager
     public function getPic(int $id)
     {
         $request = '
-			SELECT img.id, img.title, img.url, img.date, img.author_id, users.pseudo
+			SELECT img.id, img.title, img.url, img.date, img.author_id, img.cloudinary_id, users.pseudo
 			FROM img
             INNER JOIN users
             ON img.author_id = users.id
@@ -79,14 +79,14 @@ class PicturesManager extends SqlManager
         return $this->sqlRequestFetch($request, [$url]);
     }
 
-    public function addPic(string $path): ?array
+    public function addPic(string $path, string $cloudinaryId = null): ?array
     {
         $request = '
 			INSERT INTO img
-			(title, author_id, url, date)
-			VALUES (?, ?, ?, NOW())
+			(title, author_id, url, cloudinary_id, date)
+			VALUES (?, ?, ?, ?, NOW())
 		';
-        $out = $this->sqlRequest($request, [$_SESSION['user']['pseudo'].'_'.rand(), $_SESSION['id'], $path], true);
+        $out = $this->sqlRequest($request, [$_SESSION['user']['pseudo'].'_'.rand(), $_SESSION['id'], $path, $cloudinaryId], true);
         $id = (int) $this->db->lastInsertId();
         if (0 === $out) {
             throw new Exception('Addition failed', Response::NOT_FOUND);

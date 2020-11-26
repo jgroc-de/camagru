@@ -55,6 +55,7 @@ CREATE TABLE img (
   title varchar(255) NOT NULL,
   author_id bigint UNSIGNED NOT NULL,
   url text NOT NULL,
+  cloudinary_id varchar(255),
   date date NOT NULL
 );
 
