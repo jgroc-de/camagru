@@ -17,7 +17,7 @@ le site est désormais accessible à l'adresse "localhost:8080/" dans votre navi
 je conseille mailhog pour les tester les mails.
 
 Pour faire fonctionner le site, il faut aussi une base mysql active et entrer les identifiants dans App/container.php
-initialiser la base de donnée en entrant l'adresse "localhost:8080/config/setup.php" dans votre navigateur internet
+initialiser la base de donnée en entrant l'adresse "localhost:8080/setup" dans votre navigateur internet
 
 ## details technique
 

@@ -2,10 +2,12 @@
 -- Database: 'camagru'
 --
 
-DROP DATABASE IF EXISTS camagru;
-CREATE DATABASE camagru;
--- USE camagru;
-USE fo8wewxs9mdfhspo;
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+
+-- DROP DATABASE IF EXISTS camagru;
+-- CREATE DATABASE camagru;
+USE camagru;
 
 -- --------------------------------------------------------
 
@@ -13,7 +15,12 @@ USE fo8wewxs9mdfhspo;
 -- Table structure for table 'filter'
 --
 
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS img;
 DROP TABLE IF EXISTS filter;
+DROP TABLE IF EXISTS users;
+
 CREATE TABLE filter (
   id SERIAL PRIMARY KEY,
   title varchar(255) NOT NULL,
@@ -32,7 +39,6 @@ CREATE TABLE filter (
 -- Table structure for table 'user'
 --
 
-DROP TABLE IF EXISTS users;
 CREATE TABLE users (
   id SERIAL PRIMARY KEY,
   pseudo varchar(30) NOT NULL,
@@ -49,7 +55,6 @@ CREATE TABLE users (
 -- Table structure for table 'img'
 --
 
-DROP TABLE IF EXISTS img;
 CREATE TABLE img (
   id SERIAL PRIMARY KEY,
   title varchar(255) NOT NULL,
@@ -67,7 +72,7 @@ ADD FOREIGN KEY (author_id) REFERENCES users(id) ON DELETE CASCADE;
 --
 -- Table structure for table 'comment'
 --
-DROP TABLE IF EXISTS comments;
+
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   img_id bigint UNSIGNED NOT NULL,
@@ -83,7 +88,6 @@ CREATE TABLE comments (
 -- Table structure for table 'likes'
 --
 
-DROP TABLE IF EXISTS likes;
 CREATE TABLE likes (
   id SERIAL PRIMARY KEY,
   img_id bigint UNSIGNED NOT NULL,
@@ -105,3 +109,5 @@ INSERT INTO filter (id, title, url, x, y) VALUES
 
 INSERT INTO users (pseudo, passwd, validkey, email) VALUES
 ('troll2', 'test', 'aiue', 'lol@lol.fr');
+
+COMMIT;

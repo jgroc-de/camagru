@@ -95,7 +95,7 @@ if ($router->isMiddleWareMatch($routes)) {
 
 $routes = [
     'setup' => [
-        'post',
+        'get',
     ],
 ];
 if ($router->isMiddleWareMatch($routes)) {

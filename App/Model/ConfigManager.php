@@ -7,20 +7,25 @@ use PDO;
 
 class ConfigManager
 {
-    /** @var array */
+    /** @var PDO */
     protected $db;
 
     public function __construct()
     {
-        $this->db = Dumb::getContainer()->get('env');
+        if (!empty($_ENV['PROD'])) {
+            $this->db = Dumb::getContainer()->get('db');
+        } else {
+            $db = Dumb::getContainer()->get('env');
+            $db_dsn = $db['driver'].':host='.$db['host'].';port='.$db['port'];
+            $this->db = new PDO($db_dsn, $db['user'], $db['password'], [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            ]);
+        }
     }
 
     public function createDB(string $file): void
     {
-        $db_dsn = $this->db['driver'].':host='.$this->db['host'].';port='.$this->db['port'];
-        $conn = new PDO($db_dsn, $this->db['user'], $this->db['password'], [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        ]);
-        $conn->exec($file);
+        $test = $this->db->exec($file);
+        echo $test;
     }
 }
