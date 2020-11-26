@@ -5,9 +5,10 @@
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 
--- DROP DATABASE IF EXISTS camagru;
--- CREATE DATABASE camagru;
--- USE camagru;
+DROP DATABASE IF EXISTS camagru;
+CREATE DATABASE camagru;
+USE camagru;
+-- USE fo8wewxs9mdfhspo;
 
 -- --------------------------------------------------------
 
