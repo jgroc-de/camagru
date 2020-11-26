@@ -7,7 +7,7 @@ START TRANSACTION;
 
 -- DROP DATABASE IF EXISTS camagru;
 -- CREATE DATABASE camagru;
-USE camagru;
+-- USE camagru;
 
 -- --------------------------------------------------------
 

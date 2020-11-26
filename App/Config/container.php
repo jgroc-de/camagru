@@ -18,7 +18,7 @@ $container = new Container();
 
 $container->setAll([
     'env' => function (): array {
-        if (!empty($_ENV['DB_HOST'])) {
+        if (!empty($_ENV['PROD'])) {
             return [
                 'driver' => 'mysql',
                 'user' => $_ENV['DB_USER'],
