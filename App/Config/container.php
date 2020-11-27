@@ -74,7 +74,11 @@ $container->setAll([
     },
     'mail' => function () {
         if (!empty($_ENV['PROD'])) {
-            $mail = new \App\Library\Mail\SendGrid();
+            if (isset($_ENV['MAILGUN_API_KEY'])) {
+                $mail = new \App\Library\Mail\MailGun();
+            } else {
+                $mail = new \App\Library\Mail\SendGrid();
+            }
         } else {
             $mail = new PHPMailer2();
         }
