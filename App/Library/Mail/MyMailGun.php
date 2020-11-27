@@ -91,6 +91,7 @@ class MyMailGun implements MailInterface
                 $data[$this->type] = $this->content;
             }
             $response = $mail->messages()->send('camagru42.herokuapp.com', $data);
+            echo $response->getMessage();
 
             return true;
         } catch (\Exception $e) {
