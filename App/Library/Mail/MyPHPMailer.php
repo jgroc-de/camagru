@@ -5,7 +5,7 @@ namespace App\Library\Mail;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
 
-class PHPMailer2 implements MailInterface
+class MyPHPMailer implements MailInterface
 {
     /** @var PHPMailer */
     private $mail;

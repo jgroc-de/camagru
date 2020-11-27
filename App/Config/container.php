@@ -1,7 +1,8 @@
 <?php
 
 use App\Library\Container\Container;
-use App\Library\Mail\PHPMailer2;
+use App\Library\Mail\MyMailGun;
+use App\Library\Mail\MyPHPMailer;
 use App\Library\MailSender;
 use App\Model\CommentManager;
 use App\Model\ConfigManager;
@@ -12,6 +13,7 @@ use App\Model\UserManager;
 use Dumb\Dumb;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
+use App\Library\Mail\MySendGrid;
 
 /**
  * equip everything u need into the container of dumb.
@@ -75,12 +77,12 @@ $container->setAll([
     'mail' => function () {
         if (!empty($_ENV['PROD'])) {
             if (isset($_ENV['MAILGUN_API_KEY'])) {
-                $mail = new \App\Library\Mail\MailGun();
+                $mail = new MyMailGun();
             } else {
-                $mail = new \App\Library\Mail\SendGrid();
+                $mail = new MySendGrid();
             }
         } else {
-            $mail = new PHPMailer2();
+            $mail = new MyPHPMailer();
         }
         $proto = 0 === strpos($_SERVER['HTTP_HOST'], 'localhost') ? 'http' : 'https';
 

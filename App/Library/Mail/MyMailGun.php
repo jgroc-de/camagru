@@ -4,11 +4,8 @@ namespace App\Library\Mail;
 
 use Mailgun\Mailgun as Mail;
 
-class MailGun implements MailInterface
+class MyMailGun implements MailInterface
 {
-    /** @var Mail */
-    private $mail;
-
     /** @var string */
     private $from;
 
@@ -30,14 +27,9 @@ class MailGun implements MailInterface
     /** @var string */
     private $type;
 
-    public function __construct()
-    {
-        $this->mail = Mail::create($_ENV['MAILGUN_API_KEY'], 'https://api.eu.mailgun.net');
-    }
-
     public function setFrom(string $email, string $name): MailInterface
     {
-        $this->from = "$name <$email>";
+        $this->from = "{$name} <{$email}>";
 
         return $this;
     }
@@ -51,7 +43,7 @@ class MailGun implements MailInterface
 
     public function addTo(string $email, string $name): MailInterface
     {
-        $this->to[] = "$name <$email>";
+        $this->to[] = "{$name} <{$email}>";
         //$this->to[] = $email;
 
         return $this;
@@ -59,7 +51,7 @@ class MailGun implements MailInterface
 
     public function setReplyTo(string $email, string $name): MailInterface
     {
-        $this->replyTo[] = "$name <$email>";
+        $this->replyTo[] = "{$name} <{$email}>";
 
         return $this;
     }
@@ -81,8 +73,6 @@ class MailGun implements MailInterface
 
     public function send(string $replyTo = '', string $name = self::OWNER): bool
     {
-
-
         $adminMail = $_ENV['MAIL'] ?? MailInterface::MAIL;
         if ('' === $replyTo && !empty($_ENV['MAIL'])) {
             $replyTo = $_ENV['MAIL'];
@@ -93,8 +83,8 @@ class MailGun implements MailInterface
 
         try {
             $data = [
-                'from'    => $this->from,
-                'to'      => $this->to,
+                'from' => $this->from,
+                'to' => $this->to,
                 'subject' => $this->subject,
             ];
             if ($this->content) {

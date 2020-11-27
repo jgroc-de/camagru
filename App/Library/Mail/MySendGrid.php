@@ -4,7 +4,7 @@ namespace App\Library\Mail;
 
 use SendGrid\Mail\Mail;
 
-class SendGrid implements MailInterface
+class MySendGrid implements MailInterface
 {
     /** @var Mail */
     private $mail;
