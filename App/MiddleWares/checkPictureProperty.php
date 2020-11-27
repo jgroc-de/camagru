@@ -6,6 +6,7 @@ use App\Model\PicturesManager;
 use Dumb\DumbMiddleware;
 use Dumb\Response;
 use Psr\Http\Message\ServerRequestInterface;
+use App\Library\Exception;
 
 class checkPictureProperty extends DumbMiddleware
 {
@@ -23,10 +24,10 @@ class checkPictureProperty extends DumbMiddleware
         $pic = $this->pictureManager->getPic($id);
 
         if (empty($pic)) {
-            throw new \Exception('Picture not found', Response::NOT_FOUND);
+            throw new Exception('Picture not found', Response::NOT_FOUND);
         }
         if ($_SESSION['id'] !== $pic['author_id']) {
-            throw new \Exception('Picture not yours', Response::FORBIDDEN);
+            throw new Exception('Picture not yours', Response::FORBIDDEN);
         }
     }
 }

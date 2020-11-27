@@ -2,6 +2,7 @@
 
 use Dumb\Dumb;
 use Dumb\Response;
+use App\Library\Exception;
 
 function escapeString(string $key): void
 {
@@ -13,7 +14,7 @@ function escapeString(string $key): void
 function numericType(string $key): void
 {
     if (!is_numeric($_POST[$key]) || $_POST[$key] <= 0) {
-        throw new \Exception('bad params:not numeric', Response::BAD_REQUEST);
+        throw new Exception('bad params:not numeric', Response::BAD_REQUEST);
     }
     $_POST[$key] = (int) $_POST[$key];
 }
@@ -21,21 +22,21 @@ function numericType(string $key): void
 function passwordType(string $key): void
 {
     if (!preg_match('#(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,256}#', $_POST[$key])) {
-        throw new \Exception('bad params:not password', Response::BAD_REQUEST);
+        throw new Exception('bad params:not password', Response::BAD_REQUEST);
     }
 }
 
 function emailType(string $key): void
 {
     if (!preg_match('#^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,63})$#', $_POST[$key])) {
-        throw new \Exception('bad params:not email', Response::BAD_REQUEST);
+        throw new Exception('bad params:not email', Response::BAD_REQUEST);
     }
 }
 
 function pseudoType(string $key): void
 {
     if (mb_strlen($_POST[$key]) > 30) {
-        throw new \Exception('bad params:too long (>30 characters)', Response::BAD_REQUEST);
+        throw new Exception('bad params:too long (>30 characters)', Response::BAD_REQUEST);
     }
 }
 
@@ -50,7 +51,7 @@ function imageType(string $key): void
     } elseif (0 === strpos($_POST[$key], 'data:image/bmp;base64,')) {
         $_POST['type'] = 'bmp';
     } else {
-        throw new \Exception('not base 64 jpeg/png/bmp/gif image', Response::BAD_REQUEST);
+        throw new Exception('not base 64 jpeg/png/bmp/gif image', Response::BAD_REQUEST);
     }
     $_POST[$key] = base64_decode(str_replace(
         [' ', 'data:image/'.$_POST['type'].';base64,'],
@@ -120,7 +121,7 @@ function trollBumper(Dumb $baka): void
         //factory
         function (string $key, $type) {
             if (empty($_POST[$key])) {
-                throw new \Exception("key {$key} is missing", Response::BAD_REQUEST);
+                throw new Exception("key {$key} is missing", Response::BAD_REQUEST);
             }
             escapeString($key);
             switch ($type) {

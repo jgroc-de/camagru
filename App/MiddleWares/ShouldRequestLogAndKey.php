@@ -5,6 +5,7 @@ namespace App\MiddleWares;
 use Dumb\DumbMiddleware;
 use Dumb\Response;
 use Psr\Http\Message\ServerRequestInterface;
+use App\Library\Exception;
 
 class ShouldRequestLogAndKey extends DumbMiddleware
 {
@@ -12,7 +13,7 @@ class ShouldRequestLogAndKey extends DumbMiddleware
     {
         $queryParams = $request->getQueryParams();
         if (!isset($queryParams['log'], $queryParams['key'])) {
-            throw new \Exception('', Response::BAD_REQUEST);
+            throw new Exception('key and log missing in request', Response::BAD_REQUEST);
         }
     }
 }

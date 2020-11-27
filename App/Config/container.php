@@ -10,11 +10,16 @@ use App\Model\LikesManager;
 use App\Model\PicturesManager;
 use App\Model\UserManager;
 use Dumb\Dumb;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 
 /**
  * equip everything u need into the container of dumb.
  */
 $container = new Container();
+
+$log = new Logger('camagru');
+$log->pushHandler(new StreamHandler('php://stderr', Logger::WARNING));
 
 $container->setAll([
     'env' => function (): array {
@@ -77,4 +82,5 @@ $container->setAll([
 
         return new MailSender(null, $mail, $proto.'://'.$_SERVER['HTTP_HOST']);
     },
+    'log' => $log,
 ]);

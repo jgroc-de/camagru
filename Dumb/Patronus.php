@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Dumb;
 
+use App\Library\Exception;
 /**
  * this is the parent class for controller.
  */
@@ -26,7 +27,7 @@ abstract class Patronus
 
     public function __call(string $string, array $args): void
     {
-        throw new \Exception("{$string} controller error", Response::METHOD_NOT_ALLOWED);
+        throw new Exception("{$string} controller error", Response::METHOD_NOT_ALLOWED);
     }
 
     public function trap(): void
@@ -66,26 +67,26 @@ abstract class Patronus
 
     public function get(): void
     {
-        throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
+        throw new Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
     public function post(): void
     {
-        throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
+        throw new Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
     public function put(): void
     {
-        throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
+        throw new Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
     public function delete(): void
     {
-        throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
+        throw new Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
     public function patch(): void
     {
-        throw new \Exception('controller error', Response::METHOD_NOT_ALLOWED);
+        throw new Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 }

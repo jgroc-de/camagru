@@ -11,6 +11,7 @@ use Cloudinary\Uploader;
 use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
+use App\Library\Exception;
 
 /**
  * picture.
@@ -37,7 +38,7 @@ class picture extends Patronus
         $id = $_GET['id'];
         $this->picture = $this->pictureManager->getPic($id);
         if (empty($this->picture)) {
-            throw new \Exception('picture', Response::NOT_FOUND);
+            throw new Exception('picture', Response::NOT_FOUND);
         }
         $this->response = $this->picture;
     }
@@ -104,7 +105,7 @@ class picture extends Patronus
         while (isset($filters[$i])) {
             $filter = $all[$filters[$i]->title];
             if (!$filter) {
-                throw new \Exception('filter', Response::NOT_FOUND);
+                throw new Exception('filter', Response::NOT_FOUND);
             }
             $filters[$i]->url = $filter;
             ++$i;

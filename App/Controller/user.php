@@ -10,6 +10,7 @@ use App\Model\UserManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
+use App\Library\Exception;
 
 class user extends Patronus
 {
@@ -36,7 +37,7 @@ class user extends Patronus
         $user->setUserFromPostData();
 
         if (!$this->userManager->updateUser($user)) {
-            throw new \Exception('pseudo unavailable!', Response::BAD_REQUEST);
+            throw new Exception('pseudo unavailable!', Response::BAD_REQUEST);
         }
         $user->updateSession();
         $this->response['flash'] = 'Profil Succesfully updated';
@@ -49,7 +50,7 @@ class user extends Patronus
         $password = $_POST['password'];
 
         if (false == $this->userManager->addUser($user, password_hash($password, PASSWORD_DEFAULT))) {
-            throw new \Exception($_SESSION['flash']['fail'], Response::UNAUTHORIZED);
+            throw new Exception($_SESSION['flash']['fail'], Response::UNAUTHORIZED);
         }
         $this->mailManager->sendValidationMail($this->userManager->getUser($user->getPseudo()));
         if (isset($_SESSION['flash']['success'])) {

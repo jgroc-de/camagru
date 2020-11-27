@@ -6,6 +6,7 @@ use App\Model\CommentManager;
 use Dumb\DumbMiddleware;
 use Dumb\Response;
 use Psr\Http\Message\ServerRequestInterface;
+use App\Library\Exception;
 
 class checkCommentProperty extends DumbMiddleware
 {
@@ -23,10 +24,10 @@ class checkCommentProperty extends DumbMiddleware
         $comment = $this->commentManager->getComment($id);
 
         if (empty($comment)) {
-            throw new \Exception('Comment not found', Response::NOT_FOUND);
+            throw new Exception('Comment not found', Response::NOT_FOUND);
         }
         if ($_SESSION['id'] !== $comment['author_id']) {
-            throw new \Exception('Comment not yours', Response::FORBIDDEN);
+            throw new Exception('Comment not yours', Response::FORBIDDEN);
         }
     }
 }

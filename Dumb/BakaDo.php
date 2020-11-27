@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Dumb;
 
+use App\Library\Exception;
+
 class BakaDo
 {
     /** @var Patronus */
@@ -32,7 +34,7 @@ class BakaDo
         }
         $this->setController();
         if (!method_exists($this->controller, $this->method)) {
-            throw new \Exception('method '.$this->method.' forbidden for this routes', Response::METHOD_NOT_ALLOWED);
+            throw new Exception('method '.$this->method.' forbidden for this routes', Response::METHOD_NOT_ALLOWED);
         }
 
         return $this->controller;

@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use Dumb\Response;
+use App\Library\Exception;
 
 class CommentManager extends SqlManager
 {
@@ -80,7 +81,7 @@ class CommentManager extends SqlManager
         $out = $this->sqlRequest($request, [$id, $_SESSION['id'], $_POST['comment']], true);
         $id = (int) $this->db->lastInsertId();
         if (0 === $out) {
-            throw new \Exception('Addition failed', Response::NOT_FOUND);
+            throw new Exception('Addition failed', Response::NOT_FOUND);
         }
 
         return $this->getComment($id);
@@ -101,7 +102,7 @@ class CommentManager extends SqlManager
             ';
         $out = $this->sqlRequest($request, [$comment, $id], true);
         if (0 === $out) {
-            throw new \Exception('Update failed ', Response::NOT_FOUND);
+            throw new Exception('Update failed ', Response::NOT_FOUND);
         }
     }
 }

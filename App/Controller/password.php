@@ -10,6 +10,7 @@ use App\Model\UserManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
+use App\Library\Exception;
 
 class password extends Patronus
 {
@@ -31,7 +32,7 @@ class password extends Patronus
         if (!$this->userManager->pseudoInDb($pseudo)
             || !$this->userManager->checkValidationMail($pseudo, $_GET['key'])
         ) {
-            throw new \Exception('password', Response::BAD_REQUEST);
+            throw new Exception('password', Response::BAD_REQUEST);
         }
         $user = $this->userManager->getUser($pseudo);
         new Session($user);
@@ -48,7 +49,7 @@ class password extends Patronus
         $email = $_POST['email'];
         $user = $this->userManager->getUserByEmail($email);
         if (empty($user) || !$this->userManager->resetValidkey($user['pseudo'])) {
-            throw new \Exception('password', Response::NOT_FOUND);
+            throw new Exception('password', Response::NOT_FOUND);
         }
         $this->mailManager->sendResetMail($user);
         if (isset($_SESSION['flash'])) {

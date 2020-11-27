@@ -9,6 +9,7 @@ use App\Model\UserManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
+use App\Library\Exception;
 
 class login extends Patronus
 {
@@ -27,7 +28,7 @@ class login extends Patronus
         $password = $_POST['password'];
 
         if (!$this->userManager->checkLogin($pseudo, $password)) {
-            throw new \Exception('Bad password or login', Response::UNAUTHORIZED);
+            throw new Exception('Bad password or login', Response::UNAUTHORIZED);
         }
         $user = $this->userManager->getUser($pseudo);
         new Session($user);

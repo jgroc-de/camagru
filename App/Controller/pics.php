@@ -8,6 +8,7 @@ use App\Model\PicturesManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
+use App\Library\Exception;
 
 class pics extends Patronus
 {
@@ -25,7 +26,7 @@ class pics extends Patronus
         $pics = $this->getPics();
         $max = $this->picsManager->countPics();
         if (empty($pics)) {
-            throw new \Exception('pics', Response::NOT_FOUND);
+            throw new Exception('pics', Response::NOT_FOUND);
         }
         $this->response = [
             'pictures' => $pics,
@@ -50,7 +51,7 @@ class pics extends Patronus
             case 'User':
                 return $this->picsManager->getPicsByUser($_SESSION['id']);
             default:
-                throw new \Exception("{$sort}: method not allowed", Response::BAD_REQUEST);
+                throw new Exception("{$sort}: method not allowed", Response::BAD_REQUEST);
         }
     }
 }

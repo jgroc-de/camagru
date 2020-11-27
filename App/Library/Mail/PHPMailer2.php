@@ -81,7 +81,7 @@ class PHPMailer2 implements MailInterface
 
             return true;
         } catch (Exception $error) {
-            return false;
+            throw new \App\Library\Exception($error->getMessage());
         }
     }
 }

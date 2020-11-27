@@ -28,7 +28,7 @@ class Image
         $this->imageSize = getimagesizefromstring($_POST['picture']);
         $this->image = imagecreatefromstring($_POST['picture']);
         if (!$this->image) {
-            throw new \Exception('cant create image', Response::INTERNAL_SERVER_ERROR);
+            throw new Exception('cant create image', Response::INTERNAL_SERVER_ERROR);
         }
         $this->resize();
         $this->setFileName();
@@ -39,7 +39,7 @@ class Image
         $tmp = $filter->url;
         $s_size = getimagesize($tmp);
         if (!($src = imagecreatefrompng($tmp))) {
-            throw new \Exception('filter loading error', Response::INTERNAL_SERVER_ERROR);
+            throw new Exception('filter loading error', Response::INTERNAL_SERVER_ERROR);
         }
         imagealphablending($this->image, true);
         imagesavealpha($this->image, true);
@@ -55,7 +55,7 @@ class Image
             $s_size[0],
             $s_size[1]
         )) {
-            throw new \Exception('filter addition error', Response::INTERNAL_SERVER_ERROR);
+            throw new Exception('filter addition error', Response::INTERNAL_SERVER_ERROR);
         }
         imagedestroy($src);
     }
@@ -114,13 +114,13 @@ class Image
         if (self::WIDTH != $this->imageSize[0] || self::HEIGHT != $this->imageSize[1]) {
             $this->image = $this->resampled();
             if (empty($this->image)) {
-                throw new \Exception('cant resize image', Response::INTERNAL_SERVER_ERROR);
+                throw new Exception('cant resize image', Response::INTERNAL_SERVER_ERROR);
             }
         }
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      *
      * @return resource
      */
@@ -128,7 +128,7 @@ class Image
     {
         $image = imagecreatetruecolor(self::WIDTH, self::HEIGHT);
         if (!$image) {
-            throw new \Exception('cant create image layer', Response::INTERNAL_SERVER_ERROR);
+            throw new Exception('cant create image layer', Response::INTERNAL_SERVER_ERROR);
         }
         if (self::WIDTH - $this->imageSize[0] < self::HEIGHT - $this->imageSize[1]) {
             $width = self::WIDTH;
