@@ -24,10 +24,10 @@ class checkPictureProperty extends DumbMiddleware
         $pic = $this->pictureManager->getPic($id);
 
         if (empty($pic)) {
-            throw new Exception('Picture not found: ' . $id, Response::NOT_FOUND);
+            throw new Exception('Picture not found: '.$id, Response::NOT_FOUND);
         }
         if ($_SESSION['id'] !== $pic['author_id']) {
-            throw new Exception('Picture not yours: ' . $id, Response::FORBIDDEN);
+            throw new Exception('Picture not yours: '.$id, Response::FORBIDDEN);
         }
     }
 }
