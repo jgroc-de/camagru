@@ -84,9 +84,11 @@ class Dumb
         }
 
         $code = $response->getStatusCode();
-        $phrase = Response::HTTP_CODE[$code] ?? 'code not set';
+        if (!isset(Response::HTTP_CODE[$code])) {
+            $code = 500;
+        }
         header('Cache-Control: max-age=3600');
-        header($_SERVER['SERVER_PROTOCOL'].' '.$code.' '.$phrase);
+        header($_SERVER['SERVER_PROTOCOL'].' '.$code.' '.Response::HTTP_CODE[$code]);
         /** @var Response $response */
         echo $response->getMessage();
     }
