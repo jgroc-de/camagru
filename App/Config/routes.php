@@ -7,7 +7,7 @@ use Dumb\BakaDo;
  * declare GET and POST routes
  * each routes names must be unique!!
  */
-$router = new BakaDo([
+$routes = [
     'contact',
     'home' => [
         '',
@@ -31,4 +31,4 @@ $router = new BakaDo([
     'comment',
     'like',
     'admin',
-]);
+];

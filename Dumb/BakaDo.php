@@ -20,11 +20,11 @@ class BakaDo
     /** @var string */
     private $uri;
 
-    public function __construct(array $routes)
+    public function __construct(array $routes, Request $request)
     {
         $this->routes = $routes;
         $this->method = strtolower($_SERVER['REQUEST_METHOD']);
-        $this->setUri();
+        $this->setUri($request);
     }
 
     public function getController(): Patronus
@@ -69,12 +69,12 @@ class BakaDo
         $this->controller = new $class($this->method);
     }
 
-    private function setUri(): void
+    private function setUri(Request $request): void
     {
         $uri = explode('/', $_SERVER['REQUEST_URI']);
         $this->uri = explode('?', $uri[1])[0];
         if (isset($uri[2])) {
-            $_GET['id'] = (int) $uri[2];
+            $request->setParams('id', (int) $uri[2]);
         }
     }
 

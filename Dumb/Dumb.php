@@ -26,6 +26,9 @@ class Dumb
     /** @var KGB */
     private $formValidator;
 
+    /** @var Request */
+    private $request;
+
     public function __construct()
     {
         /*spl_autoload_register(function ($class) {
@@ -37,6 +40,8 @@ class Dumb
             $_POST += (array) json_decode($input);
         }
         $this->formValidator = new KGB();
+        $this->request = new Request();
+
     }
 
     public static function getContainer(): ContainerInterface
@@ -44,9 +49,9 @@ class Dumb
         return self::$container;
     }
 
-    public function setRouter(BakaDo $router): void
+    public function setRouter(array $routes): void
     {
-        $this->router = $router;
+        $this->router = new BakaDo($routes, $this->request);
     }
 
     public function setContainer(ContainerInterface $container): void
@@ -70,9 +75,9 @@ class Dumb
         $controller = $this->router->getController();
         /** @var Response $response */
         $response = Response::getInstance($controller->code);
+        $request = $this->request;
 
         try {
-            $request = new Request();
             $this->runMiddlewares($request);
             if ($response->getStatusCode() < 400) {
                 $controller->trap($request);

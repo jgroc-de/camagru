@@ -211,4 +211,9 @@ class Request implements ServerRequestInterface
 
         return $queryParams;
     }
+
+    public function setParams(string $key, $value)
+    {
+        $this->queryParams[$key] = $value;
+    }
 }

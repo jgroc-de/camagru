@@ -22,8 +22,8 @@ $baka = new Dumb();
 
 //set routes
 require 'App/Config/routes.php';
-if (!empty($router)) {
-    $baka->setRouter($router);
+if (!empty($routes)) {
+    $baka->setRouter($routes);
 }
 
 //set container
