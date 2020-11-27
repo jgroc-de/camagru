@@ -6,7 +6,7 @@ use Dumb\Patronus;
 
 class admin extends Patronus
 {
-    public function get(): void
+    public function get(Request $request): void
     {
         echo phpinfo();
     }

@@ -26,7 +26,7 @@ class password extends Patronus
         $this->mailManager = Dumb::getContainer()->get('mail');
     }
 
-    public function get(): void
+    public function get(Request $request): void
     {
         $pseudo = $_GET['log'];
         if (!$this->userManager->pseudoInDb($pseudo)
@@ -38,13 +38,13 @@ class password extends Patronus
         new Session($user);
     }
 
-    public function patch(): void
+    public function patch(Request $request): void
     {
         $this->userManager->updatePassword($_POST['password']);
         $this->response['flash'] = 'Password Succesfully updated';
     }
 
-    public function post(): void
+    public function post(Request $request): void
     {
         $email = $_POST['email'];
         $user = $this->userManager->getUserByEmail($email);

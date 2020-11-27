@@ -21,7 +21,7 @@ class pics extends Patronus
         $this->picsManager = Dumb::getContainer()->get('picture');
     }
 
-    public function get(): void
+    public function get(Request $request): void
     {
         $pics = $this->getPics();
         $max = $this->picsManager->countPics();

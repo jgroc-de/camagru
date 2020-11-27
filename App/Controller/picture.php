@@ -33,7 +33,7 @@ class picture extends Patronus
         $this->filterManager = Dumb::getContainer()->get('filter');
     }
 
-    public function get(): void
+    public function get(Request $request): void
     {
         $id = $_GET['id'];
         $this->picture = $this->pictureManager->getPic($id);
@@ -43,14 +43,14 @@ class picture extends Patronus
         $this->response = $this->picture;
     }
 
-    public function patch(): void
+    public function patch(Request $request): void
     {
         $id = $_GET['id'];
         $this->pictureManager->changeTitle($id, $_POST['title']);
         $this->response['title'] = $_POST['title'];
     }
 
-    public function delete(): void
+    public function delete(Request $request): void
     {
         $id = $_GET['id'];
         $this->response['id'] = $id;
@@ -66,7 +66,7 @@ class picture extends Patronus
         $this->response['status'] = 'deleted';
     }
 
-    public function post(): void
+    public function post(Request $request): void
     {
         $this->response = $this->createPicture();
         $this->code = Response::CREATED;

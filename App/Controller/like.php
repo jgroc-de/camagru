@@ -20,19 +20,19 @@ class like extends Patronus
         $this->likeManager = Dumb::getContainer()->get('like');
     }
 
-    public function get(): void
+    public function get(Request $request): void
     {
         $this->response = $this->likeManager->getLike((int) $_GET['id']);
     }
 
-    public function delete(): void
+    public function delete(Request $request): void
     {
         $this->likeManager->deleteLike((int) $_GET['id']);
         $this->response = $this->likeManager->getLike((int) $_GET['id']);
         $this->response['flash'] = 'done :(';
     }
 
-    public function post(): void
+    public function post(Request $request): void
     {
         $this->likeManager->addLike((int) $_GET['id']);
         $this->response = $this->likeManager->getLike((int) $_GET['id']);

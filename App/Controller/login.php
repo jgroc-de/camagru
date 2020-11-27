@@ -22,7 +22,7 @@ class login extends Patronus
         $this->userManager = Dumb::getContainer()->get('user');
     }
 
-    public function post(): void
+    public function post(Request $request): void
     {
         $pseudo = $_POST['pseudo'];
         $password = $_POST['password'];
@@ -35,7 +35,7 @@ class login extends Patronus
         $this->setResponse();
     }
 
-    public function delete(): void
+    public function delete(Request $request): void
     {
         session_unset();
         session_destroy();

@@ -26,12 +26,12 @@ class user extends Patronus
         $this->mailManager = Dumb::getContainer()->get('mail');
     }
 
-    public function get(): void
+    public function get(Request $request): void
     {
         $this->response['settings'] = (new Session())->getSession();
     }
 
-    public function patch(): void
+    public function patch(Request $request): void
     {
         $user = new Session();
         $user->setUserFromPostData();
@@ -43,7 +43,7 @@ class user extends Patronus
         $this->response['flash'] = 'Profil Succesfully updated';
     }
 
-    public function post(): void
+    public function post(Request $request): void
     {
         $user = new Session();
         $user->setUserFromPostData();
@@ -60,7 +60,7 @@ class user extends Patronus
         $this->code = Response::CREATED;
     }
 
-    public function delete(): void
+    public function delete(Request $request): void
     {
         $this->userManager->deleteUser();
         session_unset();

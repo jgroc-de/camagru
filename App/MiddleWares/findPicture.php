@@ -20,7 +20,7 @@ class findPicture extends DumbMiddleware
 
     public function check(ServerRequestInterface $request): void
     {
-        $id = (int) $_GET['id'];
+        $id = (int) $request->getQueryParams()['id'];
         if (!($this->pictureManager->picInDb($id))) {
             throw new Exception('Picture not found: '.$id, Response::NOT_FOUND);
         }

@@ -19,7 +19,7 @@ class contact extends Patronus
         $this->mailManager = Dumb::getContainer()->get('mail');
     }
 
-    public function post(): void
+    public function post(Request $request): void
     {
         $this->response['flash'] = 'Thx!';
     }

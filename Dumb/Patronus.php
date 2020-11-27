@@ -31,27 +31,27 @@ abstract class Patronus
         throw new Exception("{$string} controller error", Response::METHOD_NOT_ALLOWED);
     }
 
-    public function trap(): void
+    public function trap(Request $request): void
     {
         switch ($this->method) {
             case 'get':
-                $this->get();
+                $this->get($request);
 
                 break;
             case 'post':
-                $this->post();
+                $this->post($request);
 
                 break;
             case 'put':
-                $this->put();
+                $this->put($request);
 
                 break;
             case 'patch':
-                $this->patch();
+                $this->patch($request);
 
                 break;
             case 'delete':
-                $this->delete();
+                $this->delete($request);
 
                 break;
             default:
@@ -66,27 +66,27 @@ abstract class Patronus
         return json_encode($this->response);
     }
 
-    public function get(): void
+    public function get(Request $request): void
     {
         throw new Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
-    public function post(): void
+    public function post(Request $request): void
     {
         throw new Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
-    public function put(): void
+    public function put(Request $request): void
     {
         throw new Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
-    public function delete(): void
+    public function delete(Request $request): void
     {
         throw new Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }
 
-    public function patch(): void
+    public function patch(Request $request): void
     {
         throw new Exception('controller error', Response::METHOD_NOT_ALLOWED);
     }

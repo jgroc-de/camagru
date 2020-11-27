@@ -23,7 +23,7 @@ class filter extends Patronus
         $this->filterManager = Dumb::getContainer()->get('filter');
     }
 
-    public function get(): void
+    public function get(Request $request): void
     {
         $this->response['filters'] = $this->filterManager->getFilters();
     }

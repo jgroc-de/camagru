@@ -27,7 +27,7 @@ class minimifier extends Patronus
     /** @var string */
     private $content;
 
-    public function get(): void
+    public function get(Request $request): void
     {
     }
 

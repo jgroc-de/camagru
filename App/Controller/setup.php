@@ -22,7 +22,7 @@ class setup extends Patronus
         $this->export = Dumb::getContainer()->get('env')['export'];
     }
 
-    public function get(): void
+    public function get(Request $request): void
     {
         $this->configManager->createDB(file_get_contents($this->export));
     }

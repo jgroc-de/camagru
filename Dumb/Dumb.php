@@ -72,9 +72,9 @@ class Dumb
         $response = Response::getInstance($controller->code);
 
         try {
-            $this->runMiddlewares();
+            $this->runMiddlewares($request);
             if ($response->getStatusCode() < 400) {
-                $controller->trap();
+                $controller->trap($request);
                 $response->setMessage($controller->bomb());
             } else {
                 $response = $this->error($response);
@@ -93,20 +93,16 @@ class Dumb
         echo $response->getMessage();
     }
 
-    private function runMiddlewares(): ResponseInterface
+    private function runMiddlewares(Request $request): void
     {
-        $request = new Request();
-        $response = Response::getInstance();
         foreach ($this->middlewareHandlers as $middlewareHandler) {
             /** @var RequestHandlerInterface $middlewareHandler */
             $response = $middlewareHandler->handle($request);
             if ($response->getStatusCode() >= 400) {
-                return $response;
+                return;
             }
         }
         $this->formValidator->check();
-
-        return $response;
     }
 
     private function error(ResponseInterface $response): ResponseInterface
