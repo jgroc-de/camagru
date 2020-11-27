@@ -9,6 +9,7 @@ use App\Model\CommentManager;
 use App\Model\UserManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
+use Dumb\Request;
 use Dumb\Response;
 
 class comment extends Patronus
@@ -32,17 +33,17 @@ class comment extends Patronus
 
     public function get(Request $request): void
     {
-        $this->response['comments'] = $this->commentManager->getComments($_GET['id'])->fetchAll(\PDO::FETCH_ASSOC);
+        $this->response['comments'] = $this->commentManager->getComments($request->getQueryParams()['id'])->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function put(Request $request): void
     {
-        $this->response['comments'] = $this->commentManager->getLastComments($_GET['id'])->fetchAll(\PDO::FETCH_ASSOC);
+        $this->response['comments'] = $this->commentManager->getLastComments($request->getQueryParams()['id'])->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function post(Request $request): void
     {
-        $id = $_GET['id'];
+        $id = $request->getQueryParams()['id'];
         $comment = $this->commentManager->addComment($id);
         $this->sendUserNotification($id);
         $this->response['comment'] = $comment;
@@ -51,13 +52,13 @@ class comment extends Patronus
 
     public function delete(Request $request): void
     {
-        $this->commentManager->deleteComment($_GET['id']);
+        $this->commentManager->deleteComment($request->getQueryParams()['id']);
         $this->response['status'] = 'deleted';
     }
 
     public function patch(Request $request): void
     {
-        $this->commentManager->updateComment($_GET['id'], $_POST['comment']);
+        $this->commentManager->updateComment($request->getQueryParams()['id'], $_POST['comment']);
         $this->response['flash'] = 'updated!';
     }
 

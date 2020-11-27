@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Model\ConfigManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
+use Dumb\Request;
 
 class setup extends Patronus
 {

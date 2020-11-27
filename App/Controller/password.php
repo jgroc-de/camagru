@@ -10,6 +10,7 @@ use App\Library\Session;
 use App\Model\UserManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
+use Dumb\Request;
 use Dumb\Response;
 
 class password extends Patronus
@@ -28,9 +29,9 @@ class password extends Patronus
 
     public function get(Request $request): void
     {
-        $pseudo = $_GET['log'];
+        $pseudo = $request->getQueryParams()['log'];
         if (!$this->userManager->pseudoInDb($pseudo)
-            || !$this->userManager->checkValidationMail($pseudo, $_GET['key'])
+            || !$this->userManager->checkValidationMail($pseudo, $request->getQueryParams()['key'])
         ) {
             throw new Exception('password', Response::BAD_REQUEST);
         }

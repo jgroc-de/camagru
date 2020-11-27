@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Model\LikesManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
+use Dumb\Request;
 use Dumb\Response;
 
 class like extends Patronus
@@ -22,20 +23,20 @@ class like extends Patronus
 
     public function get(Request $request): void
     {
-        $this->response = $this->likeManager->getLike((int) $_GET['id']);
+        $this->response = $this->likeManager->getLike((int) $request->getQueryParams()['id']);
     }
 
     public function delete(Request $request): void
     {
-        $this->likeManager->deleteLike((int) $_GET['id']);
-        $this->response = $this->likeManager->getLike((int) $_GET['id']);
+        $this->likeManager->deleteLike((int) $request->getQueryParams()['id']);
+        $this->response = $this->likeManager->getLike((int) $request->getQueryParams()['id']);
         $this->response['flash'] = 'done :(';
     }
 
     public function post(Request $request): void
     {
-        $this->likeManager->addLike((int) $_GET['id']);
-        $this->response = $this->likeManager->getLike((int) $_GET['id']);
+        $this->likeManager->addLike((int) $request->getQueryParams()['id']);
+        $this->response = $this->likeManager->getLike((int) $request->getQueryParams()['id']);
         $this->response['flash'] = 'Thx :)';
         $this->code = Response::CREATED;
     }

@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Model\FilterManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
+use Dumb\Request;
 
 /**
  * filter

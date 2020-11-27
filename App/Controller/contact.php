@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Library\MailSender;
 use Dumb\Dumb;
 use Dumb\Patronus;
+use Dumb\Request;
 
 class contact extends Patronus
 {

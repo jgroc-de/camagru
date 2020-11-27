@@ -11,6 +11,7 @@ use App\Model\PicturesManager;
 use Cloudinary\Uploader;
 use Dumb\Dumb;
 use Dumb\Patronus;
+use Dumb\Request;
 use Dumb\Response;
 
 /**
@@ -35,7 +36,7 @@ class picture extends Patronus
 
     public function get(Request $request): void
     {
-        $id = $_GET['id'];
+        $id = $request->getQueryParams()['id'];
         $this->picture = $this->pictureManager->getPic($id);
         if (empty($this->picture)) {
             throw new Exception('picture', Response::NOT_FOUND);
@@ -45,14 +46,14 @@ class picture extends Patronus
 
     public function patch(Request $request): void
     {
-        $id = $_GET['id'];
+        $id = $request->getQueryParams()['id'];
         $this->pictureManager->changeTitle($id, $_POST['title']);
         $this->response['title'] = $_POST['title'];
     }
 
     public function delete(Request $request): void
     {
-        $id = $_GET['id'];
+        $id = $request->getQueryParams()['id'];
         $this->response['id'] = $id;
         $this->picture = $this->pictureManager->getPic($id);
         if (!empty($_ENV['CLOUDINARY_URL']) && !empty($_ENV['PROD'])) {

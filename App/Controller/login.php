@@ -9,6 +9,7 @@ use App\Library\Session;
 use App\Model\UserManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
+use Dumb\Request;
 use Dumb\Response;
 
 class login extends Patronus

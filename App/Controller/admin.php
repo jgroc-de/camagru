@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Dumb\Patronus;
+use Dumb\Request;
 
 class admin extends Patronus
 {

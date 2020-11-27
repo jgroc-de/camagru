@@ -8,6 +8,7 @@ use App\Library\Exception;
 use App\Model\PicturesManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
+use Dumb\Request;
 use Dumb\Response;
 
 class pics extends Patronus
@@ -30,7 +31,7 @@ class pics extends Patronus
         }
         $this->response = [
             'pictures' => $pics,
-            'page' => $_GET['id'],
+            'page' => $request->getQueryParams()['id'],
             'max' => $max,
         ];
     }
@@ -39,15 +40,15 @@ class pics extends Patronus
     {
         $uri = explode('/', $_SERVER['REQUEST_URI'])[1];
         $sort = explode('By', $uri)[1];
-        if (!isset($_GET['id'])) {
-            $_GET['id'] = 0;
+        if (!isset($request->getQueryParams()['id'])) {
+            $request->getQueryParams()['id'] = 0;
         }
 
         switch ($sort) {
             case 'Date':
-                return $this->picsManager->getPicsByDate($_GET['id'] * 8);
+                return $this->picsManager->getPicsByDate($request->getQueryParams()['id'] * 8);
             case 'Like':
-                return $this->picsManager->getPicsByLike($_GET['id'] * 8);
+                return $this->picsManager->getPicsByLike($request->getQueryParams()['id'] * 8);
             case 'User':
                 return $this->picsManager->getPicsByUser($_SESSION['id']);
             default:
