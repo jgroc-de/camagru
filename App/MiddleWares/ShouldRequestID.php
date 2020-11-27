@@ -13,7 +13,7 @@ class ShouldRequestID extends DumbMiddleware
     {
         $queryParams = $request->getQueryParams();
         if (!isset($queryParams['id']) || ($queryParams['id']) <= 0) {
-            throw new Exception('bad id in query params', Response::BAD_REQUEST);
+            throw new Exception('bad id in query params: ' . $queryParams['id'] ?? 'not set', Response::BAD_REQUEST);
         }
     }
 }

@@ -3,6 +3,7 @@
 use App\Library\Container\Container;
 use App\Library\Mail\MyMailGun;
 use App\Library\Mail\MyPHPMailer;
+use App\Library\Mail\MySendGrid;
 use App\Library\MailSender;
 use App\Model\CommentManager;
 use App\Model\ConfigManager;
@@ -13,7 +14,6 @@ use App\Model\UserManager;
 use Dumb\Dumb;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
-use App\Library\Mail\MySendGrid;
 
 /**
  * equip everything u need into the container of dumb.
