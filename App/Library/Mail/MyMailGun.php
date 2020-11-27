@@ -79,7 +79,7 @@ class MyMailGun implements MailInterface
         }
         $this->setFrom($adminMail, MailInterface::OWNER);
         $this->setReplyTo($replyTo, $name);
-        $mail = Mail::create($_ENV['MAILGUN_API_KEY'], 'https://api.eu.mailgun.net');
+        $mail = Mail::create($_ENV['MAILGUN_API_KEY']);
 
         try {
             $data = [
@@ -90,7 +90,7 @@ class MyMailGun implements MailInterface
             if ($this->content) {
                 $data[$this->type] = $this->content;
             }
-            $response = $mail->messages()->send('camagru42.herokuapp.com', $data);
+            $response = $mail->messages()->send($_ENV['MAILGUN_DOMAIN'], $data);
             echo $response->getMessage();
 
             return true;
