@@ -81,4 +81,3 @@ Dans le dossier hooks, on trouve des hooks pour git pour tester le back au momen
 
 ### back
 - rajouter des objets images etc, et un ORM tant qu'a faire
-- systeme de logger respectant psr
