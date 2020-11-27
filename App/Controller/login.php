@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Library\Exception;
 use App\Library\Session;
 use App\Model\UserManager;
 use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
-use App\Library\Exception;
 
 class login extends Patronus
 {

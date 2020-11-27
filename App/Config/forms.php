@@ -1,8 +1,8 @@
 <?php
 
+use App\Library\Exception;
 use Dumb\Dumb;
 use Dumb\Response;
-use App\Library\Exception;
 
 function escapeString(string $key): void
 {

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Library\Exception;
 use App\Library\Image;
 use App\Model\FilterManager;
 use App\Model\PicturesManager;
@@ -11,7 +12,6 @@ use Cloudinary\Uploader;
 use Dumb\Dumb;
 use Dumb\Patronus;
 use Dumb\Response;
-use App\Library\Exception;
 
 /**
  * picture.

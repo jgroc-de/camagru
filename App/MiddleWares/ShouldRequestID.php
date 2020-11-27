@@ -2,10 +2,10 @@
 
 namespace App\MiddleWares;
 
+use App\Library\Exception;
 use Dumb\DumbMiddleware;
 use Dumb\Response;
 use Psr\Http\Message\ServerRequestInterface;
-use App\Library\Exception;
 
 class ShouldRequestID extends DumbMiddleware
 {

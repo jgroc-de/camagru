@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Dumb;
 
 use App\Library\Exception;
+
 /**
  * this is the parent class for controller.
  */

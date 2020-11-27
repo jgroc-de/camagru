@@ -2,8 +2,8 @@
 
 namespace App\Model;
 
-use Dumb\Response;
 use App\Library\Exception;
+use Dumb\Response;
 
 class CommentManager extends SqlManager
 {

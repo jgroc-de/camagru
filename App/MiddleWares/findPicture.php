@@ -2,11 +2,11 @@
 
 namespace App\MiddleWares;
 
+use App\Library\Exception;
 use App\Model\PicturesManager;
 use Dumb\DumbMiddleware;
 use Dumb\Response;
 use Psr\Http\Message\ServerRequestInterface;
-use App\Library\Exception;
 
 class findPicture extends DumbMiddleware
 {

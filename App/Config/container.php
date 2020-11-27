@@ -10,8 +10,8 @@ use App\Model\LikesManager;
 use App\Model\PicturesManager;
 use App\Model\UserManager;
 use Dumb\Dumb;
-use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 
 /**
  * equip everything u need into the container of dumb.
