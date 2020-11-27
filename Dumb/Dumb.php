@@ -41,7 +41,6 @@ class Dumb
         }
         $this->formValidator = new KGB();
         $this->request = new Request();
-
     }
 
     public static function getContainer(): ContainerInterface
@@ -52,6 +51,11 @@ class Dumb
     public function setRouter(array $routes): void
     {
         $this->router = new BakaDo($routes, $this->request);
+    }
+
+    public function getRouter(): BakaDo
+    {
+        return $this->router;
     }
 
     public function setContainer(ContainerInterface $container): void

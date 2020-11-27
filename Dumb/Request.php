@@ -191,6 +191,11 @@ class Request implements ServerRequestInterface
         return $this;
     }
 
+    public function setParams(string $key, $value): void
+    {
+        $this->queryParams[$key] = $value;
+    }
+
     private function setQueryParams(): array
     {
         $queryParams = [];
@@ -210,10 +215,5 @@ class Request implements ServerRequestInterface
         }
 
         return $queryParams;
-    }
-
-    public function setParams(string $key, $value)
-    {
-        $this->queryParams[$key] = $value;
     }
 }

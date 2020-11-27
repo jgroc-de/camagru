@@ -15,6 +15,7 @@ use Dumb\IronWall;
 
 /** @var Dumb $baka */
 /** @var BakaDo $router */
+$router = $baka->getRouter();
 $middlewareHandler = new IronWall();
 $baka->addMiddlewareHandlers($middlewareHandler);
 
