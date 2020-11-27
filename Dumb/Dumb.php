@@ -72,6 +72,7 @@ class Dumb
         $response = Response::getInstance($controller->code);
 
         try {
+            $request = new Request();
             $this->runMiddlewares($request);
             if ($response->getStatusCode() < 400) {
                 $controller->trap($request);

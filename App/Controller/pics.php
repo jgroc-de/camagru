@@ -24,7 +24,7 @@ class pics extends Patronus
 
     public function get(Request $request): void
     {
-        $pics = $this->getPics();
+        $pics = $this->getPics($request);
         $max = $this->picsManager->countPics();
         if (empty($pics)) {
             throw new Exception('pics', Response::NOT_FOUND);
@@ -36,7 +36,7 @@ class pics extends Patronus
         ];
     }
 
-    private function getPics(): array
+    private function getPics(Request $request): array
     {
         $uri = explode('/', $_SERVER['REQUEST_URI'])[1];
         $sort = explode('By', $uri)[1];
