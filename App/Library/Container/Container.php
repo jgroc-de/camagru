@@ -23,6 +23,9 @@ class Container implements ContainerInterface
         }
 
         try {
+            if (is_callable($this->services[$id]())) {
+                return $this->services[$id];
+            }
             return $this->services[$id]();
         } catch (\Exception $e) {
             throw new ContainerException($id);
